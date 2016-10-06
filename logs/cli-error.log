@@ -1,0 +1,190 @@
+2016-09-12 04:41:19 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Migration" could not be found.
+Exception Attributes: array (
+  'class' => 'Migration',
+)
+Stack Trace:
+#0 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('migration')
+#1 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 C:\xampp\htdocs\cakephp\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+
+2016-09-12 05:27:23 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Migrate" could not be found.
+Exception Attributes: array (
+  'class' => 'Migrate',
+)
+Stack Trace:
+#0 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('migrate')
+#1 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 C:\xampp\htdocs\cakephp\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+
+2016-09-13 09:37:22 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Migrate" could not be found.
+Exception Attributes: array (
+  'class' => 'Migrate',
+)
+Stack Trace:
+#0 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('migrate')
+#1 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 C:\xampp\htdocs\cakephp\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+
+2016-09-13 03:43:06 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Migrate" could not be found.
+Exception Attributes: array (
+  'class' => 'Migrate',
+)
+Stack Trace:
+#0 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('migrate')
+#1 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 C:\xampp\htdocs\cakephp\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+
+2016-09-13 03:54:42 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Composer" could not be found.
+Exception Attributes: array (
+  'class' => 'Composer',
+)
+Stack Trace:
+#0 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('Composer')
+#1 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 C:\xampp\htdocs\cakephp\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+
+2016-09-14 02:08:20 Warning: Warning (2): array_merge(): Argument #2 is not an array in [C:\xampp\htdocs\cakephp\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 37]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+array_merge - [internal], line ??
+Faker\ORM\CakePHP\EntityPopulator::mergeColumnFormattersWith() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 37
+Faker\ORM\CakePHP\Populator::addEntity() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\Populator.php, line 79
+CreateAdminSeedMigration::up() - ROOT\config\Migrations\20160914014422_create_admin_seed_migration.php, line 30
+Phinx\Migration\Manager\Environment::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php, line 117
+Phinx\Migration\Manager::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 309
+Phinx\Migration\Manager::migrate() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 285
+Phinx\Console\Command\Migrate::execute() - ROOT\vendor\robmorgan\phinx\src\Phinx\Console\Command\Migrate.php, line 113
+Migrations\Command\Migrate::parentExecute() - ROOT\vendor\cakephp\migrations\src\ConfigurationTrait.php, line 165
+Migrations\Command\Migrate::execute() - ROOT\vendor\cakephp\migrations\src\Command\Migrate.php, line 58
+Symfony\Component\Console\Command\Command::run() - ROOT\vendor\symfony\console\Command\Command.php, line 256
+Symfony\Component\Console\Application::doRunCommand() - ROOT\vendor\symfony\console\Application.php, line 818
+Symfony\Component\Console\Application::doRun() - ROOT\vendor\symfony\console\Application.php, line 186
+Symfony\Component\Console\Application::run() - ROOT\vendor\symfony\console\Application.php, line 117
+Migrations\Shell\MigrationsShell::main() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 98
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 466
+Migrations\Shell\MigrationsShell::runCommand() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 130
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2016-09-14 02:08:20 Warning: Warning (2): array_merge(): Argument #2 is not an array in [C:\xampp\htdocs\cakephp\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 42]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+array_merge - [internal], line ??
+Faker\ORM\CakePHP\EntityPopulator::mergeModifiersWith() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 42
+Faker\ORM\CakePHP\Populator::addEntity() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\Populator.php, line 84
+CreateAdminSeedMigration::up() - ROOT\config\Migrations\20160914014422_create_admin_seed_migration.php, line 30
+Phinx\Migration\Manager\Environment::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php, line 117
+Phinx\Migration\Manager::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 309
+Phinx\Migration\Manager::migrate() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 285
+Phinx\Console\Command\Migrate::execute() - ROOT\vendor\robmorgan\phinx\src\Phinx\Console\Command\Migrate.php, line 113
+Migrations\Command\Migrate::parentExecute() - ROOT\vendor\cakephp\migrations\src\ConfigurationTrait.php, line 165
+Migrations\Command\Migrate::execute() - ROOT\vendor\cakephp\migrations\src\Command\Migrate.php, line 58
+Symfony\Component\Console\Command\Command::run() - ROOT\vendor\symfony\console\Command\Command.php, line 256
+Symfony\Component\Console\Application::doRunCommand() - ROOT\vendor\symfony\console\Application.php, line 818
+Symfony\Component\Console\Application::doRun() - ROOT\vendor\symfony\console\Application.php, line 186
+Symfony\Component\Console\Application::run() - ROOT\vendor\symfony\console\Application.php, line 117
+Migrations\Shell\MigrationsShell::main() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 98
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 466
+Migrations\Shell\MigrationsShell::runCommand() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 130
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2016-09-14 02:08:20 Warning: Warning (2): Invalid argument supplied for foreach() in [C:\xampp\htdocs\cakephp\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 131]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Faker\ORM\CakePHP\EntityPopulator::execute() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 131
+Faker\ORM\CakePHP\Populator::execute() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\Populator.php, line 103
+CreateAdminSeedMigration::up() - ROOT\config\Migrations\20160914014422_create_admin_seed_migration.php, line 31
+Phinx\Migration\Manager\Environment::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php, line 117
+Phinx\Migration\Manager::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 309
+Phinx\Migration\Manager::migrate() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 285
+Phinx\Console\Command\Migrate::execute() - ROOT\vendor\robmorgan\phinx\src\Phinx\Console\Command\Migrate.php, line 113
+Migrations\Command\Migrate::parentExecute() - ROOT\vendor\cakephp\migrations\src\ConfigurationTrait.php, line 165
+Migrations\Command\Migrate::execute() - ROOT\vendor\cakephp\migrations\src\Command\Migrate.php, line 58
+Symfony\Component\Console\Command\Command::run() - ROOT\vendor\symfony\console\Command\Command.php, line 256
+Symfony\Component\Console\Application::doRunCommand() - ROOT\vendor\symfony\console\Application.php, line 818
+Symfony\Component\Console\Application::doRun() - ROOT\vendor\symfony\console\Application.php, line 186
+Symfony\Component\Console\Application::run() - ROOT\vendor\symfony\console\Application.php, line 117
+Migrations\Shell\MigrationsShell::main() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 98
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 466
+Migrations\Shell\MigrationsShell::runCommand() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 130
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2016-09-14 02:08:20 Warning: Warning (2): Invalid argument supplied for foreach() in [C:\xampp\htdocs\cakephp\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 137]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+Faker\ORM\CakePHP\EntityPopulator::execute() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 137
+Faker\ORM\CakePHP\Populator::execute() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\Populator.php, line 103
+CreateAdminSeedMigration::up() - ROOT\config\Migrations\20160914014422_create_admin_seed_migration.php, line 31
+Phinx\Migration\Manager\Environment::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php, line 117
+Phinx\Migration\Manager::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 309
+Phinx\Migration\Manager::migrate() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 285
+Phinx\Console\Command\Migrate::execute() - ROOT\vendor\robmorgan\phinx\src\Phinx\Console\Command\Migrate.php, line 113
+Migrations\Command\Migrate::parentExecute() - ROOT\vendor\cakephp\migrations\src\ConfigurationTrait.php, line 165
+Migrations\Command\Migrate::execute() - ROOT\vendor\cakephp\migrations\src\Command\Migrate.php, line 58
+Symfony\Component\Console\Command\Command::run() - ROOT\vendor\symfony\console\Command\Command.php, line 256
+Symfony\Component\Console\Application::doRunCommand() - ROOT\vendor\symfony\console\Application.php, line 818
+Symfony\Component\Console\Application::doRun() - ROOT\vendor\symfony\console\Application.php, line 186
+Symfony\Component\Console\Application::run() - ROOT\vendor\symfony\console\Application.php, line 117
+Migrations\Shell\MigrationsShell::main() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 98
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 466
+Migrations\Shell\MigrationsShell::runCommand() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 130
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2016-09-18 07:07:08 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Make" could not be found.
+Exception Attributes: array (
+  'class' => 'Make',
+)
+Stack Trace:
+#0 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('make')
+#1 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 C:\xampp\htdocs\cakephp\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 C:\xampp\htdocs\cakephp\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+
+2016-10-06 02:28:36 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Migrate" could not be found.
+Exception Attributes: array (
+  'class' => 'Migrate',
+)
+Stack Trace:
+#0 /home/satori/Documents/cakephp/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('Migrate')
+#1 /home/satori/Documents/cakephp/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 /home/satori/Documents/cakephp/vendor/cakephp/cakephp/src/Console/ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 /home/satori/Documents/cakephp/bin/cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+

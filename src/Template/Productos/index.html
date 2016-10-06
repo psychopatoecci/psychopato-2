@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tienda de videojuegos ficticia">
+    <meta name="author" content="PsychoPato">
+    <title>PsychoPatoShop</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
+    <link href="css/price-range.css" rel="stylesheet"> <!--Slider-->
+    <link href="css/animate.css" rel="stylesheet"> <!--Animaciones-->
+	<link href="css/responsive.css" rel="stylesheet"> <!--Para móviles-->
+	<link href="css/main.css" rel="stylesheet"> 
+
+    <!--[if lt IE 9]> 
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="images/home/favicon.ico">
+
+</head>
+
+<body>
+
+	<!--Header-->
+	<header id="header">
+		<!--Header intermedio-->
+		<div class="header-middle">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="index.html"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
+						</div>
+						
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="cuenta.html" alt="Ver datos de la cuenta"><i class="fa fa-user"></i> Cuenta</a></li>
+								<li><a href="wishlist.html"><i class="fa fa-star"></i> Lista de deseos</a></li>
+								<li><a href="registro.html"><i class="fa fa-crosshairs"></i> Registro</a></li>
+								<li><a href="carrito.html"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
+								<li><a href="404. html"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+	
+		<!--Header inferior-->
+		<div class="header-bottom">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+					
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a href="index.html" class="active">Inicio</a></li>
+								<li class="dropdown"><a href="#">Juegos<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="categoria1.html">Play Station</a></li>
+										<li><a href="categoria2.html">Xbox</a></li> 
+										<li><a href="categoria3.html">Nintendo</a></li> 
+										<li><a href="categoria4.html">PC</a></li> 
+                                    </ul>
+                                </li> 
+								<li class="dropdown"><a href="#">Ofertas<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="ofertas1.html">Ofertas de verano</a></li>
+										<li><a href="ofertas2.html">Ofertas diarias</a></li>
+                                    </ul>
+                                </li> 
+								<li><a href="404.html">Consolas</a></li>
+								<li><a href="contacto.html">Contacto</a></li>
+							</ul>
+						</div>
+						
+					</div>
+					
+					<!--Barra de busqueda-->
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+							<input type="text" placeholder="Búsqueda"/>
+						</div>	
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+	</header>
+	
+	<!--Slider de noticias-->
+	<section id="slider">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+							<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+							<li data-target="#slider-carousel" data-slide-to="1"></li>
+							<li data-target="#slider-carousel" data-slide-to="2"></li>
+						</ol>
+						
+						<div class="carousel-inner">
+							<div class="item active">
+								<div class="col-sm-6">
+									<h1><span>Half-Life</span> 3</h1>
+									<h2>El mejor juego que jamás jugarás</h2>
+									<p>Fecha de salida: 30 de febrero, 2017</p>
+									<button type="button" class="btn btn-default get">¡Reservar!</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="images/productos/juegos/Halflife3.png" class="productohome img-responsive" alt="" />
+								</div>
+							</div>
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>Nueva </span>PS4 Pro</h1>
+									<h2>Diseñada para los más "pros"</h2>
+									<p>Resérvala ahora y llévate una calcomania de Kratos... por $100 más. </p>
+									<button type="button" class="btn btn-default get">¡Reservar!</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="images/productos/consolas/Ps4Pro.jpg" class="productohome img-responsive" alt="" />
+									<img src="images/home/precio.png"  class="preciohome" alt="" />
+								</div>
+							</div>
+							
+							<div class="item">
+								<div class="col-sm-6">
+									<h1><span>Rock Simulator </span>2014</h1>
+									<h2>La experiencia de simulación definitiva</h2>
+									<p>"Too much rocks" 7.8/10 - IGN</p>
+									<button type="button" class="btn btn-default get">Comprar ahora</button>
+								</div>
+								<div class="col-sm-6">
+									<img src="images/productos/juegos/RockSimulatorhome.jpg" class="productohome img-responsive" alt="" />
+								</div>
+							</div>
+							
+						</div>
+						
+						<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+							<i class="fa fa-angle-left"></i>
+						</a>
+						<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+							<i class="fa fa-angle-right"></i>
+						</a>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!--Navegador lateral-->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Categorías</h2>
+						<div class="panel-group category-products" id="accordian">
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
+											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+											Géneros
+										</a>
+									</h4>
+								</div>
+								<div id="mens" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul>
+											<li><a href="#">Aventura</a></li>
+											<li><a href="#">Acción</a></li>
+											<li><a href="#">RPG</a></li>
+											<li><a href="#">Plataformas</a></li>
+											<li><a href="#">Conducción</a></li>
+											<li><a href="#">Deportes</a></li>
+											<li><a href="#">Estrategia</a></li>
+											<li><a href="#">Simulación</a></li>
+											<li><a href="#">Casual</a></li>
+											<li><a href="#">Otros</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Digitales</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Infantiles</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Accesorios</a></h4>
+								</div>
+							</div>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#">Figuras</a></h4>
+								</div>
+							</div>
+						</div>
+					
+						<!--/Contador de juegos por plataforma-->
+						<div class="brands_products">
+							<h2>Plataformas</h2>
+							<div class="brands-name">
+								<ul class="nav nav-pills nav-stacked">
+									<li><a href="#"> <span class="pull-right">(52)</span>Play Station 4</a></li>
+									<li><a href="#"> <span class="pull-right">(17)</span>Play Station 3</a></li>
+									<li><a href="#"> <span class="pull-right">(24)</span>Xbox One</a></li>
+									<li><a href="#"> <span class="pull-right">(14)</span>Xbox 360</a></li>
+									<li><a href="#"> <span class="pull-right">(29)</span>Wii</a></li>
+									<li><a href="#"> <span class="pull-right">(27)</span>Wii U</a></li>
+									<li><a href="#"> <span class="pull-right">(32)</span>PC</a></li>
+									<li><a href="#"> <span class="pull-right">(9)</span>PlayStation Vita</a></li>
+									<li><a href="#"> <span class="pull-right">(5)</span>Nintendo 3DS</a></li>
+									<li><a href="#"> <span class="pull-right">(4)</span>Nintendo DS</a></li>
+								</ul>
+							</div>
+						</div>
+						
+						<!--/Banner de publicidad lateral-->
+						<div class="bannerpublicidad text-center">
+							<a href="#"><img href="#" src="images/home/Banner1.png" alt="" /></a>
+						</div>
+					
+					</div>
+				</div>
+				
+				<!--Productos destacados-->
+				<div class="col-sm-9 padding-right">
+					<div class="features_items">
+						<h2 class="title text-center">Productos destacados</h2>
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/productos/consolas/PS4.png" alt="" />
+											<h2>¢169 000</h2>
+											<p>Play Station 4 - Edición estándar</p>
+											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+										</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Añadir a la lista de deseos</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="images/productos/consolas/XboxOne.png" alt="" />
+										<h2>¢209 000</h2>
+										<p>Xbox One Slim - 2 TB</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+									</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Añadir a la lista de deseos</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="images/productos/juegos/TheLastGuardian.png" alt="" />
+										<h2>¢49 000</h2>
+										<p>The Last Guardian</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+									</div>
+									<img src="images/home/nuevo.png" class="new" alt="" />
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Añadir a la lista de deseos</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="images/productos/consolas/NX.png" alt="" />
+										<h2>¢999 000</h2>
+										<p>Nintendo NX</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+									</div>
+									<img src="images/home/oferta.png" class="new" alt="" />
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Añadir a la lista de deseos</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="images/productos/juegos/FinalFantasyXV.png" alt="" />
+										<h2>¢49 000</h2>
+										<p>Final Fantasy XV</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+									</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Añadir a la lista de deseos</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="images/productos/juegos/FFConquest.png" alt="" />
+										<h2>¢39 000</h2>
+										<p>Fire Emblem Fates - Conquest</p>
+										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+									</div>
+								</div>
+								<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href="#"><i class="fa fa-plus-square"></i>Añadir a la lista de deseos</a></li>
+										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					<!--Vistazo a categorias-->
+					<div class="category-tab">
+						<div class="col-sm-12">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#submenu1" data-toggle="tab">Novedades</a></li>
+								<li><a href="#submenu2" data-toggle="tab">Próximos lanzamientos</a></li>
+								<li><a href="#submenu3" data-toggle="tab">Los mejores</a></li>
+								<li><a href="#submenu4" data-toggle="tab">Los peores</a></li>
+							</ul>
+						</div>
+						<div class="tab-content">
+							<div class="tab-pane fade active in" id="submenu1" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/BioshockTheCollection.png" alt="" />
+												<h2>¢49 000</h2>
+												<p>BioShock: The Collection</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/fifa17.png" alt="" />
+												<h2>¢45 000</h2>
+												<p>FIFA 17</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/fozah3.png" alt="" />
+												<h2>¢49 000</h2>
+												<p>Forza Horizon 3</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/papermariowiiu.png" alt="" />
+												<h2>¢39 000</h2>
+												<p>Paper Mario: Color Splash</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="tab-pane fade" id="submenu2" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/zeldabotw.png" alt="" />
+												<h2>¢59 000</h2>
+												<p>The Legend of Zelda: Breath of the Wild</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/Halflife3-2.png" alt="" />
+												<h2>¢259 000</h2>
+												<p>Half-Life 3</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/persona5.png" alt="" />
+												<h2>¢59 000</h2>
+												<p>Persona 5</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/pokemonsun.png" alt="" />
+												<h2>¢30 000</h2>
+												<p>Pokemon Sun</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="tab-pane fade" id="submenu3" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/thewitcher3.png" alt="" />
+												<h2>¢32 500</h2>
+												<p>The Witcher 3: Wild Hunt</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/halo5.png" alt="" />
+												<h2>¢36 800</h2>
+												<p>Halo 5: Guardians</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/smashwiiu.png" alt="" />
+												<h2>¢31 200</h2>
+												<p>Super Smash Bros. WiiU</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/zelda3ds.png" alt="" />
+												<h2>¢29 000</h2>
+												<p>The Legend of Zelda: Ocarina of Time 3D</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="tab-pane fade" id="submenu4" >
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/nomansky.png" alt="" />
+												<h2>¢12 000</h2>
+												<p>No Man's Sky</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito (no se aceptan devoluciones)</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/theorder.png" alt="" />
+												<h2>¢15 000</h2>
+												<p>The Order: 1886</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/imaginaserroca.png" alt="" />
+												<h2>¢75 000</h2>
+												<p>Imagina ser roca</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+											<div class="productinfo text-center">
+												<img src="images/productos/juegos/RockSimulator.png" alt="" />
+												<h2>¢76 000</h2>
+												<p>Rock Simulator 2014</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir al carrito</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!--/Footer-->
+	<footer id="footer">
+		<div class="footer-widget">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Servicio</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Contáctenos</a></li>
+								<li><a href="#">Preguntas frecuentes</a></li>
+								<li><a href="#">Sobre nosotros</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="single-widget">
+							<h2>Administración</h2>
+							<ul class="nav nav-pills nav-stacked">
+								<li><a href="#">Entrar como administrador</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row">
+					<p class="pull-left">Corporación PsychoPato S.A. Todos los derechos reservados</p>
+					<p class="pull-right">UCR - 2016</p>
+				</div>
+			</div>
+		</div>
+		
+	</footer>
+
+    <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/price-range.js"></script> <!-- Para Slider-->
+    <script src="js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
+    <script src="js/main.js"></script>
+</body>
+</html>

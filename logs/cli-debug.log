@@ -1,0 +1,206 @@
+2016-09-08 16:38:15 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-08 16:38:15 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-08 16:38:15 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-08 16:38:15 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-08 16:40:45 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-08 16:40:45 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-08 16:40:45 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-08 16:40:45 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-08 16:41:52 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-08 16:41:52 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-08 16:41:52 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-08 16:41:52 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-08 16:49:32 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-08 16:49:32 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-08 16:49:32 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-08 16:49:32 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-12 05:18:15 Notice: Notice (8): Undefined variable: hash in [C:\xampp\htdocs\cakephp\config\Migrations\20160912044155_create_admin_seed_migration.php, line 19]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+CreateAdminSeedMigration::{closure}() - ROOT\config\Migrations\20160912044155_create_admin_seed_migration.php, line 19
+Faker\ORM\CakePHP\EntityPopulator::execute() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 133
+Faker\ORM\CakePHP\Populator::execute() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\Populator.php, line 103
+CreateAdminSeedMigration::up() - ROOT\config\Migrations\20160912044155_create_admin_seed_migration.php, line 30
+Phinx\Migration\Manager\Environment::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php, line 117
+Phinx\Migration\Manager::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 309
+Phinx\Migration\Manager::migrate() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 285
+Phinx\Console\Command\Migrate::execute() - ROOT\vendor\robmorgan\phinx\src\Phinx\Console\Command\Migrate.php, line 113
+Migrations\Command\Migrate::parentExecute() - ROOT\vendor\cakephp\migrations\src\ConfigurationTrait.php, line 165
+Migrations\Command\Migrate::execute() - ROOT\vendor\cakephp\migrations\src\Command\Migrate.php, line 58
+Symfony\Component\Console\Command\Command::run() - ROOT\vendor\symfony\console\Command\Command.php, line 256
+Symfony\Component\Console\Application::doRunCommand() - ROOT\vendor\symfony\console\Application.php, line 818
+Symfony\Component\Console\Application::doRun() - ROOT\vendor\symfony\console\Application.php, line 186
+Symfony\Component\Console\Application::run() - ROOT\vendor\symfony\console\Application.php, line 117
+Migrations\Shell\MigrationsShell::main() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 98
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 466
+Migrations\Shell\MigrationsShell::runCommand() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 130
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2016-09-12 05:20:26 Notice: Notice (8): Undefined variable: hash in [C:\xampp\htdocs\cakephp\config\Migrations\20160912044155_create_admin_seed_migration.php, line 19]
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE\src\Error\BaseErrorHandler.php, line 146
+CreateAdminSeedMigration::{closure}() - ROOT\config\Migrations\20160912044155_create_admin_seed_migration.php, line 19
+Faker\ORM\CakePHP\EntityPopulator::execute() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\EntityPopulator.php, line 133
+Faker\ORM\CakePHP\Populator::execute() - ROOT\vendor\fzaninotto\faker\src\Faker\ORM\CakePHP\Populator.php, line 103
+CreateAdminSeedMigration::up() - ROOT\config\Migrations\20160912044155_create_admin_seed_migration.php, line 30
+Phinx\Migration\Manager\Environment::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager\Environment.php, line 117
+Phinx\Migration\Manager::executeMigration() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 309
+Phinx\Migration\Manager::migrate() - ROOT\vendor\robmorgan\phinx\src\Phinx\Migration\Manager.php, line 285
+Phinx\Console\Command\Migrate::execute() - ROOT\vendor\robmorgan\phinx\src\Phinx\Console\Command\Migrate.php, line 113
+Migrations\Command\Migrate::parentExecute() - ROOT\vendor\cakephp\migrations\src\ConfigurationTrait.php, line 165
+Migrations\Command\Migrate::execute() - ROOT\vendor\cakephp\migrations\src\Command\Migrate.php, line 58
+Symfony\Component\Console\Command\Command::run() - ROOT\vendor\symfony\console\Command\Command.php, line 256
+Symfony\Component\Console\Application::doRunCommand() - ROOT\vendor\symfony\console\Application.php, line 818
+Symfony\Component\Console\Application::doRun() - ROOT\vendor\symfony\console\Application.php, line 186
+Symfony\Component\Console\Application::run() - ROOT\vendor\symfony\console\Application.php, line 117
+Migrations\Shell\MigrationsShell::main() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 98
+Cake\Console\Shell::runCommand() - CORE\src\Console\Shell.php, line 466
+Migrations\Shell\MigrationsShell::runCommand() - ROOT\vendor\cakephp\migrations\src\Shell\MigrationsShell.php, line 130
+Cake\Console\ShellDispatcher::_dispatch() - CORE\src\Console\ShellDispatcher.php, line 227
+Cake\Console\ShellDispatcher::dispatch() - CORE\src\Console\ShellDispatcher.php, line 182
+Cake\Console\ShellDispatcher::run() - CORE\src\Console\ShellDispatcher.php, line 128
+[main] - ROOT\bin\cake.php, line 34
+
+
+
+2016-09-14 00:44:12 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 00:44:12 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 00:44:12 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 00:44:13 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 00:45:17 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 00:45:17 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 00:45:17 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 00:45:17 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 00:55:50 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 00:55:50 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 00:55:50 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 00:55:50 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 00:58:36 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 00:58:36 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 00:58:36 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 00:58:36 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:00:56 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:00:56 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:00:56 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:00:56 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:01:05 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:01:05 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:01:05 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:01:05 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:02:03 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:02:03 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:02:03 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:02:03 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:09:25 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:09:25 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:09:25 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:09:25 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:10:37 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:10:37 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:10:37 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:10:37 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:38:23 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:38:23 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:38:23 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:38:23 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:39:56 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:39:56 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:39:56 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:39:56 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:42:43 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:42:43 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:42:43 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:42:43 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:52:34 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:52:34 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:52:34 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:52:34 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:53:13 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:53:13 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:53:13 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:53:13 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:54:01 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:54:01 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:54:01 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:54:01 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 01:54:24 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 01:54:24 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:54:24 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 01:54:24 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 02:01:31 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 02:01:31 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:01:31 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:01:31 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 02:01:39 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 02:01:39 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:01:39 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:01:39 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 02:01:53 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 02:01:53 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:01:53 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:01:53 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 02:14:43 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 02:14:43 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:14:43 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:14:43 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 02:26:28 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 02:26:28 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:26:28 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:26:28 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 02:31:05 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 02:31:05 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:31:05 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:31:05 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 02:42:22 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 02:42:22 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:42:22 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:42:22 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 02:52:55 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 02:52:55 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:52:55 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 02:52:55 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:52:55 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:52:55 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:52:55 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:52:55 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:52:58 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:52:58 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:52:58 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:52:58 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:53:00 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:53:00 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:00 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:00 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:53:02 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:53:02 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:02 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:02 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:53:03 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:53:03 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:03 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:03 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:53:12 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:53:12 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:12 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:12 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:53:48 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:53:48 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:48 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:53:48 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:54:34 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:54:34 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:54:34 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:54:34 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:57:08 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:57:08 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:57:08 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:57:08 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
+2016-09-14 03:57:13 Debug: command 'bake' in plugin 'Bake' was not aliased, conflicts with 'Bake'
+2016-09-14 03:57:13 Debug: command 'benchmark' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:57:13 Debug: command 'whitespace' in plugin 'DebugKit' was not aliased, conflicts with 'DebugKit'
+2016-09-14 03:57:13 Debug: command 'migrations' in plugin 'Migrations' was not aliased, conflicts with 'Migrations'
