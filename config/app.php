@@ -229,9 +229,9 @@ return [
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => 'root',
+            'username' => 'felipe993',
             'password' => '',
-            'database' => 'baselab',
+            'database' => 'psycho',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
@@ -269,8 +269,8 @@ return [
             'persistent' => false,
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
-            'username' => 'my_app',
-            'password' => 'secret',
+            'username' => 'felipe993',
+            'password' => '',
             'database' => 'test_myapp',
             'encoding' => 'utf8',
             'timezone' => 'UTC',

@@ -49,8 +49,18 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Productos', 'action' => 'Login']);
+    $routes->connect('/', ['controller' => 'Productos', 'action' => 'index']);
+    $routes->connect('/catalogo', ['controller' => 'Productos', 'action' => 'catalogo']);
+    $routes->connect('/detalles/*', ['controller' => 'Productos', 'action' => 'detalles']);
+    $routes->connect('/ofertas', ['controller' => 'Productos', 'action' => 'ofertas']);
+    $routes->connect('/adminProductos', ['controller' => 'Productos', 'action' => 'adminProductos']);
+    $routes->connect('/404', ['controller' => 'Productos', 'action' => 'error404']);
+    $routes->connect('/funciones', ['controller' => 'Productos', 'action' => 'funciones']);
+    $routes->connect('/upload', ['controller' => 'Productos', 'action' => 'upload']);
 
+    /*ruta para pruebas*/
+        $routes->connect('/detallesprueba/*', ['controller' => 'Productos', 'action' => 'detallesprueba']);
+    /*ruta para pruebas*/
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
@@ -77,9 +87,9 @@ Router::scope('/', function (RouteBuilder $routes) {
 //ruta para users
 //Router::connect('/users/index',['controller'=>'Users','action'=>'index']);
 Router::scope('/users', function($routes){
-	$routes->connect('/index', ['controller'=>'Productos','action'=>'index']);
+	/*$routes->connect('/index', ['controller'=>'Productos','action'=>'index']);
 	$routes->connect('/view/*', ['controller'=>'Productos','action'=>'view']);
-	$routes->connect('/productos/catalogo',['controller'=>'Productos','action'=>'catalogo']);
+	$routes->connect('/productos/catalogo',['controller'=>'Productos','action'=>'catalogo']);*/
 });
 /**
  * Load all plugin routes.  See the Plugin documentation on

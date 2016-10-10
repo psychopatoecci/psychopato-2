@@ -42,7 +42,7 @@ class AppController extends Controller
         parent::initialize();
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
+        /*$this->loadComponent('Auth', [
             'authorize' => ['Controller'],
             'authenticate' => [
                 'Form' => [
@@ -67,7 +67,7 @@ class AppController extends Controller
                 'action' => 'login'
             ],
             'unauthorizedRedirect' => $this->referer()
-        ]);
+        ]);*/
     }
     /**
      * Before render callback.
@@ -83,7 +83,7 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
-    public function beforeFilter(Event $event)
+   /* public function beforeFilter(Event $event)
     {
         $this->set('current_user', $this->Auth->user());
     }
@@ -94,5 +94,5 @@ class AppController extends Controller
             return true;
         }
         return false;
-    }
+    }*/
 }

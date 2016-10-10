@@ -10,7 +10,86 @@ use App\Controller\AppController;
  */
 class ProductosController extends AppController
 {
-    public function beforeFilter(\Cake\Event\Event $event)
+    
+    public function index()
+    {
+        
+        $productos = $this->Productos->find('all');
+        $this->set('productos',$productos);
+    }
+    public function catalogo()
+    {
+       /* $this->render();*/
+    
+         /**!----CODIGO DE PRUEBA NO BORRAR--------->***/
+         
+         $query = $this->Productos->find('all')->contain(['video_juegos']);
+         $this -> set ('query', $query);
+     /**!----CODIGO DE PRUEBA NO BORRAR--------->***/
+     
+     
+ /*  $productos = $this->Productos->find('all');
+        $this->set('productos',$productos);*/
+        
+    }
+    public function detalles($prodId)
+    {
+        $producto = $this -> Productos -> get ($prodId);
+        $this -> set ('nombre', $producto ['nombreProducto']);
+        $this -> set ('IDProducto', $prodId);
+        $this -> set ('precio', $producto ['precio']);
+        $this -> set ('portada', $producto ['imagen']);
+        $this -> set ('categoria', StrVal($producto ['tipo']));
+        $this->render();
+    }
+    /* funcion temporal*/
+    public function detallesprueba($codigo)
+    {
+        $producto = $this -> Productos -> get ($codigo);
+        $this -> set ('nombre', $producto ['nombreProducto']);
+        $this -> set ('IDProducto', $codigo);
+        $this -> set ('precio', $producto ['precio']);
+        $this -> set ('portada', $producto ['imagen']);
+        $this -> set ('categoria', $producto ['tipo']);
+        //$query = $this -> Productos -> find('all')->contain(['video_juegos']);
+        
+        /*NO BORRAR*/
+        $condicion =array('video_juegos.idVideoJuego =' => $codigo);
+        $query = $this -> Productos -> find('all',array(
+        'fields' => array('video_juegos.descripcion'),
+        'conditions'=> $condicion ))->contain(['video_juegos']);
+        /*NO BORRAR*/
+        //$descripcion;
+        foreach ($query as $juego) {
+            $this->set ('descripcion', $juego['video_juegos']['descripcion']);
+        }
+        //echo $descripcion;
+        $this->render();
+    }
+    /* funcion temporal*/
+    public function ofertas()
+    {
+        $this->render();
+    }
+    public function AdminProductos()
+    {
+        $this->render();
+    }
+    public function error404()
+    {
+        $this->render();
+    }    
+        public function funciones()
+    {
+        $this->render();
+    }  
+        public function upload()
+    {
+        $this->render();
+    }  
+    
+    
+    /* public function beforeFilter(\Cake\Event\Event $event)
     {
         parent::beforeFilter($event);
         $this->Auth->allow(['add']);
@@ -115,5 +194,5 @@ class ProductosController extends AppController
             $this->Flash->error('El usuario no pudo ser eliminado. Por favor, intente nuevamente.');
         }
         return $this->redirect(['action' => 'index']);
-    }
+    }*/
 }
