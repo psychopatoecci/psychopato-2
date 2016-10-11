@@ -50,18 +50,20 @@ class ProductosController extends AppController
         $this -> set ('IDProducto', $codigo);
         $this -> set ('precio', $producto ['precio']);
         $this -> set ('portada', $producto ['imagen']);
-        $this -> set ('categoria', $producto ['tipo']);
+        $this -> set ('categoria', StrVal ($producto ['tipo']));
+        $this -> set ('descripcion', $producto ['descripcion']);
         //$query = $this -> Productos -> find('all')->contain(['video_juegos']);
         
         /*NO BORRAR*/
         $condicion =array('video_juegos.idVideoJuego =' => $codigo);
         $query = $this -> Productos -> find('all',array(
-        'fields' => array('video_juegos.descripcion'),
-        'conditions'=> $condicion ))->contain(['video_juegos']);
+        'fields' => array('generos.genero', 'productos.nombreProducto'),
+        'conditions'=> $condicion ))->contain(['video_juegos.generos', 'video_juegos.consolas.productos']);
         /*NO BORRAR*/
         //$descripcion;
-        foreach ($query as $juego) {
-            $this->set ('descripcion', $juego['video_juegos']['descripcion']);
+        foreach ($query as $qu) {
+            $this->set ('genero', $qu['generos']['genero']);
+            $this->set ('plataforma', $qu['productos']['nombreProducto']);
         }
         //echo $descripcion;
         $this->render();
@@ -84,6 +86,32 @@ class ProductosController extends AppController
         $this->render();
     }  
         public function upload()
+    {
+        $this->render();
+    }  
+    public function actualizar(/*$id, $nombre, $tipo, $imagen, $precio, $fabricante*/)
+    {  
+        $id = 'a';
+        $nombre = "b";
+        $tipo = "c";
+        $imagen = "d"; 
+        $precio = "e"; 
+        $fabricante = "f";
+        //$query = ('UPDATE INTO Productos'.array($id $nombre, $tipo, $imagen, $precio, $fabricante));
+        //echo $query; 
+        $prueba ='UPDATE Productos SET nombreProducto ='.$nombre.', fabricante = '.$fabricante.')';
+         
+        echo $prueba;
+        /*tipo
+        imagen
+        precio
+        fabricante
+        descripcion
+        idConsol'.$id.'")';*/
+        
+    }
+    
+        public function AdminUsuarios()
     {
         $this->render();
     }  

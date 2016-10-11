@@ -6,13 +6,13 @@
     <meta name="description" content="Tienda de videojuegos ficticia">
     <meta name="author" content="PsychoPato">
     <title>PsychoPatoShop</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
-    <link href="css/price-range.css" rel="stylesheet"> <!--Slider-->
-    <link href="css/animate.css" rel="stylesheet"> <!--Animaciones-->
-	<link href="css/responsive.css" rel="stylesheet"> <!--Para móviles-->
-	<link href="css/main.css" rel="stylesheet"> 
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet"> <!--Fuentes-->
+    <link href="../css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
+    <link href="../css/price-range.css" rel="stylesheet"> <!--Slider-->
+    <link href="../css/animate.css" rel="stylesheet"> <!--Animaciones-->
+	<link href="../css/responsive.css" rel="stylesheet"> <!--Para móviles-->
+	<link href="../css/main.css" rel="stylesheet"> 
 
     <!--[if lt IE 9]> 
     <script src="js/html5shiv.js"></script>
@@ -128,7 +128,7 @@
 	'49 000',
 	'39 000');
 	
-	Include ("funciones.php");
+	Include ("scripts/funciones.php");
 
   ?>
 
@@ -156,7 +156,7 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/header-middle-->
+		</div><!--/header-intermedio-->
 	
 		<!--Header inferior-->
 		<div class="header-bottom">
@@ -455,7 +455,8 @@
 						<div class="single-widget">
 							<h2>Administración</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Entrar como administrador</a></li>
+								<li><a href="adminProductos">Administración de productos</a></li>
+								<li><a href="adminusuarios">Administración de usuarios</a></li>
 							</ul>
 						</div>
 					</div>
@@ -474,10 +475,10 @@
 		
 	</footer>
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/price-range.js"></script> <!-- Para Slider-->
-    <script src="js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
-    <script src="js/main.js"></script>
+    <script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/price-range.js"></script> <!-- Para Slider-->
+    <script src="../js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
+    <script src="../js/main.js"></script>
 </body>
 </html>

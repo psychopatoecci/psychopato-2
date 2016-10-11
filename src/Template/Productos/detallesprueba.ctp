@@ -6,13 +6,13 @@
     <meta name="description" content="Tienda de videojuegos ficticia">
     <meta name="author" content="PsychoPato">
     <title>PsychoPatoShop - Detalles de producto</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
-    <link href="css/price-range.css" rel="stylesheet"> <!--Slider-->
-    <link href="css/animate.css" rel="stylesheet"> <!--Animaciones-->
-	<link href="css/responsive.css" rel="stylesheet"> <!--Para móviles-->
-	<link href="css/main.css" rel="stylesheet"> 
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
+    <link href="../css/price-range.css" rel="stylesheet"> <!--Slider-->
+    <link href="../css/animate.css" rel="stylesheet"> <!--Animaciones-->
+	<link href="../css/responsive.css" rel="stylesheet"> <!--Para móviles-->
+	<link href="../css/main.css" rel="stylesheet"> 
 
     <!--[if lt IE 9]> 
     <script src="js/html5shiv.js"></script>
@@ -27,13 +27,13 @@
 	//tos de prueba
 	//$IDProducto = 'PROD101406'; //La ID asignada al producto
 	//$nombre = 'The Witcher 3';
-	$categoria = '2'; //Si es 3=plataforma, no hace falta asignar género y plataforma, no se van a mostrar
-	$plataforma = 'ps4';
-	$genero = 'aventura';
+	//$categoria = '2'; //Si es 3=plataforma, no hace falta asignar género y plataforma, no se van a mostrar
+	//$plataforma = 'ps4';
+	//$genero = 'aventura';
 	//$recio = '29 000';
 	//$descripcion = 'The Witcher 3: Wild Hunt es la tercera entrega de la serie The Witcher, que nos devuelve al conocido cazador de bestias Geralt de Rivia en una nueva aventura. En esta ocasión enfrentándose a la famosa Cacería Salvaje que le da nombre, y que se convierte en un desafío de dimensiones colosales para la primera incursión de la serie RPG del estudio polaco CD Projekt Red en los videojuegos de mundo abierto. El brujo retorna en mejor forma que nunca para un título que se alza con infinidad de premios a lo mejor del año, entre ellos el de 3DJuegos por parte de la revista y de los lectores. ';
    
-    Include ("funciones.php");
+    Include ("scripts/funciones.php");
    ?>
 				
 	<!--Header-->
@@ -44,7 +44,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.php" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
+							<a href="index.php" title="Volver a la página principal"><img src="/../images/home/Logo.png" alt="Regresar al inicio" /></a>
 						</div>
 						
 					</div>
@@ -125,7 +125,7 @@
 						
 						<!--/Banner de publicidad lateral-->
 						<div class="bannerpublicidad text-center">
-							<a href="#"><img href="#" src="images/home/Banner1.png" title="Ver oferta especial" /></a>
+							<a href="#"><img href="#" src="/../images/home/Banner1.png" title="Ver oferta especial" /></a>
 						</div>
 						<br>
 					</div>
@@ -138,7 +138,7 @@
 							
 							<div class="tab-pane fade active in" id="mostrarimagen2" >
 								<?php
-								echo "<img src='../".obtenerPortada($IDProducto)."' alt='' />";
+								echo "<img src='/../".obtenerPortada($IDProducto)."' alt='' />";
 								?>
 							</div>
 
@@ -177,11 +177,12 @@
 									
 									$plataformasLista = array('Play Station 4','Play Station 3','Xbox One','Xbox 360','Wii','Wii U','PC','PS Vita','Nintendo 3DS','Nintendo DS');
 									$plataformasBase = array('ps4','ps3','one','360','wii','wiiu','pc','vita','3ds','ds');
-									for ($j = 0; $j < count($plataformasLista); $j++) {
-										if ($plataforma === $plataformasBase[$j]) {
-											echo "<p><b>Plataforma:</b> ".ucfirst($plataformasLista[$j])."</p>";
-										}
-									}
+									//for ($j = 0; $j < count($plataformasLista); $j++) {
+									//	if ($plataforma === $plataformasBase[$j]) {
+									//		echo "<p><b>Plataforma:</b> ".ucfirst($plataformasLista[$j])."</p>";
+									//	}
+									//}
+									echo "<p><b>Plataforma:</b> ".$plataforma."</p>";
 								}
 	
 
@@ -277,10 +278,10 @@
 		
 	</footer>
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/price-range.js"></script> <!-- Para Slider-->
-    <script src="js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
-    <script src="js/main.js"></script>
+    <script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/price-range.js"></script> <!-- Para Slider-->
+    <script src="../js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
+    <script src="../js/main.js"></script>
 </body>
 </html>

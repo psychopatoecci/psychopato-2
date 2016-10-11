@@ -147,7 +147,10 @@ class ArgvInput extends Input
         $name = substr($token, 2);
 
         if (false !== $pos = strpos($name, '=')) {
-            $this->addLongOption(substr($name, 0, $pos), substr($name, $pos + 1));
+            if (0 === strlen($value = substr($name, $pos + 1))) {
+                array_unshift($this->parsed, null);
+            }
+            $this->addLongOption(substr($name, 0, $pos), $value);
         } else {
             $this->addLongOption($name, null);
         }
@@ -176,7 +179,12 @@ class ArgvInput extends Input
 
         // unexpected argument
         } else {
-            throw new RuntimeException('Too many arguments.');
+            $all = $this->definition->getArguments();
+            if (count($all)) {
+                throw new RuntimeException(sprintf('Too many arguments, expected arguments "%s".', implode('" "', array_keys($all))));
+            }
+
+            throw new RuntimeException(sprintf('No arguments expected, got "%s".', $token));
         }
     }
 
@@ -229,7 +237,7 @@ class ArgvInput extends Input
             if (isset($next[0]) && '-' !== $next[0]) {
                 $value = $next;
             } elseif (empty($next)) {
-                $value = '';
+                $value = null;
             } else {
                 array_unshift($this->parsed, $next);
             }
@@ -269,14 +277,11 @@ class ArgvInput extends Input
     /**
      * {@inheritdoc}
      */
-    public function hasParameterOption($values, $onlyParams = false)
+    public function hasParameterOption($values)
     {
         $values = (array) $values;
 
         foreach ($this->tokens as $token) {
-            if ($onlyParams && $token === '--') {
-                return false;
-            }
             foreach ($values as $value) {
                 if ($token === $value || 0 === strpos($token, $value.'=')) {
                     return true;
@@ -290,16 +295,13 @@ class ArgvInput extends Input
     /**
      * {@inheritdoc}
      */
-    public function getParameterOption($values, $default = false, $onlyParams = false)
+    public function getParameterOption($values, $default = false)
     {
         $values = (array) $values;
         $tokens = $this->tokens;
 
         while (0 < count($tokens)) {
             $token = array_shift($tokens);
-            if ($onlyParams && $token === '--') {
-                return false;
-            }
 
             foreach ($values as $value) {
                 if ($token === $value || 0 === strpos($token, $value.'=')) {
@@ -322,13 +324,14 @@ class ArgvInput extends Input
      */
     public function __toString()
     {
-        $tokens = array_map(function ($token) {
+        $self = $this;
+        $tokens = array_map(function ($token) use ($self) {
             if (preg_match('{^(-[^=]+=)(.+)}', $token, $match)) {
-                return $match[1].$this->escapeToken($match[2]);
+                return $match[1].$self->escapeToken($match[2]);
             }
 
             if ($token && $token[0] !== '-') {
-                return $this->escapeToken($token);
+                return $self->escapeToken($token);
             }
 
             return $token;

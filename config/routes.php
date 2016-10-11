@@ -57,7 +57,11 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/404', ['controller' => 'Productos', 'action' => 'error404']);
     $routes->connect('/funciones', ['controller' => 'Productos', 'action' => 'funciones']);
     $routes->connect('/upload', ['controller' => 'Productos', 'action' => 'upload']);
-
+     $routes->connect('/adminUsuarios', ['controller' => 'Productos', 'action' => 'adminUsuarios']);
+     
+     /*RUTA DE PRUEBA*/
+     $routes->connect('/actualizar', ['controller' => 'Productos', 'action' => 'actualizar']);
+    /*RUTA DE PRUEBA*/
     /*ruta para pruebas*/
         $routes->connect('/detallesprueba/*', ['controller' => 'Productos', 'action' => 'detallesprueba']);
     /*ruta para pruebas*/

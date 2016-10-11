@@ -30,6 +30,7 @@ class ConsolasTable extends Table
     {
         parent::initialize($config);
 
+        $this->belongsTo('productos', ['foreignKey'=>'idConsola']);
         $this->table('consolas');
         $this->displayField('idConsola');
         $this->primaryKey('idConsola');

@@ -173,7 +173,7 @@
 	'',
 	'');
 	
-	Include ("funciones.php");
+	Include ("scripts/funciones.php");
 	
 	?>
 			
@@ -250,7 +250,7 @@
 					<div class="left-sidebar">
 					
 						<div align="right">
-							<button type='button' class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'>Añadir producto</button>
+							<button type='button' onClick="parent.location='nuevoproducto.php'" class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'>Añadir producto</button>
 						</div>
 						<br>
 						<!--Barra de busqueda-->
@@ -325,7 +325,7 @@
 								
 								<div class='tab-content'>
 									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$IDProductos[$i]."' >"; ?>
-										<form id="guardarcambios" target="_blank" action="datosproducto.php" method="post">
+										<form id="guardarcambios" target="_blank" action=""scripts/datosproducto.php" method="post">
 											<div class='col-sm-3'>
 												<h3>ID:</h3>
 												<?php echo "".$IDProductos[$i]; ?>
@@ -393,7 +393,7 @@
 											<?php echo "<img src='".obtenerPortada($IDProductos[$i])."' title = 'Portada actual de este producto' />"; ?>
 											<br> <br>
 
-											<form target="_blank" action="upload.php" method="post" enctype="multipart/form-data">
+											<form target="_blank" action=""scripts/upload.php" method="post" enctype="multipart/form-data">
 												<input type="file" name="fileToUpload" id="fileToUpload"><br>
 												<button type='submit' class='btn btn-default get' name="submit" title = 'Subir la imagen cargada'>Subir imagen</button>
 												<br>
@@ -409,7 +409,7 @@
 									
 									<?php echo "<div class='tab-pane fade' id='capturas".$IDProductos[$i]."' >"; ?>
 										<h3>Subir una captura:</h3>
-										<form target="_blank" action="upload.php" method="post" enctype="multipart/form-data">
+										<form target="_blank" action=""scripts/upload.php" method="post" enctype="multipart/form-data">
 											<input type="file" name="fileToUpload" id="fileToUpload"><br>
 											<button type='submit' class='btn btn-default get' name="submit" title = 'Subir la imagen cargada'>Subir imagen</button>
 											<br>

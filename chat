@@ -1,0 +1,21 @@
+felipe:
+
+    agrege archivos: jquery-3.1.0.min webroot/js
+                    style.css webroot/css
+                    login.css webroot/css
+                    bootstrap.min.css webroot/ss
+                    debido a que hacia click derecho analizar sobre la pagina
+                    en chrome me daba error ya que no los detectaba
+                    
+    ofertas
+    
+    cree los archivos del modelo, son los que se crean con cake bake model nombre de la tabla, no les e puesto funcionaliodes extra.
+    
+    IMPORTANTE
+        No pude crear el de productosCombos creo que es por el nombre porque AdminProductos.php tambien me dio problemas, para crear el controlador, por tener una 
+        mayuscula que no esta al inicio
+    
+  /***********8  ocupo saber cual es la clave y user para phpmyadmin porfavor ****************/
+
+    
+    

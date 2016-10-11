@@ -18,8 +18,10 @@ use Cake\Event\EventDispatcherTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use RuntimeException;
+use UnexpectedValueException;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\Response\EmitterInterface;
+use Zend\Diactoros\Response\SapiEmitter;
 use Zend\Diactoros\Response\SapiStreamEmitter;
 
 /**
@@ -70,8 +72,16 @@ class Server
     public function run(ServerRequestInterface $request = null, ResponseInterface $response = null)
     {
         $this->app->bootstrap();
-        $request = $request ?: ServerRequestFactory::fromGlobals();
         $response = $response ?: new Response();
+        try {
+            $request = $request ?: ServerRequestFactory::fromGlobals();
+        } catch (UnexpectedValueException $e) {
+            $response->getBody()->write('Bad Request');
+
+            return $response
+                ->withHeader('Content-Type', 'text/plain')
+                ->withStatus(400);
+        }
 
         $middleware = $this->app->middleware(new MiddlewareQueue());
         if (!($middleware instanceof MiddlewareQueue)) {
@@ -101,8 +111,9 @@ class Server
      */
     public function emit(ResponseInterface $response, EmitterInterface $emitter = null)
     {
+        $stream = $response->getBody();
         if (!$emitter) {
-            $emitter = new SapiStreamEmitter();
+            $emitter = new ResponseEmitter();
         }
         $emitter->emit($response);
     }

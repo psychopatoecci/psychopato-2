@@ -1,0 +1,7 @@
+# behat.yml
+default:
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: 'https://psychopato-2-felipe993.c9users.io'
+            goutte: ~
+            selenium2: ~

@@ -65,15 +65,12 @@ class FloatType extends Type implements TypeInterface
      *
      * @param string|resource $value The value to convert.
      * @param \Cake\Database\Driver $driver The driver instance to convert with.
-     * @return string|resource
+     * @return string|null
      */
     public function toDatabase($value, Driver $driver)
     {
         if ($value === null || $value === '') {
             return null;
-        }
-        if (is_array($value)) {
-            return 1;
         }
 
         return (float)$value;

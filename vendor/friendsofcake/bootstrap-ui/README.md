@@ -82,8 +82,8 @@ as it gives you more control over the loading of the layout.
 ```php
 namespace App\View;
 
-use Cake\View\View;
 use BootstrapUI\View\UIViewTrait;
+use Cake\View\View;
 
 class AppView extends View
 {
@@ -102,9 +102,9 @@ class AppView extends View
 
 ## BootstrapUI Layout
 
-BootstrapUI comes with it's own `layout.ctp` file and examples taken from the Bootstrap framework.
+BootstrapUI comes with its own `layout.ctp` file and examples taken from the Bootstrap framework.
 
-When no layout for the view is defined the `BootstrapUI\View\UIViewTrait` will load it's own `layout.ctp` file. You can
+When no layout for the view is defined the `BootstrapUI\View\UIViewTrait` will load its own `layout.ctp` file. You can
 override this behavior in two ways.
 
 - Assign a layout to the view with `$this->layout('layout')`.

@@ -37,6 +37,7 @@ class VideoJuegosTable extends Table
         
         
         $this->hasOne('generos',['foreignKey'=>'idVideoJuego']);
+        $this->belongsTo('consolas', ['foreignKey'=>'idConsola']);
         $this->belongsTo('productos', [
             'foreignKey' => 'idVideoJuego',
             'joinType' => 'INNER']);
