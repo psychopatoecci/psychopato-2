@@ -120,7 +120,7 @@
 							<br>	
 								
 							<div class='tab-content'>
-								<form id="guardarcambios" target="_blank" action="scripts/guardarnuevousuario.php" method="post">
+								<form id="guardarcambios" target="_blank" action="/../scripts/guardarnuevousuario.php" method="post">
 									<div class='col-sm-3'>
 										<h3>Identificación:</h3>
 										<input type='text' name='id' placeholder='Identificación de este usuario'>

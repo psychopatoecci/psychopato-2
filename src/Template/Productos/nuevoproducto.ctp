@@ -26,67 +26,7 @@
 	
 	<!--Header-->
 	<header id="header">
-		<!--Header intermedio-->
-		<div class="header-middle">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							<a href="index.php" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
-						</div>
-						
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="cuenta.html" title="Ver datos de la cuenta"><i class="fa fa-user"></i> Cuenta</a></li>
-								<li><a href="wishlist.html" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="carrito.html" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-								<li><a href="login.html" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
-	
-		<!--Header inferior-->
-		<div class="header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-					
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active" title="Volver a la página principal">Inicio</a></li>
-								<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="catalogo.php" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
-										<li><a href="catalogo.php" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
-										<li><a href="catalogo.php" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
-                                    </ul>
-                                </li> 
-								<li><a href="ofertas.php" title="Ver las ofertas disponibles">Ofertas</a></li>
-								<li><a href="ofertas.php" title="Ver los combos disponibles">Combos</a></li>
-								<li><a href="contacto.html" title="Ver la información de contacto de la empresa">Contacto</a></li>
-							</ul>
-						</div>
-						
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/header.php");?>
 	</header>
 	
 	<!--Navegador lateral-->
@@ -97,13 +37,8 @@
 					<div class="left-sidebar">
 					
 						<div align="left">
-							<button type='button' onClick="parent.location='Adminproductos.php'" class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'><-Volver a la lista de productos</button>
+							<button type='button' onClick="parent.location='adminProductos'" class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'><-Volver a la lista de productos</button>
 						</div>
-						
-							
-						
-						
-						
 					</div>
 				</div>
 				
@@ -119,59 +54,35 @@
 							<br>	
 								
 							<div class='tab-content'>
-								<form id="guardarcambios" target="_blank" action="scripts/guardarnuevoproducto.php" method="post">
-									<div class='col-sm-3'>
-										<h3>ID:</h3>
-										<input type='text' name='id' placeholder='ID de este producto'>
-										<br><h3>Nombre:</h3>
-										<input type='text' name='nombre' placeholder='Nombre'>
-										<h3>Descripción:</h3>
-										<textarea rows='7' cols='100' placeholder='Descripción del producto' name='descripcion'></textarea>
-										<br><br><br><br>
-									</div>
-									
-									<div class='col-sm-3'>
-										<h3>Categoría:</h3>
-										<select name='Categoria'>
-											<?php
-											$categoriasLista = array('Juego digital','Juego físico','Plataforma');
-											$categoriasBase = array('1','2','3');
-											for ($j = 0; $j < count($categoriasLista); $j++) {
-												echo "<option value='".($j+1)."''>".$categoriasLista[$j]."</option>";
-											}
-											?>
-										</select>
-										
-										<h3>Género:</h3>
-										<select name='Genero'>
-											<?php
-											$generosLista = array('Aventura','RPG','Plataformas','Conducción','Deportes','Shooter','Lucha','Otros');
-											$generosBase = array('aventura','rpg','plataformas','conduccion','deportes','shooter','lucha','otros');
-											for ($j = 0; $j < count($generosLista); $j++) {
-												echo "<option value='".$j."'>".$generosLista[$j]."</option> ";
-											}
-											?>
-										</select>
-
-										<h3>Plataforma:</h3>
-										<select name='Plataforma'>
-											<?php
-											$plataformasLista = array('Play Station 4','Play Station 3','Xbox One','Xbox 360','Wii','Wii U','PC','PS Vita','Nintendo 3DS','Nintendo DS');
-											$plataformasBase = array('ps4','ps3','one','360','wii','wiiu','pc','vita','3ds','ds');
-											for ($j = 0; $j < count($plataformasLista); $j++) {
-												echo "<option value='".$j."''>".$plataformasLista[$j]."</option>";
-											}
-											?>
-										</select>
-										
-									</div>
-									<div class='col-sm-3'>
-										*La portada y sus capturas deben agregarse después de crear el producto*
-										<br><br><br><br><br><br><br><br><br><br><br><br><br>
-											<button type='submit' class='btn btn-default'>Crear producto</button>
-										<br><br><br>
-									</div>
-								</form>
+								<div class='col-sm-3'>
+								<?php
+									echo $this -> Form -> create ($nuevoProd);
+									echo $this -> Form -> input ('identificador', ['label' => 'ID:']);
+									echo $this -> Form -> input  ('nombreProducto', ['label' => 'Nombre:']);
+									echo $this -> Form -> input  ('descripcion', ['label' => 'Descripción:']);
+								?>
+								</div>
+								
+								<div class='col-sm-3'>
+								<?php
+									echo $this -> Form -> input  ('fabricante', ['label' => 'Fabricante:']);
+									echo $this -> Form -> input  ('precio', ['label' => 'Precio:', 'type' => 'text']);
+									echo $this -> Form -> input  ('genero', ['label' => 'Género:']);
+									echo $this -> Form -> input  ('consola', 
+										['type' => 'select', 'options' => $opcionesConsola, 'label' => 'Plataforma:']);
+								?>
+								<br><br>
+								</div>
+								<div class='col-sm-3'>
+								<?php
+									$opcionesCategoria = [0 => 'Juego digital', 1 => 'Juego físico', 2=> 'Plataforma'];
+									echo $this -> Form -> input  ('tipo', ['type' => 'select', 'options' => $opcionesCategoria, 'label' => 'Categoría:']);
+									echo $this -> Form -> submit ('Agregar producto');
+									echo $this -> Form -> end ();
+								?>
+								<br><br>*La portada y sus capturas deben agregarse después de crear el producto* 
+								</div>
+								
 							</div>
 						</div>
 					</div>
@@ -182,40 +93,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Servicio</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#" title="Contactar a la empresa">Contáctenos</a></li>
-								<li><a href="#" title="Ver la sección de preguntas frecuentes">Preguntas frecuentes</a></li>
-								<li><a href="#" title="Ver información de la empresa">Sobre nosotros</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Administración</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#" title="Iniciar sesión como administrador">Entrar como administrador</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Corporación PsychoPato S.A. Todos los derechos reservados</p>
-					<p class="pull-right">UCR - 2016</p>
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/footer.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>

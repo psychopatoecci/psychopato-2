@@ -38,68 +38,7 @@
 				
 	<!--Header-->
 	<header id="header">
-		<!--Header intermedio-->
-		<div class="header-middle">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							<a href="index.php" title="Volver a la página principal"><img src="/../images/home/Logo.png" alt="Regresar al inicio" /></a>
-						</div>
-						
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="cuenta.html" title="Ver datos de la cuenta"><i class="fa fa-user"></i> Cuenta</a></li>
-								<li><a href="wishlist.html" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="carrito.html" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-								<li><a href="login.html" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
-	
-		<!--Header inferior-->
-		<div class="header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-					
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active" title="Volver a la página principal">Inicio</a></li>
-								<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="catalogo.php" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
-										<li><a href="catalogo.php" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
-										<li><a href="catalogo.php" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
-                                    </ul>
-                                </li> 
-								<li><a href="ofertas.php" title="Ver las ofertas disponibles">Ofertas</a></li>
-								<li><a href="ofertas.php" title="Ver los combos disponibles">Combos</a></li>
-								<li><a href="contacto.html" title="Ver la información de contacto de la empresa">Contacto</a></li>
-							</ul>
-						</div>
-						
-					</div>
-					
-					
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/header2.php");?>
 	</header>
 	
 	<!--Navegador lateral-->
@@ -242,40 +181,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Servicio</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#" title="Contactar a la empresa">Contáctenos</a></li>
-								<li><a href="#" title="Ver la sección de preguntas frecuentes">Preguntas frecuentes</a></li>
-								<li><a href="#" title="Ver información de la empresa">Sobre nosotros</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Administración</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#" title="Iniciar sesión como administrador">Entrar como administrador</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Corporación PsychoPato S.A. Todos los derechos reservados</p>
-					<p class="pull-right">UCR - 2016</p>
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/footer2.php");?>
 	</footer>
 
     <script src="../js/jquery.js"></script>

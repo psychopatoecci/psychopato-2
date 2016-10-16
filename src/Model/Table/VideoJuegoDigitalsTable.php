@@ -33,6 +33,10 @@ class VideoJuegoDigitalsTable extends Table
         $this->table('video_juego_digitals');
         $this->displayField('idVideoJuegoDigital');
         $this->primaryKey('idVideoJuegoDigital');
+        
+        $this->belongsTo('video_juegos', [
+            'foreignKey' => 'idVideoJuegoDigital',
+            'joinType' => 'INNER']);
     }
 
     /**

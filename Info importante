@@ -6,6 +6,11 @@ Página:
 Github:
     https://github.com/psychopatoecci/psychopato.git
     Contraseña: Qwertyuiop10.
+    
+    Para hacer git:
+    git add (los archivos que modificó o * para todos)
+    git commit -m "Acá un mensaje"
+    git push
 
 Gmail:
     psychopatoecci@gmail.com
@@ -38,5 +43,10 @@ Vistas en cake:
     Ofertas: https://psychopato-2-felipe993.c9users.io/ofertas
     Administración de productos: https://psychopato-2-felipe993.c9users.io/adminProductos
     Administración de usuarios: https://psychopato-2-felipe993.c9users.io/adminUsuarios
+    Crear nuevo producto: https://psychopato-2-felipe993.c9users.io/nuevoproducto
+    Crear nuevo usuario: https://psychopato-2-felipe993.c9users.io/nuevoUsuario
+    Búsqueda en el catálogo: ?
      
 Script Distritos, Cantones, Provincias: http://www.taringa.net/post/solidaridad/11157621/Script-Provincias-Cantones-Distritos-de-Costa-Rica.html
+
+Diagrama DB: https://drive.google.com/file/d/0BxebEsgOpAnMN1daTWtrdTNfam8/view?usp=sharing

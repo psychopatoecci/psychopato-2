@@ -25,7 +25,7 @@
 		<div class="content-404">
 			<img src="images/home/404.png" class="img-responsive" alt="" />
 			<h1>No se pudo encontrar esta página</h1>
-			<h2><a href="index.html">Regresar a PsychoPatoShop</a></h2>
+			<h2><a href="../">Regresar a PsychoPatoShop</a></h2>
 		</div>
 	</div>
 

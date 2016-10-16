@@ -11,4 +11,14 @@
 		
 		return $urlCompleta;
 	}
+	
+	function obtenerPlataformas() {
+        $con = $this -> Productos -> find ('all', array(
+            'fields' => array('Productos.idProducto','Productos.nombreProducto','Productos.precio')));
+            
+        $plataformas = [];
+        foreach ($plataformas as $con) {
+          array_push($plataformas, $con);
+        }
+	}
 ?>
