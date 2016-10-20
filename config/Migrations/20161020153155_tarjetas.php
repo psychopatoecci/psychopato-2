@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class CreateUserTable extends AbstractMigration
+class Tarjetas extends AbstractMigration
 {
     /**
      * Change Method.
@@ -27,16 +27,11 @@ class CreateUserTable extends AbstractMigration
      */
     public function change()
     {
-		$table = $this->table('Users');
-		$table->addColumn('first_name','string', array ('limit'=>100))
-			  ->addColumn('last_name','string', array ('limit'=>100))
-			  ->addColumn('email','string', array ('limit'=>100))
-		      ->addColumn('password','string')
-			  ->addColumn('role','enum',array('values'=>'admin,users'))
-			  ->addColumn('active','boolean')
-			  ->addColumn('created','datetime')
-			  ->addColumn('modified','datetime')
-			  ->create();
-			  
+        $table = $this -> table ('tarjetas', ['id' => false, 'primaryKey' => [ 'numeroTarjeta', 'idPersona']]);
+        $table -> addColumn ( 'idTarjeta', 'string', ['limit' => 12]);
+        $table -> addColumn ( 'idPersona', 'string', ['limit' => 50
+            , 'null' => false]);
+        $table -> addForeignKey ('idPersona', 'personas', 'identificacion');
+        $table -> create ();
     }
 }
