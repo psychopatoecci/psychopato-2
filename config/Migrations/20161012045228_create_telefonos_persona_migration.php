@@ -33,8 +33,14 @@ class CreateTelefonosPersonaMigration extends AbstractMigration
             'limit' => 50,
             'null' => false,
         ]);
-        $table->addForeignKey('identificacion', 'personas', 'identificacion', array('delete' => 'CASCADE', 'update' => 'CASCADE'));
+        $table->addForeignKey('identificacion', 'personas', 'identificacion'
+            , array('delete' => 'CASCADE', 'update' => 'CASCADE'));
         
+        $table->addColumn('tipo_tel', 'string', [
+            'default' => 'Casa',
+            'limit' => 50,
+            'null' => false
+        ]);
         $table->addColumn('telefono', 'string', [
             'default' => null,
             'limit' => 50,
