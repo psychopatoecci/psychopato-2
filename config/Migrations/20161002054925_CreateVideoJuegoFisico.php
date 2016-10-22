@@ -19,7 +19,7 @@ class CreateVideoJuegoFisico extends AbstractMigration
             'null' => false,
         ]);
         $table->addForeignKey('idVideoJuegoFisico', 'video_juegos', 'idVideoJuego', array('delete' => 'CASCADE', 'update' => 'CASCADE'));
-        $table->addColumn('existencia', 'boolean', [
+        $table->addColumn('existencia', 'integer', [
             'default' => null,
             'null' => false,
         ]);

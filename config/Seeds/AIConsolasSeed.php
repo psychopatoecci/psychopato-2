@@ -4,7 +4,7 @@ use Migrations\AbstractSeed;
 /**
  * Telefonos seed.
  */
-class AHVideoJuegoFisicosSeed extends AbstractSeed
+class AIConsolasSeed extends AbstractSeed
 {
     /**
      * Run Method.
@@ -20,15 +20,16 @@ class AHVideoJuegoFisicosSeed extends AbstractSeed
     {
         $faker = \Faker\Factory::create();
         $populator = new Faker\ORM\CakePHP\Populator($faker);
-        $rows = $this->fetchAll('SELECT idProducto FROM productos WHERE tipo = 2');
+        $rows = $this->fetchAll('SELECT idProducto FROM productos WHERE tipo = 3');
         $data = [];
         foreach ($rows as $arr) {
             $id=strval($arr[0]);
             $data = [
-                'idVideoJuegoFisico' => $id,
-                'existencia' => $faker-> numberBetween ($min = 0, $max = 254)
+                'idConsola' => $id,
+                'existencia' => $faker-> numberBetween ($min = 0, $max = 254),
+                'especificaciones' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true)
             ];
-            $table = $this -> table ('video_juego_fisicos');
+            $table = $this -> table ('consolas');
             $table -> insert ($data) -> save ();
         }
         
