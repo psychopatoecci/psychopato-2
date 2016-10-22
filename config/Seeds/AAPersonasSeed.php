@@ -4,7 +4,7 @@ use Migrations\AbstractSeed;
 /**
  * Personas seed.
  */
-class PersonasSeed extends AbstractSeed
+class AAPersonasSeed extends AbstractSeed
 {
     /**
      * Run Method.

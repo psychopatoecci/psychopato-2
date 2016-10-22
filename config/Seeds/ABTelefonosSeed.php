@@ -4,7 +4,7 @@ use Migrations\AbstractSeed;
 /**
  * Telefonos seed.
  */
-class TelefonosSeed extends AbstractSeed
+class ABTelefonosSeed extends AbstractSeed
 {
     /**
      * Run Method.
