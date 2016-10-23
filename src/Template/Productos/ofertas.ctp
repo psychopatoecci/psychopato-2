@@ -25,6 +25,16 @@
 <body>
   <?php 
 	//Datos de prueba para productos en oferta
+	global $IDOfertas;
+	$IDOfertas = array(
+	'PROD130043',
+	'PROD10192',
+	'PROD102710',
+	'PROD125163',
+	'PROD137584',
+	'PROD126427');
+	
+	global $nombres;
 	$nombres = array(
 	'The Witcher 3',
 	'Persona 5',
@@ -33,6 +43,7 @@
 	'Xbox One',
 	'The Last Guardian');
 	
+	global $tipos;
 	$tipos= array( //1=Digital, 2=Físico, 3=Plataforma
 	'2',
 	'1',
@@ -41,6 +52,7 @@
 	'3',
 	'2');
 	
+	global $precios;
 	$precios = array( //Precios sin el descuento
 	'29 000',
 	'59 500',
@@ -49,6 +61,7 @@
 	'390 000',
 	'59 000');
 	
+	global $descuentos;
 	$descuentos= array( //Descuento en porcentaje
 	'20',
 	'10',
@@ -57,6 +70,7 @@
 	'35',
 	'40');
 	
+	global $fechaInicio;
 	$fechaInicio = array( //Fecha en la que comienza la oferta
 	'12/11/2016',
 	'13/11/2016',
@@ -65,6 +79,7 @@
 	'10/11/2016',
 	'06/11/2016');
 
+	global $fechaFinal;
 	$fechaFinal= array( //Fecha en la que termina la oferta
 	'14/11/2016',
 	'19/11/2016',
@@ -73,6 +88,7 @@
 	'11/11/2016',
 	'12/11/2016');
 	
+	global $portadas;
 	$portadas = array(
 	'images/productos/juegos/aventura/thewitcher3.png',
 	'images/productos/juegos/rpg/persona5.png',
@@ -82,40 +98,49 @@
 	'images/productos/juegos/aventura/TheLastGuardian.png');
 	
 	//Datos de prueba para combos de 2 productos
+	global $ID1Combo;
+	$ID1Combo= array(
+	'PROD130043',
+	'PROD140849',
+	'PROD104990');
+	
+	global $ID2Combo;
+	$ID2Combo= array(
+	'PROD101406',
+	'PROD102710',
+	'PROD10477');
+	
+	global $preciosCombo;
 	$preciosCombo = array( //Precio del combo (todo junto)
 	'349 000',
 	'299 500',
 	'68 500');
 	
+	global $nombres1Combo;
 	$nombres1Combo = array( //Primer producto del combo
 	'Play Station 4',
 	'Wii U',
 	'Fire Emblem Fates: Conquest');
 	
+	global $nombres2Combo;
 	$nombres2Combo = array( //Segundo producto del combo
 	'The Witcher 3',
 	'Zelda: Breath of the Wild',
 	'Zelda: Ocarina of Time 3D');
 	
+	global $tipos1Combo;
 	$tipos1Combo= array( //1=Digital, 2=Físico, 3=Plataforma
 	'3',
 	'3',
 	'2');
 	
+	global $tipos2Combo;
 	$tipos2Combo= array( //1=Digital, 2=Físico, 3=Plataforma
 	'2',
 	'2',
 	'2');
-	
-	$portadas1Combo = array(
-	'images/productos/consolas/PS4.png',
-	'images/productos/consolas/WiiU.jpg',
-	'images/productos/juegos/rpg/FFConquest.png');
-	
-	$portadas2Combo = array(
-	'images/productos/juegos/aventura/thewitcher3.png',
-	'images/productos/juegos/aventura/zeldabotw.png',
-	'images/productos/juegos/aventura/zelda3ds.png');
+
+	Include ("scripts/funciones.php");
 	
 	//Función que devuelve el precio con un descuento
 	function calcularDescuento($precio, $descuento) {
@@ -126,6 +151,7 @@
 
 	//Función que muestra una oferta en pantalla
 	function mostrarOferta() {
+		global $IDOfertas;
 		global $nombres;
 		global $tipos;
 		global $precios;
@@ -140,7 +166,7 @@
 			echo "<div class='single-products'>";
 			echo "<div class='productinfo text-center'>";
 			echo "<br><h2>¡Descuento del ".$descuentos[$i]."%!</h2>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".$portadas[$i]."' alt='' /></a>";
+			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".obtenerPortada($IDOfertas[$i])."' alt='' /></a>";
 			echo "<a href='detalles.php' title = 'Ver detalles del producto'><p>".$nombres[$i]."</p></a>";
 			echo "<h4><strike>¢".$precios[$i]."</strike></h4>";
 			echo "<h2>¢".calcularDescuento($precios[$i], $descuentos[$i])."</h2>";
@@ -157,6 +183,8 @@
 	
 	//Función que muestra un combo en pantalla
 	function mostrarCombo() {
+		global $ID1Combo;
+		global $ID2Combo;
 		global $nombres1Combo;
 		global $nombres2Combo;
 		global $preciosCombo;
@@ -170,8 +198,8 @@
 			echo "<div class='product-image-wrapper'>";
 			echo "<div class='single-products'>";
 			echo "<div class='productinfo text-center'>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".$portadas1Combo[$i]."' alt='' /></a>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".$portadas2Combo[$i]."' alt='' /></a>";
+			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".obtenerPortada($ID1Combo[$i])."' alt='' /></a>";
+			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".obtenerPortada($ID2Combo[$i])."' alt='' /></a>";
 			echo "<a href='detalles.php' title = 'Ver detalles del producto'><p>".$nombres1Combo[$i]."</p></a>";
 			echo "<a href='detalles.php' title = 'Ver detalles del producto'><p> + <br>".$nombres2Combo[$i]."</p></a>";
 			echo "<h2>¢".$preciosCombo[$i]."</h2>";
@@ -185,76 +213,11 @@
 		}
 	}
 
-  ?>	
+  ?>
+  
 	<!--Header-->
 	<header id="header">
-		<!--Header intermedio-->
-		<div class="header-middle">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							<a href="index.php" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
-						</div>
-						
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="cuenta.html" title="Ver datos de la cuenta"><i class="fa fa-user"></i> Cuenta</a></li>
-								<li><a href="wishlist.html" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="carrito.html" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-								<li><a href="login.html" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
-	
-		<!--Header inferior-->
-		<div class="header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-					
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Inicio</a></li>
-								<li class="dropdown"><a href="#">Juegos<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="categoria1.html">Play Station</a></li>
-										<li><a href="categoria2.html">Xbox</a></li> 
-										<li><a href="categoria3.html">Nintendo</a></li> 
-										<li><a href="categoria4.html">PC</a></li> 
-                                    </ul>
-                                </li> 
-								<li class="dropdown"><a href="#">Ofertas<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="ofertas1.html">Ofertas de verano</a></li>
-										<li><a href="ofertas2.html">Ofertas diarias</a></li>
-                                    </ul>
-                                </li> 
-								<li><a href="404.html">Consolas</a></li>
-								<li><a href="contacto.html">Contacto</a></li>
-							</ul>
-						</div>
-						
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/header.php");?>
 	</header>
 	
 	<!--Navegador lateral-->
@@ -326,40 +289,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Servicio</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#" title="Contactar a la empresa">Contáctenos</a></li>
-								<li><a href="#" title="Ver la sección de preguntas frecuentes">Preguntas frecuentes</a></li>
-								<li><a href="#" title="Ver información de la empresa">Sobre nosotros</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Administración</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#" title="Iniciar sesión como administrador">Entrar como administrador</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Corporación PsychoPato S.A. Todos los derechos reservados</p>
-					<p class="pull-right">UCR - 2016</p>
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/footer.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>

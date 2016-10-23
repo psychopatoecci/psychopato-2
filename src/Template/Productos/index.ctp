@@ -6,14 +6,14 @@
     <meta name="description" content="Tienda de videojuegos ficticia">
     <meta name="author" content="PsychoPato">
     <title>PsychoPatoShop</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
-    <link href="css/price-range.css" rel="stylesheet"> <!--Slider-->
-    <link href="css/animate.css" rel="stylesheet"> <!--Animaciones-->
-	<link href="css/responsive.css" rel="stylesheet"> <!--Para móviles-->
-	<link href="css/main.css" rel="stylesheet"> 
-
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet"> <!--Fuentes-->
+    <link href="../css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
+    <link href="../css/price-range.css" rel="stylesheet"> <!--Slider-->
+    <link href="../css/animate.css" rel="stylesheet"> <!--Animaciones-->
+	<link href="../css/responsive.css" rel="stylesheet"> <!--Para móviles-->
+	<link href="../css/main.css" rel="stylesheet"> 
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!--[if lt IE 9]> 
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -128,80 +128,13 @@
 	'49 000',
 	'39 000');
 	
-	Include ("funciones.php");
+	Include ("scripts/funciones.php");
 
   ?>
 
 	<!--Header-->
 	<header id="header">
-		<!--Header intermedio-->
-		<div class="header-middle">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							<a href="index" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
-						</div>
-						
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="cuenta.php" title="Ver datos de la cuenta"><i class="fa fa-user"></i> Cuenta</a></li>
-								<li><a href="wishlist.php" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="carrito.php" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-								<li><a href="login.php" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
-	
-		<!--Header inferior-->
-		<div class="header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-					
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active" title="Volver a la página principal">Inicio</a></li>
-								<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="catalogo" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
-										<li><a href="catalogo" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
-										<li><a href="catalogo" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
-                                    </ul>
-                                </li> 
-								<li><a href="ofertas" title="Ver las ofertas disponibles">Ofertas</a></li>
-								<li><a href="ofertas" title="Ver los combos disponibles">Combos</a></li>
-								<li><a href="contacto" title="Ver la información de contacto de la empresa">Contacto</a></li>
-							</ul>
-						</div>
-						
-					</div>
-					
-					<!--Barra de busqueda-->
-					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Búsqueda"/>
-						</div>	
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/header.php");?>
 	</header>
 	
 	<!--Slider de noticias-->
@@ -438,46 +371,13 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Servicio</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Contáctenos</a></li>
-								<li><a href="#">Preguntas frecuentes</a></li>
-								<li><a href="#">Sobre nosotros</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Administración</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Entrar como administrador</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Corporación PsychoPato S.A. Todos los derechos reservados</p>
-					<p class="pull-right">UCR - 2016</p>
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/footer.php");?>
 	</footer>
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/price-range.js"></script> <!-- Para Slider-->
-    <script src="js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
-    <script src="js/main.js"></script>
+    <script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/price-range.js"></script> <!-- Para Slider-->
+    <script src="../js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
+    <script src="../js/main.js"></script>
 </body>
 </html>
