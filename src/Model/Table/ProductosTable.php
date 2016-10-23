@@ -35,6 +35,7 @@ class ProductosTable extends Table
         $this->primaryKey('idProducto');
         /*pruebas*/
         $this->hasOne('video_juegos',['foreignKey'=>'idVideoJuego']);
+        $this->hasOne('consolas', ['foreignKey' => 'idConsola']);
     }
 
     /**
@@ -45,6 +46,7 @@ class ProductosTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
+        /*
         $validator
             ->allowEmpty('idProducto', 'create')
             ->add('idProducto', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
@@ -70,7 +72,7 @@ class ProductosTable extends Table
         $validator
             ->requirePresence('fabricante', 'create')
             ->notEmpty('fabricante');
-
+        */
         return $validator;
     }
 
@@ -86,5 +88,9 @@ class ProductosTable extends Table
         $rules->add($rules->isUnique(['idProducto']));
 
         return $rules;
+    }
+    
+    public function agregar($id,$nombre,$descipcion,$categoria,$genero,$plataforma){
+        
     }
 }
