@@ -11,7 +11,19 @@
         "cakephp/migrations": "~1.0",
         "cakephp/plugin-installer": "*",
         "fzaninotto/faker": "^1.6",
-        "friendsofcake/bootstrap-ui": "^0.5.0"
+        "friendsofcake/bootstrap-ui": "^0.5.0",
+        "behat/behat": "2.5.*@stable",
+        "behat/symfony2-extension": "@stable",
+        "behat/mink": "@stable",
+        "behat/mink-extension": "@stable",
+        "behat/mink-goutte-driver": "1.*@stable",
+        "behat/mink-selenium2-driver": "@stable",
+
+        "fabpot/goutte": "1.*@stable"
+    },
+
+        "config": {
+        "bin-dir": "bin/"
     },
     "require-dev": {
         "psy/psysh": "@stable",
