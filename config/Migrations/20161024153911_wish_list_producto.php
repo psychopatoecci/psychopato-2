@@ -2,7 +2,7 @@
 
 use Phinx\Migration\AbstractMigration;
 
-class WishList extends AbstractMigration
+class WishListProducto extends AbstractMigration
 {
     /**
      * Change Method.
@@ -27,17 +27,27 @@ class WishList extends AbstractMigration
      */
     public function change()
     {
-        $table = $this -> table ( 'wish_list', [ 'id' => true ] );
+        $table = $this -> table ( 'wish_list_personas', [
+            'id' => false,
+            'primary_key' => [ 'identificacionPersona', 'idProducto' ] ] );
         $table -> addColumn (
             'identificacionPersona',
             'string',
             [ 'default' => null, 'limit' => 50, 'null' => false ]
         );
         $table -> addForeignKey (
-            'identificacionPersona',
-            'personas',
-            'identificacion',
-            [ 'delete' => 'CASCADE', 'update' => 'CASCADE' ]);
+        'identificacionPersona',
+        'personas',
+        'identificacion',
+        [ 'delete' => 'CASCADE', 'update' => 'CASCADE' ]
+        );
+        
+        $table -> addColumn (
+            'idProducto',
+            'string',
+            [ 'default' => null, 'limit' => 50, 'null' => false ]
+        );
+
         $table -> create ();
     }
 }
