@@ -29,7 +29,7 @@ class WishListProductos extends AbstractMigration
     {
         $table = $this -> table ( 'wish_list_productos', [
             'id' => false,
-            'primary_key' => [ 'identificacionPersona', 'idProducto' ] ] );
+            'primary_key' => [ 'identificacionPersona', 'idProducto', 'idWishList' ] ] );
         
         $table -> addColumn (
             'identificacionPersona',
