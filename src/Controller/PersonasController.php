@@ -215,6 +215,12 @@ class PersonasController extends AppController
 */
     }
     
+    
+      public function adminUsuarios()
+    {
+        $this->render();
+    }
+    
     public function index()
     {
         $personas = $this->paginate($this->Personas);
