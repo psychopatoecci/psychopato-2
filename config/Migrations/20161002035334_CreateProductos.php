@@ -23,7 +23,7 @@ class CreateProductos extends AbstractMigration
             'limit' => 50,
             'null' => false,
         ]);
-        $table->addColumn('tipo', 'int', [
+        $table->addColumn('tipo', 'integer', [
             'default' => null,
             'null' => false,
         ]);
@@ -31,7 +31,7 @@ class CreateProductos extends AbstractMigration
             'default' => null,
             'null' => false,
         ]);
-        $table->addColumn('precio', 'int', [
+        $table->addColumn('precio', 'integer', [
             'default' => null,
             'null' => false,
         ]);

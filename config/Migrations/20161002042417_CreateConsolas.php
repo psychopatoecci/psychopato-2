@@ -22,9 +22,8 @@ class CreateConsolas extends AbstractMigration
         ]);
         $table->addForeignKey('idConsola', 'productos', 'idProducto', array('delete' => 'CASCADE', 'update' => 'CASCADE'));
         
-        $table->addColumn('existencia', 'string', [
+        $table->addColumn('existencia', 'integer', [
             'default' => null,
-            'limit' => 255,
             'null' => false,
         ]);
         $table->addColumn('especificaciones', 'text', [

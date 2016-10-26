@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tienda de videojuegos ficticia">
     <meta name="author" content="PsychoPato">
-    <title>PsychoPatoShop</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
-    <link href="css/price-range.css" rel="stylesheet"> <!--Slider-->
-    <link href="css/animate.css" rel="stylesheet"> <!--Animaciones-->
-	<link href="css/responsive.css" rel="stylesheet"> <!--Para móviles-->
-	<link href="css/main.css" rel="stylesheet"> 
+    <title>PsychoPatoShop - Catálogo de productos</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
+    <link href="../css/price-range.css" rel="stylesheet"> <!--Slider-->
+    <link href="../css/animate.css" rel="stylesheet"> <!--Animaciones-->
+	<link href="../css/responsive.css" rel="stylesheet"> <!--Para móviles-->
+	<link href="../css/main.css" rel="stylesheet"> 
 
     <!--[if lt IE 9]> 
     <script src="js/html5shiv.js"></script>
@@ -26,7 +26,9 @@
 <body>
   <?php 
   
+  
 	//Datos de prueba para juegos físicos
+	global 	$IDJuegosFisicos;
 	$IDJuegosFisicos = array(
 	'PROD101406',
 	'PROD10192',
@@ -48,6 +50,7 @@
 	'PROD12595',
 	'PROD126427');
 	
+	global 	$nombres;
 	$nombres = array(
 	'The Witcher 3',
 	'Persona 5',
@@ -68,7 +71,8 @@
 	'Halo 5: Guardians',
 	'Rock Simulator 2014',
 	'The Last Guardian');
-
+	
+	global 	$consolas;
 	$consolas = array(
 	'ps4',
 	'ps4',
@@ -90,6 +94,7 @@
 	'pc',
 	'ps4');
 
+	global 	$precios;
 	$precios= array(
 	'29 000',
 	'59 500',
@@ -111,6 +116,7 @@
 	'1 900',
 	'59 000');
 
+	global 	$generos;
 	$generos = array(
 	'aventura',
 	'rpg',
@@ -133,32 +139,38 @@
 	'aventura');
 
 	//Datos de prueba para juegos digitales
+	global 	$IDJuegosDigitales;
 	$IDJuegosDigitales = array(
 	'PROD101406',
 	'PROD10192',
 	'PROD126427');
 	
+	global 	$nombres2;
 	$nombres2 = array(
 	'The Witcher 3',
 	'Persona 5',
 	'The Last Guardian');
 
+	global 	$consolas2;
 	$consolas2 = array(
 	'ps4',
 	'ps4',
 	'ps4');
 
+	global 	$precios2;
 	$precios2= array(
 	'19 000',
 	'49 500',
 	'49 000');
 
+	global 	$generos2;
 	$generos2 = array(
 	'aventura',
 	'rpg',
 	'aventura');
 
 	//Datos de prueba para plataformas
+	global 	$IDPlataformas;
 	$IDPlataformas = array(
 	'PROD130043',
 	'PROD137584',
@@ -167,6 +179,7 @@
 	'PROD14379',
 	'PROD144727');
 	
+	global 	$nombres3;
 	$nombres3 = array(
 	'Play Station 4',
 	'Xbox One',
@@ -175,6 +188,7 @@
 	'New 3DS XL - Pokemon Edition',
 	'PS Vita');
 
+	global 	$precios3;
 	$precios3= array(
 	'299 000',
 	'399 500',
@@ -183,10 +197,11 @@
 	'119 500',
 	'119 000');
 
-	Include ("funciones.php");
+	Include ("scripts/funciones.php");
 	
 	//Función que muestra un juego físico en pantalla
 	function mostrarProductoFisico($genero, $plataforma) {
+
 		global $IDJuegosFisicos;
 		global $nombres;
 		global $precios;
@@ -199,14 +214,15 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
-				echo "<a href='detalles.php' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
-				echo "<a href='detalles.php' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
+				echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
+				echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				echo "<h2>¢".$precios[$i]."</h2>";
 				echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 				echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
 				echo "</div> </div> </div> </div>";
 			}		
 		}
+		
 	}
 
 	//Función que muestra un juego digital en pantalla
@@ -223,8 +239,8 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
-				echo "<a href='detalles.php' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosDigitales[$i])."' alt='' /></a>";
-				echo "<a href='detalles.php' title = 'Ver los detalles de este producto'><p>".$nombres2[$i]."</p></a>";
+				echo "<a href='detallesprueba/$IDJuegosDigitales[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosDigitales[$i])."' alt='' /></a>";
+				echo "<a href='detallesprueba/$IDJuegosDigitales[$i]' title = 'Ver los detalles de este producto'><p>".$nombres2[$i]."</p></a>";
 				echo "<h2>¢".$precios2[$i]."</h2>";
 				
 				echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
@@ -237,19 +253,19 @@
 	}
 
 	//Función que muestra una plataforma en pantalla
-	function mostrarPlataforma() {
+	function mostrarPlataforma($idConsolas,$nombreConsolas,$precioConsolas) {
 		global $IDPlataformas;
 		global $nombres3;
 		global $precios3;
 		
-		for ($i = 0; $i < count($nombres3); $i++) {
+		for ($i = 0; $i < count($nombreConsolas); $i++) {
 			echo "<div class='col-sm-3'>";
 			echo "<div class='product-image-wrapper'>";
 			echo "<div class='single-products'>";
 			echo "<div class='productinfo text-center'>";
-			echo "<a href='detalles.php' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDPlataformas[$i])."' alt='' /></a>";
-			echo "<a href='detalles.php' title = 'Ver los detalles de este producto'><p>".$nombres3[$i]."</p></a>";
-			echo "<h2>¢".$precios3[$i]."</h2>";
+			echo "<a href='detallesprueba/$idConsolas[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($idConsolas[$i])."' alt='' /></a>";
+			echo "<a href='detallesprueba/$idConsolas[$i]' title = 'Ver los detalles de este producto'><p>".$nombreConsolas[$i]."</p></a>";
+			echo "<h2>¢".$precioConsolas[$i]."</h2>";
 			echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 			echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
 			echo "</div> </div> </div> </div>";	
@@ -279,74 +295,7 @@
 				
 	<!--Header-->
 	<header id="header">
-		<!--Header intermedio-->
-		<div class="header-middle">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-4">
-						<div class="logo pull-left">
-							<a href="index.php" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
-						</div>
-						
-					</div>
-					<div class="col-sm-8">
-						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="cuenta.html" title="Ver datos de la cuenta"><i class="fa fa-user"></i> Cuenta</a></li>
-								<li><a href="wishlist.html" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
-								<li><a href="carrito.html" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-								<li><a href="login.html" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/header-middle-->
-	
-		<!--Header inferior-->
-		<div class="header-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-9">
-					
-						<div class="navbar-header">
-							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-							</button>
-						</div>
-						
-						<div class="mainmenu pull-left">
-							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active" title="Volver a la página principal">Inicio</a></li>
-								<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="catalogo.php" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
-										<li><a href="catalogo.php" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
-										<li><a href="catalogo.php" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
-                                    </ul>
-                                </li> 
-								<li><a href="ofertas.php" title="Ver las ofertas disponibles">Ofertas</a></li>
-								<li><a href="ofertas.php" title="Ver los combos disponibles">Combos</a></li>
-								<li><a href="contacto.html" title="Ver la información de contacto de la empresa">Contacto</a></li>
-							</ul>
-						</div>
-						
-					</div>
-					
-					<!--Barra de busqueda-->
-					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Búsqueda"/>
-						</div>	
-					</div>
-					
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/header.php");?>
 	</header>
 	
 	<!--Navegador lateral-->
@@ -540,7 +489,7 @@
 							<div class="tab-pane fade" id="submenu3" >
 								<h1>Plataformas de juegos</h1><br>
 								<?php 
-								mostrarPlataforma()
+								mostrarPlataforma($idConsolas,$nombreConsolas,$precioConsolas)
 								?>
 							</div> 
 							
@@ -620,7 +569,10 @@
         			
         			
         			<!----CODIGO DE PRUEBA NO BORRAR--------->
-        			<?php foreach($query as $producto){
+        		
+        			<?php
+        				/*
+        			foreach($query as $producto){
 						 
 						 if(isset($producto->video_juego)){
 						
@@ -628,7 +580,10 @@
 						echo "<br>";
 						
 						
-						 }} ?>
+						 }}
+						 */
+						 ?>
+						 
 					<!----CODIGO DE PRUEBA NO BORRAR--------->	
 
 					
@@ -640,46 +595,13 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<div class="footer-widget">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Servicio</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#" title="Contactar a la empresa">Contáctenos</a></li>
-								<li><a href="#" title="Ver la sección de preguntas frecuentes">Preguntas frecuentes</a></li>
-								<li><a href="#" title="Ver información de la empresa">Sobre nosotros</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-sm-2">
-						<div class="single-widget">
-							<h2>Administración</h2>
-							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#" title="Iniciar sesión como administrador">Entrar como administrador</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row">
-					<p class="pull-left">Corporación PsychoPato S.A. Todos los derechos reservados</p>
-					<p class="pull-right">UCR - 2016</p>
-				</div>
-			</div>
-		</div>
-		
+		<?php include("includes/footer.php");?>
 	</footer>
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/price-range.js"></script> <!-- Para Slider-->
-    <script src="js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
-    <script src="js/main.js"></script>
+    <script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/price-range.js"></script> <!-- Para Slider-->
+    <script src="../js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
+    <script src="../js/main.js"></script>
 </body>
 </html>
