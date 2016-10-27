@@ -30,27 +30,40 @@ class CreatePersonasMigration extends AbstractMigration
         $table = $this->table('personas',  ['id' => false, 'primary_key' => ['identificacion']]);
         $table->addColumn('identificacion', 'string', [
             'default' => null,
-            'limit' => 50,
-            'null' => false,
+            'limit'   => 50,
+            'null'    => false,
         ]);
         $table->addColumn('nombre', 'string', [
             'default' => null,
-            'limit' => 50,
-            'null' => false,
+            'limit'   => 50,
+            'null'    => false,
         ]);
         $table->addColumn('apellido1', 'string', [
             'default' => null,
-            'limit' => 50,
-            'null' => false,
+            'limit'   => 50,
+            'null'    => false,
         ]);
         $table->addColumn('apellido2', 'string', [
             'default' => null,
-            'limit' => 50,
-            'null' => false,
+            'limit'   => 50,
+            'null'    => false,
+        ]);
+        $table->addColumn('correo', 'string', [
+            'default' => null,
+            'limit'   => 64,
+            'null'    => false
         ]);
         $table->addColumn('fecha_nacimiento', 'date', [
             'default' => null,
-            'null' => false,
+            'null'    => false,
+        ]);
+        $table->addColumn('contraseña', 'string', [
+            'default' => null,
+            'limit'   => 64,
+            'null'    => false
+        ]);
+        $table->addColumn('administrador', 'boolean', [
+            'default' => false
         ]);
         $table->create();
     }

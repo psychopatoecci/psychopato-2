@@ -24,9 +24,12 @@ class AAPersonasSeed extends AbstractSeed
         {
             $data[] = [
                 'identificacion' => $faker->unique()->numberBetween($min = 100000000, $max = 699999999),
-                'nombre'  => $faker->firstName($gender = null|'male'|'female'),
-                'apellido1'  => $faker->lastName,
-                'apellido2'  => $faker->lastName,
+                'nombre'         => $faker->firstName($gender = null|'male'|'female'),
+                'apellido1'      => $faker->lastName,
+                'apellido2'      => $faker->lastName,
+                'correo'         => $faker->email,
+                'administrador'  => rand (0, 2),
+                'contraseña'     => 'cambiar',
                 'fecha_nacimiento'  => $faker->date($format = 'Y-m-d', $max = '2010-01-01'),
             ];
         }
