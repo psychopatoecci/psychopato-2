@@ -13,13 +13,7 @@ class CreatePersonasDireccion extends AbstractMigration
     public function change()
     {
         $table = $this->table('personas_direcciones', [ 
-            'id' => false,
-            'primary_key' => [
-                'nombreProvincia',
-                'nombreCanton',
-                'nombreDistrito',
-                'idPersona',
-                'detalles' ] ] );
+            'id' => true,]);
         $table -> addColumn (
             'nombreProvincia',
             'string',
