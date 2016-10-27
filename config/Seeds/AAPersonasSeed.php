@@ -28,7 +28,7 @@ class AAPersonasSeed extends AbstractSeed
                 'apellido1'      => $faker->lastName,
                 'apellido2'      => $faker->lastName,
                 'correo'         => $faker->email,
-                'administrador'  => rand (0, 2),
+                'administrador'  => rand (0, 1),
                 'contraseña'     => 'cambiar',
                 'fecha_nacimiento'  => $faker->date($format = 'Y-m-d', $max = '2010-01-01'),
             ];
