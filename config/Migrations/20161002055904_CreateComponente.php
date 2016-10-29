@@ -19,10 +19,6 @@ class CreateComponente extends AbstractMigration
             'null' => false,
         ]);
         
-        $table->addColumn('descripcion', 'text', [
-            'default' => null,
-            'null' => false,
-        ]);
         $table->addColumn('nombreComponente', 'string', [
             'default' => null,
             'limit' => 50,

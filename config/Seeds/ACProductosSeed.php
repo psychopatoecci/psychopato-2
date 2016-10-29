@@ -23,12 +23,13 @@ class ACProductosSeed extends AbstractSeed
         for ($i = 0; $i < 200; $i++)
         {
             $data[] = [
-                'idProducto' => "PROD".$faker->unique()->numberBetween($min = 1000, $max = 500000),
+                'idProducto'  => "PROD".$faker->unique()->numberBetween($min = 1000, $max = 500000),
                 'nombreProducto'  => $faker->word,
-                'tipo'   => $faker->numberBetween($min = 1, $max = 3),
-                'imagen' => $faker->imageUrl($width = 640, $height = 480, 'technics'),
+                'tipo'        => $faker->numberBetween($min = 1, $max = 3),
+                //'imagen'    => $faker->imageUrl($width = 640, $height = 480, 'technics'),
                 'precio'      => $faker->numberBetween($min = 1000, $max = 500000),
-                'fabricante'   => $faker->company
+                'descripcion' => $faker->paragraph,
+                'fabricante'  => $faker->company
             ];
         }
         $table = $this->table('productos');

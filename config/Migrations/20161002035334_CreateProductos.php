@@ -27,13 +27,16 @@ class CreateProductos extends AbstractMigration
             'default' => null,
             'null' => false,
         ]);
-        $table->addColumn('imagen', 'blob', [
-            'default' => null,
-            'null' => false,
-        ]);
+        //$table->addColumn('imagen', 'blob', [
+        //    'default' => null,
+        //    'null' => false,
+        //]);
         $table->addColumn('precio', 'integer', [
             'default' => null,
             'null' => false,
+        ]);
+        $table->addColumn('descripcion', 'text', [
+            'default' => null
         ]);
         $table->addColumn('fabricante', 'string', [
             'default' => null,

@@ -24,7 +24,6 @@ class AJComponentesSeed extends AbstractSeed
         {
             $data = [
                 'idComponente' => $faker->unique()->numberBetween($min = 101, $max = 999),
-                'descripcion'  => $faker->sentence($nbWords = 5, $variableNbWords = true),
                 'nombreComponente' => $faker->word ()
             ];
         

@@ -88,26 +88,7 @@ class ProductosController extends AppController
         $this->set('productos',$productos);*/
         
     }
-    /**
-     * funcion detalles
-    *funcion para mostrar detalles de un producto
-    * llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la informacio
-    * se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
-    * se envia la informacion obtenida a la vista
-    */
-    public function detalles($prodId)
-    {
-        // llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la informacion
-        
-        //se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
-        $producto = $this -> Productos -> get ($prodId);
-        $this -> set ('nombre', $producto ['nombreProducto']);
-        $this -> set ('IDProducto', $prodId);
-        $this -> set ('precio', $producto ['precio']);
-        $this -> set ('portada', $producto ['imagen']);
-        $this -> set ('categoria', StrVal($producto ['tipo']));
-        $this->render();
-    }
+
         /**
      * funcion detalles
     *funcion para mostrar detalles de un producto
@@ -115,7 +96,7 @@ class ProductosController extends AppController
     * se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
     * se envia la informacion obtenida a la vista
     */
-    public function detallesprueba($codigo)
+    public function detalles($codigo)
     {
         //llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la informacion
         
@@ -137,7 +118,7 @@ class ProductosController extends AppController
             ->contain(['video_juegos', 'video_juegos.consolas.productos']);
         //$descripcion;
         foreach ($query as $qu) {
-            $this-> set ('genero', $qu['generos']['genero']);
+            $this-> set ('genero', $qu['video_juegos']['genero']);
             $this-> set ('plataforma', $qu['productos']['nombreProducto']);
         }
         //echo $descripcion;

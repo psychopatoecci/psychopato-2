@@ -17,27 +17,38 @@ class CreateVideoJuegos extends AbstractMigration
             /*'identity' => true, 
             'signed' => false,*/
             'default' => null,
-            'limit' => 50,
-            'null' => false,
+            'limit'   => 50,
+            'null'    => false,
         ]);
-        $table->addForeignKey('idVideoJuego', 'productos', 'idProducto', array('delete' => 'CASCADE', 'update' => 'CASCADE'));
+        $table->addForeignKey('idVideoJuego', 'productos', 
+            'idProducto',
+            array('delete' => 'CASCADE', 'update' => 'CASCADE')
+        );
+
+        $table->addColumn('idConsola', 'string', [
+            'default' => null,
+            'limit'   => 50,
+            'null'    => false
+        ]);
         
+        $table->addForeignKey('idConsola', 'productos', 'idProducto' );
+
         $table->addColumn('ESRB', 'string', [
             'default' => null,
-            'limit' => 255,
-            'null' => false,
-        ]);
-        $table->addColumn('descripcion', 'text', [
-            'default' => null,
-            'null' => false,
+            'limit'   => 255,
+            'null'    => false,
         ]);
         $table->addColumn('reqMin', 'text', [
             'default' => null,
-            'null' => false,
+            'null'    => false,
         ]);
         $table->addColumn('reqMax', 'text', [
             'default' => null,
-            'null' => false,
+            'null'    => false,
+        ]);
+        $table->addColumn('genero', 'string', [
+            'default' => null,
+            'limit'   => 50
         ]);
         $table->create();
     }

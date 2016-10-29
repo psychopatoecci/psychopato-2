@@ -24,14 +24,14 @@ class AQPersonasDireccionesSeed extends AbstractSeed
         $dist  = $this->fetchAll('SELECT * FROM distritos');
         for ($i = 0; $i < count($pers); $i++)
         {
-	    $num = rand (0, count ($dist));
+        $num = rand (0, count ($dist) - 1 );
             $data[] = [
-		'idPersona' => $pers [$i][0],
-		'nombreProvincia' => $dist[$num]['nombreProvincia'],
+                'idPersona' => $pers [$i][0],
+                'nombreProvincia' => $dist[$num]['nombreProvincia'],
                 'nombreCanton'    => $dist[$num]['nombreCanton'],
                 'nombreDistrito'  => $dist[$num]['nombreDistrito'],
                 'detalles'        => $faker -> sentence ($nbWords=5, $variableNbWords = true)
-	    ];
+        ];
             /*$data[] = [
                 'idPersona' => $pers [$i][0],
                 'nombreProvincia' => 'Alajuela', //$dist[$num]['nombreProvincia'],
