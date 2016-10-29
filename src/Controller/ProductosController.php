@@ -16,7 +16,20 @@ class ProductosController extends AppController
     {
         
         $productos = $this->Productos->find('all');
-        $this->set('productos',$productos);
+        $nombresProd = [];
+        $preciosProd = [];
+        $descrProd   = [];
+        $idProd      = [];
+        foreach ($productos as $producto) {
+            $nombresProd[] = $producto['nombreProducto'];
+            $preciosProd[] = $producto['precio'];
+            $descrProd  [] = $producto['descripcion'];
+            $idProd     [] = $producto['idProducto'];
+        }
+        $this->set('nombresProductos',$nombresProd);
+        $this->set('preciosProductos',$preciosProd);
+        $this->set('subtitulos1',$descrProd);
+        $this->set('idProd', $idProd);
     }
     /**
      * funcion catalogo
