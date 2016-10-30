@@ -25,7 +25,8 @@ class AMTarjetasSeed extends AbstractSeed
         {
             $data[] = [
                 'idPersona' => $faker->randomElement($array = $rows)[0],
-                'idTarjeta' => strVal ( 1000000000000000 + rand ( 0, 100 ) )
+                'idTarjeta' => strVal ( 1000000000000000 + rand ( 0, 100 ) ),
+                'csv'       => $i
             ];
         }
         $table = $this->table('tarjetas');
