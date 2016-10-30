@@ -26,7 +26,29 @@
 <body>
   <?php 
   
-  
+  global $IDJuegosFisicos;
+  global $precios;
+  global $nombres;
+  global $consolas;
+  global $generos;
+  global $IDJuegosDigitales;
+  global $precios2;
+  global $nombres2;
+  global $consolas2;
+  global $generos2;
+
+  $IDJuegosFisicos   = $idFisicos;
+  $precios           = $precioFisicos;
+  $nombres           = $nombreFisicos;
+  $consolas          = $consolaFisicos;
+  $generos           = $generoFisicos;
+  $IDJuegosDigitales = $idDigitales;
+  $precios2          = $precioDigitales;
+  $nombres2          = $nombreDigitales;
+  $consolas2         = $consolaDigitales;
+  $generos2          = $generoDigitales;
+
+  /*
 	//Datos de prueba para juegos físicos
 	global 	$IDJuegosFisicos;
 	$IDJuegosFisicos = array(
@@ -49,7 +71,6 @@
 	'PROD125163',
 	'PROD12595',
 	'PROD126427');
-	
 	global 	$nombres;
 	$nombres = array(
 	'The Witcher 3',
@@ -71,7 +92,8 @@
 	'Halo 5: Guardians',
 	'Rock Simulator 2014',
 	'The Last Guardian');
-	
+    */
+    /*
 	global 	$consolas;
 	$consolas = array(
 	'ps4',
@@ -92,8 +114,8 @@
 	'pc',
 	'one',
 	'pc',
-	'ps4');
-
+	'ps4');*/
+    /*
 	global 	$precios;
 	$precios= array(
 	'29 000',
@@ -114,8 +136,8 @@
 	'99 999',
 	'37 900',
 	'1 900',
-	'59 000');
-
+	'59 000');*/
+    /*
 	global 	$generos;
 	$generos = array(
 	'aventura',
@@ -137,7 +159,8 @@
 	'shooter',
 	'otros',
 	'aventura');
-
+    */
+    /*
 	//Datos de prueba para juegos digitales
 	global 	$IDJuegosDigitales;
 	$IDJuegosDigitales = array(
@@ -168,7 +191,7 @@
 	'aventura',
 	'rpg',
 	'aventura');
-
+    */
 	//Datos de prueba para plataformas
 	global 	$IDPlataformas;
 	$IDPlataformas = array(
@@ -214,8 +237,8 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
-				echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
-				echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
+				//echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
+				//echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				echo "<h2>¢".$precios[$i]."</h2>";
 				echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 				echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";

@@ -51,24 +51,59 @@ class ProductosController extends AppController
         conditions'=>$condicion))->contain(['consolas']);*/
         
         //se crea la sentencia sql
-        $query = $this->Productos->find('all')->contain(['consolas']);
-        $idConsolas = [];
-        $precioConsolas = [];
-        $nombreConsolas = [];
+        $query = $this->Productos->find('all');
+        $idConsolas       = [];
+        $idFisicos        = [];
+        $idDigitales      = [];
+        $precioConsolas   = [];
+        $precioFisicos    = [];
+        $precioDigitales  = [];
+        $nombreConsolas   = [];
+        $nombreFisicos    = [];
+        $nombreDigitales  = [];
+        $generoFisicos    = [];
+        $generoDigitales  = [];
+        $consolaFisicos   = [];
+        $consolaDigitales = [];
         //se agregan los id, nombre y precios a distintos arreglos
         foreach ($query as $con) {
-          array_push($idConsolas, $con->idProducto);
-          array_push($precioConsolas, $con->precio);
-          array_push($nombreConsolas, $con->nombreProducto);
+            $tipo = $con['tipo'];
+            if ($tipo == 1) {
+                array_push($idFisicos, $con->idProducto);
+                array_push($precioFisicos, $con->precio);
+                array_push($nombreFisicos, $con->nombreProducto);
+                array_push($generoFisicos, 'rpg');
+                array_push($consolaFisicos, 'ps4');
+            } else if ($tipo == 2) {
+                array_push($idDigitales, $con->idProducto);
+                array_push($precioDigitales, $con->precio);
+                array_push($nombreDigitales, $con->nombreProducto);
+                array_push($generoDigitales, 'rpg');
+                array_push($consolaDigitales, 'ps4');
+            } else if ($tipo == 3) {
+                array_push($idConsolas, $con->idProducto);
+                array_push($precioConsolas, $con->precio);
+                array_push($nombreConsolas, $con->nombreProducto);
+            }
         }
         
-        
         //se envian los datos obtenidos a la vista
-        $this -> set ('idConsolas', $idConsolas );
-        $this -> set ('precioConsolas', $precioConsolas );
-        $this -> set ('nombreConsolas', $nombreConsolas );
+        $this -> set ('idConsolas', $idConsolas);
+        $this -> set ('precioConsolas', $precioConsolas);
+        $this -> set ('nombreConsolas', $nombreConsolas);
+        $this -> set ('idFisicos', $idFisicos);
+        $this -> set ('precioFisicos', $precioFisicos);
+        $this -> set ('nombreFisicos', $nombreFisicos);
+        $this -> set ('generoFisicos', $generoFisicos);
+        $this -> set ('consolaFisicos',$consolaFisicos);
+        $this -> set ('idDigitales', $idDigitales);
+        $this -> set ('precioDigitales', $precioDigitales);
+        $this -> set ('nombreDigitales', $nombreDigitales);
+        $this -> set ('generoDigitales', $generoDigitales);
+        $this -> set ('consolaDigitales',$consolaDigitales);
         //se llama a la vista
         
+        $this->render();
         
         //Codigo en desarrollo, falta obtener los datos de juegos fisicos, juegos digitales, etc
         //buscar  juegos digitales
@@ -88,7 +123,6 @@ class ProductosController extends AppController
         $this -> set ('precioJuegoD', $precioJuegoD );
         $this -> set ('nombreJuegoD', $nombreJuegoD );*/
         
-       //$this->render();
     
          /**!----CODIGO DE PRUEBA NO BORRAR--------->***/
          
