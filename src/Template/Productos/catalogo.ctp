@@ -237,8 +237,8 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
-				//echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
-				//echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
+				echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
+				echo "<a href='detallesprueba/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				echo "<h2>¢".$precios[$i]."</h2>";
 				echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 				echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";

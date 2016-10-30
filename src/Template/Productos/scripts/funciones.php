@@ -3,10 +3,15 @@
 		$urlCarpeta = "images/productos/".$id."/Portada/";
 		if (!file_exists($urlCarpeta)) { //Si no existe la carpeta, la crea
 			mkdir($urlCarpeta, 0777, true);
-			$urlCompleta = $urlCarpeta;
+			$urlCompleta = "images/sinportada.png";
 		} else {
 			$archivoPortada = array_diff(scandir($urlCarpeta), array('.', '..'));
-			$urlCompleta = $urlCarpeta.$archivoPortada[2];
+			if (count($archivoPortada) < 1) { //No hay portada asignada
+				$urlCompleta = "images/sinportada.png";
+			} else {
+				$urlCompleta = $urlCarpeta.$archivoPortada[2];
+			}
+			
 		}
 		
 		return $urlCompleta;
