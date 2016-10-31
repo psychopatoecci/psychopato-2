@@ -284,7 +284,7 @@
 							echo "<div class='product-image-wrapper'>";
 							echo "<div class='single-products'>";
 							echo "<div class='productinfo text-center'>";
-							echo "<a href='detalles/$idProd[$i]'><img src='".obtenerPortada($IDProductosDetacados[$i])."' title='ver detalles del producto' /></a>";
+							echo "<a class='detalle' href='detalles/$idProd[$i]'><img src='".obtenerPortada($IDProductosDetacados[$i])."' title='ver detalles del producto' /></a>";
 							echo "<h2>¢".$preciosProductos[$i]."</h2>";
 							echo "<p>".$nombresProductos[$i]."</p>";
 							echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir este producto al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
