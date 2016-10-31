@@ -36,6 +36,9 @@
   global $nombres2;
   global $consolas2;
   global $generos2;
+  global $IDPlataformas;
+  global $precios3;
+  global $nombres3;
 
   $IDJuegosFisicos   = $idFisicos;
   $precios           = $precioFisicos;
@@ -47,6 +50,9 @@
   $nombres2          = $nombreDigitales;
   $consolas2         = $consolaDigitales;
   $generos2          = $generoDigitales;
+  $IDPlataformas     = $idConsolas;
+  $precios3          = $precioConsolas;
+  $nombres3          = $nombreConsolas;
 
   /*
 	//Datos de prueba para juegos físicos
@@ -191,7 +197,7 @@
 	'aventura',
 	'rpg',
 	'aventura');
-    */
+    *//*
 	//Datos de prueba para plataformas
 	global 	$IDPlataformas;
 	$IDPlataformas = array(
@@ -219,7 +225,7 @@
 	'225 500',
 	'119 500',
 	'119 000');
-
+    */
 	Include ("scripts/funciones.php");
 	
 	//Función que muestra un juego físico en pantalla
