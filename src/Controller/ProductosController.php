@@ -14,7 +14,6 @@ class ProductosController extends AppController
     
     public function index()
     {
-        
         $productos = $this->Productos->find('all');
         $nombresProd = [];
         $preciosProd = [];
@@ -30,6 +29,7 @@ class ProductosController extends AppController
         $this->set('preciosProductos',$preciosProd);
         $this->set('subtitulos1',$descrProd);
         $this->set('idProd', $idProd);
+        $this->set('user', $this->Auth->user('id'));
     }
     /**
      * funcion catalogo

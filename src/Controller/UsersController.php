@@ -22,8 +22,9 @@ class UsersController extends AppController
             if ($user) {
                 $this -> Auth -> setUser ($user);
                 return $this -> redirect ($this -> Auth ->redirectUrl());
+            } else {
+                $this -> Flash -> error (__('Usuario o contraseña inválidos.'));
             }
-            $this -> Flash -> error (__('Usuario o contraseña inválidos.'));
         }
     }
     public function logout () {
