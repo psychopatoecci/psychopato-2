@@ -34,11 +34,10 @@ class PersonasTable extends Table
         $this->displayField('identificacion');
         $this->primaryKey('identificacion');
         
-        $this->hasOne('clientes',['foreignKey'=>'identificacion']);
-        $this->hasOne('administradores_migrations',['foreignKey'=>'identificacion']);
-    
          $this->hasMany('Direccion');
          $this->hasMany('TelefonosPersonas');
+
+         $this->hasOne('User', ['foreignKey' => 'username']);
         
     }
 

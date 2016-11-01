@@ -18,14 +18,16 @@ class AAPersonasSeed extends AbstractSeed
      */
     public function run()
     {
-        $faker  = Faker\Factory::create();
-        $data   = [];
-        $hasher = new DefaultPasswordHasher();
-        $pw     = $hasher -> hash ('spooks');
+        $faker         = Faker\Factory::create();
+        $datosPersonas = [];
+        $datosUsuarios = [];
+        $hasher        = new DefaultPasswordHasher();
+        $pw            = $hasher -> hash ('spooks');
         for ($i = 0; $i < 200; $i++)
         {
-            $data[] = [
-                'identificacion' => $faker->firstName($gender = null|'male'|'female').$i,
+            $nomUsuario = $faker->firstName($gender = null|'male'|'female').$i;
+            $datosPersonas[] = [
+                'identificacion' => $nomUsuario,
                 'nombre'         => $faker->firstName($gender = null|'male'|'female'),
                 'apellido1'      => $faker->lastName,
                 'apellido2'      => $faker->lastName,
@@ -34,9 +36,16 @@ class AAPersonasSeed extends AbstractSeed
                 'contraseña'     => $pw,
                 'fecha_nacimiento'  => $faker->date($format = 'Y-m-d', $max = '2010-01-01'),
             ];
+            $datosUsuarios[] = [
+                'username' => $nomUsuario,
+                'password' => $pw,
+                'role'     => 'admin'
+            ];
         }
 
         $table = $this->table('personas');
-        $table->insert($data)->save();
+        $table->insert($datosPersonas)->save();
+        $table = $this->table('users');
+        $table->insert($datosUsuarios)->save();
     }
 }

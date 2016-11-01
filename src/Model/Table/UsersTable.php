@@ -31,8 +31,9 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->table('users');
-        $this->displayField('id');
-        $this->primaryKey('id');
+        $this->displayField('username');
+        $this->primaryKey('username');
+        $this->hasOne('Persona', ['foreignKey' => 'identificacion']);
     }
 
     /**
