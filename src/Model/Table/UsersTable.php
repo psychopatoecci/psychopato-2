@@ -9,8 +9,6 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \Cake\ORM\Association\HasMany $Bookmarks
- *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
@@ -18,8 +16,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
  * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
  * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null)
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class UsersTable extends Table
 {
@@ -30,60 +26,62 @@ class UsersTable extends Table
      * @param array $config The configuration for the Table.
      * @return void
      */
-        public function initialize(array $config)
+    public function initialize(array $config)
     {
         parent::initialize($config);
+
         $this->table('users');
         $this->displayField('id');
         $this->primaryKey('id');
-        $this->addBehavior('Timestamp');
-        $this->hasMany('Bookmarks', [
-            'foreignKey' => 'user_id'
-        ]);
     }
+
+    /**
+     * Default validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->add('id', 'valid', ['rule' => 'numeric'])
-            ->notEmpty('id', 'create');
+            ->integer('id')
+            ->allowEmpty('id', 'create');
+
         $validator
-            ->requirePresence('first_name', 'create')
-            ->notEmpty('first_name', 'Rellene este campo');
-        $validator
-            ->requirePresence('last_name', 'create')
-            ->notEmpty('last_name', 'Rellene este campo');
-        $validator
-            ->add('email', 'valid', ['rule' => 'email', 'message' => 'Ingrese un correo electrónico válido.'])
-            ->requirePresence('email', 'create')
-            ->notEmpty('email', 'Rellene este campo');
+            ->requirePresence('username', 'create')
+            ->notEmpty('username', 'Se requiere nombre de usuario');
+
         $validator
             ->requirePresence('password', 'create')
-            ->notEmpty('password', 'Rellene este campo', 'create');
+            ->notEmpty('password', 'Se requiere contraseña');
+
+        $validator
+            ->requirePresence('role', 'create')
+            ->notEmpty('role', 'Se requiere un rol')
+            ->add('role', 'inList', 
+            [
+                'rule' => 
+                    ['inList', 
+                        ['admin', 'author']
+                    ], 
+                'message' => 'Inserte un rol de admin o de author.'
+            ]
+            );
+
         return $validator;
     }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->isUnique(['email'], 'Ya existe un usuario con este correo electrónico.'));
+        $rules->add($rules->isUnique(['username']));
+
         return $rules;
-    }
-    public function findAuth(\Cake\ORM\Query $query, array $options)
-    {
-        $query
-            ->select(['id', 'first_name', 'last_name', 'email', 'password', 'role'])
-            ->where(['Users.active' => 1]);
-        return $query;
-    }
-    public function recoverPassword($id)
-    {
-        $user = $this->get($id);
-        return $user->password;
-    }
-    public function beforeDelete($event, $entity, $options)
-    {
-        if ($entity->role == 'admin')
-        {
-            return false;
-        }
-        return true;
     }
 }

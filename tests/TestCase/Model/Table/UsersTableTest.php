@@ -81,4 +81,34 @@ class UsersTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test findAuth method
+     *
+     * @return void
+     */
+    public function testFindAuth()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test recoverPassword method
+     *
+     * @return void
+     */
+    public function testRecoverPassword()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test beforeDelete method
+     *
+     * @return void
+     */
+    public function testBeforeDelete()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }
