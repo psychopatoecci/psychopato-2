@@ -65,12 +65,12 @@
 					<ul class="nav navbar-nav collapse navbar-collapse">
 						<li><a href="index.html" class="active" title="Volver a la página principal">Inicio</a></li>
 						<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                <li><a href="catalogo" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
-								<li><a href="catalogo" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
-								<li><a href="catalogo" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
-                            </ul>
-                        </li> 
+                            			<ul role="menu" class="sub-menu">
+                               			<li><a href="catalogo" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
+						<li><a href="catalogo" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
+						<li><a href="catalogo" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
+                            		</ul>
+                        		</li> 
 						<li><a href="ofertas" title="Ver las ofertas disponibles">Ofertas</a></li>
 						<li><a href="ofertas" title="Ver los combos disponibles">Combos</a></li>
 						<li><a href="404" title="Ver la información de contacto de la empresa">Contacto</a></li>

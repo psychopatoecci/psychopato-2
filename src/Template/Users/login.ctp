@@ -26,7 +26,7 @@
 	
 	<!--Header-->
 	<header id="header">
-		<?php include("includes/header.php");?>
+		<?php include(dirname(__FILE__)."/../includes/header.php");?>
 	</header>
 	
 		<div class="container">
@@ -35,15 +35,15 @@
 			<div class="col-sm-4 col-sm-offset-1">
 				<div class="login-form">
 					<h2>Acceder a la cuenta</h2>
-                    <?= $this->Form->create(null,['url'=>['controller' => 'Users', 'action' => 'login']]) ?>
+                    			<?= $this->Form->create(null,['url'=>['controller' => 'Users', 'action' => 'login']]) ?>
 
-						<?= $this->Form->input('username', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Nombre de usuario o correo', 'label' => false, 'required' ]) ?>
-						<?= $this->Form->input('password', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Contraseña', 'label' => false, 'required' ]) ?>
-						<span>
-							<input type="checkbox" class="checkbox"> 
-							Recordar automáticamente
-						</span>
-						<?= $this->Form->button('Acceder', ['class' => 'btn btn-default']) ?>
+					<?= $this->Form->input('username', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Nombre de usuario o correo', 'label' => false, 'required' ]) ?>
+					<?= $this->Form->input('password', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Contraseña', 'label' => false, 'required' ]) ?>
+					<span>
+						<input type="checkbox" class="checkbox"> 
+						Recordar automáticamente
+					</span>
+					<?= $this->Form->button('Acceder', ['class' => 'btn btn-default']) ?>
 				</div>
 			</div>
 			<div class="col-sm-3 col-sm-offset-1">
@@ -61,7 +61,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<?php include("includes/footer.php");?>
+		<?php include(dirname(__FILE__)."/../includes/footer.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>

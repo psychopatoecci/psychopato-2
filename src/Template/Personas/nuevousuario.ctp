@@ -37,7 +37,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.php" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
+							<a href="/" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
 						</div>
 						
 					</div>

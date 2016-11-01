@@ -179,7 +179,7 @@
 			
 	<!--Header-->
 	<header id="header">
-		<?php include("includes/header.php");?>
+		<?php include(dirname(__FILE__)."/../includes/header.php");?>
 	</header>
 	
 	<!--Navegador lateral-->
@@ -403,7 +403,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<?php include("includes/footer.php");?>
+		<?php include(dirname(__FILE__)."/../includes/header.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>
