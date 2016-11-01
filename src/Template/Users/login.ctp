@@ -33,11 +33,10 @@
 			<div class="col-sm-2 col-sm-offset-1">
 			</div>
 			<div class="col-sm-4 col-sm-offset-1">
-			<?= $this->Flash->render('auth') ?>
-			<?= $this->Form->create(null,['url'=>['controller' => 'Users', 'action' => 'login']]) ?>
-			<div class="login-form">
+				<div class="login-form">
 					<h2>Acceder a la cuenta</h2>
-					<form action="#">
+                    <?= $this->Form->create(null,['url'=>['controller' => 'Users', 'action' => 'login']]) ?>
+
 						<?= $this->Form->input('username', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Nombre de usuario o correo', 'label' => false, 'required' ]) ?>
 						<?= $this->Form->input('password', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Contraseña', 'label' => false, 'required' ]) ?>
 						<span>
@@ -45,8 +44,7 @@
 							Recordar automáticamente
 						</span>
 						<?= $this->Form->button('Acceder', ['class' => 'btn btn-default']) ?>
-					</form>
-					<?= $this->Form->end() ?>
+				</div>
 			</div>
 			<div class="col-sm-3 col-sm-offset-1">
 				<div class="signup-form">
@@ -55,7 +53,6 @@
 						<button type='button' onClick="parent.location='registro.php'" class='btn btn-default'
 								title = 'Registrarse como nuevo usuario'>¡Registrarse!</button>
 					</center>
-				</div>
 				</div>
 			</div>
 		</div>
