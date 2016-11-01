@@ -28,7 +28,7 @@
 		<div class="row">
 			<div class="col-sm-4">
 				<div class="logo pull-left">
-					<a href="../" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
+					<a href="/" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
 				</div>
 				
 			</div>
@@ -38,7 +38,7 @@
 						<li><a href="" title="Ver datos de la cuenta"><i class="fa fa-user"></i> Cuenta</a></li>
 						<li><a href="" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
 						<li><a href="" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-						<li><a href="" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
+						<li><a href="/users/login" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
 					</ul>
 				</div>
 			</div>
