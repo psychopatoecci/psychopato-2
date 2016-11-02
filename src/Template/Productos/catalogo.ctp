@@ -229,7 +229,7 @@
 	Include ("scripts/funciones.php");
 	
 	//Función que muestra un juego físico en pantalla
-	function mostrarProductoFisico($genero, $plataforma) {
+	function mostrarProductoFisico($genero, $plataforma, $isAdmin) {
 
 		global $IDJuegosFisicos;
 		global $nombres;
@@ -243,8 +243,12 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
-				echo "<a href='detalles/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
-				echo "<a href='detalles/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
+                $ref = 'detalles/'.$IDJuegosFisicos[$i]."'";
+                if ($isAdmin){
+                    $ref = 'productos/adminProductos/'.$IDJuegosFisicos[$i]."'";
+                }
+				echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
+				echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				echo "<h2>¢".$precios[$i]."</h2>";
                 echo "<form method=\"post\" accept-charset=\"utf-8\" role=\"form\" action=\"/productos/agregar-a-wish-list\">";
 				echo "<div style=\"display:none;\">";
@@ -260,7 +264,7 @@
 	}
 
 	//Función que muestra un juego digital en pantalla
-	function mostrarProductoDigital($genero, $plataforma) {
+	function mostrarProductoDigital($genero, $plataforma, $isAdmin) {
 		global $IDJuegosDigitales;
 		global $nombres2;
 		global $precios2;
@@ -273,8 +277,12 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
-				echo "<a href='detallesprueba/$IDJuegosDigitales[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosDigitales[$i])."' alt='' /></a>";
-				echo "<a href='detallesprueba/$IDJuegosDigitales[$i]' title = 'Ver los detalles de este producto'><p>".$nombres2[$i]."</p></a>";
+                $ref = 'detalles/'.$IDJuegosDigitales[$i]."'";
+                if ($isAdmin){
+                    $ref = 'productos/adminProductos/'.$IDJuegosDigitales[$i]."'";
+                }
+				echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosDigitales[$i])."' alt='' /></a>";
+				echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres2[$i]."</p></a>";
 				echo "<h2>¢".$precios2[$i]."</h2>";
 				
 				echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
@@ -287,7 +295,7 @@
 	}
 
 	//Función que muestra una plataforma en pantalla
-	function mostrarPlataforma($idConsolas,$nombreConsolas,$precioConsolas) {
+	function mostrarPlataforma($idConsolas,$nombreConsolas,$precioConsolas,$isAdmin) {
 		global $IDPlataformas;
 		global $nombres3;
 		global $precios3;
@@ -297,9 +305,13 @@
 			echo "<div class='product-image-wrapper'>";
 			echo "<div class='single-products'>";
 			echo "<div class='productinfo text-center'>";
-			echo "<a href='detallesprueba/$idConsolas[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($idConsolas[$i])."' alt='' /></a>";
-			echo "<a href='detallesprueba/$idConsolas[$i]' title = 'Ver los detalles de este producto'><p>".$nombreConsolas[$i]."</p></a>";
-			echo "<h2>¢".$precioConsolas[$i]."</h2>";
+            $ref = 'detalles/'.$IDPlataformas[$i]."'";
+            if ($isAdmin){
+                $ref = 'productos/adminProductos/'.$IDPlataformas[$i]."'";
+            }
+			echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDPlataformas[$i])."' alt='' /></a>";
+			echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres3[$i]."</p></a>";
+			echo "<h2>¢".$precios3[$i]."</h2>";
 			echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 			echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
 			echo "</div> </div> </div> </div>";	
@@ -405,49 +417,51 @@
 								<div class="tab-content">
 									<div class="tab-pane fade active in" id="aventura1" >
 										<?php 
-										mostrarProductoFisico("aventura", "todas", $this);
+                                        $isAdmin = $this->request->session()->read('Auth.User.role')
+                                            == 'admin';
+										mostrarProductoFisico("aventura", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="rpg1" >
 										<?php 
-										mostrarProductoFisico("rpg", "todas");
+										mostrarProductoFisico("rpg", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="plataformas1" >
 										<?php 
-										mostrarProductoFisico("plataformas", "todas");
+										mostrarProductoFisico("plataformas", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="conduccion1" >
 										<?php 
-										mostrarProductoFisico("conduccion", "todas");
+										mostrarProductoFisico("conduccion", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="deportes1" >
 										<?php 
-										mostrarProductoFisico("deportes", "todas");
+										mostrarProductoFisico("deportes", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="shooter1" >
 										<?php 
-										mostrarProductoFisico("shooter", "todas");
+										mostrarProductoFisico("shooter", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="lucha1" >
 										<?php 
-										mostrarProductoFisico("lucha", "todas");
+										mostrarProductoFisico("lucha", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="otros1" >
 										<?php 
-										mostrarProductoFisico("otros", "todas");
+										mostrarProductoFisico("otros", "todas", $isAdmin);
 										?>
 									</div>
 								</div>
@@ -472,49 +486,49 @@
 								<div class="tab-content">
 									<div class="tab-pane fade active in" id="aventura2" >
 										<?php 
-										mostrarProductoDigital("aventura", "todas");
+										mostrarProductoDigital("aventura", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="rpg2" >
 										<?php 
-										mostrarProductoDigital("rpg", "todas");
+										mostrarProductoDigital("rpg", "todas", $isAdmin);
 										?>
 									</div>
 									
-									<div class="tab-pane fade" id="plataformas2" >
+									<div class="tab-pane fade" id="plataformas2, " >
 										<?php 
-										mostrarProductoDigital("plataformas", "todas");
+										mostrarProductoDigital("plataformas", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="conduccion2" >
 										<?php 
-										mostrarProductoDigital("conduccion", "todas");
+										mostrarProductoDigital("conduccion", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="deportes2" >
 										<?php 
-										mostrarProductoDigital("deportes", "todas");
+										mostrarProductoDigital("deportes", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="shooter2" >
 										<?php 
-										mostrarProductoDigital("shooter", "todas");
+										mostrarProductoDigital("shooter", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="lucha2" >
 										<?php
-										mostrarProductoDigital("lucha", "todas");
+										mostrarProductoDigital("lucha", "todas", $isAdmin);
 										?>
 									</div>
 									
 									<div class="tab-pane fade" id="otros2" >
 										<?php 
-										mostrarProductoDigital("otros", "todas");
+										mostrarProductoDigital("otros", "todas", $isAdmin);
 										?>
 									</div>
 								</div>
@@ -523,78 +537,78 @@
 							<div class="tab-pane fade" id="submenu3" >
 								<h1>Plataformas de juegos</h1><br>
 								<?php 
-								mostrarPlataforma($idConsolas,$nombreConsolas,$precioConsolas)
+								mostrarPlataforma($idConsolas,$nombreConsolas,$precioConsolas, $isAdmin)
 								?>
 							</div> 
 							
 							<div class="tab-pane fade" id="filtrops4" >
 								<h1>Juegos para Play Station 4</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "ps4");
-								mostrarProductoDigital("todos", "ps4");
+								mostrarProductoFisico("todos", "ps4", $isAdmin);
+								mostrarProductoDigital("todos", "ps4", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtrops3" >
 								<h1>Juegos para Play Station 3</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "ps3");
-								mostrarProductoDigital("todos", "ps3");
+								mostrarProductoFisico("todos", "ps3", $isAdmin);
+								mostrarProductoDigital("todos", "ps3", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtroone" >
 								<h1>Juegos para Xbox One</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "one");
-								mostrarProductoDigital("todos", "one");
+								mostrarProductoFisico("todos", "one", $isAdmin);
+								mostrarProductoDigital("todos", "one", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtro360" >
 								<h1>Juegos para Xbox 360</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "360");
-								mostrarProductoDigital("todos", "360");
+								mostrarProductoFisico("todos", "360", $isAdmin);
+								mostrarProductoDigital("todos", "360", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtrowii" >
 								<h1>Juegos para Wii</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "wii");
-								mostrarProductoDigital("todos", "wii");
+								mostrarProductoFisico("todos", "wii", $isAdmin);
+								mostrarProductoDigital("todos", "wii", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtrowiiu" >
 								<h1>Juegos para WiiU</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "wiiu");
-								mostrarProductoDigital("todos", "wiiu");
+								mostrarProductoFisico("todos", "wiiu", $isAdmin);
+								mostrarProductoDigital("todos", "wiiu", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtropc" >
 								<h1>Juegos para PC</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "pc");
-								mostrarProductoDigital("todos", "pc");
+								mostrarProductoFisico("todos", "pc", $isAdmin);
+								mostrarProductoDigital("todos", "pc", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtrovita" >
 								<h1>Juegos para PS Vita</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "vita");
-								mostrarProductoDigital("todos", "vita");
+								mostrarProductoFisico("todos", "vita", $isAdmin);
+								mostrarProductoDigital("todos", "vita", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtro3ds" >
 								<h1>Juegos para Nintendo 3DS</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "3ds");
-								mostrarProductoDigital("todos", "3ds");
+								mostrarProductoFisico("todos", "3ds", $isAdmin);
+								mostrarProductoDigital("todos", "3ds", $isAdmin);
 								?>
 							</div>
 							<div class="tab-pane fade" id="filtrods" >
 								<h1>Juegos para Nintendo DS</h1><br>
 								<?php 
-								mostrarProductoFisico("todos", "ds");
-								mostrarProductoDigital("todos", "ds");
+								mostrarProductoFisico("todos", "ds", $isAdmin);
+								mostrarProductoDigital("todos", "ds", $isAdmin);
 								?>
 							</div>
 							
