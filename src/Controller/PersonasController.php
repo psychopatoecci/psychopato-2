@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
-
+use Cake\Network\Http\Client;
 /**
  * Personas Controller
  *
@@ -312,5 +312,30 @@ class PersonasController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+    public function cuenta () {
+        $http = new Client();
+        if ($this->request) {
+            //$this->set ('spooks', $this->request->query);
+            $qu = $this->request->query;
+            if ($qu) {
+                $tarjetas = TableRegistry::get('tarjetas');
+                $tarjeta = $tarjetas -> newEntity();
+                $tarjeta ['idTarjeta'] = $qu ['numTarjeta'];
+                $tarjeta ['idPersona'] = $this->Auth->user('username');
+                $tarjeta ['csv']       = $qu ['csv'];
+                $response = $http->get('https://psycho-webservice.herokuapp.com',
+                    ['numTarjeta' => $qu ['numTarjeta'], 'csv' => $qu ['csv']]);
+                //$this -> set ('respuesta', $response->body);
+                if ($response->body == 'Incorrecto' ) {
+                    $this->Flash->error('La tarjeta no pudo ser validada.');
+                } else if ($tarjetas -> save ($tarjeta) ) {
+                    $this->Flash->success ('Datos actualizados correctamente.');
+                } else {
+                    $this->Flash->error ('Error insertando datos.');
+                }
+            }
+        } else {
+        }
     }
 }
