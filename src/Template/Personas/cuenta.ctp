@@ -249,6 +249,16 @@
 							<div class="signup-form">
 								<form action="#">
 									<div class='col-sm-4'>
+										<h3>Tarjetas</h3>
+										<ul>
+											<?php
+												foreach ($tarjetas as $trj) {
+													echo "<li>$trj</li>";
+                                               							}
+											?>
+										</ul>
+									</div>
+									<div class='col-sm-4'>
 								
 										<h3>Agregar medio de pago:</h4><br>
 										<?= $this->Form->create(null,['url'=>['controller' => 'Personas', 'action' => 'cuenta']]) ?>
@@ -256,7 +266,8 @@
 <?= $this->Form->input('csv', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'CSV', 'label' => false, 'required' ]) ?>
 										
 									</div>
-									<div class='col-sm-4'>		
+									<div class='col-sm-4'>
+
 						
 										<br><br><br>
 										<div class="signup-form">

@@ -314,15 +314,24 @@ class PersonasController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     public function cuenta () {
+        $tarjetas  = TableRegistry::get('tarjetas');
+        $idPersona = $this->Auth->user('username');
+        $existentes = []; // Tarjetas de esta persona.
+        $todas = $tarjetas -> find ('all'); // Todas las tarjetas.
+        foreach ($todas as $individual) {
+            if ($individual ['idPersona'] == $idPersona) {
+                $existentes [] = $individual ['idTarjeta'];
+            }
+        }
+        $this -> set ('tarjetas', $existentes);
         $http = new Client();
         if ($this->request) {
             //$this->set ('spooks', $this->request->query);
             $qu = $this->request->query;
             if ($qu) {
-                $tarjetas = TableRegistry::get('tarjetas');
                 $tarjeta = $tarjetas -> newEntity();
                 $tarjeta ['idTarjeta'] = $qu ['numTarjeta'];
-                $tarjeta ['idPersona'] = $this->Auth->user('username');
+                $tarjeta ['idPersona'] = $idPersona;
                 $tarjeta ['csv']       = $qu ['csv'];
                 $response = $http->get('https://psycho-webservice.herokuapp.com',
                     ['numTarjeta' => $qu ['numTarjeta'], 'csv' => $qu ['csv']]);
