@@ -35,7 +35,13 @@
 			<div class="col-sm-8">
 				<div class="shop-menu pull-right">
 					<ul class="nav navbar-nav">
-						<li><a href="" title="Ver datos de la cuenta"><i class="fa fa-user"></i> Cuenta</a></li>
+						<?php
+							$logged = "/users/login";
+							if ($this->request->session()->read('Auth.User.id')) {
+								$logged = "/personas/cuenta";
+							}
+							echo"<li><a href=\"$logged\" title=\"Ver datos de la cuenta\"><i class=\"fa fa-user\"></i> Cuenta</a></li>";
+						?>						
 						<li><a href="" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
 						<li><a href="" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
 						<li><a href="/users/login" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>

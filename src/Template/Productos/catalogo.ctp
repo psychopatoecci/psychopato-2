@@ -246,8 +246,13 @@
 				echo "<a href='detalles/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
 				echo "<a href='detalles/$IDJuegosFisicos[$i]' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				echo "<h2>¢".$precios[$i]."</h2>";
-				echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
+                echo "<form method=\"post\" accept-charset=\"utf-8\" role=\"form\" action=\"/productos/agregar-a-wish-list\">";
+				echo "<div style=\"display:none;\">";
+                echo "<input name=\"_method\" value=\"POST\" type=\"hidden\">";
+                echo "</div><input name=\"idProducto\" value=\"".$IDJuegosFisicos[$i]."\" type=\"hidden\">";
+                echo "<button type=\"submit\" class=\"btn btn-default\">Agregar a wishlist</button>";
 				echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
+				echo "</form>";
 				echo "</div> </div> </div> </div>";
 			}		
 		}
@@ -400,7 +405,7 @@
 								<div class="tab-content">
 									<div class="tab-pane fade active in" id="aventura1" >
 										<?php 
-										mostrarProductoFisico("aventura", "todas");
+										mostrarProductoFisico("aventura", "todas", $this);
 										?>
 									</div>
 									

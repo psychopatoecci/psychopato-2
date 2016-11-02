@@ -440,28 +440,39 @@ class PersonasController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     public function cuenta () {
+        $tarjetas  = TableRegistry::get('tarjetas');
+        $idPersona = $this->Auth->user('username');
+        $existentes = []; // Tarjetas de esta persona.
+        $todas = $tarjetas -> find ('all'); // Todas las tarjetas.
+        foreach ($todas as $individual) {
+            if ($individual ['idPersona'] == $idPersona) {
+                $existentes [] = $individual ['idTarjeta'];
+            }
+        }
+        $this -> set ('tarjetas', $existentes);
         $http = new Client();
         if ($this->request) {
             //$this->set ('spooks', $this->request->query);
             $qu = $this->request->query;
             if ($qu) {
-                $tarjetas = TableRegistry::get('tarjetas');
                 $tarjeta = $tarjetas -> newEntity();
                 $tarjeta ['idTarjeta'] = $qu ['numTarjeta'];
-                $tarjeta ['idPersona'] = $this->Auth->user('username');
+                $tarjeta ['idPersona'] = $idPersona;
                 $tarjeta ['csv']       = $qu ['csv'];
                 $response = $http->get('https://psycho-webservice.herokuapp.com',
                     ['numTarjeta' => $qu ['numTarjeta'], 'csv' => $qu ['csv']]);
                 //$this -> set ('respuesta', $response->body);
-                if ($response->body == 'Incorrecto' ) {
-                    $this->Flash->error('La tarjeta no pudo ser validada.');
-                } else if ($tarjetas -> save ($tarjeta) ) {
-                    $this->Flash->success ('Datos actualizados correctamente.');
+                if ($response->body == 'Correcto' ) {
+                    if ($tarjetas -> save ($tarjeta) ) {
+                        $this->Flash->success ('Datos actualizados correctamente.');
+                        return $this->redirect ('/personas/cuenta');
+                    } else {
+                        $this->Flash->error ('Error insertando datos.');
+                    }
                 } else {
-                    $this->Flash->error ('Error insertando datos.');
+                    $this->Flash->error('La tarjeta no pudo ser validada.');
                 }
-            }
-        } else {
+            } else {} // No hay query, no hace nada
         }
     }
 }

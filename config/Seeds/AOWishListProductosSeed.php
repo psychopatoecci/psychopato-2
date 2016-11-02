@@ -20,18 +20,19 @@ class AOWishListProductosSeed extends AbstractSeed
     {
         $faker = Faker\Factory::create();
         $data  = [];
-        $pers  = $this->fetchAll('SELECT identificacion FROM personas');
+        //$pers  = $this->fetchAll('SELECT identificacion FROM personas');
         $prod  = $this->fetchAll('SELECT idProducto FROM productos');
-        $wishL = $this->fetchAll('SELECT id FROM wish_lists');
+        $wishL = $this
+            ->fetchAll('SELECT id, identificacionPersona FROM wish_lists');
         for ($i = 0; $i < count($wishL); $i++)
         {
             $data[] = [
                 'identificacionPersona'
-                    => $faker->randomElement($array = $pers)[0],
+                    => $wishL [$i]['identificacionPersona'],
                 'idProducto'
                     => $faker->randomElement($array = $prod)[0],
                 'idWishList'
-                    => $wishL [$i][0], // Evita repeticiones
+                    => $wishL [$i]['id'], // Evita repeticiones
             ];
         }
         $table = $this->table('wish_list_productos');
