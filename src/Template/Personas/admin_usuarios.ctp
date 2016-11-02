@@ -26,110 +26,51 @@
   <?php 
   
 	//Datos de prueba para juegos físicos
-	$Identificaciones = array(
-	'207250941',
-	'207250942',
-	'207250943');
+	global $Identificaciones; 
+	global $nombres; 
+	global $apellidos1;  
+	global $apellidos2; 
+	global $fechas; 
+	global $telefonosCasa;  
+	global $telefonosCelular;  
+	global $telefonosTrabajo; 
+	global $telefonosOtro;  
+	global $provinciasCasa;  
+	global $cantonesCasa; 
+	global $distritosCasa;  
+	global $direccionessCasa;  
+	global $provinciasTrabajo;  
+	global $cantonesTrabajo;  
+	global $distritosTrabajo;  
+	global $direccionesTrabajo;  
+	global $provinciasOtro;  
+	global $cantonesOtro;  
+	global $distritosOtro;  
+	global $direccionesOtro; 
 	
-	$nombres = array(
-	'Harambe',
-	'Chuck',
-	'Batman');
 	
-	$apellidos1 = array(
-	'The',
-	'Norris',
-	'Bin');
-
-	$apellidos2 = array(
-	'Gorilla',
-	'',
-	'Suparman');
+	//$Identificaciones = $Identificacion;
+	$nombres = $nombre;
+	$apellidos1 = $apellido1;
+	$apellidos2 = $apellido2;
+	$fechas = $fecha;
+	$telefonosCasa = $casa;
+	$telefonosCelular = $celulares;
+	$telefonosTrabajo = $trabajo;
+	$telefonosOtro = $otro;
+	$provinciasCasa = $provincia;
+	$cantonesCasa = $canton;
+	$distritosCasa = $distrito;
+	$direccionessCasa = $detalles;
+	$provinciasTrabajo = $provincia;
+	$cantonesTrabajo = $canton;
+	$distritosTrabajo = $distrito;
+	$direccionesTrabajo = $detalles;
+	$provinciasOtro = $provincia;
+	$cantonesOtro = $canton;
+	$distritosOtro = $distrito;
+	$direccionesOtro = $detalles;
 	
-	$fechas = array(
-	'12/10/1994',
-	'01/01/1900',
-	'30/05/2002');
-	
-	$telefonosCasa = array(
-	'23480657',
-	'27777777',
-	'21415285');
-	
-	$telefonosCelular = array(
-	'83480657',
-	'77777777',
-	'61415285');
-	
-	$telefonosTrabajo = array(
-	'',
-	'',
-	'21415285');
-	
-	$telefonosOtro = array(
-	'83111657',
-	'',
-	'');
-	
-	$provinciasCasa = array(
-	'Alajuela',
-	'Cartago',
-	'San Jose');
-	
-	$cantonesCasa = array(
-	'Desamparados',
-	'Por ahi',
-	'Escazú');
-	
-	$distritosCasa = array(
-	'San Antonio',
-	'Por allá',
-	'Guácima');
-	
-	$direccionessCasa = array(
-	'Avenica feelings. En el zoológico.',
-	'Por ahí a la par de la cosa esa.',
-	'Planeta tierra, en algún lugar de Singapur.');
-	
-	$provinciasTrabajo = array(
-	'',
-	'',
-	'Puntarenas');
-	
-	$cantonesTrabajo = array(
-	'Guadalupe',
-	'',
-	'Turrialba');
-	
-	$distritosTrabajo = array(
-	'VirgenMaria',
-	'',
-	'Playita');
-	
-	$direccionesTrabajo = array(
-	'Del palo de mangos de la catedral, a la derecha.',
-	'',
-	'Desde la cuadra de los perros, a la izquierda.');
-	
-	$provinciasOtro = array(
-	'',
-	'',
-	'Guanacaste');
-	
-	$cantonesOtro = array(
-	'',
-	'',
-	'Katsu');
-	
-	$distritosOtro = array(
-	'',
-	'',
-	'Firra');
-	
-	$direccionesOtro = array(
-	'',
-	'',
-	'Firra');
 	
 	Include ("scripts/funciones.php");
 	

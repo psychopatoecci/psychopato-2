@@ -216,10 +216,126 @@ class PersonasController extends AppController
     }
     
     
-      public function adminUsuarios()
+    public function adminUsuarios()
     {
-        $this->render();
+        /*$query = $this->Personas->find('all')
+        ->where(['Personas.administrador ' => '1'])
+        ->contain(['PersonasDirecciones', 'TelefonosPersonas']);*/
+      
+      
+      $query = $this->Personas->find('all')->contain(['personas_direcciones','telefonos_personas']);
+      //echo $query;
+     // $query = $this->Personas->find('all', ['contain' => ['telefonos_personas', 'personas_direcciones']]);
+            //$query = $this -> Personas -> find('all')
+            //->contain(['telefonos_personas', 'personas_direcciones']);
+        
+        /*$query = $this->Personas->find();
+        $query->select(['identificacion', 'nombre','apellido1','apellido2','fecha_nacimiento','telefonos_personas.tipo_tel',
+        'telefonos_personas.telefono','personas_direcciones.nombreProvincia','personas_direcciones.nombreCanton','personas_direcciones.nombreDistrito','personas_direcciones.detalles'])
+        ->join([
+        'table' => 'personas_direcciones',
+        'conditions' => 'personas_direcciones.idPersona = Personas.identificacion',
+        ])
+        ->join([
+        'table' => 'telefonos_personas',
+        'conditions' => 'telefonos_personas.identificacion = Personas.identificacion',
+        ]);*/
+        /*$condicion = 'telefonos_personas.identificacion = Personas.identificacion, personas_direcciones.idPersona = Personas.identificacion'
+        $query = $this->Personas->find('all',array(
+        'fields' =>array('telefonos_personas.tipo_tel',
+        'telefonos_personas.telefono','personas_direcciones.nombreProvincia','personas_direcciones.nombreCanton','personas_direcciones.nombreDistrito','personas_direcciones.detalles'),'conditions'=> $condicion))
+        ->contain(['personas_direcciones','telefonos_personas']);*/
+
+    
+           /* $query = $this->Personas->find();
+        $query->select(['identificacion', 'personas_direcciones.nombreProvincia']);
+            $query->join([
+        'table' => 'personas_direcciones',
+        'table' => 'telefonos_personas',
+        'conditions' => 'personas_direcciones.idPersona = Personas.identificacion', 
+        'telefonos_personas.identificacion = Personas.identificacion',
+    ]);*/
+        $identificacion = [];
+        $nombre = [];
+        $apellido1 = [];
+        $apellido2 = [];
+        $fecha = [];
+        $provincia=[];
+        $canton =[];
+        $distrito=[];
+        $detalles=[];
+        $casa=[];
+        $trabajo=[];
+        $otro=[];
+        $celulares=[];
+        // echo $query;
+        $idActual;
+        $idAnterior = ' ';
+        
+        //se agregan los id, nombre y precios a distintos arreglos
+		  
+        foreach ($query as $con) {
+            //$idActual=$con['identificacion'];
+            //if($idActual != $idAnterior){
+                array_push($identificacion, $con['identificacion']);
+                array_push($nombre, $con['nombre']);
+                array_push($apellido1, $con['apellido1']);
+                array_push($apellido2, $con['apellido2']);
+                array_push($fecha, $con['fecha_nacimiento']);
+                //$idAnterior = $con['identificacion'];
+            //}
+        
+            array_push($provincia, $con['personas_direcciones'][0]['nombreProvincia']);
+            array_push($canton, $con['personas_direcciones'][0]['nombreCanton']);
+            array_push($distrito, $con['personas_direcciones'][0]['nombreDistrito']);
+            array_push($detalles, $con['personas_direcciones'][0]['detalles']);
+            array_push($casa, $con['telefono'][0]['telefono']);
+            
+            /*if($con['telefonos_personas'][0]['tipo_tel'] == 'Casa'){
+            array_push($casa, $con['telefono'][0]['telefono']);
+            } 
+            else {
+                if($con['telefonos_personas'][0]['tipo_tel'] == 'Celular'){
+                    array_push($celulares, $con['telefonos_personas'][0]['telefono']);
+                } 
+                else {
+                    if($con['telefonos_personas'][0]['tipo_tel'] == 'Trabajo'){
+                        array_push($trabajo, $con['telefonos_personas'][0]['telefono']);
+                    }       
+                    else {
+                        array_push($otro, $con['telefonos_personas'][0]['telefono']);
+                    }
+                }
+            }*/
+        }
+        
+       
+        //se envian los datos obtenidos a la vista
+        $this -> set ('spooks', $query);
+        $this -> set ('Identificacion', $identificacion);
+        $this -> set ('nombre', $nombre );
+        $this -> set ('apellido1', $apellido1 );
+        $this -> set ('apellido2', $apellido2 );
+        $this -> set ('fecha', $fecha );
+        $this -> set ('provincia', $provincia );
+        $this -> set ('canton', $canton );
+        $this -> set ('distrito', $distrito );
+        $this -> set ('detalles', $detalles );
+        //$this -> set ('trabajo', $trabajo );
+       // $this -> set ('otro', $otro );
+        //$this -> set ('celulares', $celulares );
+        $this -> set ('casa', $casa );
+        
+
+        $this -> set ('trabajo', $casa );
+        $this -> set ('otro', $casa );
+        $this -> set ('celulares', $casa );
+      
+        //$this->render();
+        
     }
+        
+
     
     public function index()
     {

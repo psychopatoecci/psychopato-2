@@ -34,8 +34,8 @@ class PersonasTable extends Table
         $this->displayField('identificacion');
         $this->primaryKey('identificacion');
         
-         $this->hasMany('Direccion');
-         $this->hasMany('TelefonosPersonas');
+         $this->hasMany('personas_direcciones',['foreignKey' => 'idPersona']);
+         $this->hasMany('telefonos_personas',['foreignKey' => 'identificacion']);
 
          $this->hasOne('User', ['foreignKey' => 'username']);
         
