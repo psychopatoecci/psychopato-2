@@ -49,7 +49,7 @@
 	global $direccionesOtro; 
 	
 	
-	//$Identificaciones = $Identificacion;
+	$Identificaciones = $Identificacion;
 	$nombres = $nombre;
 	$apellidos1 = $apellido1;
 	$apellidos2 = $apellido2;
@@ -72,10 +72,116 @@
 	$direccionesOtro = $detalles;
 	
 	
+	/*$Identificaciones = array(
+	'207250941',
+	'207250942',
+	'207250943');
+	
+	$nombres = array(
+	'Harambe',
+	'Chuck',
+	'Batman');
+	
+	$apellidos1 = array(
+	'The',
+	'Norris',
+	'Bin');
+
+	$apellidos2 = array(
+	'Gorilla',
+	'',
+	'Suparman');
+	
+	$fechas = array(
+	'12/10/1994',
+	'01/01/1900',
+	'30/05/2002');
+	
+	$telefonosCasa = array(
+	'23480657',
+	'27777777',
+	'21415285');
+	
+	$telefonosCelular = array(
+	'83480657',
+	'77777777',
+	'61415285');
+	
+	$telefonosTrabajo = array(
+	'',
+	'',
+	'21415285');
+	
+	$telefonosOtro = array(
+	'83111657',
+	'',
+	'');
+	
+	$provinciasCasa = array(
+	'Alajuela',
+	'Cartago',
+	'San Jose');
+	
+	$cantonesCasa = array(
+	'Desamparados',
+	'Por ahi',
+	'Escazú');
+	
+	$distritosCasa = array(
+	'San Antonio',
+	'Por allá',
+	'Guácima');
+	
+	$direccionessCasa = array(
+	'Avenica feelings. En el zoológico.',
+	'Por ahí a la par de la cosa esa.',
+	'Planeta tierra, en algún lugar de Singapur.');
+	
+	$provinciasTrabajo = array(
+	'',
+	'',
+	'Puntarenas');
+	
+	$cantonesTrabajo = array(
+	'Guadalupe',
+	'',
+	'Turrialba');
+	
+	$distritosTrabajo = array(
+	'VirgenMaria',
+	'',
+	'Playita');
+	
+	$direccionesTrabajo = array(
+	'Del palo de mangos de la catedral, a la derecha.',
+	'',
+	'Desde la cuadra de los perros, a la izquierda.');
+	
+	$provinciasOtro = array(
+	'',
+	'',
+	'Guanacaste');
+	
+	$cantonesOtro = array(
+	'',
+	'',
+	'Katsu');
+	
+	$distritosOtro = array(
+	'',
+	'',
+	'Firra');
+	
+	$direccionesOtro = array(
+	'',
+	'',
+	'Firra');*/
+	
+	
 	Include ("scripts/funciones.php");
 	
 	//Nomenclatura de la base para las provincias
-	$provinciasBase = array('San Jose','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limon','');
+	$provinciasBase = array('San José','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limon','');
 
 	?>
 			

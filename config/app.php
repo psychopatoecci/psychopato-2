@@ -230,7 +230,7 @@ return [
              */
             //'port' => 'non_standard_port_number',
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
             'database' => 'psycho',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
@@ -270,7 +270,7 @@ return [
             'host' => 'localhost',
             //'port' => 'non_standard_port_number',
             'username' => 'root',
-            'password' => 'root',
+            'password' => '',
             'database' => 'psycho',
             'encoding' => 'utf8',
             'timezone' => 'UTC',

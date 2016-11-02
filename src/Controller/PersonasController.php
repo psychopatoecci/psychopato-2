@@ -24,6 +24,19 @@ class PersonasController extends AppController
      }
      
      
+      public function borrar($id){
+        
+        $entity = $this->Personas->get($id);
+        $result = $this->Personas->delete($entity);
+         
+         
+         //$this->render();
+         
+     }
+     
+
+     
+     
     /** Funcion para agregar un usuario
      * funcion guardar
      * se extrae la informacion de los contenedores en la vista guardar   
@@ -218,43 +231,9 @@ class PersonasController extends AppController
     
     public function adminUsuarios()
     {
-        /*$query = $this->Personas->find('all')
-        ->where(['Personas.administrador ' => '1'])
-        ->contain(['PersonasDirecciones', 'TelefonosPersonas']);*/
-      
-      
-      $query = $this->Personas->find('all')->contain(['personas_direcciones','telefonos_personas']);
-      //echo $query;
-     // $query = $this->Personas->find('all', ['contain' => ['telefonos_personas', 'personas_direcciones']]);
-            //$query = $this -> Personas -> find('all')
-            //->contain(['telefonos_personas', 'personas_direcciones']);
-        
-        /*$query = $this->Personas->find();
-        $query->select(['identificacion', 'nombre','apellido1','apellido2','fecha_nacimiento','telefonos_personas.tipo_tel',
-        'telefonos_personas.telefono','personas_direcciones.nombreProvincia','personas_direcciones.nombreCanton','personas_direcciones.nombreDistrito','personas_direcciones.detalles'])
-        ->join([
-        'table' => 'personas_direcciones',
-        'conditions' => 'personas_direcciones.idPersona = Personas.identificacion',
-        ])
-        ->join([
-        'table' => 'telefonos_personas',
-        'conditions' => 'telefonos_personas.identificacion = Personas.identificacion',
-        ]);*/
-        /*$condicion = 'telefonos_personas.identificacion = Personas.identificacion, personas_direcciones.idPersona = Personas.identificacion'
-        $query = $this->Personas->find('all',array(
-        'fields' =>array('telefonos_personas.tipo_tel',
-        'telefonos_personas.telefono','personas_direcciones.nombreProvincia','personas_direcciones.nombreCanton','personas_direcciones.nombreDistrito','personas_direcciones.detalles'),'conditions'=> $condicion))
-        ->contain(['personas_direcciones','telefonos_personas']);*/
-
-    
-           /* $query = $this->Personas->find();
-        $query->select(['identificacion', 'personas_direcciones.nombreProvincia']);
-            $query->join([
-        'table' => 'personas_direcciones',
-        'table' => 'telefonos_personas',
-        'conditions' => 'personas_direcciones.idPersona = Personas.identificacion', 
-        'telefonos_personas.identificacion = Personas.identificacion',
-    ]);*/
+        $query = $this->Personas->find('all')->contain(['personas_direcciones']);;
+        $telPers = [];
+        $telefonos = TableRegistry::get('telefonos_personas');
         $identificacion = [];
         $nombre = [];
         $apellido1 = [];
@@ -268,45 +247,64 @@ class PersonasController extends AppController
         $trabajo=[];
         $otro=[];
         $celulares=[];
-        // echo $query;
-        $idActual;
-        $idAnterior = ' ';
-        
+        $tiposCasa = 'Casa';
+        $tiposTrabajo = 'Trabajo';
+        $tiposCelular = 'Celular';
+        $tiposOtro = 'Otro';
         //se agregan los id, nombre y precios a distintos arreglos
 		  
-        foreach ($query as $con) {
-            //$idActual=$con['identificacion'];
-            //if($idActual != $idAnterior){
-                array_push($identificacion, $con['identificacion']);
-                array_push($nombre, $con['nombre']);
-                array_push($apellido1, $con['apellido1']);
-                array_push($apellido2, $con['apellido2']);
-                array_push($fecha, $con['fecha_nacimiento']);
-                //$idAnterior = $con['identificacion'];
-            //}
+        foreach ($query as $con) { 
+            array_push($identificacion, $con['identificacion']);
+            array_push($nombre, $con['nombre']);
+            array_push($apellido1, $con['apellido1']);
+            array_push($apellido2, $con['apellido2']);
+            array_push($fecha, $con['fecha_nacimiento']);
+            $idAnterior = $con['identificacion'];
+            
+            $tieneTipo = false;
+            $qu2 = $telefonos -> find('all')->where(['identificacion' => $con['identificacion'],'tipo_tel' => $tiposCasa]);
+            foreach ($qu2 as $con2) {
+                array_push($casa, $con2['telefono']);
+                $tieneTipo = true;
+            }    
+            
+            if($tieneTipo==false){
+                    array_push($casa, ' ');
+                }
+            $tieneTipo = false;
+            
+            $qu3 = $telefonos -> find('all')->where(['identificacion' => $con['identificacion'],'tipo_tel' => $tiposTrabajo]);
+            foreach ($qu3 as $con2) {
+                array_push($trabajo, $con2['telefono']);
+            }
+            
+            if($tieneTipo==false){
+                array_push($trabajo, ' ');
+            }
+            $tieneTipo = false;
+            
+            $qu4 = $telefonos -> find('all')->where(['identificacion' => $con['identificacion'],'tipo_tel' => $tiposCelular]);
+            foreach ($qu4 as $con2) {
+                array_push($celulares, $con2['telefono']);
+            }
+            
+            if($tieneTipo==false){
+                array_push($celulares, ' ');
+            }
+            
+            $tieneTipo = false;
+            $qu5 = $telefonos -> find('all')->where(['identificacion' => $con['identificacion'],'tipo_tel' => $tiposOtro]);
+            foreach ($qu5 as $con2) {
+                array_push($otro, $con2['telefono']);
+            }
+            if($tieneTipo==false){
+                array_push($otro, ' ');
+            }
         
             array_push($provincia, $con['personas_direcciones'][0]['nombreProvincia']);
             array_push($canton, $con['personas_direcciones'][0]['nombreCanton']);
             array_push($distrito, $con['personas_direcciones'][0]['nombreDistrito']);
             array_push($detalles, $con['personas_direcciones'][0]['detalles']);
-            array_push($casa, $con['telefono'][0]['telefono']);
-            
-            /*if($con['telefonos_personas'][0]['tipo_tel'] == 'Casa'){
-            array_push($casa, $con['telefono'][0]['telefono']);
-            } 
-            else {
-                if($con['telefonos_personas'][0]['tipo_tel'] == 'Celular'){
-                    array_push($celulares, $con['telefonos_personas'][0]['telefono']);
-                } 
-                else {
-                    if($con['telefonos_personas'][0]['tipo_tel'] == 'Trabajo'){
-                        array_push($trabajo, $con['telefonos_personas'][0]['telefono']);
-                    }       
-                    else {
-                        array_push($otro, $con['telefonos_personas'][0]['telefono']);
-                    }
-                }
-            }*/
         }
         
        
@@ -321,18 +319,30 @@ class PersonasController extends AppController
         $this -> set ('canton', $canton );
         $this -> set ('distrito', $distrito );
         $this -> set ('detalles', $detalles );
-        //$this -> set ('trabajo', $trabajo );
-       // $this -> set ('otro', $otro );
-        //$this -> set ('celulares', $celulares );
+        $this -> set ('trabajo', $trabajo );
+        $this -> set ('otro', $otro );
+        $this -> set ('celulares', $celulares );
         $this -> set ('casa', $casa );
-        
-
-        $this -> set ('trabajo', $casa );
-        $this -> set ('otro', $casa );
-        $this -> set ('celulares', $casa );
       
-        //$this->render();
         
+    }
+    
+    public function cuentas($usuario)
+    {
+        $persona = $this -> Personas -> get ($usuario);
+        $this -> set ('Identificacion', $usuario);
+        $this -> set ('Nombre', $persona ['nombre']);
+        $this -> set ('Apellido1', $persona ['apellido1']);
+        $this -> set ('Apellido2', $persona ['apellido2']);
+        $this -> set ('Correo', $persona ['correo']);
+        $this -> set ('fecha_nacimiento', $persona ['fecha_nacimiento']);
+        
+       // $condicion =array('video_juegos.idVideoJuego =' => $codigo);
+      /*  $query = $this -> Personas -> find('all',array(
+            'fields' => array('video_juegos.genero', 'productos.nombreProducto'),
+            'conditions'=> $condicion ))
+            ->contain(['video_juegos', 'video_juegos.consolas.productos']);
+        $this->render();*/
     }
         
 

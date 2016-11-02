@@ -58,9 +58,14 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/funciones', ['controller' => 'Productos', 'action' => 'funciones']);
     $routes->connect('/upload', ['controller' => 'Productos', 'action' => 'upload']);
     $routes->connect('/adminUsuarios', ['controller' => 'Personas', 'action' => 'adminUsuarios']);
+    $routes->connect('/cuenta/*', ['controller' => 'Personas', 'action' => 'cuenta']);
 
+    $routes->connect('/nuevoUsuario', ['controller' => 'Personas', 'action' => 'guardar']);
     /*ruta para pruebas*/
         $routes->connect('/detallesprueba/*', ['controller' => 'Productos', 'action' => 'detallesprueba']);
+        
+        
+        
     /*ruta para pruebas*/
     /**
      * ...and connect the rest of 'Pages' controller's URLs.

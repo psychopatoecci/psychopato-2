@@ -37,7 +37,7 @@
 			<?= $this->Form->create(null,['url'=>['controller' => 'Personas', 'action' => 'login']]) ?>
 			<div class="login-form">
 					<h2>Acceder a la cuenta</h2>
-					<form action="#">
+				
 						<?= $this->Form->input('username', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Nombre de usuario o correo', 'label' => false, 'required' ]) ?>
 						<?= $this->Form->input('password', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Contraseña', 'label' => false, 'required' ]) ?>
 						<span>
@@ -45,15 +45,17 @@
 							Recordar automáticamente
 						</span>
 						<?= $this->Form->button('Acceder', ['class' => 'btn btn-default']) ?>
-					</form>
+				
 					<?= $this->Form->end() ?>
 			</div>
+			
+			
 			<div class="col-sm-3 col-sm-offset-1">
 				<div class="signup-form">
 					<center>
 						<h2>¿Aún no eres miembro?</h2>
-						<button type='button' onClick="parent.location='registro.php'" class='btn btn-default'
-								title = 'Registrarse como nuevo usuario'>¡Registrarse!</button>
+						<button type='button' class='btn btn-default'
+								value = 'Registrarse como nuevo usuario'>¡Registrarse!</button>
 					</center>
 				</div>
 				</div>
