@@ -37,7 +37,7 @@
 					<ul class="nav navbar-nav">
 						<?php
 							$logged = "/users/login";
-							if (isset($user)) {
+							if ($this->request->session()->read('Auth.User.id')) {
 								$logged = "/personas/cuenta";
 							}
 							echo"<li><a href=\"$logged\" title=\"Ver datos de la cuenta\"><i class=\"fa fa-user\"></i> Cuenta</a></li>";
