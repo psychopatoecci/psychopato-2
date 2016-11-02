@@ -336,16 +336,17 @@ class PersonasController extends AppController
                 $response = $http->get('https://psycho-webservice.herokuapp.com',
                     ['numTarjeta' => $qu ['numTarjeta'], 'csv' => $qu ['csv']]);
                 //$this -> set ('respuesta', $response->body);
-                if ($response->body == 'Incorrecto' ) {
-                    $this->Flash->error('La tarjeta no pudo ser validada.');
-                } else if ($tarjetas -> save ($tarjeta) ) {
-                    $this->Flash->success ('Datos actualizados correctamente.');
-                    return $this->redirect ('/personas/cuenta');
+                if ($response->body == 'Correcto' ) {
+                    if ($tarjetas -> save ($tarjeta) ) {
+                        $this->Flash->success ('Datos actualizados correctamente.');
+                        return $this->redirect ('/personas/cuenta');
+                    } else {
+                        $this->Flash->error ('Error insertando datos.');
+                    }
                 } else {
-                    $this->Flash->error ('Error insertando datos.');
+                    $this->Flash->error('La tarjeta no pudo ser validada.');
                 }
-            }
-        } else {
+            } else {} // No hay query, no hace nada
         }
     }
 }
