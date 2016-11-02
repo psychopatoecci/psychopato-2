@@ -340,6 +340,7 @@ class PersonasController extends AppController
                     $this->Flash->error('La tarjeta no pudo ser validada.');
                 } else if ($tarjetas -> save ($tarjeta) ) {
                     $this->Flash->success ('Datos actualizados correctamente.');
+                    return $this->redirect ('/personas/cuenta');
                 } else {
                     $this->Flash->error ('Error insertando datos.');
                 }

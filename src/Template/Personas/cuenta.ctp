@@ -250,13 +250,11 @@
 								<form action="#">
 									<div class='col-sm-4'>
 										<h3>Tarjetas</h3>
-										<ul>
-											<?php
-												foreach ($tarjetas as $trj) {
-													echo "<li>$trj</li>";
-                                               							}
-											?>
-										</ul>
+										<?php
+											foreach ($tarjetas as $trj) {
+												echo "<p>$trj</p>";
+                                               						}
+										?>
 									</div>
 									<div class='col-sm-4'>
 								
