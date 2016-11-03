@@ -50,7 +50,7 @@
 				<div class="signup-form">
 					<center>
 						<h2>¿Aún no eres miembro?</h2>
-						<button type='button' onClick="parent.location='registro.php'" class='btn btn-default'
+						<button type='button' onClick="parent.location='../personas/registro'" class='btn btn-default'
 								title = 'Registrarse como nuevo usuario'>¡Registrarse!</button>
 					</center>
 				</div>

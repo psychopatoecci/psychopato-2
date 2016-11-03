@@ -35,6 +35,7 @@
 					<h2>Registro de nuevo usuario</h2>
 					<?= $this->Form->create(null,['url'=>['controller' => 'Personas', 'action' => 'registro']]) ?>
 					<h2>Acceder a la cuenta</h2>
+                                        <?= $this->Form->input('login', array('type' => 'hidden', 'value' => false)) ?>
 					<?= $this->Form->input('username', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Nombre de usuario', 'label' => false, 'required' ]) ?>
 					<?= $this->Form->input('correo',   ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Correo', 'label' => false, 'required', 'type' => 'email' ]) ?>
 					<?= $this->Form->input('password', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Contraseña', 'label' => false, 'required', 'type' => 'password' ]) ?>
@@ -48,7 +49,8 @@
 				<div class="signup-form">
 					<center>
 						<h2>¿Ya tienes una cuenta?</h2>
-                                                <?= $this->Form->create(null,['url'=>['controller' => 'Productos', 'action' => 'index']]) ?>
+                                                <?= $this->Form->create(null,['url'=>['controller' => 'Users', 'action' => 'login']]) ?>
+                                                <?= $this->Form->input('login', array('type' => 'hidden', 'value' => true)) ?>
                                                 <?= $this->Form->button('Iniciar sesión', ['class' => 'btn btn-default']) ?>
                                                 <?= $this->Form->end() ?>
 						<!--<button type='button' onClick="parent.location='../users/login'" class='btn btn-default'
