@@ -23,6 +23,23 @@ class AAPersonasSeed extends AbstractSeed
         $datosUsuarios = [];
         $hasher        = new DefaultPasswordHasher();
         $pw            = $hasher -> hash ('spooks');
+        // Se agrega el admin principal.
+        $datosPersonas [] = [
+                'identificacion' => 'admin',
+                'nombre'         => $faker->firstName($gender = null|'male'|'female'),
+                'apellido1'      => $faker->lastName,
+                'apellido2'      => $faker->lastName,
+                'correo'         => $faker->email,
+                'administrador'  => 1,
+                'contraseña'     => $pw,
+                'fecha_nacimiento'  => $faker->date($format = 'Y-m-d', $max = '2010-01-01'),
+        ];
+        $datosUsuarios[] = [
+                'username' => 'admin',
+                'password' => $pw,
+                'role'     => 'admin'
+        ];
+      
         for ($i = 0; $i < 200; $i++)
         {
             $nomUsuario = $faker->firstName($gender = null|'male'|'female').$i;
@@ -39,7 +56,7 @@ class AAPersonasSeed extends AbstractSeed
             $datosUsuarios[] = [
                 'username' => $nomUsuario,
                 'password' => $pw,
-                'role'     => 'admin'
+                'role'     => 'author'
             ];
         }
 

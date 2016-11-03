@@ -44,7 +44,13 @@
 						?>						
 						<li><a href="" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
 						<li><a href="" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
-						<li><a href="/users/login" title="Iniciar sesión como cliente"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
+						<?php
+						if ($this->request->session()->read('Auth.User.id')) {
+							echo "<li><a href=\"/users/logout\" title=\"Cerrar sesión\"><i class=\"fa fa-lock\"></i> Cerrar sesión</a></li>";
+						} else {
+							echo "<li><a href=\"/users/login\" title=\"Iniciar sesión como cliente\"><i class=\"fa fa-lock\"></i> Iniciar sesión</a></li>";
+						}
+						?>
 					</ul>
 				</div>
 			</div>
