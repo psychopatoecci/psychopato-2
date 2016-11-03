@@ -44,14 +44,18 @@
 						Recordar automáticamente
 					</span>
 					<?= $this->Form->button('Acceder', ['class' => 'btn btn-default']) ?>
+                                        <?= $this->Form->end() ?>
 				</div>
 			</div>
 			<div class="col-sm-3 col-sm-offset-1">
 				<div class="signup-form">
 					<center>
 						<h2>¿Aún no eres miembro?</h2>
-						<button type='button' onClick="parent.location='../personas/registro'" class='btn btn-default'
-								title = 'Registrarse como nuevo usuario'>¡Registrarse!</button>
+                                                <?= $this->Form->create(null,['url'=>['controller' => 'Personas', 'action' => 'registro']]) ?>
+                                                <?= $this->Form->button('¡Registrarse!', ['class' => 'btn btn-default']) ?>
+                                                <?= $this->Form->end() ?>
+						<!--<button type='button' onClick="parent.location='../personas/registro'" class='btn btn-default'
+								title = 'Registrarse como nuevo usuario'></button>-->
 					</center>
 				</div>
 			</div>

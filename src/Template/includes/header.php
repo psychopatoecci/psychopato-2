@@ -69,7 +69,7 @@
 				
 				<div class="mainmenu pull-left">
 					<ul class="nav navbar-nav collapse navbar-collapse">
-						<li><a href="index.html" class="active" title="Volver a la página principal">Inicio</a></li>
+						<li><a href="/" class="active" title="Volver a la página principal">Inicio</a></li>
 						<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
                             			<ul role="menu" class="sub-menu">
                                			<li><a href="catalogo" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>

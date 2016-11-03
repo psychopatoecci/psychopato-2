@@ -70,7 +70,7 @@ class AppController extends Controller
     // Todos pueden ver, por eso se les permite index, view y display.
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['index', 'view', 'display', 'catalogo']);
+        $this->Auth->allow(['index', 'view', 'display', 'catalogo', 'registro', 'login']);
     }
     /*
     public function isAuthorized($user)

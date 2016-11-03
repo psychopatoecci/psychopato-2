@@ -477,18 +477,28 @@ class PersonasController extends AppController
     }
 
     public function registro () {
-        if ($this->request->is('post')) {
+
+        if ($this->request->is('post') && isset ($this->request->data['reg'])) {
+
             $datosIngresados = $this->request->data;
             $nuevoUsuario = $this->Personas->newEntity();
-            $nuevoUsuario ['identificacion'  ] = $datosIngresados ['username'];
+            $username = $datosIngresados ['username'];
+            $password = $datosIngresados ['password'];
+            $nuevoUsuario ['identificacion'  ] = $username;
             $nuevoUsuario ['correo'          ] = $datosIngresados ['correo'];
-            $nuevoUsuario ['contraseña'      ] = $datosIngresados ['password'];
+            $nuevoUsuario ['contraseña'      ] = $password;
             $nuevoUsuario ['nombre'          ] = 'null';
             $nuevoUsuario ['apellido1'       ] = 'null';
             $nuevoUsuario ['apellido2'       ] = 'null';
             $nuevoUsuario ['fecha_nacimiento'] = '1985-07-24';
-            if ( $this->Personas->save($nuevoUsuario) ) {
+            $tablaUsers = TableRegistry::get('users');
+            $nuevoUsuario2 = $tablaUsers->newEntity();
+            $nuevoUsuario2 ['username'] = $username;
+            $nuevoUsuario2 ['password'] = $password;
+            $nuevoUsuario2 ['role']     = 'author';
+            if ( $this->Personas->save($nuevoUsuario) && $tablaUsers -> save ($nuevoUsuario2)) {
                 $this->Flash->success('Insertado correctamente.');
+                $this->redirect('/users/login');
             } else {
                 $this->Flash->error('Errror insertando datos.');
             }
