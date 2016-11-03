@@ -475,4 +475,24 @@ class PersonasController extends AppController
             } else {} // No hay query, no hace nada
         }
     }
+
+    public function registro () {
+        if ($this->request->is('post')) {
+            $datosIngresados = $this->request->data;
+            $nuevoUsuario = $this->Personas->newEntity();
+            $nuevoUsuario ['identificacion'  ] = $datosIngresados ['username'];
+            $nuevoUsuario ['correo'          ] = $datosIngresados ['correo'];
+            $nuevoUsuario ['contraseña'      ] = $datosIngresados ['password'];
+            $nuevoUsuario ['nombre'          ]  = 'null';
+            $nuevoUsuario ['apellido1'       ]  = 'null';
+            $nuevoUsuario ['apellido2'       ]  = 'null';
+            $nuevoUsuario ['fecha_nacimiento'] = '1985-07-24';
+            if ( $this->Personas->save($nuevoUsuario) ) {
+                $this->Flash->success('Insertado correctamente.');
+            } else {
+                $this->Flash->error('Errror insertando datos.');
+            }
+        }
+        $this->render();
+    }
 }
