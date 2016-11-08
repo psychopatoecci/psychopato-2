@@ -235,6 +235,7 @@ class PersonasController extends AppController
             //$this -> set ('request', $this->request->data);
             $datos = $this -> request -> data;
 			if ($datos ['tipoReq'] == 'generales') {
+                // Se actualizan los datos generales del usuario.
 				$actualizando = $this -> Personas -> get ($datos ['id']);
 				$actualizando ['nombre']    = $datos ['nombre'];
 				$actualizando ['apellido1'] = $datos ['apellido1'];
@@ -270,6 +271,7 @@ class PersonasController extends AppController
 					$telefonos -> save ($telCelular);
 				}
 			} else if ($datos ['tipoReq'] == 'direcciones') {
+                // Se actualizan las direcciones.
                 $dirs = TableRegistry::get ('personas_direcciones');
                 // Como las direcciones utilizan un id, para asegurarse de que
                 // quedan las mismas que en la vista, hay que borrarlas e
@@ -310,7 +312,10 @@ class PersonasController extends AppController
                         $this -> Flash -> error ('Error insertando dirección');
                     }
 				}
-			}
+			} else if ($datos ['tipoReq'] == 'borrar' ){
+                $porBorrar = $this -> Personas -> get ($datos ['id']);
+                $this -> Personas -> delete ($porBorrar);
+            }
         }
         $personas = $this -> Personas -> find ('all', 
         ['contain' => ['personas_direcciones', 'telefonos_personas']])

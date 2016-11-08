@@ -188,8 +188,12 @@
 									
 									
 									<?php echo "<div class='tab-pane fade' id='borrar".$us['identificacion']."' >"; ?>
-										<h3>Borrar este usuario de la base de datos:</h3>
-										<input type="button" value="Borrar usuario">
+                                        <h3>Borrar este usuario de la base de datos:</h3>
+										<form id="borrarUsuario" action="./admin_usuarios" method="post">
+                                            <input type="hidden" name="tipoReq" value="borrar">
+											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
+										    <button type='submit' class='btn btn-default'>Borrar usuario</button>
+										</form>
 									</div>
 									
 								</div>
