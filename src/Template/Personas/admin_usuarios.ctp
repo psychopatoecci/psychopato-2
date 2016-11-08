@@ -24,159 +24,6 @@
 
 <body>
   <?php 
-  
-	//Datos de prueba para juegos físicos
-	global $Identificaciones; 
-	global $nombres; 
-	global $apellidos1;  
-	global $apellidos2; 
-	global $fechas; 
-	global $telefonosCasa;  
-	global $telefonosCelular;  
-	global $telefonosTrabajo; 
-	global $telefonosOtro;  
-	global $provinciasCasa;  
-	global $cantonesCasa; 
-	global $distritosCasa;  
-	global $direccionessCasa;  
-	global $provinciasTrabajo;  
-	global $cantonesTrabajo;  
-	global $distritosTrabajo;  
-	global $direccionesTrabajo;  
-	global $provinciasOtro;  
-	global $cantonesOtro;  
-	global $distritosOtro;  
-	global $direccionesOtro; 
-	
-	
-	$Identificaciones = $Identificacion;
-	$nombres = $nombre;
-	$apellidos1 = $apellido1;
-	$apellidos2 = $apellido2;
-	$fechas = $fecha;
-	$telefonosCasa = $casa;
-	$telefonosCelular = $celulares;
-	$telefonosTrabajo = $trabajo;
-	$telefonosOtro = $otro;
-	$provinciasCasa = $provincia;
-	$cantonesCasa = $canton;
-	$distritosCasa = $distrito;
-	$direccionessCasa = $detalles;
-	$provinciasTrabajo = $provincia;
-	$cantonesTrabajo = $canton;
-	$distritosTrabajo = $distrito;
-	$direccionesTrabajo = $detalles;
-	$provinciasOtro = $provincia;
-	$cantonesOtro = $canton;
-	$distritosOtro = $distrito;
-	$direccionesOtro = $detalles;
-	
-	
-	/*$Identificaciones = array(
-	'207250941',
-	'207250942',
-	'207250943');
-	
-	$nombres = array(
-	'Harambe',
-	'Chuck',
-	'Batman');
-	
-	$apellidos1 = array(
-	'The',
-	'Norris',
-	'Bin');
-
-	$apellidos2 = array(
-	'Gorilla',
-	'',
-	'Suparman');
-	
-	$fechas = array(
-	'12/10/1994',
-	'01/01/1900',
-	'30/05/2002');
-	
-	$telefonosCasa = array(
-	'23480657',
-	'27777777',
-	'21415285');
-	
-	$telefonosCelular = array(
-	'83480657',
-	'77777777',
-	'61415285');
-	
-	$telefonosTrabajo = array(
-	'',
-	'',
-	'21415285');
-	
-	$telefonosOtro = array(
-	'83111657',
-	'',
-	'');
-	
-	$provinciasCasa = array(
-	'Alajuela',
-	'Cartago',
-	'San Jose');
-	
-	$cantonesCasa = array(
-	'Desamparados',
-	'Por ahi',
-	'Escazú');
-	
-	$distritosCasa = array(
-	'San Antonio',
-	'Por allá',
-	'Guácima');
-	
-	$direccionessCasa = array(
-	'Avenica feelings. En el zoológico.',
-	'Por ahí a la par de la cosa esa.',
-	'Planeta tierra, en algún lugar de Singapur.');
-	
-	$provinciasTrabajo = array(
-	'',
-	'',
-	'Puntarenas');
-	
-	$cantonesTrabajo = array(
-	'Guadalupe',
-	'',
-	'Turrialba');
-	
-	$distritosTrabajo = array(
-	'VirgenMaria',
-	'',
-	'Playita');
-	
-	$direccionesTrabajo = array(
-	'Del palo de mangos de la catedral, a la derecha.',
-	'',
-	'Desde la cuadra de los perros, a la izquierda.');
-	
-	$provinciasOtro = array(
-	'',
-	'',
-	'Guanacaste');
-	
-	$cantonesOtro = array(
-	'',
-	'',
-	'Katsu');
-	
-	$distritosOtro = array(
-	'',
-	'',
-	'Firra');
-	
-	$direccionesOtro = array(
-	'',
-	'',
-	'Firra');*/
-	
 	
 	Include ("scripts/funciones.php");
 	
@@ -220,11 +67,12 @@
 								<ul class="nav nav-pills nav-stacked">
 									<!--/Lista de usuarios-->
 									<?php
-										for ($i = 0; $i < count($nombres); $i++) {
-											echo "<li><a href='#".$Identificaciones[$i]."' data-toggle='tab' title='Ver los detalles de este producto'>
-											<h4 class='panel-title'><font size='1'>".$Identificaciones[$i]." (".$nombres[$i]." ".$apellidos1[$i]." ".$apellidos2[$i].")
-											</font></h4></a></li><p></p>";
-										}
+                                        foreach ($usuarios as $us) {
+                                            echo "<li><a href='#".$us['identificacion']."' data-toggle='tab' title='Ver usuario'>
+                                            <h4 class= 'panel-title'><font size='1'>"
+                                            .$us['identificacion']." (".$us['nombre']." ".$us['apellido1']." ".$us['apellido2'].")
+                                            </font></h4></a></li><p></p>";
+                                        }
 									?>
 									
 								</ul></div>
@@ -242,22 +90,19 @@
 						<!--Submenus de cada categoria-->
 						<div class="tab-content">	
 						    <?php //Mostrar nombre y código
-							for ($i = 0; $i < count($Identificaciones); $i++) {
-								if ($i === 0) {
-									echo "<div class='tab-pane fade active in' id='".$Identificaciones[$i]."' >";
-								} else {
-									echo "<div class='tab-pane fade' id='".$Identificaciones[$i]."' >";
-								}
-								echo "<h1>".$Identificaciones[$i]." (".$nombres[$i]." ".$apellidos1[$i]." ".$apellidos2[$i].")</h1>";
+                            foreach ($usuarios as $us) {
+                                
+								echo "<div class='tab-pane fade' id='".$us['identificacion']."' >";
+								echo "<h1>".$us['identificacion']." (".$us['nombre']." ".$us['apellido1']." ".$us['apellido2'].")</h1>";
 								
 							?>
 								<br>
 								<div class='col-sm-12'>
 									<ul class='nav nav-tabs'>
 											<?php //Menu de navegacion
-											echo "<li class='active'><a href='#datosgenerales".$Identificaciones[$i]."' data-toggle='tab'>Datos generales</a></li>";
-											echo "<li><a href='#direcciones".$Identificaciones[$i]."' data-toggle='tab'>Direcciones</a></li>";
-											echo "<li><a href='#borrar".$Identificaciones[$i]."' data-toggle='tab'>Borrar usuario</a></li>";
+											echo "<li class='active'><a href='#datosgenerales".$us['identificacion']."' data-toggle='tab'>Datos generales</a></li>";
+											echo "<li><a href='#direcciones".$us['identificacion']."' data-toggle='tab'>Direcciones</a></li>";
+											echo "<li><a href='#borrar".$us['identificacion']."' data-toggle='tab'>Borrar usuario</a></li>";
 											?>
 									</ul>
 								</div>
@@ -265,34 +110,30 @@
 								
 								<div class='tab-content'>
 									
-									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$Identificaciones[$i]."' >"; ?>
-										<form id="guardarcambios" target="_blank" action="scripts/datosusuario.php" method="post">
+									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$us['identificacion']."' >"; ?>
+
+										<form id="guardarcambios" action="./admin_usuarios" method="post">
 											<div class='col-sm-3'>
 												<h3>Identificación:</h3>
-												<?php echo "".$Identificaciones[$i]; ?>
-												<input type="hidden" name="id" value="<?php echo $Identificaciones[$i]; ?>">
+												<?php echo "".$us['identificacion']; ?>
+												<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
 												<br><h4>Nombre:</h4>
-												<?php echo "<input type='text' name='nombre' placeholder='Nombre' value='".$nombres[$i]."'>"; ?>
+												<?php echo "<input type='text' name='nombre' placeholder='Nombre' value='".$us['nombre']."'>"; ?>
 												<h4>1° apellido:</h4>
-												<?php echo "<input type='text' name='apellido1' placeholder='Primer apellido' value='".$apellidos1[$i]."'>"; ?>
+												<?php echo "<input type='text' name='apellido1' placeholder='Primer apellido' value='".$us['apellido1']."'>"; ?>
 												<h4>2° apellido:</h4>
-												<?php echo "<input type='text' name='apellido2' placeholder='Segundo apellido' value='".$apellidos2[$i]."'>"; ?>
+												<?php echo "<input type='text' name='apellido2' placeholder='Segundo apellido' value='".$us['apellido2']."'>"; ?>
 												<br><br><br><br>
 											</div>
 											
 											<div class='col-sm-3'>
 												<h3>-Teléfonos-</h3><br>
-												
-												<h4>De la casa:</h4>
-												<?php echo "<input type='text' name='telcasa' placeholder='Telefono de la casa' value='".$telefonosCasa[$i]."'>"; ?>
-												<h4>Del trabajo:</h4>
-												<?php echo "<input type='text' name='teltrabajo' placeholder='Telefono del trabajo' value='".$telefonosTrabajo[$i]."'>"; ?>
-												<h4>Del celular:</h4>
-												<?php echo "<input type='text' name='telcelular' placeholder='Telefono del celular' value='".$telefonosCelular[$i]."'>"; ?>
-												<h4>Otro:</h4>
-												<?php echo "<input type='text' name='telotro' placeholder='Telefono (Otro)' value='".$telefonosOtro[$i]."'>"; ?>
-												
-												
+												<?php
+                                                    foreach ($us['telefonos_personas'] as $telefono) {
+                                                        echo "<h4>".$telefono['tipo_tel'].":</h4>
+                                                        <input type='text' name= 'tel".$telefono['tipo_tel']."' placeholder= 'Telefono' value='".$telefono['telefono']."'>";
+                                                    }
+                                                ?>
 												
 												<br><br><br><br><br><br><br><br><br><br>
 												<button type='submit' class='btn btn-default'>Guardar cambios</button>
@@ -302,92 +143,48 @@
 										
 											<div class='col-sm-3'>
 												<h4>Fecha de nacimiento:</h4>
-												<?php echo "<input type='text' name='fecha' placeholder='Fecha de nacimiento' value='".$fechas[$i]."'>"; ?>
+												<?php echo "<input type='text' name='fecha' placeholder='Fecha de nacimiento' value='".$us['fecha_nacimiento']."'>"; ?>
 													
 											</div>
 										</form>
 									</div>
 									
-									<?php echo "<div class='tab-pane fade' id='direcciones".$Identificaciones[$i]."' >"; ?>	
-										<form id="guardarcambios2" target="_blank" action="scripts/datosusuario2.php" method="post">
-											<div class='col-sm-3'>
-												<h4>-Dirección de la casa-</h4><br>
-													
-												<h4>Provincia:</h4>
+									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
+                                    <?php
+                                        $this->Form->create();
+                                        $this->Form->button('Guardar cambios');
+                                        $this->Form->end;
+                                    ?>
 
-												<select name='Provincia1'>
-												<?php
-												for ($j = 0; $j < count($provinciasBase); $j++) {
-													if ($provinciasCasa[$i] === $provinciasBase[$j]) {
-														echo "<option selected='selected' value='".$j."''>".$provinciasBase[$j]."</option>";
-													} else {
-														echo "<option value='".$j."''>".$provinciasBase[$j]."</option>";
-													}
-												}
-												?>
-												</select>
-													
-												<h4>Cantón:</h4>
-												<?php echo "<input type='text' name='canton1' placeholder='Cantón' value='".$cantonesCasa[$i]."'>"; ?>
-												<h4>Distrito:</h4>
-												<?php echo "<input type='text' name='distrito1' placeholder='Distrito' value='".$distritosCasa[$i]."'>"; ?>
-												<h4>Dirección exacta:</h4>
-												<?php echo "<input type='text' name='exacta1' placeholder='Dirección exacta' value='".$direccionessCasa[$i]."'>"; ?>
-											</div>
-											<div class='col-sm-3'>
-												<h4>-Dirección del trabajo-</h4><br>
-													
-												<h4>Provincia:</h4>
-												<select name='Provincia2'>
-												<?php
-												for ($j = 0; $j < count($provinciasBase); $j++) {
-													if ($provinciasTrabajo[$i] === $provinciasBase[$j]) {
-														echo "<option selected='selected' value='".$j."''>".$provinciasBase[$j]."</option>";
-													} else {
-														echo "<option value='".$j."''>".$provinciasBase[$j]."</option>";
-													}
-												}
-												?>
-												</select>
-												<h4>Cantón:</h4>
-												<?php echo "<input type='text' name='canton2' placeholder='Cantón' value='".$cantonesTrabajo[$i]."'>"; ?>
-												<h4>Distrito:</h4>
-												<?php echo "<input type='text' name='distrito2' placeholder='Distrito' value='".$distritosTrabajo[$i]."'>"; ?>
-												<h4>Dirección exacta:</h4>
-												<?php echo "<input type='text' name='exacta2' placeholder='Dirección exacta' value='".$direccionesTrabajo[$i]."'>"; ?>
-											
-												<br><br><br><br><br><br><br><br><br><br>
-												<button type='submit' class='btn btn-default'>Guardar cambios</button>
-												<br><br><br>
-											</div>
-											<div class='col-sm-3'>
-												<h4>-Dirección (Otro)-</h4><br>
-													
-												<h4>Provincia:</h4>
-												<select name='Provincia3'>
-												<?php
-												for ($j = 0; $j < count($provinciasBase); $j++) {
-													if ($provinciasOtro[$i] === $provinciasBase[$j]) {
-														echo "<option selected='selected' value='".$j."''>".$provinciasBase[$j]."</option>";
-													} else {
-														echo "<option value='".$j."''>".$provinciasBase[$j]."</option>";
-													}
-												}
-												?>
-												</select>
-												<h4>Cantón:</h4>
-												<?php echo "<input type='text' name='canton3' placeholder='Cantón' value='".$cantonesOtro[$i]."'>"; ?>
-												<h4>Distrito:</h4>
-												<?php echo "<input type='text' name='distrito3' placeholder='Distrito' value='".$distritosOtro[$i]."'>"; ?>
-												<h4>Dirección exacta:</h4>
-												<?php echo "<input type='text' name='exacta3' placeholder='Dirección exacta' value='".$direccionesOtro[$i]."'>"; ?>
-
-											</div>
+											<h4>-Direcciones-</h4><br>
+                                            <?php
+                                                foreach ($us['personas_direcciones'] as $direccion) {
+											    echo "<div class='col-sm-3'>
+                                                    <h4>Provincia:</h4>
+                                                    <select name='Provincia3'>
+                                                    ";
+                                                    for ($j = 0; $j < count($provinciasBase); $j++) {
+                                                        if ($direccion['nombreProvincia'] === $provinciasBase[$j]) {
+                                                            echo "<option selected='selected' value='".$j."''>".$provinciasBase[$j]."</option>";
+                                                        } else {
+                                                            echo "<option value='".$j."''>".$provinciasBase[$j]."</option>";
+                                                        }
+                                                    }
+                                                    echo "</select>
+                                                    <h4>Cantón:</h4>
+                                                    <input type='text' name='canton3' placeholder='Cantón' value='".$direccion['nombreCanton']."'>
+                                                    <h4>Distrito:</h4>
+                                                    <input type='text' name='distrito3' placeholder='Distrito' value='".$direccion['nombreDistrito']."'>
+                                                    <h4>Dirección exacta:</h4>
+                                                    <input type='text' name='exacta3' placeholder='Dirección exacta' value='".$direccion['detalles']."'>
+											    </div>";
+                                            }
+                                            ?>
 										</form>
 									</div>
 									
 									
-									<?php echo "<div class='tab-pane fade' id='borrar".$Identificaciones[$i]."' >"; ?>
+									<?php echo "<div class='tab-pane fade' id='borrar".$us['identificacion']."' >"; ?>
 										<h3>Borrar este usuario de la base de datos:</h3>
 										<input type="button" value="Borrar usuario">
 									</div>

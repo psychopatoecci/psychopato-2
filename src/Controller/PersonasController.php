@@ -231,100 +231,49 @@ class PersonasController extends AppController
     
     public function adminUsuarios()
     {
-        $query = $this->Personas->find('all')->contain(['personas_direcciones']);;
-        $telPers = [];
-        $telefonos = TableRegistry::get('telefonos_personas');
-        $identificacion = [];
-        $nombre = [];
-        $apellido1 = [];
-        $apellido2 = [];
-        $fecha = [];
-        $provincia=[];
-        $canton =[];
-        $distrito=[];
-        $detalles=[];
-        $casa=[];
-        $trabajo=[];
-        $otro=[];
-        $celulares=[];
-        $tiposCasa = 'Casa';
-        $tiposTrabajo = 'Trabajo';
-        $tiposCelular = 'Celular';
-        $tiposOtro = 'Otro';
-        //se agregan los id, nombre y precios a distintos arreglos
-		  
-        foreach ($query as $con) { 
-            array_push($identificacion, $con['identificacion']);
-            array_push($nombre, $con['nombre']);
-            array_push($apellido1, $con['apellido1']);
-            array_push($apellido2, $con['apellido2']);
-            array_push($fecha, $con['fecha_nacimiento']);
-            $idAnterior = $con['identificacion'];
-            
-            $tieneTipo = false;
-            $qu2 = $telefonos -> find('all')->where(['identificacion' => $con['identificacion'],'tipo_tel' => $tiposCasa]);
-            foreach ($qu2 as $con2) {
-                array_push($casa, $con2['telefono']);
-                $tieneTipo = true;
-            }    
-            
-            if($tieneTipo==false){
-                    array_push($casa, ' ');
-                }
-            $tieneTipo = false;
-            
-            $qu3 = $telefonos -> find('all')->where(['identificacion' => $con['identificacion'],'tipo_tel' => $tiposTrabajo]);
-            foreach ($qu3 as $con2) {
-                array_push($trabajo, $con2['telefono']);
+        if ($this->request->is('post')) {
+            //$this -> set ('request', $this->request->data);
+            $datos = $this -> request -> data;
+            $actualizando = $this -> Personas -> get ($datos ['id']);
+            $actualizando ['nombre']    = $datos ['nombre'];
+            $actualizando ['apellido1'] = $datos ['apellido1'];
+            $actualizando ['apellido2'] = $datos ['apellido2'];
+            $this -> Personas -> save ($actualizando);
+            $telefonos = TableRegistry::get('telefonos_personas');
+            if (isset ($datos['telTrabajo'])) {
+                $telTrabajo = $telefonos -> newEntity();
+                $telTrabajo ['identificacion'] = $datos ['id'];
+                $telTrabajo ['tipo_tel']       = 'Trabajo';
+                $telTrabajo ['telefono']       = $datos['telTrabajo'];
+                $telefonos -> save ($telTrabajo);
             }
-            
-            if($tieneTipo==false){
-                array_push($trabajo, ' ');
+            if (isset ($datos['telCasa'])) {
+                $telCasa = $telefonos -> newEntity();
+                $telCasa ['identificacion'] = $datos ['id'];
+                $telCasa ['tipo_tel']     = 'Casa';
+                $telCasa ['telefono'] = $datos['telCasa'];
+                $telefonos -> save ($telCasa);
             }
-            $tieneTipo = false;
-            
-            $qu4 = $telefonos -> find('all')->where(['identificacion' => $con['identificacion'],'tipo_tel' => $tiposCelular]);
-            foreach ($qu4 as $con2) {
-                array_push($celulares, $con2['telefono']);
+            if (isset ($datos['telOtro'])) {
+                $telOtro = $telefonos -> newEntity();
+                $telOtro ['identificacion'] = $datos ['id'];
+                $telOtro ['tipo_tel']     = 'Otro';
+                $telOtro ['telefono'] = $datos['telOtro'];
+                $telefonos -> save ($telOtro);
             }
-            
-            if($tieneTipo==false){
-                array_push($celulares, ' ');
+            if (isset ($datos['telCelular'])) {
+                $telCelular = $telefonos -> newEntity();
+                $telCelular ['identificacion'] = $datos ['id'];
+                $telCelular ['tipo_tel']     = 'Trabajo';
+                $telCelular ['telefono'] = $datos['telCelular'];
+                $telefonos -> save ($telCelular);
             }
-            
-            $tieneTipo = false;
-            $qu5 = $telefonos -> find('all')->where(['identificacion' => $con['identificacion'],'tipo_tel' => $tiposOtro]);
-            foreach ($qu5 as $con2) {
-                array_push($otro, $con2['telefono']);
-            }
-            if($tieneTipo==false){
-                array_push($otro, ' ');
-            }
-        
-            array_push($provincia, $con['personas_direcciones'][0]['nombreProvincia']);
-            array_push($canton, $con['personas_direcciones'][0]['nombreCanton']);
-            array_push($distrito, $con['personas_direcciones'][0]['nombreDistrito']);
-            array_push($detalles, $con['personas_direcciones'][0]['detalles']);
         }
-        
-       
-        //se envian los datos obtenidos a la vista
-        $this -> set ('spooks', $query);
-        $this -> set ('Identificacion', $identificacion);
-        $this -> set ('nombre', $nombre );
-        $this -> set ('apellido1', $apellido1 );
-        $this -> set ('apellido2', $apellido2 );
-        $this -> set ('fecha', $fecha );
-        $this -> set ('provincia', $provincia );
-        $this -> set ('canton', $canton );
-        $this -> set ('distrito', $distrito );
-        $this -> set ('detalles', $detalles );
-        $this -> set ('trabajo', $trabajo );
-        $this -> set ('otro', $otro );
-        $this -> set ('celulares', $celulares );
-        $this -> set ('casa', $casa );
-      
-        
+        $personas = $this -> Personas -> find ('all', ['contain' => ['personas_direcciones', 'telefonos_personas']])
+            -> limit(16)
+            -> page (2);
+        $this -> set ('usuarios', $personas);
+        $this -> render();
     }
     
     public function cuentas($usuario)
