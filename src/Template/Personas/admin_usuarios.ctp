@@ -113,6 +113,7 @@
 									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$us['identificacion']."' >"; ?>
 
 										<form id="guardarcambios" action="./admin_usuarios" method="post">
+                                            <input type="hidden" name="tipoReq" value="generales">
 											<div class='col-sm-3'>
 												<h3>Identificación:</h3>
 												<?php echo "".$us['identificacion']; ?>
@@ -150,36 +151,38 @@
 									</div>
 									
 									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
-                                    <?php
-                                        $this->Form->create();
-                                        $this->Form->button('Guardar cambios');
-                                        $this->Form->end;
-                                    ?>
 
+										<form id="guardardireccion" action="./admin_usuarios" method="post">
+                                            <input type="hidden" name="tipoReq" value="direcciones">
+											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
 											<h4>-Direcciones-</h4><br>
                                             <?php
+												$i = 0;
                                                 foreach ($us['personas_direcciones'] as $direccion) {
 											    echo "<div class='col-sm-3'>
                                                     <h4>Provincia:</h4>
-                                                    <select name='Provincia3'>
+                                                    <select name='provincia".$i."'>
                                                     ";
-                                                    for ($j = 0; $j < count($provinciasBase); $j++) {
-                                                        if ($direccion['nombreProvincia'] === $provinciasBase[$j]) {
-                                                            echo "<option selected='selected' value='".$j."''>".$provinciasBase[$j]."</option>";
+                                                    foreach ($provinciasBase as $prov) {
+                                                        if ($direccion['nombreProvincia'] === $prov) {
+                                                            echo "<option selected='selected' value='".$prov."''>".$prov."</option>";
                                                         } else {
-                                                            echo "<option value='".$j."''>".$provinciasBase[$j]."</option>";
+                                                            echo "<option value='".$prov."''>".$prov."</option>";
                                                         }
                                                     }
                                                     echo "</select>
                                                     <h4>Cantón:</h4>
-                                                    <input type='text' name='canton3' placeholder='Cantón' value='".$direccion['nombreCanton']."'>
+                                                    <input type='text' name='canton".$i."' placeholder='Cantón' value='".$direccion['nombreCanton']."'>
                                                     <h4>Distrito:</h4>
-                                                    <input type='text' name='distrito3' placeholder='Distrito' value='".$direccion['nombreDistrito']."'>
+                                                    <input type='text' name='distrito".$i."' placeholder='Distrito' value='".$direccion['nombreDistrito']."'>
                                                     <h4>Dirección exacta:</h4>
-                                                    <input type='text' name='exacta3' placeholder='Dirección exacta' value='".$direccion['detalles']."'>
-											    </div>";
-                                            }
+                                                    <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value='".$direccion['detalles']."'>
+												    </div>";
+													$i ++;
+                                            	}
+                                            	echo "<input type='hidden' name='cantidad' value='".$i."'>";
                                             ?>
+										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
 										</form>
 									</div>
 									

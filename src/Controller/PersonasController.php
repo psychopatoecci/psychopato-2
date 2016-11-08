@@ -234,42 +234,59 @@ class PersonasController extends AppController
         if ($this->request->is('post')) {
             //$this -> set ('request', $this->request->data);
             $datos = $this -> request -> data;
-            $actualizando = $this -> Personas -> get ($datos ['id']);
-            $actualizando ['nombre']    = $datos ['nombre'];
-            $actualizando ['apellido1'] = $datos ['apellido1'];
-            $actualizando ['apellido2'] = $datos ['apellido2'];
-            $this -> Personas -> save ($actualizando);
-            $telefonos = TableRegistry::get('telefonos_personas');
-            if (isset ($datos['telTrabajo'])) {
-                $telTrabajo = $telefonos -> newEntity();
-                $telTrabajo ['identificacion'] = $datos ['id'];
-                $telTrabajo ['tipo_tel']       = 'Trabajo';
-                $telTrabajo ['telefono']       = $datos['telTrabajo'];
-                $telefonos -> save ($telTrabajo);
-            }
-            if (isset ($datos['telCasa'])) {
-                $telCasa = $telefonos -> newEntity();
-                $telCasa ['identificacion'] = $datos ['id'];
-                $telCasa ['tipo_tel']     = 'Casa';
-                $telCasa ['telefono'] = $datos['telCasa'];
-                $telefonos -> save ($telCasa);
-            }
-            if (isset ($datos['telOtro'])) {
-                $telOtro = $telefonos -> newEntity();
-                $telOtro ['identificacion'] = $datos ['id'];
-                $telOtro ['tipo_tel']     = 'Otro';
-                $telOtro ['telefono'] = $datos['telOtro'];
-                $telefonos -> save ($telOtro);
-            }
-            if (isset ($datos['telCelular'])) {
-                $telCelular = $telefonos -> newEntity();
-                $telCelular ['identificacion'] = $datos ['id'];
-                $telCelular ['tipo_tel']     = 'Trabajo';
-                $telCelular ['telefono'] = $datos['telCelular'];
-                $telefonos -> save ($telCelular);
-            }
+			if ($datos ['tipoReq'] == 'generales') {
+				$actualizando = $this -> Personas -> get ($datos ['id']);
+				$actualizando ['nombre']    = $datos ['nombre'];
+				$actualizando ['apellido1'] = $datos ['apellido1'];
+				$actualizando ['apellido2'] = $datos ['apellido2'];
+				$this -> Personas -> save ($actualizando);
+				$telefonos = TableRegistry::get('telefonos_personas');
+				if (isset ($datos['telTrabajo'])) {
+					$telTrabajo = $telefonos -> newEntity();
+					$telTrabajo ['identificacion'] = $datos ['id'];
+					$telTrabajo ['tipo_tel']       = 'Trabajo';
+					$telTrabajo ['telefono']       = $datos['telTrabajo'];
+					$telefonos -> save ($telTrabajo);
+				}
+				if (isset ($datos['telCasa'])) {
+					$telCasa = $telefonos -> newEntity();
+					$telCasa ['identificacion'] = $datos ['id'];
+					$telCasa ['tipo_tel']       = 'Casa';
+					$telCasa ['telefono']       = $datos['telCasa'];
+					$telefonos -> save ($telCasa);
+				}
+				if (isset ($datos['telOtro'])) {
+					$telOtro = $telefonos -> newEntity();
+					$telOtro ['identificacion'] = $datos ['id'];
+					$telOtro ['tipo_tel']       = 'Otro';
+					$telOtro ['telefono']       = $datos['telOtro'];
+					$telefonos -> save ($telOtro);
+				}
+				if (isset ($datos['telCelular'])) {
+					$telCelular = $telefonos -> newEntity();
+					$telCelular ['identificacion'] = $datos ['id'];
+					$telCelular ['tipo_tel']       = 'Trabajo';
+					$telCelular ['telefono']       = $datos['telCelular'];
+					$telefonos -> save ($telCelular);
+				}
+			} else if ($datos ['tipoReq'] == 'direcciones') {
+				//$this -> Flash -> success ('oveja');
+                $dirs = TableRegistry::get ('personas_direcciones');
+				for ($i=0; $i < $datos ['cantidad']; $i++) {
+					$nuevaDir = $dirs -> newEntity();
+                    $nuevaDir ['idPersona'] = $datos ['id'];
+                    $nuevaDir ['nombreProvincia'] = $datos ['provincia'.$i];
+                    $nuevaDir ['nombreCanton']    = $datos ['canton'.$i];
+                    $nuevaDir ['nombreDistrito']  = $datos ['distrito'.$i];
+                    $nuevaDir ['detalles']        = $datos ['detalles'.$i];
+                    if (!$dirs -> save ($nuevaDir)) {
+                        $this -> Flash -> error ('Error insertando dirección');
+                    }
+				}
+			}
         }
-        $personas = $this -> Personas -> find ('all', ['contain' => ['personas_direcciones', 'telefonos_personas']])
+        $personas = $this -> Personas -> find ('all', 
+        ['contain' => ['personas_direcciones', 'telefonos_personas']])
             -> limit(16)
             -> page (2);
         $this -> set ('usuarios', $personas);
