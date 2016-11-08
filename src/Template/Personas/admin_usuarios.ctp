@@ -79,6 +79,14 @@
 							</div>
 						</div>
 					</div>
+                    <form id="pag" action="./admin_usuarios" method="get">
+                        <?php echo "<input type='hidden' name='nuevaPag' value='".strval($numPage - 1)."'>"; ?>
+                        <button type='submit' class='btn btn-default'>Anterior</button>
+                    </form>
+                    <form id="pag" action="./admin_usuarios" method="get">
+                        <?php echo "<input type='hidden' name='nuevaPag' value='".strval($numPage + 1)."'>"; ?>
+                        <button type='submit' class='btn btn-default'>Siguiente</button>
+                    </form>
 				</div>
 				
 				<!--Zona de contenido-->
@@ -86,16 +94,16 @@
 					
 					<!--Vistazo a categorias-->
 					<div class="category-tab">
-						
+
 						<!--Submenus de cada categoria-->
 						<div class="tab-content">	
 						    <?php //Mostrar nombre y código
                             foreach ($usuarios as $us) {
-                                
 								echo "<div class='tab-pane fade' id='".$us['identificacion']."' >";
 								echo "<h1>".$us['identificacion']." (".$us['nombre']." ".$us['apellido1']." ".$us['apellido2'].")</h1>";
-								
 							?>
+
+                            
 								<br>
 								<div class='col-sm-12'>
 									<ul class='nav nav-tabs'>

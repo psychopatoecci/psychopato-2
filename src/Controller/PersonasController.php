@@ -317,10 +317,16 @@ class PersonasController extends AppController
                 $this -> Personas -> delete ($porBorrar);
             }
         }
+        $numPage = 1;
+        $nuevaPag = $this -> request -> query('nuevaPag');
+        if ($nuevaPag && $nuevaPag > 0) {
+            $numPage = $nuevaPag;
+        }
         $personas = $this -> Personas -> find ('all', 
-        ['contain' => ['personas_direcciones', 'telefonos_personas']])
+            ['contain' => ['personas_direcciones', 'telefonos_personas']])
             -> limit(16)
-            -> page (2);
+            -> page ($numPage);
+        $this -> set ('numPage', $numPage);
         $this -> set ('usuarios', $personas);
         $this -> render();
     }
