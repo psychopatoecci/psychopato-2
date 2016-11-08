@@ -270,8 +270,35 @@ class PersonasController extends AppController
 					$telefonos -> save ($telCelular);
 				}
 			} else if ($datos ['tipoReq'] == 'direcciones') {
-				//$this -> Flash -> success ('oveja');
                 $dirs = TableRegistry::get ('personas_direcciones');
+                // Como las direcciones utilizan un id, para asegurarse de que
+                // quedan las mismas que en la vista, hay que borrarlas e
+                // insertarlas de nuevo.
+                // Pero antes se revisa si las direcciones ingresadas son
+                // correctas para no borrar y luego no poder insertar.
+                for ($i=0; $i< $datos ['cantidad']; $i++) {
+                    $direc = TableRegistry::get('distritos')-> find ('all')
+                    -> where (
+                        "nombreProvincia = '".$datos ['provincia'.$i]."' and ".
+                        "nombreDistrito = '".$datos ['distrito'.$i]."' and ".
+                        "nombreCanton = '".$datos ['canton'.$i]."'"
+                    );
+                    $existe = false;
+                    foreach ($direc as $dir) {
+                        $existe = true;
+                    }
+                    if (!$existe) { // Hay alguna dirección incorrecta.
+                        // No se continúa con el borrado e inserción.
+                        $this -> Flash -> error ('Una dirección no existe.'
+                        .'No se actualizaron los datos.');
+                        return $this-> redirect ('personas/admin_usuarios');
+                    }
+                }
+                $porBorrar = $dirs->find('all')
+                    ->where ("idPersona = '".$datos ['id']."'");
+                foreach ($porBorrar as $dirVieja) {
+                    $dirs->delete($dirVieja);
+                }
 				for ($i=0; $i < $datos ['cantidad']; $i++) {
 					$nuevaDir = $dirs -> newEntity();
                     $nuevaDir ['idPersona'] = $datos ['id'];
