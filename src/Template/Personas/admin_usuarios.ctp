@@ -138,9 +138,13 @@
 											<div class='col-sm-3'>
 												<h3>-Teléfonos-</h3><br>
 												<?php
+                                                    $tipos   = ['Casa' => 0, 'Trabajo' => 0,'Celular' => 0, 'Otro' => 0];
                                                     foreach ($us['telefonos_personas'] as $telefono) {
-                                                        echo "<h4>".$telefono['tipo_tel'].":</h4>
-                                                        <input type='text' name= 'tel".$telefono['tipo_tel']."' placeholder= 'Telefono' value='".$telefono['telefono']."'>";
+                                                        $tipos[$telefono['tipo_tel']] = $telefono['telefono'];
+                                                    }
+                                                    foreach ($tipos as $tipo => $num) {
+                                                        echo "<h4>".$tipo.":</h4>";
+                                                        echo "<input type='text' name= 'tel".$tipo."' placeholder = 'Telefono' value='".$num."'>";
                                                     }
                                                 ?>
 												

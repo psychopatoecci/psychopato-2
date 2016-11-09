@@ -242,31 +242,31 @@ class PersonasController extends AppController
 				$actualizando ['apellido2'] = $datos ['apellido2'];
 				$this -> Personas -> save ($actualizando);
 				$telefonos = TableRegistry::get('telefonos_personas');
-				if (isset ($datos['telTrabajo'])) {
+				if (isset ($datos['telTrabajo']) && $datos ['telTrabajo'] > 0) {
 					$telTrabajo = $telefonos -> newEntity();
 					$telTrabajo ['identificacion'] = $datos ['id'];
 					$telTrabajo ['tipo_tel']       = 'Trabajo';
 					$telTrabajo ['telefono']       = $datos['telTrabajo'];
 					$telefonos -> save ($telTrabajo);
 				}
-				if (isset ($datos['telCasa'])) {
+				if (isset ($datos['telCasa']) && $datos ['telCasa'] > 0) {
 					$telCasa = $telefonos -> newEntity();
 					$telCasa ['identificacion'] = $datos ['id'];
 					$telCasa ['tipo_tel']       = 'Casa';
 					$telCasa ['telefono']       = $datos['telCasa'];
 					$telefonos -> save ($telCasa);
 				}
-				if (isset ($datos['telOtro'])) {
+				if (isset ($datos['telOtro']) && $datos ['telOtro'] > 0) {
 					$telOtro = $telefonos -> newEntity();
 					$telOtro ['identificacion'] = $datos ['id'];
 					$telOtro ['tipo_tel']       = 'Otro';
 					$telOtro ['telefono']       = $datos['telOtro'];
 					$telefonos -> save ($telOtro);
 				}
-				if (isset ($datos['telCelular'])) {
+				if (isset ($datos['telCelular']) && $datos ['telCelular'] > 0) {
 					$telCelular = $telefonos -> newEntity();
 					$telCelular ['identificacion'] = $datos ['id'];
-					$telCelular ['tipo_tel']       = 'Trabajo';
+					$telCelular ['tipo_tel']       = 'Celular';
 					$telCelular ['telefono']       = $datos['telCelular'];
 					$telefonos -> save ($telCelular);
 				}
