@@ -323,21 +323,26 @@ class PersonasController extends AppController
                         .'No se actualizaron los datos.');
                         return $this-> redirect ('personas/admin_usuarios');
                     }
-                }
+                } // Fin del for de eliminar las direcciones.
                 $porBorrar = $dirs->find('all')
                     ->where ("idPersona = '".$datos ['id']."'");
                 foreach ($porBorrar as $dirVieja) {
                     $dirs->delete($dirVieja);
                 }
 				for ($i=0; $i < $datos ['cantidad']; $i++) {
-					$nuevaDir = $dirs -> newEntity();
-                    $nuevaDir ['idPersona'] = $datos ['id'];
-                    $nuevaDir ['nombreProvincia'] = $datos ['provincia'.$i];
-                    $nuevaDir ['nombreCanton']    = $datos ['canton'.$i];
-                    $nuevaDir ['nombreDistrito']  = $datos ['distrito'.$i];
-                    $nuevaDir ['detalles']        = $datos ['detalles'.$i];
-                    if (!$dirs -> save ($nuevaDir)) {
-                        $this -> Flash -> error ('Error insertando dirección');
+                    if (isset($datos['borrar'.$i])) {
+                        // Ya se borró la dirección, simplemente no se inserta.
+                    } else {
+                        // Se actualizan datos.
+                        $nuevaDir = $dirs -> newEntity();
+                        $nuevaDir ['idPersona'] = $datos ['id'];
+                        $nuevaDir ['nombreProvincia'] = $datos ['provincia'.$i];
+                        $nuevaDir ['nombreCanton']    = $datos ['canton'.$i];
+                        $nuevaDir ['nombreDistrito']  = $datos ['distrito'.$i];
+                        $nuevaDir ['detalles']        = $datos ['detalles'.$i];
+                        if (!$dirs -> save ($nuevaDir)) {
+                            $this -> Flash -> error ('Error insertando dirección');
+                        }
                     }
 				}
 			} else if ($datos ['tipoReq'] == 'borrar' ){

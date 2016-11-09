@@ -191,6 +191,7 @@
                                                     <input type='text' name='distrito".$i."' placeholder='Distrito' value='".$direccion['nombreDistrito']."'>
                                                     <h4>Dirección exacta:</h4>
                                                     <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value='".$direccion['detalles']."'>
+                                                    <input type='checkbox' name='borrar".$i."' value='on'> Borrar
 												    </div>";
 													$i ++;
                                             	}
