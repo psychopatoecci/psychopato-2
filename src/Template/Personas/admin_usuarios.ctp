@@ -50,7 +50,9 @@
 						<br>
 						<!--Barra de busqueda-->
 						<div align="left" class="search_box pull-right">
-							<input type="text" placeholder="Búsqueda"/>
+                            <form id="busqueda" action="../personas/admin_usuarios" method="get">
+                                <input type="text" placeholder="Búsqueda" name='busqueda'>
+                            </form>
 						</div>
 
 						<div class="brands_products">
@@ -79,11 +81,11 @@
 							</div>
 						</div>
 					</div>
-                    <form id="pag" action="./admin_usuarios" method="get">
+                    <form id="pag" action="../personas/admin_usuarios" method="get">
                         <?php echo "<input type='hidden' name='nuevaPag' value='".strval($numPage - 1)."'>"; ?>
                         <button type='submit' class='btn btn-default'>Anterior</button>
                     </form>
-                    <form id="pag" action="./admin_usuarios" method="get">
+                    <form id="pag" action="../personas/admin_usuarios" method="get">
                         <?php echo "<input type='hidden' name='nuevaPag' value='".strval($numPage + 1)."'>"; ?>
                         <button type='submit' class='btn btn-default'>Siguiente</button>
                     </form>

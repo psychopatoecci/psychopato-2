@@ -369,16 +369,23 @@ class PersonasController extends AppController
                 $porBorrar = $this -> Personas -> get ($datos ['id']);
                 $this -> Personas -> delete ($porBorrar);
             }
-        }
+        } // Fin de si el request es post.
+
+        // Se buscan las personas y se paginan por $numPage.
         $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         if ($nuevaPag && $nuevaPag > 0) {
             $numPage = $nuevaPag;
         }
         $personas = $this -> Personas -> find ('all', 
-            ['contain' => ['personas_direcciones', 'telefonos_personas', 'tarjetas']])
-            -> limit(16)
-            -> page ($numPage);
+            ['contain' => ['personas_direcciones',
+            'telefonos_personas', 'tarjetas']]);
+        $busqueda = $this -> request -> query('busqueda');
+        if ($busqueda) {
+            $personas = $personas -> where ("identificacion LIKE '%".$busqueda."%'
+                OR nombre LIKE '%".$busqueda."%'");
+        }
+        $personas = $personas -> limit(16) -> page ($numPage);
         $this -> set ('numPage', $numPage);
         $this -> set ('usuarios', $personas);
         $this -> render();
