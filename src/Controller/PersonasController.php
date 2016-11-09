@@ -394,26 +394,6 @@ class PersonasController extends AppController
         $this -> render();
     }
     
-    public function cuentas($usuario)
-    {
-        $persona = $this -> Personas -> get ($usuario);
-        $this -> set ('Identificacion', $usuario);
-        $this -> set ('Nombre', $persona ['nombre']);
-        $this -> set ('Apellido1', $persona ['apellido1']);
-        $this -> set ('Apellido2', $persona ['apellido2']);
-        $this -> set ('Correo', $persona ['correo']);
-        $this -> set ('fecha_nacimiento', $persona ['fecha_nacimiento']);
-        
-       // $condicion =array('video_juegos.idVideoJuego =' => $codigo);
-      /*  $query = $this -> Personas -> find('all',array(
-            'fields' => array('video_juegos.genero', 'productos.nombreProducto'),
-            'conditions'=> $condicion ))
-            ->contain(['video_juegos', 'video_juegos.consolas.productos']);
-        $this->render();*/
-    }
-        
-
-    
     public function index()
     {
         $personas = $this->paginate($this->Personas);
@@ -518,10 +498,20 @@ class PersonasController extends AppController
         }
         $this -> set ('tarjetas', $existentes);
         $http = new Client();
-        if ($this->request) {
-            //$this->set ('spooks', $this->request->query);
-            $qu = $this->request->query;
-            if ($qu) {
+        if ($this->request->is('post')) {
+            $qu = $this->request->data;
+            if (isset($qu['borrar'])) {
+                // Borrando tarjeta.
+                $porBorrar = $tarjetas->find('all')
+                -> where ("idTarjeta = '".$qu['borrar']."' 
+                    AND idPersona = '".$idPersona."'")
+                -> first();
+                $this -> set ('oveja', $porBorrar);
+                $tarjetas -> delete ($porBorrar);
+                $this->Flash->success ('Datos actualizados correctamente.');
+                $this -> redirect ('/personas/cuenta');
+            } else if (isset($qu['csv'])) { 
+                // Insertando tarjeta.
                 $tarjeta = $tarjetas -> newEntity();
                 $tarjeta ['idTarjeta'] = $qu ['numTarjeta'];
                 $tarjeta ['idPersona'] = $idPersona;
@@ -539,8 +529,8 @@ class PersonasController extends AppController
                 } else {
                     $this->Flash->error('La tarjeta no pudo ser validada.');
                 }
-            } else {} // No hay query, no hace nada
-        }
+            }
+        } // Fin de is post
     }
 
     public function registro () {
