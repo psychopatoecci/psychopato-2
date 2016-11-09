@@ -27,7 +27,8 @@ class CreateTelefonosPersonaMigration extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('telefonos_personas',  ['id' => false, 'primary_key' => ['identificacion']]);
+        $table = $this->table('telefonos_personas',  ['id' => false, 
+            'primary_key' => ['identificacion', 'tipo_tel']]);
         $table->addColumn('identificacion', 'string', [
             'default' => null,
             'limit' => 50,
