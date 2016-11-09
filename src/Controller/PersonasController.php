@@ -242,13 +242,27 @@ class PersonasController extends AppController
 				$actualizando ['apellido2'] = $datos ['apellido2'];
 				$this -> Personas -> save ($actualizando);
 				$telefonos = TableRegistry::get('telefonos_personas');
-				if (isset ($datos['telTrabajo']) && $datos ['telTrabajo'] > 0) {
+                if (isset ($datos['borrarTrabajo'])) {
+                    $porBorrar = $telefonos -> get (
+                        ['identificacion' => $datos ['id'],
+                        'tipo_tel' => 'Trabajo']
+                    );
+                    $telefonos -> delete ($porBorrar);
+                }
+				else if (isset ($datos['telTrabajo']) && $datos ['telTrabajo'] > 0) {
 					$telTrabajo = $telefonos -> newEntity();
 					$telTrabajo ['identificacion'] = $datos ['id'];
 					$telTrabajo ['tipo_tel']       = 'Trabajo';
 					$telTrabajo ['telefono']       = $datos['telTrabajo'];
 					$telefonos -> save ($telTrabajo);
 				}
+                if (isset ($datos['borrarCasa'])) {
+                    $porBorrar = $telefonos -> get (
+                        ['identificacion' => $datos ['id'],
+                        'tipo_tel' => 'Casa']
+                    );
+                    $telefonos -> delete ($porBorrar);
+                } else
 				if (isset ($datos['telCasa']) && $datos ['telCasa'] > 0) {
 					$telCasa = $telefonos -> newEntity();
 					$telCasa ['identificacion'] = $datos ['id'];
@@ -256,6 +270,13 @@ class PersonasController extends AppController
 					$telCasa ['telefono']       = $datos['telCasa'];
 					$telefonos -> save ($telCasa);
 				}
+                if (isset ($datos['borrarOtro'])) {
+                    $porBorrar = $telefonos -> get (
+                        ['identificacion' => $datos ['id'],
+                        'tipo_tel' => 'Otro']
+                    );
+                    $telefonos -> delete ($porBorrar);
+                } else
 				if (isset ($datos['telOtro']) && $datos ['telOtro'] > 0) {
 					$telOtro = $telefonos -> newEntity();
 					$telOtro ['identificacion'] = $datos ['id'];
@@ -263,6 +284,13 @@ class PersonasController extends AppController
 					$telOtro ['telefono']       = $datos['telOtro'];
 					$telefonos -> save ($telOtro);
 				}
+                if (isset ($datos['borrarCelular'])) {
+                    $porBorrar = $telefonos -> get (
+                        ['identificacion' => $datos ['id'],
+                        'tipo_tel' => 'Celular']
+                    );
+                    $telefonos -> delete ($porBorrar);
+                } else
 				if (isset ($datos['telCelular']) && $datos ['telCelular'] > 0) {
 					$telCelular = $telefonos -> newEntity();
 					$telCelular ['identificacion'] = $datos ['id'];

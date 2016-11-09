@@ -28,7 +28,7 @@
 	Include ("scripts/funciones.php");
 	
 	//Nomenclatura de la base para las provincias
-	$provinciasBase = array('San José','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limon','');
+	$provinciasBase = array('San José','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limón');
 
 	?>
 			
@@ -120,7 +120,7 @@
 									
 									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$us['identificacion']."' >"; ?>
 
-										<form id="guardarcambios" action="./admin_usuarios" method="post">
+										<form id="guardarcambios" action="../personas/admin_usuarios" method="post">
                                             <input type="hidden" name="tipoReq" value="generales">
 											<div class='col-sm-3'>
 												<h3>Identificación:</h3>
@@ -144,7 +144,9 @@
                                                     }
                                                     foreach ($tipos as $tipo => $num) {
                                                         echo "<h4>".$tipo.":</h4>";
-                                                        echo "<input type='text' name= 'tel".$tipo."' placeholder = 'Telefono' value='".$num."'>";
+                                                        echo "<input type='text' name='tel".$tipo."' placeholder = 'Telefono' value='".$num."'>";
+                                                        if ($num > 0)
+                                                            echo "<input type='checkbox' name='borrar".$tipo."'>Borrar";
                                                     }
                                                 ?>
 												
@@ -164,7 +166,7 @@
 									
 									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
 
-										<form id="guardardireccion" action="./admin_usuarios" method="post">
+										<form id="guardardireccion" action="../personas/admin_usuarios" method="post">
                                             <input type="hidden" name="tipoReq" value="direcciones">
 											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
 											<h4>-Direcciones-</h4><br>
