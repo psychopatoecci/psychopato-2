@@ -329,7 +329,12 @@ class PersonasController extends AppController
                 foreach ($porBorrar as $dirVieja) {
                     $dirs->delete($dirVieja);
                 }
-				for ($i=0; $i < $datos ['cantidad']; $i++) {
+                $cantidad = $datos ['cantidad'];
+                if (isset($datos['agregar'])) {
+                    // Se va a agregar una nueva dirección.
+                    $cantidad ++;
+                }
+				for ($i=0; $i < $cantidad; $i++) {
                     if (isset($datos['borrar'.$i])) {
                         // Ya se borró la dirección, simplemente no se inserta.
                     } else {
@@ -340,11 +345,19 @@ class PersonasController extends AppController
                         $nuevaDir ['nombreCanton']    = $datos ['canton'.$i];
                         $nuevaDir ['nombreDistrito']  = $datos ['distrito'.$i];
                         $nuevaDir ['detalles']        = $datos ['detalles'.$i];
+                        try {
                         if (!$dirs -> save ($nuevaDir)) {
-                            $this -> Flash -> error ('Error insertando dirección');
+                            $this -> Flash -> 
+                                error ('Error insertando/actualizando dirección');
+                            return $this-> redirect ('personas/admin_usuarios');
+                        }} catch (Exception $e) {
+                            $this -> Flash -> 
+                            error ('Error insertando/actualizando dirección');
+                            return $this-> redirect ('personas/admin_usuarios');
                         }
                     }
 				}
+                
 			} else if ($datos ['tipoReq'] == 'borrar' ){
                 $porBorrar = $this -> Personas -> get ($datos ['id']);
                 $this -> Personas -> delete ($porBorrar);

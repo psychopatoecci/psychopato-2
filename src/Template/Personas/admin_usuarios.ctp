@@ -175,8 +175,7 @@
                                                 foreach ($us['personas_direcciones'] as $direccion) {
 											    echo "<div class='col-sm-3'>
                                                     <h4>Provincia:</h4>
-                                                    <select name='provincia".$i."'>
-                                                    ";
+                                                    <select name='provincia".$i."'>";
                                                     foreach ($provinciasBase as $prov) {
                                                         if ($direccion['nombreProvincia'] === $prov) {
                                                             echo "<option selected='selected' value='".$prov."''>".$prov."</option>";
@@ -195,6 +194,27 @@
 												    </div>";
 													$i ++;
                                             	}
+                                                echo "<div class='col-sm-3'>
+                                                <h4>Provincia:</h4>
+                                                <select name='provincia".$i."'>";
+                                                foreach ($provinciasBase as $prov) {
+                                                    if ('Alajuela' === $prov) {
+                                                        echo "<option selected='selected' value='".$prov."''>".$prov."</option>";
+                                                    } else {
+                                                        echo "<option value='".$prov."''>".$prov."</option>";
+                                                    }
+                                                }
+                                                echo "</select>
+                                                <h4>Cantón:</h4>
+                                                <input type='text' name='canton".$i."' placeholder='Cantón' value='Alajuela'>
+                                                <h4>Distrito:</h4>
+                                                <input type='text' name='distrito".$i."' placeholder='Distrito' value='Alajuela'>
+                                                <h4>Dirección exacta:</h4>
+                                                <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value=''>
+                                                <input type='checkbox' name='agregar' value='on'> Agregar
+												</div>";
+
+
                                             	echo "<input type='hidden' name='cantidad' value='".$i."'>";
                                             ?>
 										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
