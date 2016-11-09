@@ -228,7 +228,6 @@ class PersonasController extends AppController
 */
     }
     
-    
     public function adminUsuarios()
     {
         if ($this->request->is('post')) {
@@ -237,7 +236,7 @@ class PersonasController extends AppController
 			if ($datos ['tipoReq'] == 'generales') {
                 // Se actualizan los datos generales del usuario.
 				$actualizando = $this -> Personas -> get ($datos ['id']);
-				$actualizando ['nombre']    = $datos ['nombre'];
+				$actualizando [ 'nombre'  ] = $datos ['nombre'];
 				$actualizando ['apellido1'] = $datos ['apellido1'];
 				$actualizando ['apellido2'] = $datos ['apellido2'];
 				$this -> Personas -> save ($actualizando);
@@ -357,7 +356,15 @@ class PersonasController extends AppController
                         }
                     }
 				}
-                
+            } else if ($datos ['tipoReq'] == 'tarjetas'){
+                $tarjetas = $this -> Personas -> get ($datos['id'], 
+                    ['contain' => 'tarjetas']);
+                for ($i=0; $i<$datos['cantidad']; $i++){
+                    if(isset($datos['borrar'.$i])) {
+                        TableRegistry::get('tarjetas')
+                            ->delete($tarjetas['tarjetas'][$i]);
+                    }
+                }
 			} else if ($datos ['tipoReq'] == 'borrar' ){
                 $porBorrar = $this -> Personas -> get ($datos ['id']);
                 $this -> Personas -> delete ($porBorrar);
@@ -369,7 +376,7 @@ class PersonasController extends AppController
             $numPage = $nuevaPag;
         }
         $personas = $this -> Personas -> find ('all', 
-            ['contain' => ['personas_direcciones', 'telefonos_personas']])
+            ['contain' => ['personas_direcciones', 'telefonos_personas', 'tarjetas']])
             -> limit(16)
             -> page ($numPage);
         $this -> set ('numPage', $numPage);

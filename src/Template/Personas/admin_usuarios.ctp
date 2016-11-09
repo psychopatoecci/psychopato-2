@@ -110,6 +110,7 @@
 											<?php //Menu de navegacion
 											echo "<li class='active'><a href='#datosgenerales".$us['identificacion']."' data-toggle='tab'>Datos generales</a></li>";
 											echo "<li><a href='#direcciones".$us['identificacion']."' data-toggle='tab'>Direcciones</a></li>";
+											echo "<li><a href='#tarjetas".$us['identificacion']."' data-toggle='tab'>Tarjetas</a></li>";
 											echo "<li><a href='#borrar".$us['identificacion']."' data-toggle='tab'>Borrar usuario</a></li>";
 											?>
 									</ul>
@@ -163,7 +164,25 @@
 											</div>
 										</form>
 									</div>
-									
+									<?php echo "<div class='tab-pane fade' id='tarjetas".$us['identificacion']."'>";?>
+                                        <h4>Tarjetas</h4>
+                                            <form id="borrartarjeta" action="../personas/admin_usuarios" method="post">
+                                            <?php
+                                                $i = 0;
+                                                foreach ($us['tarjetas'] as $tarjeta) {
+                                                    echo "<div class='col-sm-3'>
+                                                        <input type='text' name='tarjeta".$i."' value='".substr($tarjeta['idTarjeta'], 0, 4)."************' readonly>
+                                                    <input type='checkbox' name='borrar".$i."' value='on'> Borrar
+                                                    </div>";
+                                                    $i ++;
+                                                }
+                                            	echo "<input type='hidden' name='cantidad' value='".$i."'>";
+                                            ?>
+                                            <input type="hidden" name="tipoReq" value="tarjetas">
+											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
+										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
+                                        </form>
+                                    </div>
 									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
 
 										<form id="guardardireccion" action="../personas/admin_usuarios" method="post">
