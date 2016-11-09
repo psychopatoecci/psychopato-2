@@ -31,7 +31,8 @@ class Tarjetas extends AbstractMigration
         $table -> addColumn ( 'idTarjeta', 'string', ['limit' => 16]);
         $table -> addColumn ( 'idPersona', 'string', ['limit' => 50
             , 'null' => false]);
-        $table -> addForeignKey ('idPersona', 'personas', 'identificacion');
+        $table -> addForeignKey ('idPersona', 'personas', 'identificacion',
+            ['delete' => 'CASCADE', 'update' => 'CASCADE']);
         $table -> create ();
     }
 }

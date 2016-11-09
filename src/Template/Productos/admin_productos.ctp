@@ -26,6 +26,24 @@
   <?php 
   
 	//Datos de prueba para juegos físicos
+	
+	global $IDProductos;
+	global $nombres;
+	global $consolas;
+	global $tipos;
+	global $precios;
+	global $generos;
+	global $descripcion;
+	
+	$IDProductos=$idProducto;
+	$nombres=$nombre;
+	$consolas=$consola;
+	$tipos=$tipo;
+	$precios=$precio;
+	$generos=$genero;
+	$descripcion=$descripciones;
+	
+	/*
 	$IDProductos = array(
 	'PROD101406',
 	'PROD10192',
@@ -173,6 +191,7 @@
 	'',
 	'');
 	
+	*/
 	Include ("scripts/funciones.php");
 	
 	?>
@@ -403,7 +422,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<?php include(dirname(__FILE__)."/../includes/header.php");?>
+		<?php include(dirname(__FILE__)."/../includes/footer.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>

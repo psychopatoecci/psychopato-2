@@ -4,13 +4,16 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Distrito Entity
+ * PersonasDireccione Entity
  *
+ * @property int $id
  * @property string $nombreProvincia
  * @property string $nombreCanton
  * @property string $nombreDistrito
+ * @property string $idPersona
+ * @property string $detalles
  */
-class Distrito extends Entity
+class PersonasDireccione extends Entity
 {
 
     /**
@@ -24,8 +27,6 @@ class Distrito extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'nombreProvincia' => false,
-        'nombreCanton' => false,
-        'nombreDistrito' => false
+        'id' => false
     ];
 }

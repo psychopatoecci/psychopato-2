@@ -31,8 +31,8 @@ class DistritosTable extends Table
         parent::initialize($config);
 
         $this->table('distritos');
-        $this->displayField('codDistrito');
-        $this->primaryKey(['codDistrito', 'codCanton', 'codProvincia']);
+        $this->displayField('nombreProvincia');
+        $this->primaryKey(['nombreProvincia', 'nombreCanton', 'nombreDistrito']);
     }
 
     /**
@@ -44,20 +44,13 @@ class DistritosTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->integer('codDistrito')
-            ->allowEmpty('codDistrito', 'create');
+            ->allowEmpty('nombreProvincia', 'create');
 
         $validator
-            ->integer('codCanton')
-            ->allowEmpty('codCanton', 'create');
+            ->allowEmpty('nombreCanton', 'create');
 
         $validator
-            ->integer('codProvincia')
-            ->allowEmpty('codProvincia', 'create');
-
-        $validator
-            ->requirePresence('nombreDistrito', 'create')
-            ->notEmpty('nombreDistrito');
+            ->allowEmpty('nombreDistrito', 'create');
 
         return $validator;
     }
