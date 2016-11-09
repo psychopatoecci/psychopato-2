@@ -82,11 +82,23 @@
 						</div>
 					</div>
                     <form id="pag" action="../personas/admin_usuarios" method="get">
-                        <?php echo "<input type='hidden' name='nuevaPag' value='".strval($numPage - 1)."'>"; ?>
+                        <?php 
+                            if (isset ($buscando)) {
+                                // Se están mostrando resultados de búsqueda.
+                                echo "<input type='hidden' name='busqueda' value='".$buscando."'>";
+                            }
+                            echo "<input type='hidden' name='nuevaPag' value='".strval($numPage - 1)."'>"; 
+                        ?>
                         <button type='submit' class='btn btn-default'>Anterior</button>
                     </form>
                     <form id="pag" action="../personas/admin_usuarios" method="get">
-                        <?php echo "<input type='hidden' name='nuevaPag' value='".strval($numPage + 1)."'>"; ?>
+                        <?php 
+                            if (isset ($buscando)) {
+                                // Se están mostrando resultados de búsqueda.
+                                echo "<input type='hidden' name='busqueda' value='".$buscando."'>";
+                            }
+                            echo "<input type='hidden' name='nuevaPag' value='".strval($numPage + 1)."'>"; 
+                        ?>
                         <button type='submit' class='btn btn-default'>Siguiente</button>
                     </form>
 				</div>

@@ -384,6 +384,9 @@ class PersonasController extends AppController
         if ($busqueda) {
             $personas = $personas -> where ("identificacion LIKE '%".$busqueda."%'
                 OR nombre LIKE '%".$busqueda."%'");
+            // Le dice a la vista que está mostrando solo los buscados para que
+            // los botones de anterior y siguiente funcionen correctamente.
+            $this -> set ('buscando', $busqueda); 
         }
         $personas = $personas -> limit(16) -> page ($numPage);
         $this -> set ('numPage', $numPage);
