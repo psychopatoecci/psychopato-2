@@ -247,22 +247,22 @@
 						</div>
 						<div class="tab-pane fade" id="pagos" >
 							<div class="signup-form">
-								<form action="#">
 									<div class='col-sm-4'>
 										<h3>Tarjetas</h3>
 										<?php
 											foreach ($tarjetas as $trj) {
-												echo "<p>$trj&nbsp&nbsp&nbsp";
-												//echo "<button name=\"Borrar\" type=\"button\" value=\"$trj\">Borrar</button>";
-												echo $this->Html->link('Borrar', '/personas/borrarTarjeta/'.$trj, array('class' => 'button'));
-												echo "</p>";
-                                               						}
+												echo "<form id='borrar' action='../personas/cuenta' method='post'>
+                                                <input type='text' name='borrar' value='".$trj."' readonly>
+                                                <button type='submit' class='btn btn-default'>
+                                                    Borrar
+                                                </button></p></form>";
+                                            }
 										?>
 									</div>
+                                    <form id='crear' action='../personas/cuenta' method='post'>
 									<div class='col-sm-4'>
 								
 										<h3>Agregar medio de pago:</h4><br>
-										<?= $this->Form->create(null,['url'=>['controller' => 'Personas', 'action' => 'cuenta']]) ?>
 										<?= $this->Form->input('numTarjeta', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Número de tarjeta', 'label' => false, 'required' ]) ?>
 										<?= $this->Form->input('csv', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'CSV', 'label' => false, 'required' ]) ?>
 										
@@ -277,7 +277,7 @@
 											</center>
 										</div>
 									</div>
-								</form>
+                                    </form>
 							</div>
 						</div>
 							
