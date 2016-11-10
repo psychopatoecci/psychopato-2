@@ -473,19 +473,84 @@ class PersonasController extends AppController
     }
     public function cuenta () {
         $tarjetas  = TableRegistry::get('tarjetas');
+        $telefonos  = TableRegistry::get('telefonos_personas');
+        $direcciones  = TableRegistry::get('personas_direcciones');
+        
         $idPersona = $this->Auth->user('username');
         $existentes = []; // Tarjetas de esta persona.
+        $telcasa= NULL;
+        $teltrabajo=NULL;
+        $telcel=NULL;
+        $telotro=NULL;
+       // $dirs=[];
+       
+       $prov=NULL; 
+       $cant=NULL;
+       $dist=NULL;
+       $det=NULL;
+               
         $todas = $tarjetas -> find ('all'); // Todas las tarjetas.
+        $todasdir=$direcciones -> find ('all'); // Todas las direcciones.
+        $todastel=$telefonos -> find ('all'); // Todas las telefonos.
+        
+        $usuario = $this->Personas->get($idPersona);
+        
+        foreach ($todasdir as $individual) {
+            if ($individual ['idPersona'] == $idPersona) {
+                $prov [] = $individual ['nombreProvincia'];
+                $cant [] = $individual ['nombreCanton'];
+                $dist [] = $individual ['nombreDistrito'];
+                $det [] = $individual ['detalles'];
+                
+            }
+        }
+        
+        foreach ($todastel as $individual) {
+            if ($individual ['identificacion'] == $idPersona) {
+                if($individual ['tipo'] == 'casa'){
+                    $telcasa = $individual ['telefono'];
+                }else{
+                    if($individual ['tipo'] == 'trabajo'){
+                        $teltrabajo = $individual ['telefono'];
+                    }else{
+                        if($individual ['tipo'] == 'celular'){
+                            $telcel= $individual ['telefono'];
+                        }else{
+                            $telotro = $individual ['telefono'];
+                        }
+                    }
+                }
+                $tels [] = $individual ['telefonos_personas'];
+            }
+        }
+        
         foreach ($todas as $individual) {
             if ($individual ['idPersona'] == $idPersona) {
                 $existentes [] = $individual ['idTarjeta'];
             }
         }
-        $this -> set ('tarjetas', $existentes);
+        $this ->set ('tarjetas', $existentes);
+        $this ->set('Id', $usuario['identificacion']);
+        $this ->set('Nombre', $usuario['nombre']);
+        $this ->set('Apellido1', $usuario['apellido1']);
+        $this ->set('Apellido2', $usuario['apellido2']);
+        $this ->set('Fecha', $usuario['fecha_nacimiento']);
+        $this ->set('Correo', $usuario['correo']);
+        $this ->set('Contraseña', $usuario['contraseña']);
+        $this ->set('Telcasa', $telcasa);
+        $this ->set('Teltrabajo', $teltrabajo);
+        $this ->set('Telcel',$telcel);
+        $this ->set('Telotro',$telotro);
+        
+        $this ->set('Prov',$prov);
+        $this ->set('Cant',$cant);
+        $this ->set('Dist',$dist);
+        $this ->set('Det',$det);
+        
         $http = new Client();
         if ($this->request) {
-            //$this->set ('spooks', $this->request->query);
-            $qu = $this->request->query;
+            $this->set ('spooks', $this->request->query);
+            $qu = $this->request->query;  ///jala los datos de la vista cuenta.ctp
             if ($qu) {
                 $tarjeta = $tarjetas -> newEntity();
                 $tarjeta ['idTarjeta'] = $qu ['numTarjeta'];

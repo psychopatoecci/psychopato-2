@@ -5,13 +5,15 @@ use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 
 /**
- * Users Controller
+ * productos Controller
  *
- * @property \App\Model\Table\UsersTable $Users
+ * @property \App\Model\Table\ProductosTable $Productos
  */
 class ProductosController extends AppController
 {
-    
+    /**
+     * controlador para la pagina principal
+     */
     public function index()
     {
         $productos = $this->Productos->find('all');
@@ -105,39 +107,11 @@ class ProductosController extends AppController
         
         $this->render();
         
-        //Codigo en desarrollo, falta obtener los datos de juegos fisicos, juegos digitales, etc
-        //buscar  juegos digitales
-        /* $query = $this -> Productos -> find ('all', array(
-         'fields' => array('Productos.idProducto','Productos.precio','Productos.nombreProducto'),'
-         conditions'=>array('video_juegos.idVideoJuegos = video_juegos_digitals.idVideoJuegoDigital')))->contain(['video_juegos','video_juegos.video_juego_digitals']);
-        //echo $query; 
-        $idJuegoD = [];
-        $precioJuegoD = [];
-        $nombreJuegoD = [];
-        foreach ($query as $con) {
-          array_push($idJuegoD, $con['idProducto']);
-          array_push($precioJuegoD, $con['precio']);
-          array_push($nombreJuegoD, $con['nombreProducto']);
-        }
-        $this -> set ('idJuegoD', $idJuegoD );
-        $this -> set ('precioJuegoD', $precioJuegoD );
-        $this -> set ('nombreJuegoD', $nombreJuegoD );*/
-        
-    
-         /**!----CODIGO DE PRUEBA NO BORRAR--------->***/
-         
-        // $query = $this->Productos->find('all')->contain(['video_juegos']);
-        // $this -> set ('query', $query);
-     /**!----CODIGO DE PRUEBA NO BORRAR--------->***/
-     
-     
- /*  $productos = $this->Productos->find('all');
-        $this->set('productos',$productos);*/
-        
     }
 
-        /**
-     * funcion detalles
+    /**
+    * funcion detalles
+    * @param string $codigo producto codigo
     *funcion para mostrar detalles de un producto
     * llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la informacio
     * se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
@@ -180,10 +154,54 @@ class ProductosController extends AppController
     }
      /** 
      funcion para mostrar la ventana de administracion de productos
-     */
+    * llama la vista  adminUsuarion
+    * se busca en la base de datos la informacion de los productos (tablas preoductos, video_juegos, generos)
+    * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
+    */
     public function AdminProductos()
     {
-        $this->render();
+        
+        //$query = $this->Productos->find('all')->contain('video_juegos');
+        
+        $query = $this->Productos->find('all');
+        $generos = TableRegistry::get('video_juegos');
+        
+        $idProducto =[];
+        $nombre =[];
+        $consola =[];
+        $tipo =[];
+        $precio =[];
+        $genero =[];
+        $descripciones =[];
+        $fabricantes =[];
+        foreach ($query as $con) {
+            array_push($nombre,$con['nombreProducto']);
+            array_push($idProducto,$con['idProducto']);
+            array_push($tipo,$con['tipo']);
+            array_push($precio,$con['precio']);
+            array_push($descripciones,$con['descripcion']);
+            array_push($fabricantes,$con['fabricante']);
+            if($con['tipo']==3){
+                array_push($consola, NULL);
+            }
+            $qu2 = $generos -> find('all')->where(['idVideoJuego' => $con['idProducto']]);
+            foreach ($qu2 as $con2) {
+                array_push($consola, $con2['idConsola']);
+                array_push($genero, $con2['genero']);
+            } 
+        }
+        $this -> set ('spooks', $query);
+        $this -> set ('idProducto', $idProducto);
+        $this -> set ('nombre', $nombre );
+        $this -> set ('consola', $consola );
+        $this -> set ('tipo', $tipo );
+        $this -> set ('precio', $precio );
+        $this -> set ('genero', $genero );
+        $this -> set ('descripciones', $descripciones );
+        $this -> set ('fabricantes', $fabricantes );
+        $this -> set ('genero', $genero );
+        
+       // $this->render();
     }
      /** 
      funcion para mostrar la ventana de error 404
@@ -193,10 +211,17 @@ class ProductosController extends AppController
         $this->render();
     }    
     
+    /** 
+     controlador para funciones
+     */
     public function funciones()
     {
         $this->render();
-    }  
+    } 
+    
+        /** 
+     controlador para upload
+     */
     public function upload()
     {
         $this->render();
@@ -260,7 +285,9 @@ class ProductosController extends AppController
         }
         //$this -> render();
     }
-    /* funcion para mostrar la ventana de actualizar productos*/
+    /**
+    *funcion para mostrar la ventana de actualizar productos
+    */
     public function actualizar(/*$id, $nombre, $tipo, $imagen, $precio, $fabricante*/)
     {  
         /*$id = 'PROD202188';
@@ -276,14 +303,4 @@ class ProductosController extends AppController
         
     }
     
-    /* funcion para mostrar la ventana de administracion de Usuarios*/
-    public function AdminUsuarios()
-    {
-        $this->render();
-    }  
-    /* funcion para mostrar la ventana de insertar  usuarios*/
-    public function nuevousuario()
-    {
-        $this->render();
-    }
 }

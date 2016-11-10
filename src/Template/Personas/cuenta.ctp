@@ -24,7 +24,7 @@
 
 <body>
  <?php 
-	$identificacion = 'ChuckNorris';
+	/*$identificacion = 'ChuckNorris';
 	$nombre = 'Chuck';
 	$apellido1 = 'Norris';
 	$apellido2 = '';
@@ -40,7 +40,7 @@
 	$provinciaCasa = 'Alajuela';
 	$cantonCasa = 'Desamparados';
 	$distritoCasa = 'San Antonio';
-	$direccionCasa = 'Por ahí a la par de la cosa esa.';
+	$direccionCasa = 'Por ahí a la par de la cosa esa.';*/
 	
 	$provinciaTrabajo = 'Cartago';
 	$cantonTrabajo = 'Escazú';
@@ -66,6 +66,42 @@
 	$tarjetaNumero3 = '';
 	$tarjetaFecha3 = '';
 	$tarjetaCSC3 = '';
+	
+	global $identificacion;
+	global $nombre;
+	global $apellido1;
+	global $apellido2;
+	global $fechanacimiento;
+	global $correo;
+	global $password;
+	
+	global $telefonoCelular;
+	global $telefonoCasa;
+	global $telefonoTrabajo;
+	global $telefonoOtro;
+	
+	global $provinciaCasa;
+	global $cantonCasa;
+	global $distritoCasa;
+	global $direccionCasa;
+	
+	$identificacion = $Id;
+	$nombre = $Nombre;
+	$apellido1 = $Apellido1;
+	$apellido2 = $Apellido2;
+	$fechanacimiento = $Fecha;
+	$correo = $Correo;
+	$password = $Contraseña;
+	
+	$telefonoCelular = $Telcel;
+	$telefonoCasa = $Telcasa;
+	$telefonoTrabajo = $Teltrabajo;
+	$telefonoOtro = $Telotro;
+	
+	$provinciaCasa = $Prov[0];
+	$cantonCasa = $Cant[0];
+	$distritoCasa = $Dist[0];
+	$direccionCasa = $Det[0];
 	
 	//Nomenclatura de la base para las provincias
 	$provinciasBase = array('San Jose','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limon','');
