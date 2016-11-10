@@ -7,13 +7,13 @@
     <meta name="description" content="Tienda de videojuegos ficticia">
     <meta name="author" content="PsychoPato">
     <title>PsychoPatoShop</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
-    <link href="css/price-range.css" rel="stylesheet"> <!--Slider-->
-    <link href="css/animate.css" rel="stylesheet"> <!--Animaciones-->
-	<link href="css/responsive.css" rel="stylesheet"> <!--Para móviles-->
-	<link href="css/main.css" rel="stylesheet"> 
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
+    <link href="../css/price-range.css" rel="stylesheet"> <!--Slider-->
+    <link href="../css/animate.css" rel="stylesheet"> <!--Animaciones-->
+	<link href="../css/responsive.css" rel="stylesheet"> <!--Para móviles-->
+	<link href="../css/main.css" rel="stylesheet"> 
 
     <!--[if lt IE 9]> 
     <script src="js/html5shiv.js"></script>
@@ -27,6 +27,7 @@
   <?php 
   
 	//Datos de prueba para juegos físicos
+	global 	$IDJuegosFisicos;
 	$IDJuegosFisicos = array(
 	'PROD101406',
 	'PROD10192',
@@ -48,6 +49,7 @@
 	'PROD12595',
 	'PROD126427');
 	
+	global 	$nombres;
 	$nombres = array(
 	'The Witcher 3',
 	'Persona 5',
@@ -68,7 +70,8 @@
 	'Halo 5: Guardians',
 	'Rock Simulator 2014',
 	'The Last Guardian');
-
+	
+	global 	$consolas;
 	$consolas = array(
 	'ps4',
 	'ps4',
@@ -90,6 +93,7 @@
 	'pc',
 	'ps4');
 
+	global 	$precios;
 	$precios= array(
 	'29 000',
 	'59 500',
@@ -111,6 +115,7 @@
 	'1 900',
 	'59 000');
 
+	global 	$generos;
 	$generos = array(
 	'aventura',
 	'rpg',
@@ -133,32 +138,38 @@
 	'aventura');
 
 	//Datos de prueba para juegos digitales
+	global 	$IDJuegosDigitales;
 	$IDJuegosDigitales = array(
 	'PROD101406',
 	'PROD10192',
 	'PROD126427');
 	
+	global 	$nombres2;
 	$nombres2 = array(
 	'The Witcher 3',
 	'Persona 5',
 	'The Last Guardian');
 
+	global 	$consolas2;
 	$consolas2 = array(
 	'ps4',
 	'ps4',
 	'ps4');
 
+	global 	$precios2;
 	$precios2= array(
 	'19 000',
 	'49 500',
 	'49 000');
 
+	global 	$generos2;
 	$generos2 = array(
 	'aventura',
 	'rpg',
 	'aventura');
 
 	//Datos de prueba para plataformas
+	global 	$IDPlataformas;
 	$IDPlataformas = array(
 	'PROD130043',
 	'PROD137584',
@@ -167,6 +178,7 @@
 	'PROD14379',
 	'PROD144727');
 	
+	global 	$nombres3;
 	$nombres3 = array(
 	'Play Station 4',
 	'Xbox One',
@@ -175,6 +187,7 @@
 	'New 3DS XL - Pokemon Edition',
 	'PS Vita');
 
+	global 	$precios3;
 	$precios3= array(
 	'299 000',
 	'399 500',
@@ -183,16 +196,17 @@
 	'119 500',
 	'119 000');
 
-	Include ("funciones.php");
+	Include ("scripts/funciones.php");
 	
 	//Función que muestra un juego físico en pantalla
 	function mostrarProductoFisico($genero, $plataforma) {
+
 		global $IDJuegosFisicos;
 		global $nombres;
 		global $precios;
 		global $generos;
 		global $consolas;
-		
+
 		for ($i = 0; $i < count($nombres); $i++) {
 			if (($generos[$i]===$genero || $genero==="todos") && ($consolas[$i]===$plataforma || $plataforma==="todas")) {
 				echo "<div class='col-sm-3'>";
@@ -207,6 +221,7 @@
 				echo "</div> </div> </div> </div>";
 			}		
 		}
+		
 	}
 
 	//Función que muestra un juego digital en pantalla
@@ -429,6 +444,7 @@
 									<div class="tab-pane fade" id="rpg1" >
 										<?php 
 										mostrarProductoFisico("rpg", "todas");
+										
 										?>
 									</div>
 									
@@ -617,8 +633,27 @@
 							
 						</div>
 						
-						<!--Productos de cada categoria-->
-							
+        			
+        			
+        			<!----CODIGO DE PRUEBA NO BORRAR--------->
+        		
+        			<?php
+        				/*
+        			foreach($query as $producto){
+						 
+						 if(isset($producto->video_juego)){
+						
+						echo $producto->video_juego->descripcion;
+						echo "<br>";
+						
+						
+						 }}
+						 */
+						 ?>
+						 
+					<!----CODIGO DE PRUEBA NO BORRAR--------->	
+
+					
 					</div>
 				</div>
 			</div>
@@ -663,10 +698,10 @@
 		
 	</footer>
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/price-range.js"></script> <!-- Para Slider-->
-    <script src="js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
-    <script src="js/main.js"></script>
+    <script src="../js/jquery.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
+	<script src="../js/price-range.js"></script> <!-- Para Slider-->
+    <script src="../js/jquery.prettyPhoto.js"></script> <!--Para Galerias-->
+    <script src="../js/main.js"></script>
 </body>
 </html>
