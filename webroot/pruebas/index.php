@@ -140,7 +140,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.php" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
+							<a href="index" title="Volver a la página principal"><img src="images/home/Logo.png" alt="Regresar al inicio" /></a>
 						</div>
 						
 					</div>
@@ -178,14 +178,14 @@
 								<li><a href="index.html" class="active" title="Volver a la página principal">Inicio</a></li>
 								<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
-                                        <li><a href="catalogo.php" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
-										<li><a href="catalogo.php" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
-										<li><a href="catalogo.php" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
+                                        <li><a href="catalogo" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
+										<li><a href="catalogo" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
+										<li><a href="catalogo" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
                                     </ul>
                                 </li> 
-								<li><a href="ofertas.php" title="Ver las ofertas disponibles">Ofertas</a></li>
-								<li><a href="ofertas.php" title="Ver los combos disponibles">Combos</a></li>
-								<li><a href="contacto.html" title="Ver la información de contacto de la empresa">Contacto</a></li>
+								<li><a href="ofertas" title="Ver las ofertas disponibles">Ofertas</a></li>
+								<li><a href="ofertas" title="Ver los combos disponibles">Combos</a></li>
+								<li><a href="contacto" title="Ver la información de contacto de la empresa">Contacto</a></li>
 							</ul>
 						</div>
 						
@@ -351,7 +351,7 @@
 							echo "<div class='product-image-wrapper'>";
 							echo "<div class='single-products'>";
 							echo "<div class='productinfo text-center'>";
-							echo "<a href='detalles.php'><img src='".obtenerPortada($IDProductosDetacados[$i])."' title='ver detalles del producto' /></a>";
+							echo "<a href='detalles'><img src='".obtenerPortada($IDProductosDetacados[$i])."' title='ver detalles del producto' /></a>";
 							echo "<h2>¢".$preciosDetacados[$i]."</h2>";
 							echo "<p>".$nombresDetacados[$i]."</p>";
 							echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir este producto al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
@@ -359,7 +359,7 @@
 							echo "<div class='choose'>";
 							echo "<ul class='nav nav-pills nav-justified'>";
 							echo "<li><a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-plus-square'></i>Añadir a la wishlist</a></li>";
-							echo "<li><a href='detalles.php' title = 'Ver más productos dentro de esta categoría'><i class='fa fa-plus-square'></i>Ver más</a></li>";
+							echo "<li><a href='detalles' title = 'Ver más productos dentro de esta categoría'><i class='fa fa-plus-square'></i>Ver más</a></li>";
 							echo "</ul></div></div></div>";
 						}
 						?>
@@ -383,7 +383,7 @@
 									echo "<div class='product-image-wrapper'>";
 									echo "<div class='single-products'>";
 									echo "<div class='productinfo text-center'>";
-									echo "<a href='detalles.php'><img src='".obtenerPortada($IDProductosNovedades[$i])."' title='Ver detalles de este producto' /></a>";
+									echo "<a href='detalles'><img src='".obtenerPortada($IDProductosNovedades[$i])."' title='Ver detalles de este producto' /></a>";
 									echo "<h2>¢".$preciosNovedades[$i]."</h2>";
 									echo "<p>".$nombresNovedades[$i]."</p>";
 									echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir este producto al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
@@ -401,7 +401,7 @@
 										echo "<div class='product-image-wrapper'>";
 										echo "<div class='single-products'>";
 										echo "<div class='productinfo text-center'>";
-										echo "<a href='detalles.php'><img src='".obtenerPortada($IDProductosLanzamientos[$i])."' title='Ver detalles de este producto' /></a>";
+										echo "<a href='detalles'><img src='".obtenerPortada($IDProductosLanzamientos[$i])."' title='Ver detalles de este producto' /></a>";
 										echo "<h2>¢".$preciosLanzamientos[$i]."</h2>";
 										echo "<p>".$nombresLanzamientos[$i]."</p>";
 										echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir este producto al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
@@ -418,7 +418,7 @@
 										echo "<div class='product-image-wrapper'>";
 										echo "<div class='single-products'>";
 										echo "<div class='productinfo text-center'>";
-										echo "<a href='detalles.php'><img src='".obtenerPortada($IDProductosMejores[$i])."' title='Ver detalles de este producto' /></a>";
+										echo "<a href='detalles'><img src='".obtenerPortada($IDProductosMejores[$i])."' title='Ver detalles de este producto' /></a>";
 										echo "<h2>¢".$preciosMejores[$i]."</h2>";
 										echo "<p>".$nombresMejores[$i]."</p>";
 										echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir este producto al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
