@@ -394,6 +394,26 @@ class PersonasController extends AppController
         $this -> render();
     }
     
+    public function cuentas($usuario)
+    {
+        $persona = $this -> Personas -> get ($usuario);
+        $this -> set ('Identificacion', $usuario);
+        $this -> set ('Nombre', $persona ['nombre']);
+        $this -> set ('Apellido1', $persona ['apellido1']);
+        $this -> set ('Apellido2', $persona ['apellido2']);
+        $this -> set ('Correo', $persona ['correo']);
+        $this -> set ('fecha_nacimiento', $persona ['fecha_nacimiento']);
+        
+       // $condicion =array('video_juegos.idVideoJuego =' => $codigo);
+      /*  $query = $this -> Personas -> find('all',array(
+            'fields' => array('video_juegos.genero', 'productos.nombreProducto'),
+            'conditions'=> $condicion ))
+            ->contain(['video_juegos', 'video_juegos.consolas.productos']);
+        $this->render();*/
+    }
+        
+
+    
     public function index()
     {
         $personas = $this->paginate($this->Personas);
@@ -488,9 +508,57 @@ class PersonasController extends AppController
     }
     public function cuenta () {
         $tarjetas  = TableRegistry::get('tarjetas');
+        $telefonos  = TableRegistry::get('telefonos_personas');
+        $direcciones  = TableRegistry::get('personas_direcciones');
+        
         $idPersona = $this->Auth->user('username');
         $existentes = []; // Tarjetas de esta persona.
+        $telcasa= NULL;
+        $teltrabajo=NULL;
+        $telcel=NULL;
+        $telotro=NULL;
+       // $dirs=[];
+       
+       $prov=NULL; 
+       $cant=NULL;
+       $dist=NULL;
+       $det=NULL;
+               
         $todas = $tarjetas -> find ('all'); // Todas las tarjetas.
+        $todasdir=$direcciones -> find ('all'); // Todas las direcciones.
+        $todastel=$telefonos -> find ('all'); // Todas las telefonos.
+        
+        $usuario = $this->Personas->get($idPersona);
+        
+        foreach ($todasdir as $individual) {
+            if ($individual ['idPersona'] == $idPersona) {
+                $prov [] = $individual ['nombreProvincia'];
+                $cant [] = $individual ['nombreCanton'];
+                $dist [] = $individual ['nombreDistrito'];
+                $det [] = $individual ['detalles'];
+                
+            }
+        }
+        
+        foreach ($todastel as $individual) {
+            if ($individual ['identificacion'] == $idPersona) {
+                if($individual ['tipo'] == 'casa'){
+                    $telcasa = $individual ['telefono'];
+                }else{
+                    if($individual ['tipo'] == 'trabajo'){
+                        $teltrabajo = $individual ['telefono'];
+                    }else{
+                        if($individual ['tipo'] == 'celular'){
+                            $telcel= $individual ['telefono'];
+                        }else{
+                            $telotro = $individual ['telefono'];
+                        }
+                    }
+                }
+                $tels [] = $individual ['telefonos_personas'];
+            }
+        }
+        
         foreach ($todas as $individual) {
             if ($individual ['idPersona'] == $idPersona) {
                 $existentes [] = $individual ['idTarjeta'];
