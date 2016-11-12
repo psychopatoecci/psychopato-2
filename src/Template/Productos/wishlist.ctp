@@ -59,7 +59,7 @@
 	
 	<!--Header-->
 	<header id="header">
-		<?php include("includes/header.php");?>
+		<?php include(dirname(__FILE__)."/../includes/header.php");?>
 	</header>
 	
 	<!--Contenido-->
@@ -133,7 +133,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<?php include("includes/footer.php");?>
+		<?php include(dirname(__FILE__)."/../includes/footer.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>

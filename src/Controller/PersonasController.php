@@ -23,6 +23,11 @@ class PersonasController extends AppController
          
      }
      
+    //Controlador de una factura
+    public function factura() {
+        $this->render();
+    }
+     
      
       public function borrar($id){
         

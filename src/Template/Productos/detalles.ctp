@@ -24,7 +24,7 @@
 
 <body>
   <?php 
-	//tos de prueba
+	//Datos de prueba
 	//$IDProducto = 'PROD101406'; //La ID asignada al producto
 	//$nombre = 'The Witcher 3';
 	//$categoria = '2'; //Si es 3=plataforma, no hace falta asignar género y plataforma, no se van a mostrar

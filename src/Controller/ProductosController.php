@@ -113,12 +113,11 @@ class ProductosController extends AppController
     * funcion detalles
     * @param string $codigo producto codigo
     *funcion para mostrar detalles de un producto
-    * llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la informacio
+    * llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la información
     * se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
     * se envia la informacion obtenida a la vista
     */
-    public function detalles($codigo)
-    {
+    public function detalles($codigo) {
         //llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la informacion
         
         //se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
@@ -145,11 +144,9 @@ class ProductosController extends AppController
         //echo $descripcion;
         $this->render();
     }
-    /** 
-     * funcion para mostrar ofertas
-    */
-    public function ofertas()
-    {
+   
+    //Controlador de ofertas y combos
+    public function ofertas() {
         $this->render();
     }
      /** 
@@ -203,27 +200,29 @@ class ProductosController extends AppController
         
        // $this->render();
     }
-     /** 
-     funcion para mostrar la ventana de error 404
-     */
-    public function error404()
-    {
+    
+    //Controlador del error 404
+    public function error404() {
+        $this->render();
+    }
+
+    //Controlador del carrito
+    public function carrito() {
         $this->render();
     }    
     
-    /** 
-     controlador para funciones
-     */
-    public function funciones()
-    {
+    //Controlador de la wishlist
+    public function wishlist() {
         $this->render();
-    } 
+    }
     
-        /** 
-     controlador para upload
-     */
-    public function upload()
-    {
+    //Controlador de confirmación de una compra
+    public function confirmar() {
+        $this->render();
+    }
+    
+    //Controlador del upload
+    public function upload() {
         $this->render();
     }  
     /**
