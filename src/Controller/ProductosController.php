@@ -208,8 +208,9 @@ class ProductosController extends AppController
 
     //Controlador del carrito
     public function carrito() {
+
         $this->render();
-    }    
+    }
     
     //Controlador de la wishlist
     public function wishlist() {
@@ -220,6 +221,7 @@ class ProductosController extends AppController
     public function confirmar() {
         $this->render();
     }
+    
     
     //Controlador del upload
     public function upload() {

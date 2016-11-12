@@ -20193,3 +20193,966 @@ Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
 
 
 
+2016-11-12 21:55:14 Warning: Warning (2): include(includes/header.php): failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 56]
+Request URL: /productos/carrito
+Client IP: 10.240.1.64
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 56
+include - APP/Template/Productos/carrito.ctp, line 56
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:55:14 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/header.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 56]
+Request URL: /productos/carrito
+Client IP: 10.240.1.64
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 56
+include - APP/Template/Productos/carrito.ctp, line 56
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:55:14 Warning: Warning (2): include(includes/footer.php) [<a href='http://php.net/function.include'>function.include</a>]: failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 146]
+Request URL: /productos/carrito
+Client IP: 10.240.1.64
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:55:14 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/footer.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 146]
+Request URL: /productos/carrito
+Client IP: 10.240.1.64
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:55:56 Warning: Warning (2): include(../includes/header.php): failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 56]
+Request URL: /productos/carrito
+Client IP: 10.240.1.60
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 56
+include - APP/Template/Productos/carrito.ctp, line 56
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:55:56 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening '../includes/header.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 56]
+Request URL: /productos/carrito
+Client IP: 10.240.1.60
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 56
+include - APP/Template/Productos/carrito.ctp, line 56
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:55:56 Warning: Warning (2): include(includes/footer.php) [<a href='http://php.net/function.include'>function.include</a>]: failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 146]
+Request URL: /productos/carrito
+Client IP: 10.240.1.60
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:55:56 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/footer.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 146]
+Request URL: /productos/carrito
+Client IP: 10.240.1.60
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:56:26 Warning: Warning (2): include(/../includes/header.php): failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 56]
+Request URL: /productos/carrito
+Client IP: 10.240.0.179
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 56
+include - APP/Template/Productos/carrito.ctp, line 56
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:56:26 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening '/../includes/header.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 56]
+Request URL: /productos/carrito
+Client IP: 10.240.0.179
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 56
+include - APP/Template/Productos/carrito.ctp, line 56
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:56:26 Warning: Warning (2): include(includes/footer.php) [<a href='http://php.net/function.include'>function.include</a>]: failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 146]
+Request URL: /productos/carrito
+Client IP: 10.240.0.179
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:56:26 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/footer.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 146]
+Request URL: /productos/carrito
+Client IP: 10.240.0.179
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:57:01 Warning: Warning (2): include(includes/footer.php): failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 146]
+Request URL: /productos/carrito
+Client IP: 10.240.0.207
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 21:57:01 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/footer.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/carrito.ctp, line 146]
+Request URL: /productos/carrito
+Client IP: 10.240.0.207
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+include - APP/Template/Productos/carrito.ctp, line 146
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::carrito() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:01:23 Warning: Warning (2): Missing argument 1 for App\Controller\ProductosController::detalles() in [/home/ubuntu/workspace/src/Controller/ProductosController.php, line 120]
+Request URL: /productos/detalles
+Client IP: 10.240.0.182
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+App\Controller\ProductosController::detalles() - APP/Controller/ProductosController.php, line 120
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:01:23 Warning: Headers already sent in /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Error/Debugger.php:753
+2016-11-12 22:01:23 Error: [RuntimeException] Unable to emit response; headers already sent
+Request URL: /productos/detalles
+Client IP: 10.240.0.182
+Stack Trace:
+#0 /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Http/Server.php(107): Zend\Diactoros\Response\SapiStreamEmitter->emit(Object(Zend\Diactoros\Response))
+#1 /home/ubuntu/workspace/webroot/index.php(37): Cake\Http\Server->emit(Object(Zend\Diactoros\Response))
+#2 {main}
+
+
+2016-11-12 22:13:32 Warning: Warning (2): include(includes/header.php): failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/wishlist.ctp, line 62]
+Request URL: /wishlist
+Client IP: 10.240.0.119
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/wishlist.ctp, line 62
+include - APP/Template/Productos/wishlist.ctp, line 62
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::wishlist() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:13:32 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/header.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/wishlist.ctp, line 62]
+Request URL: /wishlist
+Client IP: 10.240.0.119
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/wishlist.ctp, line 62
+include - APP/Template/Productos/wishlist.ctp, line 62
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::wishlist() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:13:32 Warning: Warning (2): include(includes/footer.php) [<a href='http://php.net/function.include'>function.include</a>]: failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/wishlist.ctp, line 136]
+Request URL: /wishlist
+Client IP: 10.240.0.119
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/wishlist.ctp, line 136
+include - APP/Template/Productos/wishlist.ctp, line 136
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::wishlist() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:13:32 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/footer.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/wishlist.ctp, line 136]
+Request URL: /wishlist
+Client IP: 10.240.0.119
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/wishlist.ctp, line 136
+include - APP/Template/Productos/wishlist.ctp, line 136
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::wishlist() - APP/Controller/ProductosController.php, line 216
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:15:14 Warning: Warning (2): include(includes/header.php): failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/confirmar.ctp, line 92]
+Request URL: /confirmar
+Client IP: 10.240.0.208
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/confirmar.ctp, line 92
+include - APP/Template/Productos/confirmar.ctp, line 92
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::confirmar() - APP/Controller/ProductosController.php, line 221
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:15:14 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/header.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/confirmar.ctp, line 92]
+Request URL: /confirmar
+Client IP: 10.240.0.208
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/confirmar.ctp, line 92
+include - APP/Template/Productos/confirmar.ctp, line 92
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::confirmar() - APP/Controller/ProductosController.php, line 221
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:15:14 Warning: Warning (2): include(includes/footer.php) [<a href='http://php.net/function.include'>function.include</a>]: failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/confirmar.ctp, line 147]
+Request URL: /confirmar
+Client IP: 10.240.0.208
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/confirmar.ctp, line 147
+include - APP/Template/Productos/confirmar.ctp, line 147
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::confirmar() - APP/Controller/ProductosController.php, line 221
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:15:14 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/footer.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/confirmar.ctp, line 147]
+Request URL: /confirmar
+Client IP: 10.240.0.208
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/confirmar.ctp, line 147
+include - APP/Template/Productos/confirmar.ctp, line 147
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::confirmar() - APP/Controller/ProductosController.php, line 221
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:22:28 Warning: Warning (2): include(includes/header.php): failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/confirmar.ctp, line 92]
+Request URL: /confirmar
+Client IP: 10.240.1.19
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/confirmar.ctp, line 92
+include - APP/Template/Productos/confirmar.ctp, line 92
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::confirmar() - APP/Controller/ProductosController.php, line 221
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:22:28 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/header.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/confirmar.ctp, line 92]
+Request URL: /confirmar
+Client IP: 10.240.1.19
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/confirmar.ctp, line 92
+include - APP/Template/Productos/confirmar.ctp, line 92
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::confirmar() - APP/Controller/ProductosController.php, line 221
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:22:28 Warning: Warning (2): include(includes/footer.php) [<a href='http://php.net/function.include'>function.include</a>]: failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Productos/confirmar.ctp, line 147]
+Request URL: /confirmar
+Client IP: 10.240.1.19
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/confirmar.ctp, line 147
+include - APP/Template/Productos/confirmar.ctp, line 147
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::confirmar() - APP/Controller/ProductosController.php, line 221
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:22:28 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/footer.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Productos/confirmar.ctp, line 147]
+Request URL: /confirmar
+Client IP: 10.240.1.19
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Productos/confirmar.ctp, line 147
+include - APP/Template/Productos/confirmar.ctp, line 147
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\ProductosController::confirmar() - APP/Controller/ProductosController.php, line 221
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:24:16 Warning: Warning (2): include(includes/header.php): failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Personas/factura.ctp, line 64]
+Request URL: /factura
+Client IP: 10.240.1.60
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Personas/factura.ctp, line 64
+include - APP/Template/Personas/factura.ctp, line 64
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\PersonasController::factura() - APP/Controller/PersonasController.php, line 28
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:24:16 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/header.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Personas/factura.ctp, line 64]
+Request URL: /factura
+Client IP: 10.240.1.60
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Personas/factura.ctp, line 64
+include - APP/Template/Personas/factura.ctp, line 64
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\PersonasController::factura() - APP/Controller/PersonasController.php, line 28
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:24:16 Warning: Warning (2): include(includes/footer.php) [<a href='http://php.net/function.include'>function.include</a>]: failed to open stream: No such file or directory in [/home/ubuntu/workspace/src/Template/Personas/factura.ctp, line 139]
+Request URL: /factura
+Client IP: 10.240.1.60
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Personas/factura.ctp, line 139
+include - APP/Template/Personas/factura.ctp, line 139
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\PersonasController::factura() - APP/Controller/PersonasController.php, line 28
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:24:16 Warning: Warning (2): include() [<a href='http://php.net/function.include'>function.include</a>]: Failed opening 'includes/footer.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in [/home/ubuntu/workspace/src/Template/Personas/factura.ctp, line 139]
+Request URL: /factura
+Client IP: 10.240.1.60
+Trace:
+Cake\Error\BaseErrorHandler::handleError() - CORE/src/Error/BaseErrorHandler.php, line 146
+include - APP/Template/Personas/factura.ctp, line 139
+include - APP/Template/Personas/factura.ctp, line 139
+Cake\View\View::_evaluate() - CORE/src/View/View.php, line 1008
+Cake\View\View::_render() - CORE/src/View/View.php, line 967
+Cake\View\View::render() - CORE/src/View/View.php, line 591
+Cake\Controller\Controller::render() - CORE/src/Controller/Controller.php, line 617
+App\Controller\PersonasController::factura() - APP/Controller/PersonasController.php, line 28
+Cake\Controller\Controller::invokeAction() - CORE/src/Controller/Controller.php, line 435
+Cake\Http\ActionDispatcher::_invoke() - CORE/src/Http/ActionDispatcher.php, line 122
+Cake\Http\ActionDispatcher::dispatch() - CORE/src/Http/ActionDispatcher.php, line 96
+Cake\Http\BaseApplication::__invoke() - CORE/src/Http/BaseApplication.php, line 83
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\RoutingMiddleware::__invoke() - CORE/src/Routing/Middleware/RoutingMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Routing\Middleware\AssetMiddleware::__invoke() - CORE/src/Routing/Middleware/AssetMiddleware.php, line 88
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Error\Middleware\ErrorHandlerMiddleware::__invoke() - CORE/src/Error/Middleware/ErrorHandlerMiddleware.php, line 52
+Cake\Http\Runner::__invoke() - CORE/src/Http/Runner.php, line 65
+Cake\Http\Runner::run() - CORE/src/Http/Runner.php, line 51
+Cake\Http\Server::run() - CORE/src/Http/Server.php, line 82
+[main] - ROOT/webroot/index.php, line 37
+
+
+
+2016-11-12 22:35:40 Error: Fatal Error (4): syntax error, unexpected '(', expecting '&' or variable (T_VARIABLE) in [/home/ubuntu/workspace/src/Controller/ProductosController.php, line 210]
+Request URL: /carrito/Hershel84
+Client IP: 10.240.0.204
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-11-12 22:35:40 Warning: Headers already sent in /home/ubuntu/workspace/src/Controller/ProductosController.php:210
+2016-11-12 22:35:40 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '(', expecting '&' or variable (T_VARIABLE)
+Request URL: /carrito/Hershel84
+Client IP: 10.240.0.204
+Stack Trace:
+#0 /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Error/BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', '/home/ubuntu/wo...', 210)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2016-11-12 22:35:54 Error: Fatal Error (4): syntax error, unexpected '(', expecting '&' or variable (T_VARIABLE) in [/home/ubuntu/workspace/src/Controller/ProductosController.php, line 210]
+Request URL: /carrito/Hershel84
+Client IP: 10.240.0.241
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-11-12 22:35:54 Warning: Headers already sent in /home/ubuntu/workspace/src/Controller/ProductosController.php:210
+2016-11-12 22:35:54 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '(', expecting '&' or variable (T_VARIABLE)
+Request URL: /carrito/Hershel84
+Client IP: 10.240.0.241
+Stack Trace:
+#0 /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Error/BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', '/home/ubuntu/wo...', 210)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
+2016-11-12 22:35:56 Error: Fatal Error (4): syntax error, unexpected '(', expecting '&' or variable (T_VARIABLE) in [/home/ubuntu/workspace/src/Controller/ProductosController.php, line 210]
+Request URL: /carrito/Hershel84
+Client IP: 10.240.0.204
+Trace:
+Cake\Error\BaseErrorHandler::handleFatalError() - CORE/src/Error/BaseErrorHandler.php, line 216
+Cake\Error\BaseErrorHandler::Cake\Error\{closure}() - CORE/src/Error/BaseErrorHandler.php, line 98
+[main] - [internal], line ??
+
+
+
+2016-11-12 22:35:56 Warning: Headers already sent in /home/ubuntu/workspace/src/Controller/ProductosController.php:210
+2016-11-12 22:35:56 Error: [Cake\Error\FatalErrorException] syntax error, unexpected '(', expecting '&' or variable (T_VARIABLE)
+Request URL: /carrito/Hershel84
+Client IP: 10.240.0.204
+Stack Trace:
+#0 /home/ubuntu/workspace/vendor/cakephp/cakephp/src/Error/BaseErrorHandler.php(98): Cake\Error\BaseErrorHandler->handleFatalError(4, 'syntax error, u...', '/home/ubuntu/wo...', 210)
+#1 [internal function]: Cake\Error\BaseErrorHandler->Cake\Error\{closure}()
+#2 {main}
+
+
