@@ -399,26 +399,6 @@ class PersonasController extends AppController
         $this -> render();
     }
     
-    public function cuentas($usuario)
-    {
-        $persona = $this -> Personas -> get ($usuario);
-        $this -> set ('Identificacion', $usuario);
-        $this -> set ('Nombre', $persona ['nombre']);
-        $this -> set ('Apellido1', $persona ['apellido1']);
-        $this -> set ('Apellido2', $persona ['apellido2']);
-        $this -> set ('Correo', $persona ['correo']);
-        $this -> set ('fecha_nacimiento', $persona ['fecha_nacimiento']);
-        
-       // $condicion =array('video_juegos.idVideoJuego =' => $codigo);
-      /*  $query = $this -> Personas -> find('all',array(
-            'fields' => array('video_juegos.genero', 'productos.nombreProducto'),
-            'conditions'=> $condicion ))
-            ->contain(['video_juegos', 'video_juegos.consolas.productos']);
-        $this->render();*/
-    }
-        
-
-    
     public function index()
     {
         $personas = $this->paginate($this->Personas);
@@ -569,6 +549,25 @@ class PersonasController extends AppController
                 $existentes [] = $individual ['idTarjeta'];
             }
         }
+        
+        $this ->set ('tarjetas', $existentes);
+        $this ->set('Id', $usuario['identificacion']);
+        $this ->set('Nombre', $usuario['nombre']);
+        $this ->set('Apellido1', $usuario['apellido1']);
+        $this ->set('Apellido2', $usuario['apellido2']);
+        $this ->set('Fecha', $usuario['fecha_nacimiento']);
+        $this ->set('Correo', $usuario['correo']);
+        $this ->set('Contraseña', $usuario['contraseña']);
+        $this ->set('Telcasa', $telcasa);
+        $this ->set('Teltrabajo', $teltrabajo);
+        $this ->set('Telcel',$telcel);
+        $this ->set('Telotro',$telotro);
+        
+        $this ->set('Prov',$prov);
+        $this ->set('Cant',$cant);
+        $this ->set('Dist',$dist);
+        $this ->set('Det',$det);
+        
         $this -> set ('tarjetas', $existentes);
         $http = new Client();
         if ($this->request->is('post')) {
