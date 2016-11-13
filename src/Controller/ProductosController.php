@@ -33,7 +33,7 @@ class ProductosController extends AppController
         $this->set('idProd', $idProd);
         $this->set('user', $this->Auth->user('id'));
         
-        $carrito_compras = $this->Carrito_compras->find('all');
+        //$carrito_compras = $this->Carrito_compras->find('all');
     }
     /**
      * funcion catalogo
@@ -149,7 +149,14 @@ class ProductosController extends AppController
    
     //Controlador de ofertas y combos
     public function ofertas() {
-        $this->render();
+        $ofertas = $this -> Productos -> find ('all', 
+            ['contain' => ['ofertas']]);
+            $this->set('ofertas', $ofertas);
+            
+        $combos = $this -> Productos -> find ('all', 
+            ['contain' => ['combos', 'productosCombos']]);
+            $this->set('combos', $combos);
+        
     }
      /** 
      funcion para mostrar la ventana de administracion de productos

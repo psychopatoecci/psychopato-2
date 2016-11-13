@@ -33,6 +33,9 @@ class CombosTable extends Table
         $this->table('combos');
         $this->displayField('idCombo');
         $this->primaryKey('idCombo');
+        
+        $this->hasMany('productosCombos', ['foreignKey' => 'idCombo',
+            'joinType' => 'INNER']);
     }
 
     /**
