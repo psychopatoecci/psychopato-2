@@ -28,29 +28,58 @@
     
 	//Datos de prueba para juegos físicos
 	global 	$IDProductosWishlist;
+	global 	$nombres;
+	global 	$categorias;
+	global 	$precios;
+	
+	$IDProductosWishlist = array();
+	$nombres = array();
+	$categorias = array();
+	$precios = array();
+	
+	//Recuperar el ID de los productos
+	foreach($datos as $dato):
+		array_push($IDProductosWishlist, $dato->idProducto);
+	endforeach;
+	
+	//Recuperar el nombre, precio y categoria de cada producto
+	$cuenta=0;
+	foreach($datos2 as $dato):
+		if ($IDProductosWishlist[$cuenta] == $dato->idProducto) {
+			array_push($nombres, $dato->nombreProducto);
+			array_push($categorias, $dato->tipo);
+			array_push($precios, $dato->precio);
+			$cuenta++;
+		}
+		if (($cuenta+1) > Count($IDProductosWishlist)) {
+			break;
+		}
+	endforeach;
+	
+	/*
+	Datos de prueba
 	$IDProductosWishlist = array(
 	'PROD101406',
 	'PROD10192',
 	'PROD126427');
 	
-	global 	$nombres;
+	
 	$nombres = array(
 	'The Witcher 3',
 	'Persona 5',
 	'The Last Guardian');
-	
-	global 	$categorias;
+
 	$categorias = array( //1=digital 2=fisico 3=plataforma
 	'1',
 	'2',
 	'2');
 
-	global 	$precios;
 	$precios= array(
 	'29 000',
 	'59 500',
 	'59 000');
-
+	*/
+	
 	Include ("scripts/funciones.php");
 	
 	$categoriasLista = array('Juego digital','Juego físico','Plataforma');
@@ -87,7 +116,7 @@
 								<td class="cart_product">
 									<?php
 									echo "<a href='detalles' title = 'Ver los detalles de este producto'>
-									<img src='".obtenerPortada($IDProductosWishlist[$i])."' /></a>";
+									<img src='/../".obtenerPortada($IDProductosWishlist[$i])."' /></a>";
 									?>
 								</td>
 								<td class="cart_description">

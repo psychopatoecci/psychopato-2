@@ -32,6 +32,8 @@ class ProductosController extends AppController
         $this->set('subtitulos1',$descrProd);
         $this->set('idProd', $idProd);
         $this->set('user', $this->Auth->user('id'));
+        
+        $carrito_compras = $this->Carrito_compras->find('all');
     }
     /**
      * funcion catalogo
@@ -207,14 +209,24 @@ class ProductosController extends AppController
     }
 
     //Controlador del carrito
-    public function carrito() {
+    public function carrito($codigo) {
 
-        $this->render();
+        $datos = TableRegistry::get('carrito_compras')->find('all')->where("idCarrito = '".$codigo."'");
+        $this -> set ('datos', $datos);
+        
+        $datos2 = TableRegistry::get('productos')->find('all');
+        $this -> set ('datos2', $datos2);
+
     }
     
     //Controlador de la wishlist
-    public function wishlist() {
-        $this->render();
+    public function wishlist($codigo) {
+
+        $datos = TableRegistry::get('wish_list_productos')->find('all')->where("idWishList = '".$codigo."'");
+        $this -> set ('datos', $datos);
+        
+        $datos2 = TableRegistry::get('productos')->find('all');
+        $this -> set ('datos2', $datos2);
     }
     
     //Controlador de confirmación de una compra

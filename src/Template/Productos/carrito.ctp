@@ -25,25 +25,58 @@
 <body>
 
 <?php 
-    
-	//Datos de prueba para juegos físicos
-	global 	$IDProductosWishlist;
-	$IDProductosWishlist = array(
+    global 	$IDProductosCarrito;
+    global 	$nombres;
+    global 	$precios;
+    global 	$cantidades;
+
+    $IDProductosCarrito = array();
+	$nombres = array();
+	$precios = array();
+	$cantidades = array();
+	
+	//Recuperar el ID de los productos y su cantidad
+	foreach($datos as $dato):
+		array_push($IDProductosCarrito, $dato->idProducto);
+		array_push($cantidades, $dato->cantidad);
+	endforeach;
+	
+	//Recuperar el nombre y precio de cada producto
+	$cuenta=0;
+	foreach($datos2 as $dato):
+		if ($IDProductosCarrito[$cuenta] == $dato->idProducto) {
+			array_push($nombres, $dato->nombreProducto);
+			array_push($precios, $dato->precio);
+			$cuenta++;
+		}
+		if (($cuenta+1) > Count($IDProductosCarrito)) {
+			break;
+		}
+	endforeach;
+	
+	//Datos de prueba
+	/*
+	$IDProductosCarrito = array(
 	'PROD101406',
 	'PROD10192',
 	'PROD126427');
 	
-	global 	$nombres;
 	$nombres = array(
 	'The Witcher 3',
 	'Persona 5',
 	'The Last Guardian');
 
-	global 	$precios;
 	$precios= array(
 	'29000',
 	'59500',
 	'59000');
+	
+	$cantidades = array(
+	'1',
+	'2',
+	'1');
+	
+	*/
 
 	Include ("scripts/funciones.php");
 	
@@ -58,6 +91,7 @@
 	
 	<!--Contenido-->
 	<section id="cart_items">
+
 		<div class="container">
 		<h1>Carrito de compras</h1><br>
 			<div class="table-responsive cart_info">
@@ -75,19 +109,19 @@
 					</thead>
 					<tbody>
 						<?php
-							for ($i = 0; $i < count($nombres); $i++) {
+							for ($i = 0; $i < count($IDProductosCarrito); $i++) {
 						?>
 							<tr>
 								<td class="cart_product">
 									<?php
 									echo "<a href='detalles' title = 'Ver los detalles de este producto'>
-									<img src='".obtenerPortada($IDProductosWishlist[$i])."' /></a>";
+									<img src='/../".obtenerPortada($IDProductosCarrito[$i])."' /></a>";
 									?>
 								</td>
 								<td class="cart_description">
 									<?php
 									echo "<h4><a href='detalles' title = 'Ver los detalles de este producto'><font size='5'>".$nombres[$i]."</font></a></h4>";
-									echo "<p> ID: ".$IDProductosWishlist[$i]."</p>";
+									echo "<p> ID: ".$IDProductosCarrito[$i]."</p>";
 									?>
 								</td>
 								<td class="cart_price">
@@ -98,7 +132,7 @@
 								<td class="cart_price">
 									<?php
 									echo "<input class='cart_quantity_input' type='text'
-										name='Cantidad".$i."' value='1' autocomplete='off' size='2'>";
+										name='Cantidad".$i."' value='".$cantidades[$i]."' autocomplete='off' size='2'>";
 
 									?>
 								</td>
@@ -129,7 +163,7 @@
 				<?php
 					$total=0;
 					for ($i = 0; $i < count($precios); $i++) {
-						$total = $total+intval($precios[$i]);
+						$total = $total+(intval($precios[$i])*$cantidades[$i]);
 					}
 					echo "¢".$total;
 				?>
