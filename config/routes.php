@@ -65,11 +65,10 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/factura/*', ['controller' => 'Personas', 'action' => 'factura']);
 
     $routes->connect('/nuevoUsuario', ['controller' => 'Personas', 'action' => 'guardar']);
+    
     /*ruta para pruebas*/
-        $routes->connect('/detallesprueba/*', ['controller' => 'Productos', 'action' => 'detallesprueba']);
-        
-        
-        
+    $routes->connect('/detallesprueba/*', ['controller' => 'Productos', 'action' => 'detallesprueba']);
+
     /*ruta para pruebas*/
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
