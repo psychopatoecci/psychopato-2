@@ -33,7 +33,7 @@ class ProductosController extends AppController
         $this->set('idProd', $idProd);
         $this->set('user', $this->Auth->user('id'));
         
-        //$carrito_compras = $this->Carrito_compras->find('all');
+        $carrito_compras = $this->Carrito_compras->find('all');
     }
     /**
      * funcion catalogo
@@ -149,9 +149,19 @@ class ProductosController extends AppController
    
     //Controlador de ofertas y combos
     public function ofertas() {
+       /* $numPage = 1;
+        $nuevaPag = $this -> request -> query('nuevaPag');
+        
+        if ($nuevaPag && $nuevaPag > 0) {
+            $numPage = $nuevaPag;
+        }
+        */
         $ofertas = $this -> Productos -> find ('all', 
             ['contain' => ['ofertas']]);
-            $this->set('ofertas', $ofertas);
+            
+       /* $ofertas = $ofertas -> limit(16) -> page ($numPage);
+        $this -> set ('numPage', $numPage);*/
+        $this->set('ofertas', $ofertas);
             
         $combos = $this -> Productos -> find ('all', 
             ['contain' => ['combos', 'productosCombos']]);
