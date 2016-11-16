@@ -44,8 +44,7 @@ class ProductosController extends AppController
      * 
      * falta terminar
      */
-    public function catalogo()
-    {
+    public function catalogo() {
         //obtener plataformas
         // se extrae de la base de datos el idProducto, nombreProducto y el precio, de las entidades que se encuentren en la tabla consola
         
@@ -144,7 +143,32 @@ class ProductosController extends AppController
             $this-> set ('plataforma', $qu['productos']['nombreProducto']);
         }
         //echo $descripcion;
-        $this->render();
+        
+        //Botón de añadir al carrito
+        $addcarrito = TableRegistry::get('carrito_compras')->newEntity();
+
+        if($this->request->is('post')) {
+            $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
+            
+            //debug ($this->request->data);
+            debug ($addcarrito);
+            
+            /*
+            if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
+                $this->Flash->success('Producto añadido al carrito de compras.');
+                return $this->redirect(['controller' => 'Productos', 'action' => 'catalogo']);
+            }
+            else {
+                $this->Flash->error('El producto no se ha añadido debido a un error.');
+            }
+            */
+            
+            
+        }
+
+        $this->set(compact('addcarrito'));
+        
+        //$this->render();
     }
    
     //Controlador de ofertas y combos
@@ -211,7 +235,7 @@ class ProductosController extends AppController
     //Controlador del carrito
     public function carrito($codigo) {
 
-        $datos = TableRegistry::get('carrito_compras')->find('all')->where("idCarrito = '".$codigo."'");
+        $datos = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
         
         $datos2 = TableRegistry::get('productos')->find('all');
