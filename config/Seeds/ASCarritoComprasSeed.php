@@ -37,8 +37,7 @@ class ASCarritoComprasSeed extends AbstractSeed
         for ($i = 0; $i < 50; $i++)
         {
             $data = [
-                'idCarrito' => $faker->unique()->numberBetween($min = 101, $max = 999),
-                'idProducto' => $faker->randomElement($array = $idProd),
+                'idProducto' => $faker->unique()->randomElement($array = $idProd),
                 'idPersona' => $faker->randomElement($array = $idPer),
                 'cantidad' => $faker->numberBetween($min = 1, $max = 100),
             ];
