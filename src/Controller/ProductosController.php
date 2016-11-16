@@ -149,18 +149,18 @@ class ProductosController extends AppController
    
     //Controlador de ofertas y combos
     public function ofertas() {
-        $numPage = 1;
+       /* $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         
         if ($nuevaPag && $nuevaPag > 0) {
             $numPage = $nuevaPag;
         }
-        
+        */
         $ofertas = $this -> Productos -> find ('all', 
             ['contain' => ['ofertas']]);
             
-        $ofertas = $ofertas -> limit(16) -> page ($numPage);
-        $this -> set ('numPage', $numPage);
+       /* $ofertas = $ofertas -> limit(16) -> page ($numPage);
+        $this -> set ('numPage', $numPage);*/
         $this->set('ofertas', $ofertas);
             
         $combos = $this -> Productos -> find ('all', 
