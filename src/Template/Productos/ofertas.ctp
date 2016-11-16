@@ -24,80 +24,57 @@
 
 <body>
   <?php 
+  	Include ("scripts/funciones.php");
+  	
 	//Datos de prueba para productos en oferta
 	global $IDOfertas;
-	$IDOfertas = array(
-	'PROD130043',
-	'PROD10192',
-	'PROD102710',
-	'PROD125163',
-	'PROD137584',
-	'PROD126427');
+	$IDOfertas = [];
+	foreach($ofertas as $idOferta){
+		array_push($IDOfertas, $idOferta['idProducto']);
+	}
 	
 	global $nombres;
-	$nombres = array(
-	'The Witcher 3',
-	'Persona 5',
-	'Zelda: Breath of the Wild',
-	'Halo 5: Guardians',
-	'Xbox One',
-	'The Last Guardian');
+	$nombres = [];
+	foreach($ofertas as $nombre){
+		array_push($nombres, $nombre['nombreProducto']);	
+	}
 	
 	global $tipos;
-	$tipos= array( //1=Digital, 2=Físico, 3=Plataforma
-	'2',
-	'1',
-	'2',
-	'1',
-	'3',
-	'2');
-	
+	$tipos = [];
+	foreach($ofertas as $tipo){
+		array_push($tipos, $tipo['tipo']);	
+	}
+
 	global $precios;
-	$precios = array( //Precios sin el descuento
-	'29 000',
-	'59 500',
-	'59 000',
-	'49 000',
-	'390 000',
-	'59 000');
+	$precios = [];
+	foreach($ofertas as $precio){
+		array_push($precios,$precio['precio']);
+	}
 	
 	global $descuentos;
-	$descuentos= array( //Descuento en porcentaje
-	'20',
-	'10',
-	'5',
-	'20',
-	'35',
-	'40');
+	$descuentos = [];
+	foreach($ofertas as $descuento){\
+		array_push($descuentos, $descuento['oferta']['descuento']);
+	}
 	
 	global $fechaInicio;
-	$fechaInicio = array( //Fecha en la que comienza la oferta
-	'12/11/2016',
-	'13/11/2016',
-	'02/11/2016',
-	'05/01/2016',
-	'10/11/2016',
-	'06/11/2016');
+	$fechaInicio = [];
+	foreach($ofertas as $fechaI){
+		array_push($fechaInicio, $fechaI['ofertas']['fechaInicio']);	
+	}
 
 	global $fechaFinal;
-	$fechaFinal= array( //Fecha en la que termina la oferta
-	'14/11/2016',
-	'19/11/2016',
-	'31/11/2016',
-	'05/11/2016',
-	'11/11/2016',
-	'12/11/2016');
+	$fechaFinal = [];
+	foreach($ofertas as $fechaF){
+		array_push($fechaFinal, $fechaF['ofertas']['fechaInicio']);	
+	}
 	
 	global $portadas;
-	$portadas = array(
-	'images/productos/juegos/aventura/thewitcher3.png',
-	'images/productos/juegos/rpg/persona5.png',
-	'images/productos/juegos/aventura/zeldabotw.png',
-	'images/productos/juegos/shooter/halo5.png',
-	'images/productos/consolas/XboxOne.png',
-	'images/productos/juegos/aventura/TheLastGuardian.png');
-	
-	//Datos de prueba para combos de 2 productos
+	$portadas = [];
+	foreach($ofertas as $portada){
+		array_push($portadas, "'src='".obtenerPortada( $portada['idProducto']));	
+	}
+
 	global $ID1Combo;
 	$ID1Combo= array(
 	'PROD130043',
@@ -140,7 +117,7 @@
 	'2',
 	'2');
 
-	Include ("scripts/funciones.php");
+
 	
 	//Función que devuelve el precio con un descuento
 	function calcularDescuento($precio, $descuento) {
@@ -179,6 +156,7 @@
 			}
 			echo "</div> </div> </div>";
 		}
+		
 	}
 	
 	//Función que muestra un combo en pantalla
@@ -267,6 +245,30 @@
 										mostrarOferta();
 									?>
 								</div>
+								
+													</div>
+                    <form id="pag" action="../ofertas" method="get">
+                        <?php 
+                           /* if (isset ($buscando)) {
+                                // Se están mostrando resultados de búsqueda.
+                                echo "<input type='hidden' name='busqueda' value='".$buscando."'>";
+                            }*/
+                            echo "<input type='hidden' name='nuevaPag' value='".strval($numPage - 1)."'>"; 
+                        ?>
+                        <button type='submit' class='btn btn-default'>Anterior</button>
+                    </form>
+                    <form id="pag" action="../ofertas" method="get">
+                        <?php 
+                           /* if (isset ($buscando)) {
+                                // Se están mostrando resultados de búsqueda.
+                                echo "<input type='hidden' name='busqueda' value='".$buscando."'>";
+                            }*/
+                            echo "<input type='hidden' name='nuevaPag' value='".strval($numPage + 1)."'>"; 
+                        ?>
+                        <button type='submit' class='btn btn-default'>Siguiente</button>
+                    </form>
+				</div>
+								
 						    </div>
 						    
 							<div class="tab-pane fade" id="submenu2" >

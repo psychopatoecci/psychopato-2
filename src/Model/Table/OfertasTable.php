@@ -33,6 +33,10 @@ class OfertasTable extends Table
         $this->table('ofertas');
         $this->displayField('idProducto');
         $this->primaryKey(['idProducto', 'fechaInicio', 'fechaFin']);
+        
+      /*  $this->belongsTo('productos', [
+            'foreignKey' => 'idProducto',
+            'joinType' => 'INNER']);*/
     }
 
     /**
@@ -61,4 +65,7 @@ class OfertasTable extends Table
 
         return $validator;
     }
+    public function afterFind($results, $primary = false) {
+        return Hash::filter($results);
+}
 }

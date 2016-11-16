@@ -6,7 +6,7 @@ class CreateCombosOfertasMigration extends AbstractMigration
 {
     public function change()
     {
-        $table = $this->table('productosCombos', ['id' => false, 'primary_key' => ['idCombo', 'idProducto']]);
+        $table = $this->table('productos_combos', ['id' => false, 'primary_key' => ['idCombo', 'idProducto']]);
         $table->addColumn('idCombo', 'string', [
             'default' => null,
             'limit' => 50,

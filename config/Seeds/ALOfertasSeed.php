@@ -32,7 +32,7 @@ class ALOfertasSeed extends AbstractSeed
                 'idProducto' => $faker->unique->randomElement($array = $idProd),
                 'fechaInicio'  => $faker->date($format = 'Y-m-d', $max = '2014-01-01'),
                 'fechaFin'  => $faker->date($format = 'Y-m-d', $max = '2017-01-01'),
-                'descuento' => $faker->numberBetween($min = 10000, $max = 100000)
+                'descuento' => $faker->numberBetween($min = 1, $max = 100)
             ];
         }
         $table = $this->table('ofertas');

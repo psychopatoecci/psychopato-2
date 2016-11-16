@@ -36,6 +36,14 @@ class ProductosTable extends Table
         /*pruebas*/
         $this->hasOne('video_juegos',['foreignKey'=>'idVideoJuego']);
         $this->hasOne('consolas', ['foreignKey' => 'idConsola']);
+        $this->hasOne('ofertas', ['foreignKey' => 'idProducto',
+            'joinType' => 'INNER']);
+            
+        $this->hasOne('combos', ['foreignKey' => 'idProducto',
+            'joinType' => 'INNER']);
+            
+        $this->hasMany('productosCombos', ['foreignKey' => 'idProducto',
+            'joinType' => 'INNER']);
     }
 
     /**
