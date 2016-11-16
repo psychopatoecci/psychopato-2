@@ -14,13 +14,21 @@ class CreateCarritoCompras extends AbstractMigration
     {
         $table = $this -> table ( 'carrito_compras', [
             'id' => false,
-            'primary_key' => [ 'idCarrito' , 'idProducto' ] ] );
-        
-        $table -> addColumn (
-            'idCarrito',
-            'integer',
-            [ 'default' => null, 'limit' => 11, 'null' => false ]
+            'primary_key' => [ 'idProducto' ] ] );
+            
+                $table -> addColumn (
+            'idPersona',
+            'string',
+            [ 'default' => null, 'limit' => 50, 'null' => false ]
         );
+        $table -> addForeignKey (
+            'idPersona',
+            'personas',
+            'identificacion',
+            [ 'delete' => 'CASCADE', 'update' => 'CASCADE' ]
+        );
+        
+        
         $table -> addColumn (
             'idProducto',
             'string',
@@ -32,17 +40,7 @@ class CreateCarritoCompras extends AbstractMigration
             'idProducto',
             [ 'delete' => 'CASCADE', 'update' => 'CASCADE' ]
         );    
-        $table -> addColumn (
-            'idPersona',
-            'string',
-            [ 'default' => null, 'limit' => 50, 'null' => false ]
-        );
-        $table -> addForeignKey (
-            'idPersona',
-            'personas',
-            'identificacion',
-            [ 'delete' => 'CASCADE', 'update' => 'CASCADE' ]
-        );
+
 
            
 
