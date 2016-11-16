@@ -49,7 +49,6 @@
 								echo "<li class='active'><a href='#datosgenerales".$us['identificacion']."' data-toggle='tab'>Datos generales</a></li>";
 								echo "<li><a href='#direcciones".$us['identificacion']."' data-toggle='tab'>Direcciones</a></li>";
 								echo "<li><a href='#tarjetas".$us['identificacion']."' data-toggle='tab'>Tarjetas</a></li>";
-								echo "<li><a href='#borrar".$us['identificacion']."' data-toggle='tab'>Borrar usuario</a></li>";
 								?>
 							</ul>
 						</div>
@@ -57,7 +56,7 @@
 									
 									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$us['identificacion']."' >"; ?>
 
-										<form id="guardarcambios" action="../personas/admin_usuarios" method="post">
+										<form id="guardarcambios" action="../personas/cuenta" method="post">
                                             <input type="hidden" name="tipoReq" value="generales">
 											<div class='col-sm-3'>
 												<h3>Identificación:</h3>
@@ -101,8 +100,9 @@
 										</form>
 									</div>
 									<?php echo "<div class='tab-pane fade' id='tarjetas".$us['identificacion']."'>";?>
-                                        <h4>Tarjetas</h4>
-                                            <form id="borrartarjeta" action="../personas/admin_usuarios" method="post">
+                                        <div class='col-sm-4'>
+                                        	<h4>Tarjetas</h4>
+                                            <form id="borrartarjeta" action="../personas/cuenta" method="post">
                                             <?php
                                                 $i = 0;
                                                 foreach ($us['tarjetas'] as $tarjeta) {
@@ -117,11 +117,24 @@
                                             <input type="hidden" name="tipoReq" value="tarjetas">
 											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
 										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
-                                        </form>
+                                        	</form>
+                                        </div>
+                                        <div class='col-sm-4'>
+                                            <form id="agregarTarjeta" action="../personas/cuenta" method="post">
+                                            <input type="hidden" name="tipoReq" value="AgregarTarjeta">
+                                            <h3>Agregar medio de pago:</h4><br>
+                                            <?= $this->Form->input('numTarjeta', ['placeholder' => 'Número de tarjeta', 'label' => false, 'required' ]) ?>
+                                            <?= $this->Form->input('csv', ['placeholder' => 'CSV', 'label' => false, 'required' ]) ?>
+                                            <br><br>
+										    <button type='submit' class='btn btn-default'>Agregar</button>
+                                            </form>
+
+                                        </div>
                                     </div>
+
 									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
 
-										<form id="guardardireccion" action="../personas/admin_usuarios" method="post">
+										<form id="guardardireccion" action="../personas/cuenta" method="post">
                                             <input type="hidden" name="tipoReq" value="direcciones">
 											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
 											<h4>-Direcciones-</h4><br>
