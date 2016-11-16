@@ -33,7 +33,7 @@ class ProductosController extends AppController
         $this->set('idProd', $idProd);
         $this->set('user', $this->Auth->user('id'));
         
-        $carrito_compras = $this->Carrito_compras->find('all');
+        //$carrito_compras = $this->Carrito_compras->find('all');
     }
     /**
      * funcion catalogo

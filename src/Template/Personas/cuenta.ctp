@@ -24,87 +24,9 @@
 
 <body>
  <?php 
-	/*$identificacion = 'ChuckNorris';
-	$nombre = 'Chuck';
-	$apellido1 = 'Norris';
-	$apellido2 = '';
-	$fechanacimiento = '10/03/1940';
-	$correo = 'gmail@chucknorris.com';
-	$password = 'elchuck01';
-	
-	$telefonoCelular = '78451649';
-	$telefonoCasa = '24331512';
-	$telefonoTrabajo = '25789566';
-	$telefonoOtro = '';
-	
-	$provinciaCasa = 'Alajuela';
-	$cantonCasa = 'Desamparados';
-	$distritoCasa = 'San Antonio';
-	$direccionCasa = 'Por ahí a la par de la cosa esa.';*/
-	
-	$provinciaTrabajo = 'Cartago';
-	$cantonTrabajo = 'Escazú';
-	$distritoTrabajo = 'Guácima';
-	$direccionTrabajo = 'Avenica feelings. En el zoológico.';
-	
-	$provinciaOtro = '';
-	$cantonOtro = '';
-	$distritoOtro = '';
-	$direccionOtro = '';
-	
-	$tarjetaNombre1 = 'Chuck Norris';
-	$tarjetaNumero1 = '2145162412458459';
-	$tarjetaFecha1 = '10/02/2050';
-	$tarjetaCSC1 = '754';
-	
-	$tarjetaNombre2 = 'El Chuck Norris';
-	$tarjetaNumero2 = '84512614777771521';
-	$tarjetaFecha2 = '02/05/2017';
-	$tarjetaCSC2 = '123';
-	
-	$tarjetaNombre3 = '';
-	$tarjetaNumero3 = '';
-	$tarjetaFecha3 = '';
-	$tarjetaCSC3 = '';
-	
-	global $identificacion;
-	global $nombre;
-	global $apellido1;
-	global $apellido2;
-	global $fechanacimiento;
-	global $correo;
-	global $password;
-	
-	global $telefonoCelular;
-	global $telefonoCasa;
-	global $telefonoTrabajo;
-	global $telefonoOtro;
-	
-	global $provinciaCasa;
-	global $cantonCasa;
-	global $distritoCasa;
-	global $direccionCasa;
-	
-	$identificacion = $Id;
-	$nombre = $Nombre;
-	$apellido1 = $Apellido1;
-	$apellido2 = $Apellido2;
-	$fechanacimiento = $Fecha;
-	$correo = $Correo;
-	$password = $Contraseña;
-	
-	$telefonoCelular = $Telcel;
-	$telefonoCasa = $Telcasa;
-	$telefonoTrabajo = $Teltrabajo;
-	$telefonoOtro = $Telotro;
-	
-	$provinciaCasa = $Prov[0];
-	$cantonCasa = $Cant[0];
-	$distritoCasa = $Dist[0];
-	$direccionCasa = $Det[0];
 	
 	//Nomenclatura de la base para las provincias
-	$provinciasBase = array('San Jose','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limon','');
+	$provinciasBase = array('San José','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limón','');
 ?>
 			
 	<!--Header-->
@@ -123,203 +45,141 @@
 						<h1>Administración de la cuenta</h1><br>
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#info" data-toggle="tab">Información personal</a></li>
-								<li><a href="#direcciones" data-toggle="tab">Direcciones</a></li>
-								<li><a href="#pagos" data-toggle="tab">Medios de pago</a></li>
-
+								<?php //Menu de navegacion
+								echo "<li class='active'><a href='#datosgenerales".$us['identificacion']."' data-toggle='tab'>Datos generales</a></li>";
+								echo "<li><a href='#direcciones".$us['identificacion']."' data-toggle='tab'>Direcciones</a></li>";
+								echo "<li><a href='#tarjetas".$us['identificacion']."' data-toggle='tab'>Tarjetas</a></li>";
+								echo "<li><a href='#borrar".$us['identificacion']."' data-toggle='tab'>Borrar usuario</a></li>";
+								?>
 							</ul>
 						</div>
-						
-						<div class="tab-pane fade active in" id="info" >
-							<div class="signup-form">
-								<form action="#">
-									<div class="col-sm-4">
-										<h3>Nombre de usuario:</h3>
-										<?php echo "<h4>".$identificacion."</h4> ";?>
+						<div class='tab-content'>
+									
+									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$us['identificacion']."' >"; ?>
+
+										<form id="guardarcambios" action="../personas/admin_usuarios" method="post">
+                                            <input type="hidden" name="tipoReq" value="generales">
+											<div class='col-sm-3'>
+												<h3>Identificación:</h3>
+												<?php echo "".$us['identificacion']; ?>
+												<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
+												<br><h4>Nombre:</h4>
+												<?php echo "<input type='text' name='nombre' placeholder='Nombre' value='".$us['nombre']."'>"; ?>
+												<h4>1° apellido:</h4>
+												<?php echo "<input type='text' name='apellido1' placeholder='Primer apellido' value='".$us['apellido1']."'>"; ?>
+												<h4>2° apellido:</h4>
+												<?php echo "<input type='text' name='apellido2' placeholder='Segundo apellido' value='".$us['apellido2']."'>"; ?>
+												<br><br><br><br>
+											</div>
+											
+											<div class='col-sm-3'>
+												<h3>-Teléfonos-</h3><br>
+												<?php
+                                                    $tipos   = ['Casa' => 0, 'Trabajo' => 0,'Celular' => 0, 'Otro' => 0];
+                                                    foreach ($us['telefonos_personas'] as $telefono) {
+                                                        $tipos[$telefono['tipo_tel']] = $telefono['telefono'];
+                                                    }
+                                                    foreach ($tipos as $tipo => $num) {
+                                                        echo "<h4>".$tipo.":</h4>";
+                                                        echo "<input type='text' name='tel".$tipo."' placeholder = 'Telefono' value='".$num."'>";
+                                                        if ($num > 0)
+                                                            echo "<input type='checkbox' name='borrar".$tipo."'>Borrar";
+                                                    }
+                                                ?>
+												
+												<br><br><br><br><br><br><br><br><br><br>
+												<button type='submit' class='btn btn-default'>Guardar cambios</button>
+												<br><br><br>
+											</div>
 										
-										<h3>Nombre:</h3>
-										<?php echo "<input type='text' name='nombre' placeholder='Nombre'
-										value = '".$nombre."'>";?>
-										<h3>1° apellido:</h3>
-										<?php echo "<input type='text' name='apellido1' placeholder='Primer apellido'
-										value = '".$apellido1."'>";?>
-										<h3>2° apellido:</h3>
-										<?php echo "<input type='text' name='apellido2' placeholder='Segundo apellido'
-										value = '".$apellido2."'>";?>
 										
+											<div class='col-sm-3'>
+												<h4>Fecha de nacimiento:</h4>
+												<?php echo "<input type='text' name='fecha' placeholder='Fecha de nacimiento' value='".$us['fecha_nacimiento']."'>"; ?>
+													
+											</div>
+										</form>
+									</div>
+									<?php echo "<div class='tab-pane fade' id='tarjetas".$us['identificacion']."'>";?>
+                                        <h4>Tarjetas</h4>
+                                            <form id="borrartarjeta" action="../personas/admin_usuarios" method="post">
+                                            <?php
+                                                $i = 0;
+                                                foreach ($us['tarjetas'] as $tarjeta) {
+                                                    echo "<div class='col-sm-3'>
+                                                        <input type='text' name='tarjeta".$i."' value='".substr($tarjeta['idTarjeta'], 0, 4)."************' readonly>
+                                                    <input type='checkbox' name='borrar".$i."' value='on'> Borrar
+                                                    </div>";
+                                                    $i ++;
+                                                }
+                                            	echo "<input type='hidden' name='cantidad' value='".$i."'>";
+                                            ?>
+                                            <input type="hidden" name="tipoReq" value="tarjetas">
+											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
+										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
+                                        </form>
+                                    </div>
+									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
+
+										<form id="guardardireccion" action="../personas/admin_usuarios" method="post">
+                                            <input type="hidden" name="tipoReq" value="direcciones">
+											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
+											<h4>-Direcciones-</h4><br>
+                                            <?php
+												$i = 0;
+                                                foreach ($us['personas_direcciones'] as $direccion) {
+											    echo "<div class='col-sm-3'>
+                                                    <h4>Provincia:</h4>
+                                                    <select name='provincia".$i."'>";
+                                                    foreach ($provinciasBase as $prov) {
+                                                        if ($direccion['nombreProvincia'] === $prov) {
+                                                            echo "<option selected='selected' value='".$prov."''>".$prov."</option>";
+                                                        } else {
+                                                            echo "<option value='".$prov."''>".$prov."</option>";
+                                                        }
+                                                    }
+                                                    echo "</select>
+                                                    <h4>Cantón:</h4>
+                                                    <input type='text' name='canton".$i."' placeholder='Cantón' value='".$direccion['nombreCanton']."'>
+                                                    <h4>Distrito:</h4>
+                                                    <input type='text' name='distrito".$i."' placeholder='Distrito' value='".$direccion['nombreDistrito']."'>
+                                                    <h4>Dirección exacta:</h4>
+                                                    <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value='".$direccion['detalles']."'>
+                                                    <input type='checkbox' name='borrar".$i."' value='on'> Borrar
+												    </div>";
+													$i ++;
+                                            	}
+                                                echo "<div class='col-sm-3'>
+                                                <h4>Provincia:</h4>
+                                                <select name='provincia".$i."'>";
+                                                foreach ($provinciasBase as $prov) {
+                                                    if ('Alajuela' === $prov) {
+                                                        echo "<option selected='selected' value='".$prov."''>".$prov."</option>";
+                                                    } else {
+                                                        echo "<option value='".$prov."''>".$prov."</option>";
+                                                    }
+                                                }
+                                                echo "</select>
+                                                <h4>Cantón:</h4>
+                                                <input type='text' name='canton".$i."' placeholder='Cantón' value='Alajuela'>
+                                                <h4>Distrito:</h4>
+                                                <input type='text' name='distrito".$i."' placeholder='Distrito' value='Alajuela'>
+                                                <h4>Dirección exacta:</h4>
+                                                <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value=''>
+                                                <input type='checkbox' name='agregar' value='on'> Agregar
+												</div>";
+
+
+                                            	echo "<input type='hidden' name='cantidad' value='".$i."'>";
+                                            ?>
+										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
+										</form>
 									</div>
 									<div class="col-sm-4">
-										<h3>Fecha de nacimiento:</h3>
-										<?php echo "<input type='text' name='fecha' placeholder='Fecha de nacimiento'
-										value = '".$fechanacimiento."'>";?>
-										<h3>Correo electrónico:</h3>
-										<?php echo "<input type='text' name='email' placeholder='Correo eletrónico'
-										value = '".$correo."'>";?>
-										<h3>Teléfono celular:</h3>
-										<?php echo "<input type='telephone' name='telcelular' placeholder='Teléfono celular'
-										value = '".$telefonoCelular."'>";?>
-										<br>
-										
-									</div>
-									<div class="col-sm-4">
-										
-										<h3>-Cambiar contraseña-</h3>
-										Contraseña actual:
-										<input type="password" placeholder="Digite su contraseña actual"/>
-										Nueva contraseña:
-										<input type="password" placeholder="Digite la nueva contraseña"/>
-										<br><br><button type="submit" class="btn btn-default" title = 'Guardar los nuevos datos'>Guardar cambios</button>
-									</div>
 								</form>
 							</div>
 						</div>
-						
-						<div class="tab-pane fade" id="direcciones" >
-							<div class="signup-form">
-								<form action="#">
-									<div class='col-sm-4'>
-										<h3>Dirección de la casa:</h4><br>
-										
-										<h4>Teléfono:</h4>
-										<?php echo "<input type='telephone' name='telcasa' placeholder='Teléfono de la casa'
-										value = '".$telefonoCasa."'>";?>
-										
-										<h4>Provincia:</h4>
-										<select name='Provincia1'>
-											<?php
-											for ($j = 0; $j < count($provinciasBase); $j++) {
-												if ($provinciaCasa === $provinciasBase[$j]) {
-													echo "<option selected='selected' value='".$j."''>".$provinciasBase[$j]."</option>";
-												} else {
-													echo "<option value='".$j."''>".$provinciasBase[$j]."</option>";
-												}
-											}
-											?>
-										</select>		
-										<h4>Cantón:</h4>
-										<?php echo "<input type='telephone' name='canton1' placeholder='Cantón'
-										value = '".$cantonCasa."'>";?>
-										<h4>Distrito:</h4>
-										<?php echo "<input type='telephone' name='distrito1' placeholder='Distrito'
-										value = '".$distritoCasa."'>";?>
-										<h4>Dirección exacta:</h4>
-										<?php echo "<textarea rows='10' cols='300' name='exacta1' 
-										placeholder='Dirección exacta'>".$direccionCasa."</textarea>";?>
-									</div>
-									<div class='col-sm-4'>		
-										<h3>-Dirección del trabajo-</h4><br>
-										
-										<h4>Teléfono:</h4>
-										<?php echo "<input type='telephone' name='teltrabajo' placeholder='Teléfono del trabajo'
-										value = '".$telefonoTrabajo."'>";?>
-										
-										<h4>Provincia:</h4>
-
-										<select name='Provincia2'>
-										<?php
-											for ($j = 0; $j < count($provinciasBase); $j++) {
-												if ($provinciaTrabajo === $provinciasBase[$j]) {
-													echo "<option selected='selected' value='".$j."''>".$provinciasBase[$j]."</option>";
-												} else {
-													echo "<option value='".$j."''>".$provinciasBase[$j]."</option>";
-												}
-											}
-										?>
-										</select>
-											
-										<h4>Cantón:</h4>
-										<?php echo "<input type='telephone' name='canton2' placeholder='Cantón'
-										value = '".$cantonTrabajo."'>";?>
-										<h4>Distrito:</h4>
-										<?php echo "<input type='telephone' name='distrito2' placeholder='Distrito'
-										value = '".$distritoTrabajo."'>";?>
-										<h4>Dirección exacta:</h4>
-										<?php echo "<textarea rows='10' cols='300' name='exacta2' 
-										placeholder='Dirección exacta'>".$direccionTrabajo."</textarea>";?>
-										
-										<br><br><br>
-										<div class="signup-form">
-											<center>
-												<button type="submit" class="btn btn-default" title = 'Guardar los nuevos datos'>Guardar cambios</button>
-											</center>
-										</div>
-									</div>
-									<div class='col-sm-4'>		
-										<h3>-Dirección (Otro)-</h4><br>
-										
-										<h4>Teléfono:</h4>
-										<?php echo "<input type='telephone' name='telotro' placeholder='Teléfono (Otro)'
-										value = '".$telefonoOtro."'>";?>
-										
-										<h4>Provincia:</h4>
-
-										<select name='Provincia3'>
-										<?php
-											for ($j = 0; $j < count($provinciasBase); $j++) {
-												if ($provinciaOtro === $provinciasBase[$j]) {
-													echo "<option selected='selected' value='".$j."''>".$provinciasBase[$j]."</option>";
-												} else {
-													echo "<option value='".$j."''>".$provinciasBase[$j]."</option>";
-												}
-											}
-										?>
-										</select>
-											
-										<h4>Cantón:</h4>
-										<?php echo "<input type='telephone' name='canton3' placeholder='Cantón'
-										value = '".$cantonOtro."'>";?>
-										<h4>Distrito:</h4>
-										<?php echo "<input type='telephone' name='distrito3' placeholder='Distrito'
-										value = '".$distritoOtro."'>";?>
-										<h4>Dirección exacta:</h4>
-										<?php echo "<textarea rows='10' cols='300' name='exacta3' 
-										placeholder='Dirección exacta'>".$direccionOtro."</textarea>";?>
-										
-										<br><br><br><br>
-						
-									</div>
-								</form>
-							</div>
-						</div>
-						<div class="tab-pane fade" id="pagos" >
-							<div class="signup-form">
-									<div class='col-sm-4'>
-										<h3>Tarjetas</h3>
-										<?php
-											foreach ($tarjetas as $trj) {
-												echo "<form id='borrar' action='../personas/cuenta' method='post'>
-                                                <input type='text' name='borrar' value='".$trj."' readonly>
-                                                <button type='submit' class='btn btn-default'>
-                                                    Borrar
-                                                </button></p></form>";
-                                            }
-										?>
-									</div>
-                                    <form id='crear' action='../personas/cuenta' method='post'>
-									<div class='col-sm-4'>
-								
-										<h3>Agregar medio de pago:</h4><br>
-										<?= $this->Form->input('numTarjeta', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'Número de tarjeta', 'label' => false, 'required' ]) ?>
-										<?= $this->Form->input('csv', ['class' => 'col-sm-2 col-sm-offset-1', 'placeholder' => 'CSV', 'label' => false, 'required' ]) ?>
-										
-									</div>
-									<div class='col-sm-4'>
-
-						
-										<br><br><br>
-										<div class="signup-form">
-											<center>
-												<?= $this->Form->button('Guardar los cambios', ['class' => 'btn btn-default']) ?>
-											</center>
-										</div>
-									</div>
-                                    </form>
-							</div>
-						</div>
-							
-						
 					</div>
-
 				</div>
 			</div>
 		</div>
