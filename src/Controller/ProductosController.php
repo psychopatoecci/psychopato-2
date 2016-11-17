@@ -44,8 +44,7 @@ class ProductosController extends AppController
      * 
      * falta terminar
      */
-    public function catalogo()
-    {
+    public function catalogo() {
         //obtener plataformas
         // se extrae de la base de datos el idProducto, nombreProducto y el precio, de las entidades que se encuentren en la tabla consola
         
@@ -53,7 +52,7 @@ class ProductosController extends AppController
         $query = $this -> Productos -> find ('all', array(
         'fields' => array('Productos.idProducto','Productos.precio','Productos.nombreProducto'),'
         conditions'=>$condicion))->contain(['consolas']);*/
-        
+         
         //se crea la sentencia sql
         $query = $this->Productos->find('all');
         $idConsolas       = [];
@@ -76,13 +75,13 @@ class ProductosController extends AppController
                 array_push($idFisicos, $con->idProducto);
                 array_push($precioFisicos, $con->precio);
                 array_push($nombreFisicos, $con->nombreProducto);
-                array_push($generoFisicos, 'rpg');
+                array_push($generoFisicos, 'aventura');
                 array_push($consolaFisicos, 'ps4');
             } else if ($tipo == 2) {
                 array_push($idDigitales, $con->idProducto);
                 array_push($precioDigitales, $con->precio);
                 array_push($nombreDigitales, $con->nombreProducto);
-                array_push($generoDigitales, 'rpg');
+                array_push($generoDigitales, 'aventura');
                 array_push($consolaDigitales, 'ps4');
             } else if ($tipo == 3) {
                 array_push($idConsolas, $con->idProducto);
@@ -107,8 +106,23 @@ class ProductosController extends AppController
         $this -> set ('consolaDigitales',$consolaDigitales);
         //se llama a la vista
         
-        $this->render();
-        
+        //Botón de añadir al carrito (aun no sirve T.T)
+        $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
+
+        if($this->request->is('post')) {
+            $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
+
+            if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
+                $this->Flash->success('Producto añadido al carrito de compras.');
+                //Redirecciona al carrito del usuario:
+                return $this->redirect(['action' => '../carrito/'.$this->request->session()->read('Auth.User.username')]);
+            }
+            else {
+                $this->Flash->error('El producto no se ha añadido debido a un error.');
+            }
+        }
+
+        $this->set(compact('addcarrito'));
     }
 
     /**
@@ -125,7 +139,7 @@ class ProductosController extends AppController
         //se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
         $producto = $this -> Productos -> get ($codigo);
         $this -> set ('nombre', $producto ['nombreProducto']);
-        $this -> set ('IDProducto', $codigo);
+        $this -> set ('IDProd', $codigo);
         $this -> set ('precio', $producto ['precio']);
         $this -> set ('portada', $producto ['imagen']);
         $this -> set ('categoria', StrVal ($producto ['tipo']));
@@ -144,23 +158,83 @@ class ProductosController extends AppController
             $this-> set ('plataforma', $qu['productos']['nombreProducto']);
         }
         //echo $descripcion;
-        $this->render();
+        
+        //Botones de añadir al carrito y wishlist
+        $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
+        $addwishlist = TableRegistry::get('wish_list_productos')->newEntity();
+ 
+        if($this->request->is('post')) {
+            //debug ($this->request->data);
+            //debug ($addcarrito);
+            
+            if (isset($this->request->data['BotonCarrito'])) {
+               $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
+
+                if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
+                    $this->Flash->success('Producto añadido al carrito de compras.');
+                    //Redirecciona al carrito del usuario:
+                    return $this->redirect(['action' => '../carrito/'.$this->request->session()->read('Auth.User.username')]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha añadido debido a un error.');
+                }
+            } else if (isset($this->request->data['BotonWishlist'])) {
+                $addwishlist = TableRegistry::get('wish_list_productos')->patchEntity($addwishlist, $this->request->data);
+    
+                if(TableRegistry::get('wish_list_productos')->save($addwishlist)) {
+                    $this->Flash->success('Producto añadido a la wishlist.');
+                    //Redirecciona a la wishlist del usuario:
+                    return $this->redirect(['action' => '../wishlist/'.$this->request->session()->read('Auth.User.username')]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha añadido debido a un error.');
+                }
+            }
+        }
+        
+        $this->set(compact('addcarrito'));
+        $this->set(compact('addwishlist'));
+    }
+    
+    //Controlador del carrito
+    public function carrito($codigo) {
+
+        $datos = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
+        $this -> set ('datos', $datos);
+        
+        $datos2 = TableRegistry::get('productos')->find('all');
+        $this -> set ('datos2', $datos2);
+        
+        //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/carrito/Heber74
+
+    }
+    
+    //Controlador de la wishlist
+    public function wishlist($codigo) {
+
+        $datos = TableRegistry::get('wish_list_productos')->find('all')->where("identificacionPersona = '".$codigo."'");
+        $this -> set ('datos', $datos);
+        
+        $datos2 = TableRegistry::get('productos')->find('all');
+        $this -> set ('datos2', $datos2);
+        
+        //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/wishlist/Emmett94
     }
    
     //Controlador de ofertas y combos
     public function ofertas() {
-        $numPage = 1;
+       /* $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         
         if ($nuevaPag && $nuevaPag > 0) {
             $numPage = $nuevaPag;
         }
-        
+        */
         $ofertas = $this -> Productos -> find ('all', 
             ['contain' => ['ofertas']]);
             
-        $ofertas = $ofertas -> limit(16) -> page ($numPage);
-        $this -> set ('numPage', $numPage);
+       /* $ofertas = $ofertas -> limit(16) -> page ($numPage);
+        $this -> set ('numPage', $numPage);*/
         $this->set('ofertas', $ofertas);
             
         $combos = $this -> Productos -> find ('all', 
@@ -168,14 +242,14 @@ class ProductosController extends AppController
             $this->set('combos', $combos);
         
     }
+    
      /** 
      funcion para mostrar la ventana de administracion de productos
     * llama la vista  adminUsuarion
     * se busca en la base de datos la informacion de los productos (tablas preoductos, video_juegos, generos)
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
-    public function AdminProductos()
-    {
+    public function AdminProductos() {
         
         //$query = $this->Productos->find('all')->contain('video_juegos');
         
@@ -223,27 +297,6 @@ class ProductosController extends AppController
     //Controlador del error 404
     public function error404() {
         $this->render();
-    }
-
-    //Controlador del carrito
-    public function carrito($codigo) {
-
-        $datos = TableRegistry::get('carrito_compras')->find('all')->where("idCarrito = '".$codigo."'");
-        $this -> set ('datos', $datos);
-        
-        $datos2 = TableRegistry::get('productos')->find('all');
-        $this -> set ('datos2', $datos2);
-
-    }
-    
-    //Controlador de la wishlist
-    public function wishlist($codigo) {
-
-        $datos = TableRegistry::get('wish_list_productos')->find('all')->where("idWishList = '".$codigo."'");
-        $this -> set ('datos', $datos);
-        
-        $datos2 = TableRegistry::get('productos')->find('all');
-        $this -> set ('datos2', $datos2);
     }
     
     //Controlador de confirmación de una compra

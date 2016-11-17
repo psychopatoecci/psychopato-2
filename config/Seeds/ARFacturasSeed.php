@@ -27,6 +27,7 @@ class ARFacturasSeed extends AbstractSeed
                 'idFactura' => "FAC".$faker->unique()->numberBetween($min = 2000, $max = 600000),
                 'fechaFactura' => $faker->date($format = 'Y-m-d', $max = '2010-01-01'),
                 'idUsuario' => $id,
+                'precioTotal' => $faker->numberBetween($min = 10000, $max = 956325415),
                 'estadoCompra' => $faker->numberBetween($min = 1, $max = 3),
             ];
             //$populator->execute();

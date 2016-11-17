@@ -46,11 +46,6 @@ class CreateProductosFacturas extends AbstractMigration
             'idProducto',
             array('delete' => 'NO ACTION', 'update' => 'CASCADE')
         );
-        $table->addColumn('precioTotal', 'integer', [
-            'default' => null,
-            'limit' => 11,
-            'null' => false,
-        ]);
         $table->addColumn('cantidad', 'integer', [
             'default' => null,
             'limit' => 11,

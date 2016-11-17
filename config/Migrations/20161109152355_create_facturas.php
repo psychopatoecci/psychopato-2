@@ -45,6 +45,11 @@ class CreateFacturas extends AbstractMigration
         $table->addForeignKey('idUsuario', 'personas', 
             'identificacion', array('delete' => 'NO_ACTION', 'update' => 'CASCADE')
         );
+        $table->addColumn('precioTotal', 'integer', [
+            'default' => null,
+            'limit' => 11,
+            'null' => false,
+        ]);
         $table->addColumn('estadoCompra', 'integer', [
             'default' => null,
             'limit' => 2,

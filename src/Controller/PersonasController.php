@@ -492,104 +492,155 @@ class PersonasController extends AppController
         return $this->redirect(['action' => 'index']);
     }
     public function cuenta () {
-        $tarjetas  = TableRegistry::get('tarjetas');
-        $telefonos  = TableRegistry::get('telefonos_personas');
-        $direcciones  = TableRegistry::get('personas_direcciones');
-        
-        $idPersona = $this->Auth->user('username');
-        $existentes = []; // Tarjetas de esta persona.
-        $telcasa= NULL;
-        $teltrabajo=NULL;
-        $telcel=NULL;
-        $telotro=NULL;
-       // $dirs=[];
-       
-       $prov=NULL; 
-       $cant=NULL;
-       $dist=NULL;
-       $det=NULL;
-               
-        $todas = $tarjetas -> find ('all'); // Todas las tarjetas.
-        $todasdir=$direcciones -> find ('all'); // Todas las direcciones.
-        $todastel=$telefonos -> find ('all'); // Todas las telefonos.
-        
-        $usuario = $this->Personas->get($idPersona);
-        
-        foreach ($todasdir as $individual) {
-            if ($individual ['idPersona'] == $idPersona) {
-                $prov [] = $individual ['nombreProvincia'];
-                $cant [] = $individual ['nombreCanton'];
-                $dist [] = $individual ['nombreDistrito'];
-                $det [] = $individual ['detalles'];
-                
-            }
-        }
-        
-        foreach ($todastel as $individual) {
-            if ($individual ['identificacion'] == $idPersona) {
-                if($individual ['tipo'] == 'casa'){
-                    $telcasa = $individual ['telefono'];
-                }else{
-                    if($individual ['tipo'] == 'trabajo'){
-                        $teltrabajo = $individual ['telefono'];
-                    }else{
-                        if($individual ['tipo'] == 'celular'){
-                            $telcel= $individual ['telefono'];
-                        }else{
-                            $telotro = $individual ['telefono'];
+        $usId = $this->request->session()->read('Auth.User.username');
+        $user = $this -> Personas -> get ($usId , 
+            ['contain' => ['personas_direcciones',
+            'telefonos_personas', 'tarjetas']]);
+		$this -> set ('us', $user);
+        if ($this->request->is('post')) {
+            //$this -> set ('request', $this->request->data);
+            $datos = $this -> request -> data;
+			if ($datos ['tipoReq'] == 'generales') {
+                // Se actualizan los datos generales del usuario.
+				$user [ 'nombre'  ] = $datos ['nombre'];
+				$user ['apellido1'] = $datos ['apellido1'];
+				$user ['apellido2'] = $datos ['apellido2'];
+				$this -> Personas -> save ($user);
+				$telefonos = TableRegistry::get('telefonos_personas');
+                if (isset ($datos['borrarTrabajo'])) {
+                    $porBorrar = $telefonos -> get (
+                        ['identificacion' => $datos ['id'],
+                        'tipo_tel' => 'Trabajo']
+                    );
+                    $telefonos -> delete ($porBorrar);
+                }
+				else if (isset ($datos['telTrabajo']) && $datos ['telTrabajo'] > 0) {
+					$telTrabajo = $telefonos -> newEntity();
+					$telTrabajo ['identificacion'] = $datos ['id'];
+					$telTrabajo ['tipo_tel']       = 'Trabajo';
+					$telTrabajo ['telefono']       = $datos['telTrabajo'];
+					$telefonos -> save ($telTrabajo);
+				}
+                if (isset ($datos['borrarCasa'])) {
+                    $porBorrar = $telefonos -> get (
+                        ['identificacion' => $datos ['id'],
+                        'tipo_tel' => 'Casa']
+                    );
+                    $telefonos -> delete ($porBorrar);
+                } else
+				if (isset ($datos['telCasa']) && $datos ['telCasa'] > 0) {
+					$telCasa = $telefonos -> newEntity();
+					$telCasa ['identificacion'] = $datos ['id'];
+					$telCasa ['tipo_tel']       = 'Casa';
+					$telCasa ['telefono']       = $datos['telCasa'];
+					$telefonos -> save ($telCasa);
+				}
+                if (isset ($datos['borrarOtro'])) {
+                    $porBorrar = $telefonos -> get (
+                        ['identificacion' => $datos ['id'],
+                        'tipo_tel' => 'Otro']
+                    );
+                    $this -> set ('spooks', $porBorrar);
+                    $telefonos -> delete ($porBorrar);
+                } else
+				if (isset ($datos['telOtro']) && $datos ['telOtro'] > 0) {
+					$telOtro = $telefonos -> newEntity();
+					$telOtro ['identificacion'] = $datos ['id'];
+					$telOtro ['tipo_tel']       = 'Otro';
+					$telOtro ['telefono']       = $datos['telOtro'];
+					$telefonos -> save ($telOtro);
+				}
+                if (isset ($datos['borrarCelular'])) {
+                    $porBorrar = $telefonos -> get (
+                        ['identificacion' => $datos ['id'],
+                        'tipo_tel' => 'Celular']
+                    );
+                    $telefonos -> delete ($porBorrar);
+                } else
+				if (isset ($datos['telCelular']) && $datos ['telCelular'] > 0) {
+					$telCelular = $telefonos -> newEntity();
+					$telCelular ['identificacion'] = $datos ['id'];
+					$telCelular ['tipo_tel']       = 'Celular';
+					$telCelular ['telefono']       = $datos['telCelular'];
+					$telefonos -> save ($telCelular);
+				}
+			} else if ($datos ['tipoReq'] == 'direcciones') {
+                // Se actualizan las direcciones.
+                $dirs = TableRegistry::get ('personas_direcciones');
+                // Como las direcciones utilizan un id, para asegurarse de que
+                // quedan las mismas que en la vista, hay que borrarlas e
+                // insertarlas de nuevo.
+                // Pero antes se revisa si las direcciones ingresadas son
+                // correctas para no borrar y luego no poder insertar.
+                for ($i=0; $i< $datos ['cantidad']; $i++) {
+                    $direc = TableRegistry::get('distritos')-> find ('all')
+                    -> where (
+                        "nombreProvincia = '".$datos ['provincia'.$i]."' and ".
+                        "nombreDistrito = '".$datos ['distrito'.$i]."' and ".
+                        "nombreCanton = '".$datos ['canton'.$i]."'"
+                    );
+                    $existe = false;
+                    foreach ($direc as $dir) {
+                        $existe = true;
+                    }
+                    if (!$existe) { // Hay alguna dirección incorrecta.
+                        // No se continúa con el borrado e inserción.
+                        $this -> Flash -> error ('Una dirección no existe.'
+                        .'No se actualizaron los datos.');
+                        return $this-> redirect ('personas/cuenta');
+                    }
+                } // Fin del for de eliminar las direcciones.
+                $porBorrar = $dirs->find('all')
+                    ->where ("idPersona = '".$datos ['id']."'");
+                foreach ($porBorrar as $dirVieja) {
+                    $dirs->delete($dirVieja);
+                }
+                $cantidad = $datos ['cantidad'];
+                if (isset($datos['agregar'])) {
+                    // Se va a agregar una nueva dirección.
+                    $cantidad ++;
+                }
+				for ($i=0; $i < $cantidad; $i++) {
+                    if (isset($datos['borrar'.$i])) {
+                        // Ya se borró la dirección, simplemente no se inserta.
+                    } else {
+                        try {
+                        // Se actualizan datos.
+                        $nuevaDir = $dirs -> newEntity();
+                        $nuevaDir ['idPersona'] = $datos ['id'];
+                        $nuevaDir ['nombreProvincia'] = $datos ['provincia'.$i];
+                        $nuevaDir ['nombreCanton']    = $datos ['canton'.$i];
+                        $nuevaDir ['nombreDistrito']  = $datos ['distrito'.$i];
+                        $nuevaDir ['detalles']        = $datos ['detalles'.$i];
+                        if (!$dirs -> save ($nuevaDir)) {
+                            $this -> Flash -> 
+                                error ('Error insertando/actualizando dirección');
+                        }} catch (\PDOException $e) {
+                            $this -> Flash -> 
+                            error ('Error insertando/actualizando dirección');
                         }
                     }
+				}
+            } else if ($datos ['tipoReq'] == 'tarjetas'){ 
+                // Borrado de tarjetas
+                $tarjetas = $this -> Personas -> get ($datos['id'], 
+                    ['contain' => 'tarjetas']);
+                for ($i=0; $i<$datos['cantidad']; $i++){
+                    if(isset($datos['borrar'.$i])) {
+                        TableRegistry::get('tarjetas')
+                            ->delete($tarjetas['tarjetas'][$i]);
+                    }
                 }
-                $tels [] = $individual ['telefonos_personas'];
-            }
-        }
-        
-        foreach ($todas as $individual) {
-            if ($individual ['idPersona'] == $idPersona) {
-                $existentes [] = $individual ['idTarjeta'];
-            }
-        }
-        
-        $this ->set ('tarjetas', $existentes);
-        $this ->set('Id', $usuario['identificacion']);
-        $this ->set('Nombre', $usuario['nombre']);
-        $this ->set('Apellido1', $usuario['apellido1']);
-        $this ->set('Apellido2', $usuario['apellido2']);
-        $this ->set('Fecha', $usuario['fecha_nacimiento']);
-        $this ->set('Correo', $usuario['correo']);
-        $this ->set('Contraseña', $usuario['contraseña']);
-        $this ->set('Telcasa', $telcasa);
-        $this ->set('Teltrabajo', $teltrabajo);
-        $this ->set('Telcel',$telcel);
-        $this ->set('Telotro',$telotro);
-        
-        $this ->set('Prov',$prov);
-        $this ->set('Cant',$cant);
-        $this ->set('Dist',$dist);
-        $this ->set('Det',$det);
-        
-        $this -> set ('tarjetas', $existentes);
-        $http = new Client();
-        if ($this->request->is('post')) {
-            $qu = $this->request->data;
-            if (isset($qu['borrar'])) {
-                // Borrando tarjeta.
-                $porBorrar = $tarjetas->find('all')
-                -> where ("idTarjeta = '".$qu['borrar']."' 
-                    AND idPersona = '".$idPersona."'")
-                -> first();
-                $this -> set ('oveja', $porBorrar);
-                $tarjetas -> delete ($porBorrar);
-                $this->Flash->success ('Datos actualizados correctamente.');
-                $this -> redirect ('/personas/cuenta');
-            } else if (isset($qu['csv'])) { 
-                // Insertando tarjeta.
+            } else if ($datos ['tipoReq'] == 'AgregarTarjeta'){
+				$tarjetas = TableRegistry::get ('tarjetas');
                 $tarjeta = $tarjetas -> newEntity();
-                $tarjeta ['idTarjeta'] = $qu ['numTarjeta'];
-                $tarjeta ['idPersona'] = $idPersona;
-                $tarjeta ['csv']       = $qu ['csv'];
+                $tarjeta ['idTarjeta'] = $datos ['numTarjeta'];
+                $tarjeta ['idPersona'] = $usId;
+                $tarjeta ['csv']       = $datos ['csv'];
+                $http = new Client();
                 $response = $http->get('https://psycho-webservice.herokuapp.com',
-                    ['numTarjeta' => $qu ['numTarjeta'], 'csv' => $qu ['csv']]);
+                    ['numTarjeta' => $datos ['numTarjeta']
+					, 'csv' => $datos ['csv']]);
                 //$this -> set ('respuesta', $response->body);
                 if ($response->body == 'Correcto' ) {
                     if ($tarjetas -> save ($tarjeta) ) {
@@ -602,7 +653,9 @@ class PersonasController extends AppController
                     $this->Flash->error('La tarjeta no pudo ser validada.');
                 }
             }
-        } // Fin de is post
+            return $this -> redirect ('personas/cuenta');
+        } // Fin de si el request es post.
+        $this -> render ();
     }
 
     public function registro () {
