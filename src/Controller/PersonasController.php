@@ -634,4 +634,28 @@ class PersonasController extends AppController
         }
         $this->render();
     }
+
+    public function ordenes()
+    {
+        
+        $user = $this->Auth->user('username');
+        //var_dump($user);
+        $datos = TableRegistry::get('facturas')->find('all')->where("idUsuario = '".$user."'");
+        $idFact;
+        foreach($datos as $dato):
+            $idFact = $dato['idFactura'];
+        endforeach;
+        $monto = TableRegistry::get('productos_facturas')->find('all')->where("idFactura = '".$idFact."'");
+        var_dump($monto);
+        
+        //var_dump($datos);
+        $this->set('fact', $datos);
+        //se envian los datos a la vista
+        /*$this->set('idFact', $datos['idFactura']);
+        $this->set('fecha', $datos['fechaFactura']);
+        $this->set('usuario', $datos['idUsuario']);
+        $this->set('estado', $datos['estadoCompra']);*/
+        $this->render();
+
+    }
 }

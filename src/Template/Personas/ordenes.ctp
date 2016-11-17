@@ -27,36 +27,54 @@
 <?php 
     
 	//Datos de prueba
+	global $idFacturas;
+	global $fechaFacturas;
+	global $estadoFacturas;
+	$idFacturas = array();
+	foreach($fact as $factura):
+		array_push($idFacturas, $factura->idFactura);
+	endforeach;
+	$fechaFacturas = array();
+	foreach($fact as $factura):
+		array_push($fechaFacturas, $factura->fechaFactura);
+	endforeach;
+	$estadoFacturas = array();
+	foreach($fact as $factura):
+		array_push($estadoFacturas, $factura->estadoCompra);
+	endforeach;
 	global 	$IDOrdenes;
-	$IDOrdenes = array(
+	//$IDOrdenes = idFact;
+	/*$IDOrdenes = array(
 	'ORD10242',
 	'ORD10345',
-	'ORD10232');
+	'ORD10232');*/
 	
-	global 	$Montos; //Lo que costó toda la orden
-	$Montos = array(
+	//global 	$Montos; //Lo que costó toda la orden
+	/*$Montos = array(
 	'125000',
 	'250000',
-	'19000');
+	'19000');*/
 	
 	global 	$Fechas;
-	$Fechas = array(
+	//$Fechas = fechas;
+	/*$Fechas = array(
 	'11/11/2016',
 	'20/11/2016',
-	'21/11/2016');
+	'21/11/2016');*/
 
 	global 	$Estados;
-	$Estados = array(
+	//$Estados = estado;
+	/*$Estados = array(
 	'3',
 	'2',
-	'1');
+	'1');*/
 	
 	global 	$Productos;
-	$Productos = array (
+	/*$Productos = array (
 	  array("Uncharted 4","The Witcher 3","Rock Simulator 2014"),
 	  array("Play Station 4", "", ""),
 	  array("Nintendo 3DS","Pokemon Sun",""),
-	);
+	);*/
 
 	Include ("scripts/funciones.php");
 	
@@ -86,31 +104,31 @@
 						</tr>
 					</thead>
 					<tbody>
-						<?php
-							for ($i = 0; $i < count($IDOrdenes); $i++) {
-						?>
+						<!--<?php
+							foreach($fact as $factura){
+						?>-->
 							<tr>
 								<td class="cart_product">
 									<?php
-									echo "<h4><font size='5'>".$IDOrdenes[$i]."</font></h4>";
-									for ($j = 0; $j < count($Productos); $j++) {
+									echo "<h4><font size='5'>".$idFacturas[0]."</font></h4>";
+									/*for ($j = 0; $j < count($Productos); $j++) {
 										echo "<p>".$Productos[$i][$j]."</p>";
-									}
+									}*/
 									?>
 								</td>
 								<td class="cart_description">
 									<?php
-									echo "<font size='5'>".$Fechas[$i]."</font></font>";
+									echo "<font size='5'>".$fechaFacturas[0]."</font></font>";
 									?>
 								</td>
-								<td class="cart_price">
+								<!--<td class="cart_price">
 									<?php
 									echo "<p><font size='5'>¢".$Montos[$i]."</font></p>";
 									?>
-								</td>
+								</td>-->
 								<td class="cart_price">
 									<?php
-									echo "<p>".$estadosLista[$Estados[$i]-1]."</p>";
+									echo "<p>".$estadoFacturas[0]."</p>";
 									?>
 								</td>
 								<td class="cart_price">
@@ -120,9 +138,9 @@
 									?>
 								</td>
 							</tr>
-						<?php
+						<!--<?php
 							}
-						?>
+						?>-->
 						
 					</tbody>
 				</table>
