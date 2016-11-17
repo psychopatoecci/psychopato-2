@@ -228,6 +228,9 @@
     */
 	Include ("scripts/funciones.php");
 	
+	global $that;
+	$that = $this;
+	
 	//Función que muestra un juego físico en pantalla
 	function mostrarProductoFisico($genero, $plataforma, $isAdmin) {
 
@@ -236,6 +239,7 @@
 		global $precios;
 		global $generos;
 		global $consolas;
+		global $that;
 		
 		for ($i = 0; $i < count($nombres); $i++) {
 			if (($generos[$i]===$genero || $genero==="todos") && ($consolas[$i]===$plataforma || $plataforma==="todas")) {
@@ -250,18 +254,36 @@
 				echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
 				echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				echo "<h2>¢".$precios[$i]."</h2>";
-                echo "<form method=\"post\" accept-charset=\"utf-8\" role=\"form\" action=\"/productos/agregar-a-wish-list\">";
-				echo "<div style=\"display:none;\">";
-                echo "<input name=\"_method\" value=\"POST\" type=\"hidden\">";
-                echo "</div><input name=\"idProducto\" value=\"".$IDJuegosFisicos[$i]."\" type=\"hidden\">";
-                echo "<button type=\"submit\" class=\"btn btn-default\">Agregar a wishlist</button>";
-				echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
+                echo "<form method='post' accept-charset='utf-8' role='form' action='/productos/agregar-a-wish-list'>";
+				echo "<div style='display:none;'>";
+                echo "<input name='_method' value='POST' type='hidden'>";
+                echo "</div><input name='idProducto' value='".$IDJuegosFisicos[$i]."' type='hidden'>";
+                //echo "<button type='submit' class='btn btn-default'>Agregar a wishlist</button>";
+				//echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
+				
 				echo "</form>";
+				//debug ($that);
+				
+				//Botones de añadir al carrito y wishlist (aun no sirven)
+				echo $that->Form->create($addcarrito);
+				echo $that->Form->hidden('idPersona', ['value'=>$that->request->session()->read('Auth.User.username')]);
+				echo $that->Form->hidden('idProducto', ['value'=>$IDJuegosFisicos[$i]]);
+				echo $that->Form->hidden('Cantidad', ['value'=>'1']);
+				
+				//echo "<a type='submit' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
+				
+				//echo "<button type='submit' title='Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</button>";
+					
+				echo "<button type='submit' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
+					<i class='fa fa-shopping-cart'></i>Añadir al carrito</button>";
+				echo $that->Form->end();
+				
 				echo "</div> </div> </div> </div>";
 			}		
 		}
 		
 	}
+	
 
 	//Función que muestra un juego digital en pantalla
 	function mostrarProductoDigital($genero, $plataforma, $isAdmin) {

@@ -26,7 +26,7 @@
   <?php 
 	/*
 	//Datos de prueba
-	$IDProducto = 'PROD101406'; //La ID asignada al producto
+	$IDProd = 'PROD101406'; //La ID asignada al producto
 	$nombre = 'The Witcher 3';
 	$categoria = '2'; //Si es 3=plataforma, no hace falta asignar género y plataforma, no se van a mostrar
 	$plataforma = 'ps4';
@@ -76,19 +76,31 @@
 				<div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
-							
 							<div class="tab-pane fade active in" id="mostrarimagen2" >
 								<?php
-								echo "<img src='/../".obtenerPortada($IDProducto)."' alt='' />";
+								echo "<img src='/../".obtenerPortada($IDProd)."' alt='' />";
 								?>
 							</div>
 
 						</div>
 						<div class="col-sm-7">
+							<?php //Botón de añadir a wishlist
+								echo $this->Form->create($addwishlist);
+								echo $this->Form->hidden('identificacionPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
+								echo $this->Form->hidden('idProducto', ['value'=>$IDProd]);
+								echo $this->Form->hidden('idWishList', ['value'=>'1']);
+							?>
+							<div align="right">
+							<button type='submit' name="BotonWishlist" class='btn btn-default'>
+								<i class="fa fa-star"></i>Agregar a wishlist</button></div>
+							<?php
+								echo $this->Form->end();
+							?>
+							
 							<div class="product-information">
 								<?php
 									echo "<h2>".$nombre."</h2>";
-									echo "<p> Web ID: ".$IDProducto."</p>";
+									echo "<p> Web ID: ".$IDProd."</p>";
 								?>
 								<span>
 									<?php
@@ -96,19 +108,11 @@
 									?>
 									<label>Cantidad:</label>
 									<?php
-										$id = "Fiora";
 										echo $this->Form->create($addcarrito);
 										echo $this->Form->input('cantidad', array( 'label' => false, 'default'=>'1' ));
 										echo $this->Form->hidden('idPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
-										echo $this->Form->hidden('idCarrito', ['value'=>"prueba"]);
-										//echo $this->Form->hidden('idProducto', ['value'=>$IDProducto]);
-										//echo $this->Form->hidden('idCarrito', ['value'=>'prueba']);
-										//echo $this->Form->input('idCarrito', array('type' => 'hidden', 'default'=>'prueba'));
-										//echo $this->Form->input('idCarrito', array('type' => 'hidden', 'default'=>'prueba'));
-										//echo $this->Form->input('idProducto', array('type' => 'hidden', 'default'=>$IDProducto));
-										echo $this->Form->input('idCarrito', ['value'=>'prueba']);
-										echo $this->Form->input('idProducto', ['value'=>$IDProducto]);
-										
+										echo $this->Form->hidden('idProducto', ['value'=>$IDProd]);
+						
 										//Categoría
 										echo"<p><b>Tipo: </b>";
 										if ($categoria === "1") {
@@ -139,19 +143,16 @@
 										echo "<br>";
 									?>
 									
-									<button type="submit" class="btn btn-fefault cart" title="Añadir este producto al carrito de compras">
+									<button type="submit" name="BotonCarrito" class="btn btn-fefault cart" title="Añadir este producto al carrito de compras">
 										<i class="fa fa-shopping-cart"></i> Añadir al carrito
 									</button>
-									
+
 									<?php
 										echo $this->Form->end();
 									?>
-									
 								
-
 								</span>
 								
-								<br><a href='#' title="Añadir este producto a la wishlist"><i class='fa fa-star'></i>Añadir a la wishlist</a><p></p>
 							</div>
 						</div>
 						
@@ -169,7 +170,7 @@
 							
 								<?php
 									//Se buscan todas las imagenes dentro del directorio de capturas
-									$directorioCapturas = "images/productos/".$IDProducto."/Capturas/";
+									$directorioCapturas = "images/productos/".$IDProd."/Capturas/";
 									if (!file_exists($directorioCapturas)) { //Si no existe la carpeta, la crea
 										mkdir($directorioCapturas, 0777, true);
 									}
