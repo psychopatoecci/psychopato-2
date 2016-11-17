@@ -106,20 +106,22 @@ class ProductosController extends AppController
         $this -> set ('consolaDigitales',$consolaDigitales);
         //se llama a la vista
         
-        //Botón de añadir al carrito (aun no sirve T.T)
+        //Botón de añadir al carrito
         $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
 
         if($this->request->is('post')) {
             $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
-
+            
             if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
                 $this->Flash->success('Producto añadido al carrito de compras.');
                 //Redirecciona al carrito del usuario:
                 return $this->redirect(['action' => '../carrito/'.$this->request->session()->read('Auth.User.username')]);
+                debug ($addcarrito);
             }
             else {
                 $this->Flash->error('El producto no se ha añadido debido a un error.');
             }
+            
         }
 
         $this->set(compact('addcarrito'));
@@ -128,7 +130,7 @@ class ProductosController extends AppController
     /**
     * funcion detalles
     * @param string $codigo producto codigo
-    *funcion para mostrar detalles de un producto
+    * funcion para mostrar detalles de un producto
     * llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la información
     * se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
     * se envia la informacion obtenida a la vista
@@ -178,6 +180,7 @@ class ProductosController extends AppController
                 else {
                     $this->Flash->error('El producto no se ha añadido debido a un error.');
                 }
+                
             } else if (isset($this->request->data['BotonWishlist'])) {
                 $addwishlist = TableRegistry::get('wish_list_productos')->patchEntity($addwishlist, $this->request->data);
     
