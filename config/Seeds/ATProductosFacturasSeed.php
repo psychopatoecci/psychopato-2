@@ -38,7 +38,6 @@ class ATProductosFacturasSeed extends AbstractSeed
             $data = [
                 'idFactura' => $faker->randomElement($array = $idFact),
                 'idProducto' => $faker->randomElement($array = $idProd),
-                'precioTotal' => $faker->numberBetween($min = 10000, $max = 956325415),
                 'cantidad' => $faker->numberBetween($min = 1, $max = 100),
             ];
         
