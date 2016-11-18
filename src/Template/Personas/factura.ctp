@@ -27,13 +27,22 @@
 <?php 
     
 	//Datos de prueba
-	$NumeroOrden = 'ORD10242';
+	$NumeroOrden = array();
+	$fechaFact = array();
+	foreach($factura as $fact):
+		array_push($NumeroOrden, $fact['idFactura']);
+		array_push($fechaFact, $fact['fechaFactura']);
+	endforeach;
 	
 	global 	$IDProductos;
-	$IDProductos = array(
+	$IDProductos = array();
+	//foreach(productos as producto):
+
+	//endforeach;
+	/*$IDProductos = array(
 	'PROD101406',
 	'PROD101432',
-	'PROD102324');
+	'PROD102324');*/
 	
 	global 	$Nombres;
 	$Nombres = array(
@@ -61,7 +70,7 @@
 	
 	<!--Header-->
 	<header id="header">
-		<?php include(dirname(__FILE__)."/../includes/header.php");?>
+		<?php include("includes/header.php");?>
 	</header>
 	
 	<!--Navegador lateral-->
@@ -72,8 +81,8 @@
 			<button type='button' onClick="parent.location='ordenes'" class='btn btn-default get' title = 'Regresar a la lista de órdenes'><-Volver a la lista de órdenes</button>
 		</div>
 			
-		<?php echo "<h1>Factura de la órden ".$NumeroOrden."</h1>";
-			echo "<h3>Fecha de compra: ".$Fecha."</h3><br>";
+		<?php echo "<h1>Factura de la orden ".$NumeroOrden[0]."</h1>";
+			echo "<h3>Fecha de compra: ".$fechaFact[0]."</h3><br>";
 		?>
 
 				<table class="table table-condensed">
@@ -88,23 +97,23 @@
 					</thead>
 					<tbody>
 						<?php
-							for ($i = 0; $i < count($IDProductos); $i++) {
+							for ($i = 0; $i < count($productos); $i++) {
 						?>
 							<tr>
 								<td class="cart_price">
 									<?php
-									echo "<h4><font size='5'>".$Nombres[$i]."</font></h4>";
-									echo "<p> ID: ".$IDProductos[$i]."</p>";
+									echo "<h4><font size='5'>".$nombres[$i]."</font></h4>";
+									echo "<p> ID: ".$productos[$i]."</p>";
 									?>
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<p>¢".$Precios[$i]."</p>";
+									echo "<p>¢".$precios[$i]."</p>";
 									?>
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<p>".$Cantidades[$i]."</p>";
+									echo "<p>".$cantidades[$i]."</p>";
 									?>
 								</td>
 			
@@ -123,8 +132,8 @@
 				Total: 
 				<?php
 					$total=0;
-					for ($i = 0; $i < count($Precios); $i++) {
-						$total = $total+intval($Precios[$i]);
+					for ($i = 0; $i < count($precios); $i++) {
+						$total = $total+intval($precios[$i]);
 					}
 					echo "¢".$total;
 				?>
@@ -136,7 +145,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<?php include(dirname(__FILE__)."/../includes/footer.php");?>
+		<?php include("includes/footer.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>

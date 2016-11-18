@@ -30,17 +30,23 @@
 	global $idFacturas;
 	global $fechaFacturas;
 	global $estadoFacturas;
+	global $montoFacturas;
 	$idFacturas = array();
-	foreach($fact as $factura):
-		array_push($idFacturas, $factura->idFactura);
+	foreach($ids as $id):
+		array_push($idFacturas, $id);
 	endforeach;
 	$fechaFacturas = array();
-	foreach($fact as $factura):
-		array_push($fechaFacturas, $factura->fechaFactura);
+	foreach($fechas as $fecha):
+		array_push($fechaFacturas, $fecha);
 	endforeach;
 	$estadoFacturas = array();
-	foreach($fact as $factura):
-		array_push($estadoFacturas, $factura->estadoCompra);
+	foreach($estados as $estado):
+		array_push($estadoFacturas, $estado);
+	endforeach;
+
+	$montoFacturas = array();
+	foreach($precios as $precio):
+		array_push($montoFacturas, $precio);
 	endforeach;
 	global 	$IDOrdenes;
 	//$IDOrdenes = idFact;
@@ -104,13 +110,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<!--<?php
-							foreach($fact as $factura){
-						?>-->
+						<?php
+							for ($i = 0; $i < count($idFacturas); $i++) {
+						?>
 							<tr>
 								<td class="cart_product">
 									<?php
-									echo "<h4><font size='5'>".$idFacturas[0]."</font></h4>";
+									echo "<h4><font size='5'>".$idFacturas[$i]."</font></h4>";
 									/*for ($j = 0; $j < count($Productos); $j++) {
 										echo "<p>".$Productos[$i][$j]."</p>";
 									}*/
@@ -118,29 +124,40 @@
 								</td>
 								<td class="cart_description">
 									<?php
-									echo "<font size='5'>".$fechaFacturas[0]."</font></font>";
-									?>
-								</td>
-								<!--<td class="cart_price">
-									<?php
-									echo "<p><font size='5'>¢".$Montos[$i]."</font></p>";
-									?>
-								</td>-->
-								<td class="cart_price">
-									<?php
-									echo "<p>".$estadoFacturas[0]."</p>";
+									echo "<font size='5'>".$fechaFacturas[$i]."</font></font>";
 									?>
 								</td>
 								<td class="cart_price">
 									<?php
-										echo "<a href='#' title = 'Ver la factura de esta orden'
+									echo "<p><font size='5'>¢".$montoFacturas[$i]."</font></p>";
+									?>
+								</td>
+								<td class="cart_price">
+									<?php
+									if($estadoFacturas[$i] == 3)
+									{
+										echo "<p>".'Entregado'."</p>";
+									}
+									else if($estadoFacturas[$i] == 2)
+									{
+										echo "<p>".'En tránsito'."</p>";
+									}
+									else if($estadoFacturas[$i] == 1)
+									{
+										echo "<p>".'Procesando'."</p>";
+									}
+									?>
+								</td>
+								<td class="cart_price">
+									<?php
+										echo "<a href='factura/$idFacturas[$i]' title = 'Ver la factura de esta orden'
 										class='btn btn-default add-to-cart'> Ver factura</a>";
 									?>
 								</td>
 							</tr>
-						<!--<?php
+						<?php
 							}
-						?>-->
+						?>
 						
 					</tbody>
 				</table>
