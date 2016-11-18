@@ -101,7 +101,7 @@
 									</div>
 									<?php echo "<div class='tab-pane fade' id='tarjetas".$us['identificacion']."'>";?>
                                         <div class='col-sm-4'>
-                                        	<h4>Tarjetas</h4>
+                                        	<h4>Tarjetas</h4><br>
                                             <form id="borrartarjeta" action="../personas/cuenta" method="post">
                                             <?php
                                                 $i = 0;
@@ -114,8 +114,8 @@
                                                 }
                                             	echo "<input type='hidden' name='cantidad' value='".$i."'>";
                                             ?>
-                                            <input type="hidden" name="tipoReq" value="tarjetas">
-											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
+                                            <input type="hidden" name="tipoReq" value="tarjetas"><br><br>
+											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>"><br><br>
 										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
                                         	</form>
                                         </div>
@@ -133,7 +133,6 @@
                                     </div>
 
 									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
-
 										<form id="guardardireccion" action="../personas/cuenta" method="post">
                                             <input type="hidden" name="tipoReq" value="direcciones">
 											<input type="hidden" name="id" value="<?php echo $us['identificacion']; ?>">
@@ -158,11 +157,17 @@
                                                     <input type='text' name='distrito".$i."' placeholder='Distrito' value='".$direccion['nombreDistrito']."'>
                                                     <h4>Dirección exacta:</h4>
                                                     <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value='".$direccion['detalles']."'>
-                                                    <input type='checkbox' name='borrar".$i."' value='on'> Borrar
+                                                    <br><br><input type='checkbox' name='borrar".$i."' value='on'> Borrar esta tarjeta
 												    </div>";
 													$i ++;
                                             	}
-                                                echo "<div class='col-sm-3'>
+                                                echo "
+                                                <div class='col-sm-1'>
+                                                </div>";
+                                                
+                                                echo"
+                                                <div class='col-sm-3'>
+                                                <br><input type='checkbox' name='agregar' value='on'> Agregar nueva tarjeta:
                                                 <h4>Provincia:</h4>
                                                 <select name='provincia".$i."'>";
                                                 foreach ($provinciasBase as $prov) {
@@ -179,8 +184,8 @@
                                                 <input type='text' name='distrito".$i."' placeholder='Distrito' value='Alajuela'>
                                                 <h4>Dirección exacta:</h4>
                                                 <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value=''>
-                                                <input type='checkbox' name='agregar' value='on'> Agregar
-												</div>";
+                                                
+												</div> ";
 
 
                                             	echo "<input type='hidden' name='cantidad' value='".$i."'>";
@@ -188,9 +193,9 @@
 										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
 										</form>
 									</div>
-									<div class="col-sm-4">
-								</form>
-							</div>
+									</form>
+								<div class="col-sm-4">
+						        </div>
 						</div>
 					</div>
 				</div>
