@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Text;
 
 /**
  * productos Controller
@@ -14,6 +15,24 @@ class ProductosController extends AppController
     /**
      * controlador para la pagina principal
      */
+     public function busqueda(){
+        $numPage = 1;
+        $nuevaPag = $this -> request -> query('nuevaPag');
+        $url = $this->request->here();
+        $busqueda =  Text::tokenize($url, '=', " ", " "); 
+        
+        $this ->set('algo2', $busqueda[1]);
+        $prod=$this->Productos->find('all');
+        if ($busqueda) {
+            $prod = $prod -> where ("nombreProducto LIKE '%".$busqueda[1]."%'");
+            // Le dice a la vista que está mostrando solo los buscados para que
+            // los botones de anterior y siguiente funcionen correctamente.
+            $this -> set ('buscando', $busqueda[1]); 
+        }
+        $this -> set ('numPage', $numPage);
+        $this->set('prod', $prod);
+        $this->render;
+     }
     public function index()
     {
         $productos = $this->Productos->find('all');
@@ -281,23 +300,26 @@ class ProductosController extends AppController
    
     //Controlador de ofertas y combos
     public function ofertas() {
-       /* $numPage = 1;
+        $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         
         if ($nuevaPag && $nuevaPag > 0) {
             $numPage = $nuevaPag;
         }
-        */
+        
         $ofertas = $this -> Productos -> find ('all', 
             ['contain' => ['ofertas']]);
             
-       /* $ofertas = $ofertas -> limit(16) -> page ($numPage);
-        $this -> set ('numPage', $numPage);*/
+        $ofertas = $ofertas -> limit(16) -> page ($numPage);
+        $this -> set ('numPage', $numPage);
         $this->set('ofertas', $ofertas);
             
         $combos = $this -> Productos -> find ('all', 
             ['contain' => ['combos', 'productosCombos']]);
-            $this->set('combos', $combos);
+        
+        $combos = $combos -> limit(16) -> page ($numPage);
+        $this -> set ('numPage', $numPage);
+        $this->set('combos', $combos);
         
     }
     
