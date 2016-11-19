@@ -43,6 +43,7 @@
 	
 	//Recuperar el nombre y precio de cada producto
 	$cuenta=0;
+
 	foreach($datos2 as $dato):
 		if ($IDProductosCarrito[$cuenta] == $dato->idProducto) {
 			array_push($nombres, $dato->nombreProducto);
@@ -139,9 +140,18 @@
 								<td class="cart_quantity">
 									<center>
 									<?php
-										echo "<br><br><a href='#' title = 'Eliminar producto de la wishlist' class='btn btn-default add-to-cart'>
-										<i class='fa fa-times'></i><font size='5'>Borrar</font></a>";
+										echo $this->Form->create($borrarproducto);
+										echo $this->Form->hidden('idPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
+										echo $this->Form->hidden('idProducto', ['value'=>$IDProductosCarrito[$i]]);
 									?>
+									<button type="submit" name="BotonBorrar" class="btn btn-default add-to-cart" title="Borrar este producto del carrito de compras">
+										<i class="fa fa-times"></i><font size='5'>Borrar</font>
+									</button>
+									<?php
+										echo $this->Form->end();
+									?>
+									
+									
 									</center>
 								</td>
 
@@ -169,7 +179,7 @@
 				?>
 				</font>
 				<br><br>
-				<a href='#' title = 'Realizar la compra de todos estos productos' class='btn btn-default add-to-cart'>
+				<a href='../confirmar' title = 'Realizar la compra de todos estos productos' class='btn btn-default add-to-cart'>
 				<i class='fa fa-shopping-cart'></i><font size='5'>Realizar compra</font></a>
 			</div>
 		</div>

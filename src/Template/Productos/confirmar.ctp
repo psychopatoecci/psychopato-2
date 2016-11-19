@@ -138,7 +138,7 @@
 		<?php echo"<font size='5'>Total a pagar: ¢".$total."</font>"; ?>
 		<br><br><br>
 		<a href='#' title = 'Confirmar y realizar la compra' class='btn btn-default add-to-cart'>
-			<font size='5'>Realizar compra</font></a>
+			<font size='5'>Completar compra</font></a>
 	</div>
 	<br><br><br>
 		
