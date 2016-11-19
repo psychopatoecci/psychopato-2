@@ -24,6 +24,7 @@ class CarritoCompra extends Entity
      */
     protected $_accessible = [
         '*' => true,
+        'idPersona' => false,
         'idProducto' => false
     ];
 }

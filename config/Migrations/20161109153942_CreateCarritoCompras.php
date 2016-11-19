@@ -14,7 +14,7 @@ class CreateCarritoCompras extends AbstractMigration
     {
         $table = $this -> table ( 'carrito_compras', [
             'id' => false,
-            'primary_key' => [ 'idProducto' ] ] );
+            'primary_key' => [ 'idPersona','idProducto' ] ] );
             
                 $table -> addColumn (
             'idPersona',

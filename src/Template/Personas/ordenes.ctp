@@ -27,36 +27,60 @@
 <?php 
     
 	//Datos de prueba
+	global $idFacturas;
+	global $fechaFacturas;
+	global $estadoFacturas;
+	global $montoFacturas;
+	$idFacturas = array();
+	foreach($ids as $id):
+		array_push($idFacturas, $id);
+	endforeach;
+	$fechaFacturas = array();
+	foreach($fechas as $fecha):
+		array_push($fechaFacturas, $fecha);
+	endforeach;
+	$estadoFacturas = array();
+	foreach($estados as $estado):
+		array_push($estadoFacturas, $estado);
+	endforeach;
+
+	$montoFacturas = array();
+	foreach($precios as $precio):
+		array_push($montoFacturas, $precio);
+	endforeach;
 	global 	$IDOrdenes;
-	$IDOrdenes = array(
+	//$IDOrdenes = idFact;
+	/*$IDOrdenes = array(
 	'ORD10242',
 	'ORD10345',
-	'ORD10232');
+	'ORD10232');*/
 	
-	global 	$Montos; //Lo que costó toda la orden
-	$Montos = array(
+	//global 	$Montos; //Lo que costó toda la orden
+	/*$Montos = array(
 	'125000',
 	'250000',
-	'19000');
+	'19000');*/
 	
 	global 	$Fechas;
-	$Fechas = array(
+	//$Fechas = fechas;
+	/*$Fechas = array(
 	'11/11/2016',
 	'20/11/2016',
-	'21/11/2016');
+	'21/11/2016');*/
 
 	global 	$Estados;
-	$Estados = array(
+	//$Estados = estado;
+	/*$Estados = array(
 	'3',
 	'2',
-	'1');
+	'1');*/
 	
 	global 	$Productos;
-	$Productos = array (
+	/*$Productos = array (
 	  array("Uncharted 4","The Witcher 3","Rock Simulator 2014"),
 	  array("Play Station 4", "", ""),
 	  array("Nintendo 3DS","Pokemon Sun",""),
-	);
+	);*/
 
 	Include ("scripts/funciones.php");
 	
@@ -87,35 +111,46 @@
 					</thead>
 					<tbody>
 						<?php
-							for ($i = 0; $i < count($IDOrdenes); $i++) {
+							for ($i = 0; $i < count($idFacturas); $i++) {
 						?>
 							<tr>
 								<td class="cart_product">
 									<?php
-									echo "<h4><font size='5'>".$IDOrdenes[$i]."</font></h4>";
-									for ($j = 0; $j < count($Productos); $j++) {
+									echo "<h4><font size='5'>".$idFacturas[$i]."</font></h4>";
+									/*for ($j = 0; $j < count($Productos); $j++) {
 										echo "<p>".$Productos[$i][$j]."</p>";
-									}
+									}*/
 									?>
 								</td>
 								<td class="cart_description">
 									<?php
-									echo "<font size='5'>".$Fechas[$i]."</font></font>";
+									echo "<font size='5'>".$fechaFacturas[$i]."</font></font>";
 									?>
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<p><font size='5'>¢".$Montos[$i]."</font></p>";
+									echo "<p><font size='5'>¢".$montoFacturas[$i]."</font></p>";
 									?>
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<p>".$estadosLista[$Estados[$i]-1]."</p>";
+									if($estadoFacturas[$i] == 3)
+									{
+										echo "<p>".'Entregado'."</p>";
+									}
+									else if($estadoFacturas[$i] == 2)
+									{
+										echo "<p>".'En tránsito'."</p>";
+									}
+									else if($estadoFacturas[$i] == 1)
+									{
+										echo "<p>".'Procesando'."</p>";
+									}
 									?>
 								</td>
 								<td class="cart_price">
 									<?php
-										echo "<a href='#' title = 'Ver la factura de esta orden'
+										echo "<a href='factura/$idFacturas[$i]' title = 'Ver la factura de esta orden'
 										class='btn btn-default add-to-cart'> Ver factura</a>";
 									?>
 								</td>

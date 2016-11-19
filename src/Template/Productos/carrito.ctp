@@ -146,7 +146,7 @@
 								<td class="cart_quantity">
 									<center>
 									<?php
-										echo $this->Form->create($borrarproducto);
+										echo $this->Form->create($DatosBoton);
 										echo $this->Form->hidden('idPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
 										echo $this->Form->hidden('idProducto', ['value'=>$IDProductosCarrito[$i]]);
 									?>

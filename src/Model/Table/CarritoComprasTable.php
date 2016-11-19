@@ -31,8 +31,9 @@ class CarritoComprasTable extends Table
         parent::initialize($config);
 
         $this->table('carrito_compras');
-        $this->displayField('idProducto');
-        $this->primaryKey('idProducto');
+        $this->displayField('idPersona');
+        $this->primaryKey(['idPersona', 'idProducto']);
+        $this->hasOne('productos',['foreignKey'=>'idProducto']);
     }
 
     /**
@@ -44,8 +45,7 @@ class CarritoComprasTable extends Table
     public function validationDefault(Validator $validator)
     {
         $validator
-            ->requirePresence('idPersona', 'create')
-            ->notEmpty('idPersona');
+            ->allowEmpty('idPersona', 'create');
 
         $validator
             ->allowEmpty('idProducto', 'create');

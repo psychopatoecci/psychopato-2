@@ -123,7 +123,6 @@ class ProductosController extends AppController
             }
             
         }
-
         $this->set(compact('addcarrito'));
     }
 
@@ -208,25 +207,23 @@ class ProductosController extends AppController
         $this -> set ('datos2', $datos2);
         
         //Botón de borrar producto del carrito
-        $borrarproducto = TableRegistry::get('wish_list_productos')->newEntity();
+        $DatosBoton = TableRegistry::get('wish_list_productos')->newEntity();
         
         if($this->request->is('post')) {
-            $borrarproducto = TableRegistry::get('carrito_compras')->patchEntity($borrarproducto, $this->request->data);
-            $tuplaborrar = TableRegistry::get('carrito_compras')-> get ($borrarproducto['idProducto'], ['contain' => 'productos']);
-            $tuplaborrar->set('idPersona', $codigo);
-            
-            if(TableRegistry::get('carrito_compras')->delete($tuplaborrar)) {
+            $DatosBoton = TableRegistry::get('carrito_compras')->patchEntity($DatosBoton, $this->request->data);
+            $LlavePrimaria = array($DatosBoton['idPersona'],$DatosBoton['idProducto']);
+            $TuplaBorrar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
+
+            if(TableRegistry::get('carrito_compras')->delete($TuplaBorrar)) {
                 $this->Flash->success('Producto borrado del carrito de compras.');
-                //Redirecciona al carrito del usuario:
                 return $this->redirect(['action' => '../carrito/'.$codigo]);
-                
             }
             else {
                 $this->Flash->error('El producto no se ha borrado debido a un error.');
             }
         }
 
-        $this->set(compact('borrarproducto'));
+        $this->set(compact('DatosBoton'));
         
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/carrito/Heber74
 
@@ -241,26 +238,43 @@ class ProductosController extends AppController
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
         
-        //Botón de borrar producto del carrito
-        $borrarproducto = TableRegistry::get('wish_list_productos')->newEntity();
+        //Botón de añadir al carrito
+        $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
+
+        if($this->request->is('post')) {
+            $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
+            
+            if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
+                $this->Flash->success('Producto añadido al carrito de compras.');
+                //Redirecciona al carrito del usuario:
+                return $this->redirect(['action' => '../carrito/'.$this->request->session()->read('Auth.User.username')]);
+                debug ($addcarrito);
+            }
+            else {
+                $this->Flash->error('El producto no se ha añadido debido a un error.');
+            }
+            
+        }
+        $this->set(compact('addcarrito'));
+        
+        //Botón de borrar producto de la wishlist
+        $DatosBoton = TableRegistry::get('wish_list_productos')->newEntity();
         
         if($this->request->is('post')) {
-            $borrarproducto = TableRegistry::get('wish_list_productos')->patchEntity($borrarproducto, $this->request->data);
-            $tuplaborrar = TableRegistry::get('wish_list_productos')-> get ($borrarproducto['idProducto'], ['contain' => 'productos']);
-            $tuplaborrar->set('identificacionPersona', $codigo);
-            
-            if(TableRegistry::get('wish_list_productos')->delete($tuplaborrar)) {
-                $this->Flash->success('Producto borrado de la wishlist');
-                //Redirecciona al carrito del usuario:
+            $DatosBoton = TableRegistry::get('wish_list_productos')->patchEntity($DatosBoton, $this->request->data);
+            $LlavePrimaria = array($DatosBoton['identificacionPersona'],$DatosBoton['idProducto'],$DatosBoton['idWishList']);
+            $TuplaBorrar = TableRegistry::get('wish_list_productos')-> get ($LlavePrimaria);
+
+            if(TableRegistry::get('wish_list_productos')->delete($TuplaBorrar)) {
+                $this->Flash->success('Producto borrado de la wishlist.');
                 return $this->redirect(['action' => '../wishlist/'.$codigo]);
-                
             }
             else {
                 $this->Flash->error('El producto no se ha borrado debido a un error.');
             }
         }
 
-        $this->set(compact('borrarproducto'));
+        $this->set(compact('DatosBoton'));
         
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/wishlist/Emmett94
     }
