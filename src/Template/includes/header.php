@@ -93,9 +93,14 @@
 			
 			<!--Barra de busqueda-->
 			<div class="col-sm-3">
-				<div class="search_box pull-right">
+				<!--<div class="search_box pull-right">
 					<input type="text" placeholder="Búsqueda"/>
-				</div>	
+				</div>-->
+				<div align="right" class="search_box pull-right">
+                    <form id="busqueda" action="../busqueda/" method="get">
+                        <input type="text" placeholder="Búsqueda" name='busqueda'>
+                    </form>
+				</div>
 			</div>
 			
 		</div>

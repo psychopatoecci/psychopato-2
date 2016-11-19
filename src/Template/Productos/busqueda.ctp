@@ -26,73 +26,28 @@
 <body>
   <?php 
   
-	$busqueda = "zelda"; //Lo que se escribió en el cuadro de búsqueda
+	$busqueda = $buscando; //Lo que se escribió en el cuadro de búsqueda
   
 	//Datos de prueba para juegos físicos
 	global 	$IDJuegosFisicos;
-	$IDJuegosFisicos = array(
-	'PROD101406',
-	'PROD10192',
-	'PROD102710',
-	'PROD10477',
-	'PROD104915',
-	'PROD104990',
-	'PROD108791',
-	'PROD109509',
-	'PROD10961',
-	'PROD110101',
-	'PROD111910',
-	'PROD114519',
-	'PROD116048',
-	'PROD116327',
-	'PROD116873',
-	'PROD118637',
-	'PROD125163',
-	'PROD12595',
-	'PROD126427');
+	$IDJuegosFisicos=[];
+	foreach($prod as $p){
+		array_push($IDJuegosFisicos, $p['idProducto']);
+	}
 	
 	global 	$nombres;
-	$nombres = array(
-	'The Witcher 3',
-	'Persona 5',
-	'Zelda: Breath of the Wild',
-	'Zelda: Ocarina of Time 3D',
-	'No mans sky',
-	'Fire Emblem: Conquest',
-	'Pokemon Sun',
-	'Final Fantasy XV',
-	'Forza Horizon 3',
-	'FIFA 17',
-	'Super Smash Bros. WiiU',
-	'Imagina ser roca',
-	'Paper Mario: Color Splash',
-	'Battlefiel 1',
-	'Bioshock: The Collection',
-	'Half-Life 3',
-	'Halo 5: Guardians',
-	'Rock Simulator 2014',
-	'The Last Guardian');
+	$nombres=[];
+	foreach($prod as $p){
+		array_push($nombres, $p['nombreProducto']);
+	}
+
 	
-	$descripciones = array(
-	'The Witcher 3: Wild Hunt es la tercera entrega de la serie The Witcher, que nos devuelve al conocido cazador de bestias Geralt de Rivia en una nueva aventura. En esta ocasión enfrentándose a la famosa Cacería Salvaje que le da nombre, y que se convierte en un desafío de dimensiones colosales para la primera incursión de la serie RPG del estudio polaco CD Projekt Red en los videojuegos de mundo abierto. El brujo retorna en mejor forma que nunca para un título que se alza con infinidad de premios a lo mejor del año, entre ellos el de 3DJuegos por parte de la revista y de los lectores.',
-	'Persona 5 lleva al usuario a la ciudad de Tokio, incluyendo los barrios de Shinjuku, Shibuya, Yongejaya y algunos de los lugares más emblemáticos de la capital japonesa. Los nuevos protagonistas son los Phantom Thieves of Hearts un grupo de héroes nocturnos. En el instituto Syujin coincidiremos con los nuevos compañeros del protagonista y viviremos su vida como un estudiante más. Por la noche comienza la fiesta: será el momento en el que se manifiestan sus Persona, unas poderosas entidades que están a las órdenes de sus amos',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'',
-	'');
+	global $descripciones;
+	$descripciones=[];
+	foreach($prod as $p){
+		array_push($descripciones, $p['$descripciones']);
+	}
+
 	
 	global 	$consolas;
 	$consolas = array(
@@ -117,26 +72,10 @@
 	'ps4');
 
 	global 	$precios;
-	$precios= array(
-	'29 000',
-	'59 500',
-	'59 000',
-	'39 500',
-	'2 500',
-	'39 000',
-	'39 500',
-	'59 000',
-	'49 000',
-	'49 000',
-	'35 000',
-	'87 900',
-	'47 900',
-	'59 000',
-	'35 000',
-	'99 999',
-	'37 900',
-	'1 900',
-	'59 000');
+	$precios=[];
+	foreach($prod as $p){
+		array_push($precios, $p['precio']);
+	}
 
 	global 	$generos;
 	$generos = array(
@@ -242,8 +181,8 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
-				echo "<a href='detalles.php' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
-				echo "<a href='detalles.php' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
+				echo "<a href='../detalles/".$IDJuegosFisicos[$i]."' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
+				echo "<a href='../detalles/".$IDJuegosFisicos[$i]."' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				echo "<h2>¢".$precios[$i]."</h2>";
 				echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 				echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
