@@ -35,7 +35,7 @@ class AKComponentesConsolasSeed extends AbstractSeed
             for ($i = 1; $i <= $componentsNum; $i++ ) {
                 $data = [
                     'idConsola' => $id,
-                    'idComponente' => $idComp [$i]
+                    'idComponente' =>$faker->unique->randomElement($array = $idProd),
                 ];
                 $table = $this -> table ('componente_consolas');
                 $table -> insert ($data) -> save ();
