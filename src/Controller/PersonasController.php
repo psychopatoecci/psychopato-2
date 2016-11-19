@@ -24,7 +24,47 @@ class PersonasController extends AppController
      }
      
     //Controlador de una factura
-    public function factura() {
+    public function factura($idFactura) {
+        //verifica el id del usuario que está registrado
+        $user = $this->Auth->user('username');
+        //trae de la tabla facturas las tuplas que tengan como idUsuario el usuario registrado
+        //$datosFacturas = TableRegistry::get('facturas')->find('all')->where("idUsuario = '".$user."'");
+        $idFact;
+        $idProductos = [];//guarda el id de los productos de la factura
+        $cantidadesProductos = [];//guarda la cantidad que se compró de cada producto
+        $precioProductos = [];//guarda el precio de cada producto de la factura
+        $nombreProductos = [];//guarda el nombre de los productos de la factura
+
+        //saca de la base los productos pertenecientes a la factura
+        $datosProductos = TableRegistry::get('productos_facturas')->find('all')->where("idFactura = '".$idFactura."'");
+        $idFact = $idFactura;
+
+        //trae de la base la informacion de la factura para saber precio total y fecha
+        $factura = TableRegistry::get('facturas')->find('all')->where("idFactura = '".$idFactura."'");
+        //guarda en el array el id del producto y su respectiva cantidad comprada
+
+        foreach ($datosProductos as $dato) 
+        {
+            array_push($idProductos, $dato['idProducto']);
+            array_push($cantidadesProductos, $dato['cantidad']);
+        }
+
+        //para cada producto trae su precio unitario
+        for($i = 0; $i < count($idProductos); ++$i)
+        {
+            $precios = TableRegistry::get('productos')->find('all')->where("idProducto = '".$idProductos[$i]."'");
+            foreach ($precios as $precio) 
+            {
+                array_push($precioProductos, $precio['precio']);
+                array_push($nombreProductos, $precio['nombreProducto']);
+            }
+        }
+        
+        $this->set('productos', $idProductos);
+        $this->set('cantidades', $cantidadesProductos);
+        $this->set('precios', $precioProductos);
+        $this->set('nombres', $nombreProductos);
+        $this->set('factura', $factura);
         $this->render();
     }
     
@@ -694,4 +734,35 @@ class PersonasController extends AppController
         }
         $this->render();
     }
+
+    public function ordenes()
+    {
+        //verifica el id del usuario que está registrado
+        $user = $this->Auth->user('username');
+        //trae de la tabla facturas las tuplas que tengan como idUsuario el usuario registrado
+        $datos = TableRegistry::get('facturas')->find('all')->where("idUsuario = '".$user."'");
+        $idFact = [];
+        $fechaFact = [];
+        $idUsuario = [];
+        $precioTotal = [];
+        $estadoCompra = [];
+        foreach($datos as $dato)
+        {
+            array_push($idFact, $dato['idFactura']);
+            array_push($fechaFact, $dato['fechaFactura']);
+            array_push($idUsuario, $dato['idUsuario']);
+            array_push($precioTotal, $dato['precioTotal']);
+            array_push($estadoCompra, $dato['estadoCompra']);
+        }
+        //se envian los datos a la vista
+        $this->set('ids', $idFact);
+        $this->set('fechas', $fechaFact);
+        //$this->set('usuarios', $idUsuario);
+        $this->set('precios', $precioTotal);
+        $this->set('estados', $estadoCompra);
+        $this->render();
+
+    }
+
+    
 }
