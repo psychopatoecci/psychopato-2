@@ -224,12 +224,10 @@ class ProductosController extends AppController
             else {
                 $this->Flash->error('El producto no se ha borrado debido a un error.');
             }
-            
-            
-            
         }
 
         $this->set(compact('borrarproducto'));
+        
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/carrito/Heber74
 
     }
@@ -242,6 +240,27 @@ class ProductosController extends AppController
         
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
+        
+        //Botón de borrar producto del carrito
+        $borrarproducto = TableRegistry::get('wish_list_productos')->newEntity();
+        
+        if($this->request->is('post')) {
+            $borrarproducto = TableRegistry::get('wish_list_productos')->patchEntity($borrarproducto, $this->request->data);
+            $tuplaborrar = TableRegistry::get('wish_list_productos')-> get ($borrarproducto['idProducto'], ['contain' => 'productos']);
+            $tuplaborrar->set('identificacionPersona', $codigo);
+            
+            if(TableRegistry::get('wish_list_productos')->delete($tuplaborrar)) {
+                $this->Flash->success('Producto borrado de la wishlist');
+                //Redirecciona al carrito del usuario:
+                return $this->redirect(['action' => '../wishlist/'.$codigo]);
+                
+            }
+            else {
+                $this->Flash->error('El producto no se ha borrado debido a un error.');
+            }
+        }
+
+        $this->set(compact('borrarproducto'));
         
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/wishlist/Emmett94
     }

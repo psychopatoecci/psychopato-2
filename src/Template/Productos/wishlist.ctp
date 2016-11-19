@@ -140,11 +140,22 @@
 									<?php
 										echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'>
 										<i class='fa fa-shopping-cart'></i><font size='5'>Añadir al carrito</font></a>";
-										
-										echo "<br><br><a href='#' title = 'Eliminar producto de la wishlist' class='btn btn-default add-to-cart'>
-										<i class='fa fa-times'></i>Borrar</a>";
-
 									?>
+									
+									<?php //Botón de borrar
+										echo $this->Form->create($borrarproducto);
+										echo $this->Form->hidden('identificacionPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
+										echo $this->Form->hidden('idProducto', ['value'=>$IDProductosWishlist[$i]]);
+									?>
+									
+									<button type="submit" name="BotonBorrar" class="btn btn-default add-to-cart" title="Borrar este producto de la wishlist">
+										<i class="fa fa-times"></i>Borrar
+									</button>
+									
+									<?php
+										echo $this->Form->end();
+									?>
+									
 									</center>
 								</td>
 

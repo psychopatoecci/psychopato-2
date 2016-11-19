@@ -33,8 +33,6 @@ class CarritoComprasTable extends Table
         $this->table('carrito_compras');
         $this->displayField('idProducto');
         $this->primaryKey('idProducto');
-        
-        $this->hasOne('productos',['foreignKey'=>'idProducto']);
     }
 
     /**

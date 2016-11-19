@@ -43,17 +43,18 @@
 	
 	//Recuperar el nombre y precio de cada producto
 	$cuenta=0;
-
-	foreach($datos2 as $dato):
-		if ($IDProductosCarrito[$cuenta] == $dato->idProducto) {
-			array_push($nombres, $dato->nombreProducto);
-			array_push($precios, $dato->precio);
-			$cuenta++;
-		}
-		if (($cuenta+1) > Count($IDProductosCarrito)) {
-			break;
-		}
-	endforeach;
+	if (count($IDProductosCarrito)>0) {
+		foreach($datos2 as $dato):
+			if ($IDProductosCarrito[$cuenta] == $dato->idProducto) {
+				array_push($nombres, $dato->nombreProducto);
+				array_push($precios, $dato->precio);
+				$cuenta++;
+			}
+			if (($cuenta+1) > Count($IDProductosCarrito)) {
+				break;
+			}
+		endforeach;
+	}
 	
 	//Datos de prueba
 	/*
@@ -95,6 +96,11 @@
 
 		<div class="container">
 		<h1>Carrito de compras</h1><br>
+			<?php
+				if (count($IDProductosCarrito)<=0) {
+					echo "<h2>No ha añadido productos al carrito</h2><br>";
+				} else {
+			?>
 			<div class="table-responsive cart_info">
 			
 				<table class="table table-condensed">
@@ -167,6 +173,7 @@
 				</table>
 				
 			</div>
+			
 			<div align="right">
 				<font size='5'>
 				Total: 
@@ -182,6 +189,9 @@
 				<a href='../confirmar' title = 'Realizar la compra de todos estos productos' class='btn btn-default add-to-cart'>
 				<i class='fa fa-shopping-cart'></i><font size='5'>Realizar compra</font></a>
 			</div>
+			<?php
+				}
+			?>
 		</div>
 	</section>
 	

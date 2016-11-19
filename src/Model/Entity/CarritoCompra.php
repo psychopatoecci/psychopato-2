@@ -6,9 +6,8 @@ use Cake\ORM\Entity;
 /**
  * CarritoCompra Entity
  *
- * @property int $idCarrito
- * @property string $idProducto
  * @property string $idPersona
+ * @property string $idProducto
  * @property int $cantidad
  */
 class CarritoCompra extends Entity
@@ -25,7 +24,6 @@ class CarritoCompra extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'idCarrito' => false,
         'idProducto' => false
     ];
 }
