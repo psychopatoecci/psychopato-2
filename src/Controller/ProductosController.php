@@ -199,7 +199,11 @@ class ProductosController extends AppController
     }
     
     //Controlador del carrito
-    public function carrito($codigo) {
+    public function carrito($codigo = null) {
+        if ($codigo==null) {
+            $codigo = $this->request->session()->read('Auth.User.username');
+        }
+        
         $datos = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
         
@@ -230,8 +234,11 @@ class ProductosController extends AppController
     }
     
     //Controlador de la wishlist
-    public function wishlist($codigo) {
-
+    public function wishlist($codigo = null) {
+        if ($codigo==null) {
+            $codigo = $this->request->session()->read('Auth.User.username');
+        }
+        
         $datos = TableRegistry::get('wish_list_productos')->find('all')->where("identificacionPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
         
@@ -277,6 +284,27 @@ class ProductosController extends AppController
         $this->set(compact('DatosBoton'));
         
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/wishlist/Emmett94
+    }
+    
+        
+    //Controlador de confirmación de una compra
+    public function confirmar($codigo = null) {
+        if ($codigo==null) {
+            $codigo = $this->request->session()->read('Auth.User.username');
+        }
+        
+        $DatosTarjetas = TableRegistry::get('tarjetas')->find('all')->where("idPersona = '".$codigo."'");
+        $this -> set ('DatosTarjetas', $DatosTarjetas);
+        
+        $DatosDirecciones = TableRegistry::get('personas_direcciones')->find('all')->where("idPersona = '".$codigo."'");
+        $this -> set ('DatosDirecciones', $DatosDirecciones);
+        
+        $DatosCarrito = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
+        $this -> set ('DatosCarrito', $DatosCarrito);
+        
+        $DatosProductos = TableRegistry::get('productos')->find('all');
+        $this -> set ('DatosProductos', $DatosProductos);
+        
     }
    
     //Controlador de ofertas y combos
@@ -356,12 +384,6 @@ class ProductosController extends AppController
     public function error404() {
         $this->render();
     }
-    
-    //Controlador de confirmación de una compra
-    public function confirmar() {
-        $this->render();
-    }
-    
     
     //Controlador del upload
     public function upload() {

@@ -42,8 +42,8 @@
 							}
 							echo"<li><a href=\"$logged\" title=\"Ver datos de la cuenta\"><i class=\"fa fa-user\"></i> Cuenta</a></li>";
 						?>						
-						<li><a href="" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
-						<li><a href="" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
+						<li><a href="/../wishlist" title="Ver la wishlist"><i class="fa fa-star"></i> Wishlist</a></li>
+						<li><a href="/../carrito" title="Ver el carrito de compras"><i class="fa fa-shopping-cart"></i> Carrito</a></li>
 						<?php
 						if ($this->request->session()->read('Auth.User.id')) {
 							echo "<li><a href=\"/users/logout\" title=\"Cerrar sesión\"><i class=\"fa fa-lock\"></i> Cerrar sesión</a></li>";
@@ -78,13 +78,13 @@
 						<li><a href="/" class="active" title="Volver a la página principal">Inicio</a></li>
 						<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
                             			<ul role="menu" class="sub-menu">
-                               			<li><a href="catalogo" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
-						<li><a href="catalogo" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
-						<li><a href="catalogo" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
+                               			<li><a href="/../catalogo" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
+						<li><a href="/../catalogo" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
+						<li><a href="/../catalogo" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
                             		</ul>
                         		</li> 
-						<li><a href="ofertas" title="Ver las ofertas disponibles">Ofertas</a></li>
-						<li><a href="ofertas" title="Ver los combos disponibles">Combos</a></li>
+						<li><a href="/../ofertas" title="Ver las ofertas disponibles">Ofertas</a></li>
+						<li><a href="/../ofertas" title="Ver los combos disponibles">Combos</a></li>
 						<li><a href="404" title="Ver la información de contacto de la empresa">Contacto</a></li>
 					</ul>
 				</div>

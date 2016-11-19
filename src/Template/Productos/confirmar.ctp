@@ -25,56 +25,73 @@
 <body>
 
 <?php 
+    global 	$Tarjetas;
+    global 	$Provincias;
+    global 	$Cantones;
+    global 	$Distritos;
+    global 	$Detalles;
+    global 	$Precios;
+    global 	$Cantidades;
     
-	//Datos de prueba
-	$provinciaCasa = 'Alajuela';
-	$cantonCasa = 'Desamparados';
-	$distritoCasa = 'San Antonio';
-	$direccionCasa = 'Por ahí a la par de la cosa esa.';
+    $Tarjetas = array();
+    
+    $Provincias = array();
+    $Cantones = array();
+    $Distritos = array();
+    $Detalles = array();
+    
+    $IDProductos = array();
+	$Precios = array();
+    $Cantidades = array();
+    
+	//Recupera las tarjetas
+	foreach($DatosTarjetas as $dato):
+		array_push($Tarjetas, $dato->idTarjeta);
+	endforeach;
 	
-	$provinciaTrabajo = 'Cartago';
-	$cantonTrabajo = 'Escazú';
-	$distritoTrabajo = 'Guácima';
-	$direccionTrabajo = 'Avenica feelings. En el zoológico.';
+	//Recupera las direcciones
+	foreach($DatosDirecciones as $dato):
+		array_push($Provincias, $dato->nombreProvincia);
+		array_push($Cantones, $dato->nombreCanton);
+		array_push($Distritos, $dato->nombreDistrito);
+		array_push($Detalles, $dato->detalles);
+	endforeach;
 	
-	$provinciaOtro = '';
-	$cantonOtro = '';
-	$distritoOtro = '';
-	$direccionOtro = '';
+	//Recuperar los precios del carrito para obtener el total
+	foreach($DatosCarrito as $dato):
+		array_push($IDProductos, $dato->idProducto);
+		array_push($Cantidades, $dato->cantidad);
+	endforeach;
 	
-	$tarjetaNombre1 = 'Chuck Norris';
-	$tarjetaNumero1 = '2145162412458459';
-	$tarjetaFecha1 = '10/02/2050';
-	$tarjetaCSC1 = '754';
+	$cuenta=0;
+	if (count($IDProductos)>0) {
+		foreach($DatosProductos as $dato):
+			if ($IDProductos[$cuenta] == $dato->idProducto) {
+				array_push($Precios, $dato->precio);
+				$cuenta++;
+			}
+			if (($cuenta+1) > Count($IDProductos)) {
+				break;
+			}
+		endforeach;
+	}
 	
-	$tarjetaNombre2 = 'El Chuck Norris';
-	$tarjetaNumero2 = '84512614777771521';
-	$tarjetaFecha2 = '02/05/2017';
-	$tarjetaCSC2 = '123';
+	$total = '0';
 	
-	$tarjetaNombre3 = '';
-	$tarjetaNumero3 = '';
-	$tarjetaFecha3 = '';
-	$tarjetaCSC3 = '';
+	for ($i=0; $i<count($Precios); $i++) {
+		$total = $total + ($Precios[$i]*$Cantidades[$i]);
+	}
 	
-	$total = '85000';
 	
-	//Nomenclatura de la base para las provincias
-	$provinciasBase = array('San Jose','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limon','');
+	$usuario = $this->request->session()->read('Auth.User.username');
 	
 	//Datos para las listas desplegables
-	$Tarjeta1 = ultimosCuatroDigitos($tarjetaNumero1).", ".$tarjetaNombre1;
-	$Tarjeta2 = ultimosCuatroDigitos($tarjetaNumero2).", ".$tarjetaNombre2;
-	$Tarjeta3 = ultimosCuatroDigitos($tarjetaNumero3).", ".$tarjetaNombre3;
-	
-	$Direccion1 = "Casa: ".$provinciaCasa.", ".$cantonCasa.", ".$distritoCasa.", ".$direccionCasa;
-	$Direccion2 = "Trabajo: ".$provinciaTrabajo.", ".$cantonTrabajo.", ".$distritoTrabajo.", ".$direccionTrabajo;
-	$Direccion3 = "Otro: ".$provinciaOtro.", ".$cantonOtro.", ".$distritoOtro.", ".$direccionOtro;
+	for ($i=0; $i<count($Tarjetas); $i++) {
+		$Tarjetas[$i] = ultimosCuatroDigitos($Tarjetas[$i]);
+	}
 	
 	Include ("scripts/funciones.php");
 	
-	$estadosLista = array('Procesando','En tránsito','Entregado');
-
 	function ultimosCuatroDigitos($tarjeta) {
 		$nuevo = "**** ";
 		if ($tarjeta!="") {
@@ -93,52 +110,57 @@
 	</header>
 	<div class="container">
 		<div align="left">
-			<button type='button' onClick="parent.location='carrito'" class='btn btn-default get' title = 'Volver al carrito de compras'><-Volver al carrito</button>
+			<button type='button' onClick="parent.location='../carrito'" class='btn btn-default get' title = 'Volver al carrito de compras'><-Volver al carrito</button>
 		</div>
 	
 		<h1>Confirmación de la compra</h1><br>
 
-		<div class="col-sm-5 padding-right">
-		<h2>Seleccione un medio de pago:</h2><br>
-			<select name='Tarjetas'>
-			<?php
-				if ($tarjetaNumero1!="") {
-					echo "<option value='Tarjeta1'>".$Tarjeta1."</option>";
-				}
-				if ($tarjetaNumero2!="") {
-					echo "<option value='Tarjeta2'>".$Tarjeta2."</option>";
-				}
-				if ($tarjetaNumero3!="") {
-					echo "<option value='Tarjeta3'>".$Tarjeta3."</option>";
-				}
-			?>
-			</select>
-			<br><br><button type='button' onClick="parent.location='cuenta'" class='btn btn-default'
-				title = 'Iniciar sesión con una cuenta ya creada'>Editar medios de pago</button>
-		</div>
-		<div class="col-sm-7 padding-right">
-		<h2>Seleccione una dirección de envío:</h2><br>
-			<select name='Direcciones'>
-			<?php
-				if ($provinciaCasa!="") {
-					echo "<option value='Direccion1'>".$Direccion1."</option>";
-				}
-				if ($provinciaTrabajo!="") {
-					echo "<option value='Direccion2'>".$Direccion2."</option>";
-				}
-				if ($provinciaOtro!="") {
-					echo "<option value='Direccion3'>".$Direccion3."</option>";
-				}
-			?>
-			</select>
-			<br><br><button type='button' onClick="parent.location='cuenta'" class='btn btn-default'
-				title = 'Iniciar sesión con una cuenta ya creada'>Editar direcciones</button>
+		<div class="col-sm-6 padding-right">
+			<h2>Seleccione un medio de pago:</h2><br>
+			<div class="col-sm-5 padding-right">
+				<select name='Tarjetas'>
+				<?php
+					for ($i=0; $i<count($Tarjetas); $i++) {
+						echo "<option value='Tarjeta".$i."'>".$Tarjetas[$i]."</option>";
+						$Tarjetas[$i] = ultimosCuatroDigitos($Tarjetas[$i]);
+					}
+				?>
+				</select>
+				<br><br>
+
+				<?php
+				echo "<button type='button' class='btn btn-default'";
+					echo "title = 'Editar los medios de pago'><a href='../cuenta/".$usuario."'>Editar medios de pago</a>";
+				echo "</button>";
+				?>
+			</div>
+			<br><br><br><br>
+			<h2>Seleccione una dirección de envío:</h2><br>
+			<div class="col-sm-12 padding-right">
+				<select name='Direcciones'>
+				<?php
+					for ($i=0; $i<count($Provincias); $i++) {
+						echo "<option value='Direccion".$i."'>".$Provincias[$i].", ".$Cantones[$i].", ".$Distritos[$i].", ".$Detalles[$i]."</option>";
+					}
+				?>
+				</select>
+				<br><br>
+				<?php
+				echo "<button type='button' class='btn btn-default'";
+					echo "title = 'Editar las direcciones de envío'><a href='../cuenta/".$usuario."'>Editar direcciones</a>";
+				echo "</button>";
+				?>
+			</div>
 			<br><br><br><br><br>
 		</div>
-		<?php echo"<font size='5'>Total a pagar: ¢".$total."</font>"; ?>
-		<br><br><br>
-		<a href='#' title = 'Confirmar y realizar la compra' class='btn btn-default add-to-cart'>
-			<font size='5'>Completar compra</font></a>
+		<div class="col-sm-1 padding-right">
+		</div>
+		<div class="col-sm-4 padding-right">
+			<?php echo"<font size='5'>Total a pagar: ¢".$total."</font>"; ?>
+			<br><br><br>
+			<a href='#' title = 'Confirmar y realizar la compra' class='btn btn-default add-to-cart'>
+				<font size='5'>Completar compra</font></a>
+		</div>
 	</div>
 	<br><br><br>
 		
