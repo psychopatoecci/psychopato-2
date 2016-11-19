@@ -143,8 +143,8 @@
 			echo "<div class='single-products'>";
 			echo "<div class='productinfo text-center'>";
 			echo "<br><h2>¡Descuento del ".$descuentos[$i]."%!</h2>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".obtenerPortada($IDOfertas[$i])."' alt='' /></a>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><p>".$nombres[$i]."</p></a>";
+			echo "<a href='detalles/".$IDOfertas[$i]."' title = 'Ver detalles del producto'><img src='".obtenerPortada($IDOfertas[$i])."' alt='' /></a>";
+			echo "<a href='detalles/".$IDOfertas[$i]."' title = 'Ver detalles del producto'><p>".$nombres[$i]."</p></a>";
 			echo "<h4><strike>¢".$precios[$i]."</strike></h4>";
 			echo "<h2>¢".calcularDescuento($precios[$i], $descuentos[$i])."</h2>";
 			echo "<br><b>Duración de la oferta:</b><br>".$fechaInicio[$i]." - ".$fechaFinal[$i]."<br><br>";
@@ -246,23 +246,15 @@
 									?>
 								</div>
 								
-													</div>
+				</div>
                     <form id="pag" action="../ofertas" method="get">
                         <?php 
-                           /* if (isset ($buscando)) {
-                                // Se están mostrando resultados de búsqueda.
-                                echo "<input type='hidden' name='busqueda' value='".$buscando."'>";
-                            }*/
                             echo "<input type='hidden' name='nuevaPag' value='".strval($numPage - 1)."'>"; 
                         ?>
                         <button type='submit' class='btn btn-default'>Anterior</button>
                     </form>
                     <form id="pag" action="../ofertas" method="get">
                         <?php 
-                           /* if (isset ($buscando)) {
-                                // Se están mostrando resultados de búsqueda.
-                                echo "<input type='hidden' name='busqueda' value='".$buscando."'>";
-                            }*/
                             echo "<input type='hidden' name='nuevaPag' value='".strval($numPage + 1)."'>"; 
                         ?>
                         <button type='submit' class='btn btn-default'>Siguiente</button>
