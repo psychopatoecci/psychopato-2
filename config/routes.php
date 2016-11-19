@@ -63,7 +63,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/adminUsuarios', ['controller' => 'Personas', 'action' => 'adminUsuarios']);
     $routes->connect('/cuenta/*', ['controller' => 'Personas', 'action' => 'cuenta']);
     $routes->connect('/factura/*', ['controller' => 'Personas', 'action' => 'factura']);
-
+    $routes->connect('/ordenes/*', ['controller' => 'Personas', 'action' => 'ordenes']);
+ 
     $routes->connect('/nuevoUsuario', ['controller' => 'Personas', 'action' => 'guardar']);
     
     /*ruta para pruebas*/
