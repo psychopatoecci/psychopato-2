@@ -27,8 +27,15 @@ class PersonasController extends AppController
     public function factura() {
         $this->render();
     }
-     
-     
+    
+    public function ordenes()
+    {
+        $this->render();
+        $user = $this->request->session()->read('Auth.Username.username');
+        $datos = TableRegistry::get('facturas')->find('all')->where("idUsuario = '".$user."'");
+        $this->set('facturas', $datos);
+    }
+    
       public function borrar($id){
         
         $entity = $this->Personas->get($id);
