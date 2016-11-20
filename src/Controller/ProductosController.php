@@ -395,43 +395,48 @@ class ProductosController extends AppController
         $generosTabla  = TableRegistry::get ('generos');
         $videoJuegosT  = TableRegistry::get ('video_juegos');
         $consolasTabla = TableRegistry::get ('consolas');
+        $productos = $this -> Productos;
         if ($this -> request -> is ('post')) {
             $datos = $this -> request -> data;
-            $productos = $this -> Productos;
-            $porInsertar = $productos -> newEntity ();
-            $porInsertar ['idProducto'    ] = $datos ['id'         ];
-            $porInsertar ['nombreProducto'] = $datos ['nombre'     ];
-            $porInsertar ['tipo'          ] = $datos ['Categoria'  ];
-            $porInsertar ['precio'        ] = $datos ['precio'     ];
-            $porInsertar ['descripcion'   ] = $datos ['descripcion'];
-            $porInsertar ['fabricante'    ] = $datos ['fabricante' ];
-            $exitoso = true;
-            if (!$productos -> save ($porInsertar))
-                $exitoso = false;
-            $porBorrar = $generosTabla
-                -> find ('all')
-                -> where ("idVideoJuego = '".$datos['id']."'");
-            foreach ($porBorrar as $tupla) {
-                $generosTabla -> delete ($tupla);
-            }
-            $porInsertar = $videoJuegosT -> get ($datos['id']);
-            $porInsertar ['idConsola'] = $datos ['Plataforma'];
-            $porInsertar ['genero']    = $datos ['Genero'];
-            if (!$videoJuegosT -> save ($porInsertar))
-                $exitoso = false;
-            //$generoN = $generosTabla -> newEntity ();
-            //$generoN ['idVideoJuego'] = $datos ['id'];
-            //$generoN ['genero'      ] = $datos ['Genero'];
-            //if(!$generosTabla -> save ($generoN))
-            //    $exitoso = false;
-            if ($exitoso) {
-                $this -> Flash -> success ('Cambios realizados con éxito');
-            } else {
-                $this -> Flash -> error ('Hubo un problema, inténtelo nuevamente.');
+            if (isset ($datos['actualizar'])) {
+                $porInsertar = $productos -> newEntity ();
+                $porInsertar ['idProducto'    ] = $datos ['id'         ];
+                $porInsertar ['nombreProducto'] = $datos ['nombre'     ];
+                $porInsertar ['tipo'          ] = $datos ['Categoria'  ];
+                $porInsertar ['precio'        ] = $datos ['precio'     ];
+                $porInsertar ['descripcion'   ] = $datos ['descripcion'];
+                $porInsertar ['fabricante'    ] = $datos ['fabricante' ];
+                $exitoso = true;
+                if (!$productos -> save ($porInsertar))
+                    $exitoso = false;
+                $porBorrar = $generosTabla
+                    -> find ('all')
+                    -> where ("idVideoJuego = '".$datos['id']."'");
+                foreach ($porBorrar as $tupla) {
+                    $generosTabla -> delete ($tupla);
+                }
+                $porInsertar = $videoJuegosT -> get ($datos['id']);
+                $porInsertar ['idConsola'] = $datos ['Plataforma'];
+                $porInsertar ['genero']    = $datos ['Genero'];
+                if (!$videoJuegosT -> save ($porInsertar))
+                    $exitoso = false;
+                //$generoN = $generosTabla -> newEntity ();
+                //$generoN ['idVideoJuego'] = $datos ['id'];
+                //$generoN ['genero'      ] = $datos ['Genero'];
+                //if(!$generosTabla -> save ($generoN))
+                //    $exitoso = false;
+                if ($exitoso) {
+                    $this -> Flash -> success ('Cambios realizados con éxito');
+                } else {
+                    $this -> Flash -> error ('Hubo un problema, inténtelo nuevamente.');
+                }
+            } else if (isset ($datos ['borrar'])) {
+                $porBorrar = $productos -> get ($datos ['borrar']);
+                $productos -> delete ($porBorrar);
             }
         }
         
-        $query = $this->Productos->find('all') -> contain ('video_juegos');
+        $query = $productos -> find('all') -> contain ('video_juegos');
         
         $this -> set ('productos', $query);
         $this -> set ('generos', $generosTabla

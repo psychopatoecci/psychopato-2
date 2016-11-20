@@ -124,6 +124,7 @@
 								<div class='tab-content'>
 									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$producto['idProducto']."' >"; ?>
 										<form id="guardarcambios" action="adminProductos" method="post">
+                                            <input type="hidden" name="actualizar" value="<?php echo $producto['idProducto']; ?>">
 											<div class='col-sm-3'>
 												<h3>ID:</h3>
 												<?php echo "".$producto['idProducto']; ?>
@@ -192,7 +193,7 @@
 											<?php echo "<img src='".obtenerPortada($producto['idProducto'])."' title = 'Portada actual de este producto' />"; ?>
 											<br> <br>
 
-											<form target="_blank" action=""scripts/upload.php" method="post" enctype="multipart/form-data">
+											<form action="scripts/upload.php" method="post" enctype="multipart/form-data">
 												<input type="file" name="fileToUpload" id="fileToUpload"><br>
 												<button type='submit' class='btn btn-default get' name="submit" title = 'Subir la imagen cargada'>Subir imagen</button>
 												<br>
@@ -208,7 +209,7 @@
 									
 									<?php echo "<div class='tab-pane fade' id='capturas".$producto['idProducto']."' >"; ?>
 										<h3>Subir una captura:</h3>
-										<form target="_blank" action=""scripts/upload.php" method="post" enctype="multipart/form-data">
+										<form action="scripts/upload.php" method="post" enctype="multipart/form-data">
 											<input type="file" name="fileToUpload" id="fileToUpload"><br>
 											<button type='submit' class='btn btn-default get' name="submit" title = 'Subir la imagen cargada'>Subir imagen</button>
 											<br>
@@ -242,7 +243,10 @@
 									
 									<?php echo "<div class='tab-pane fade' id='borrar".$producto['idProducto']."' >"; ?>
 										<h3>Borrar este producto de la base de datos:</h3>
-										<input type="button" value="Borrar producto">
+                                        <form action="../adminProductos" method="post">
+                                            <input type="hidden" name="borrar" value="<?php echo $producto['idProducto']; ?>">
+											<button type='submit' class='btn btn-default'>Borrar producto</button>
+                                        </form>
 									</div>
 									
 								</div>
