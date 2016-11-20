@@ -350,7 +350,7 @@ class ProductosController extends AppController
         $this->set('combos', $combos);
         
     }
-    
+
      /** 
      funcion para mostrar la ventana de administracion de productos
     * llama la vista  adminUsuarion
@@ -358,7 +358,35 @@ class ProductosController extends AppController
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
     public function AdminProductos() {
-        
+        $generosTabla = TableRegistry::get ('generos');
+        if ($this -> request -> is ('post')) {
+            $datos = $this -> request -> data;
+            $productos = $this -> Productos;
+            $porInsertar = $productos -> newEntity ();
+            $porInsertar ['idProducto'    ] = $datos ['id'         ];
+            $porInsertar ['nombreProducto'] = $datos ['nombre'     ];
+            $porInsertar ['tipo'          ] = $datos ['Categoria'  ];
+            $porInsertar ['precio'        ] = $datos ['precio'     ];
+            $porInsertar ['descripcion'   ] = $datos ['descripcion'];
+            $porInsertar ['fabricante'    ] = $datos ['fabricante' ];
+            $porInsertar ['idConsola'     ] = 'PROD38389';
+            if ($productos -> save ($porInsertar)) {
+                $porBorrar = $generosTabla
+                    -> find ('all')
+                    -> where ("idVideoJuego = '".$datos['id']."'");
+                foreach ($porBorrar as $tupla) {
+                    $generosTabla -> delete ($tupla);
+                }
+                $generoN = $generosTabla -> newEntity ();
+                $generoN ['idVideoJuego'] = $datos ['id'];
+                $generoN ['genero'      ] = $datos ['Genero'];
+                $generosTabla -> save ($generoN);
+                $this -> Flash -> success ('Cambios realizados con éxito');
+            } else {
+                $this -> Flash -> error ('Hubo un problema, inténtelo nuevamente.');
+            }
+
+        }
         //$query = $this->Productos->find('all')->contain('video_juegos');
         
         $query = $this->Productos->find('all');
@@ -388,7 +416,6 @@ class ProductosController extends AppController
                 array_push($genero, $con2['genero']);
             } 
         }
-        $this -> set ('spooks', $query);
         $this -> set ('idProducto', $idProducto);
         $this -> set ('nombre', $nombre );
         $this -> set ('consola', $consola );
@@ -398,9 +425,9 @@ class ProductosController extends AppController
         $this -> set ('descripciones', $descripciones );
         $this -> set ('fabricantes', $fabricantes );
         $this -> set ('genero', $genero );
-        
-       // $this->render();
+
     }
+
     
     //Controlador del error 404
     public function error404() {
