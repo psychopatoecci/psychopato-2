@@ -75,6 +75,17 @@
 		array_push($portadas, "'src='".obtenerPortada( $portada['idProducto']));	
 	}
 
+// Combos 
+
+global $IDCombos;
+$IDCombos= [];
+	foreach($combos as $combos){
+		array_push($portadas, "'src='".obtenerPortada( $portada['idProducto']));	
+	}
+
+
+
+
 	global $ID1Combo;
 	$ID1Combo= array(
 	'PROD130043',
@@ -120,9 +131,9 @@
 
 	
 	//Función que devuelve el precio con un descuento
-	function calcularDescuento($precio, $descuento) {
-		$precioSinEspacios = str_replace(' ', '', $precio);
-		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuento);
+	function calcularDescuento($precios, $descuentos) {
+		$precioSinEspacios = str_replace(' ', '', $precios);
+		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
 		return $resultado;
 	}
 

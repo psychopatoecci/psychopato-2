@@ -47,6 +47,30 @@
 	foreach($prod as $p){
 		array_push($descripciones, $p['$descripciones']);
 	}
+	
+	global 	$precios;
+	$precios=[];
+	foreach($prod as $p){
+		array_push($precios, $p['precio']);
+	}
+	
+		global $descuentos;
+	$descuentos = [];
+	foreach($prod as $descuento){
+		array_push($descuentos, $descuento['oferta']['descuento']);
+	}
+	
+	global $fechaInicio;
+	$fechaInicio = [];
+	foreach($prod as $fechaI){
+		array_push($fechaInicio, $fechaI['ofertas']['fechaInicio']);	
+	}
+
+	global $fechaFinal;
+	$fechaFinal = [];
+	foreach($prod as $fechaF){
+		array_push($fechaFinal, $fechaF['ofertas']['fechaInicio']);	
+	}
 
 	
 	global 	$consolas;
@@ -70,12 +94,6 @@
 	'one',
 	'pc',
 	'ps4');
-
-	global 	$precios;
-	$precios=[];
-	foreach($prod as $p){
-		array_push($precios, $p['precio']);
-	}
 
 	global 	$generos;
 	$generos = array(
@@ -161,6 +179,12 @@
 	Include ("scripts/funciones.php");
 	
 	//Función busca un producto por nombre, descripcion o ID
+	function calcularDescuento($precios, $descuentos) {
+		$precioSinEspacios = str_replace(' ', '', $precios);
+		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
+		return $resultado;
+	}
+	
 	function mostrarProducto($cadena) {
 
 		global $IDJuegosFisicos;
@@ -169,6 +193,9 @@
 		global $generos;
 		global $consolas;
 		global $descripciones;
+		global $descuentos;
+		global $fechaInicio;
+		global $fechaFinal;
 		
 		$contador=0;
 		
@@ -181,9 +208,19 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
+				if($descuentos[$i]!=null){
+					echo "<br><h2>¡Descuento del ".$descuentos[$i]."%!</h2>";
+				}
 				echo "<a href='../detalles/".$IDJuegosFisicos[$i]."' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
 				echo "<a href='../detalles/".$IDJuegosFisicos[$i]."' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
-				echo "<h2>¢".$precios[$i]."</h2>";
+				if($descuentos[$i]!=null){
+					echo "<h4><strike>¢".$precios[$i]."</strike></h4>";
+					echo "<h2>¢".calcularDescuento($precios[$i], $descuentos[$i])."</h2>";
+					echo "<br><b>Duración de la oferta:</b><br>".$fechaInicio[$i]." - ".$fechaFinal[$i]."<br><br>";
+				}else{
+					echo "<h2>¢".$precios[$i]."</h2>";
+				}
+				echo "<a href='#' title = 'Añadir oferta a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 				echo "<a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 				echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
 				echo "</div> </div> </div> </div>";

@@ -16,20 +16,13 @@ class ProductosController extends AppController
      * controlador para la pagina principal
      */
      public function busqueda(){
-        $numPage = 1;
-        $nuevaPag = $this -> request -> query('nuevaPag');
         $url = $this->request->here();
         $busqueda =  Text::tokenize($url, '=', " ", " "); 
-        
-        $this ->set('algo2', $busqueda[1]);
-        $prod=$this->Productos->find('all');
-        if ($busqueda) {
+        $prod=$this->Productos->find('all',['contain' => ['ofertas']]);
+        if ($busqueda[1]) {
             $prod = $prod -> where ("nombreProducto LIKE '%".$busqueda[1]."%'");
-            // Le dice a la vista que está mostrando solo los buscados para que
-            // los botones de anterior y siguiente funcionen correctamente.
             $this -> set ('buscando', $busqueda[1]); 
         }
-        $this -> set ('numPage', $numPage);
         $this->set('prod', $prod);
         $this->render;
      }
@@ -218,11 +211,7 @@ class ProductosController extends AppController
     }
     
     //Controlador del carrito
-    public function carrito($codigo = null) {
-        if ($codigo==null) {
-            $codigo = $this->request->session()->read('Auth.User.username');
-        }
-        
+    public function carrito($codigo) {
         $datos = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
         
@@ -253,11 +242,8 @@ class ProductosController extends AppController
     }
     
     //Controlador de la wishlist
-    public function wishlist($codigo = null) {
-        if ($codigo==null) {
-            $codigo = $this->request->session()->read('Auth.User.username');
-        }
-        
+    public function wishlist($codigo) {
+
         $datos = TableRegistry::get('wish_list_productos')->find('all')->where("identificacionPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
         
@@ -304,27 +290,6 @@ class ProductosController extends AppController
         
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/wishlist/Emmett94
     }
-    
-        
-    //Controlador de confirmación de una compra
-    public function confirmar($codigo = null) {
-        if ($codigo==null) {
-            $codigo = $this->request->session()->read('Auth.User.username');
-        }
-        
-        $DatosTarjetas = TableRegistry::get('tarjetas')->find('all')->where("idPersona = '".$codigo."'");
-        $this -> set ('DatosTarjetas', $DatosTarjetas);
-        
-        $DatosDirecciones = TableRegistry::get('personas_direcciones')->find('all')->where("idPersona = '".$codigo."'");
-        $this -> set ('DatosDirecciones', $DatosDirecciones);
-        
-        $DatosCarrito = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
-        $this -> set ('DatosCarrito', $DatosCarrito);
-        
-        $DatosProductos = TableRegistry::get('productos')->find('all');
-        $this -> set ('DatosProductos', $DatosProductos);
-        
-    }
    
     //Controlador de ofertas y combos
     public function ofertas() {
@@ -336,18 +301,31 @@ class ProductosController extends AppController
         }
         
         $ofertas = $this -> Productos -> find ('all', 
-            ['contain' => ['ofertas']]);
-            
+            ['conditions'=>['ofertas.idProducto = Productos.idProducto'],
+            'contain' => ['ofertas','productosCombos']]);
         $ofertas = $ofertas -> limit(16) -> page ($numPage);
         $this -> set ('numPage', $numPage);
         $this->set('ofertas', $ofertas);
             
-        $combos = $this -> Productos -> find ('all', 
-            ['contain' => ['combos', 'productosCombos']]);
+        /*$combos = $this -> Combos -> find ('all');
         
+        
+    
+        si incluso creo que podria ser mas facil porque como ya tenemos el id solo hay que hacer join de productosCombos con productos
+        con where produtos comobos.id = lo que pasamos y un un get a combos para sacar el precio mae di si me parece 
+        no se si quiere q trabajemos amboa aca o en local?
+        mae como sea
+        creo q lo voy a intentar aca pero voy a comer primero
+        x cierto existe na vista de detalles de esto?
+        mae no no existe esa vista, yo pefiuero trabajar aqui
+        ok demole aca     
         $combos = $combos -> limit(16) -> page ($numPage);
         $this -> set ('numPage', $numPage);
         $this->set('combos', $combos);
+        
+        foreach($combos as $combo){
+            echo $combo;
+        }*/
         
     }
     
@@ -406,6 +384,12 @@ class ProductosController extends AppController
     public function error404() {
         $this->render();
     }
+    
+    //Controlador de confirmación de una compra
+    public function confirmar() {
+        $this->render();
+    }
+    
     
     //Controlador del upload
     public function upload() {
