@@ -27,20 +27,10 @@
   
 	//Datos de prueba para juegos físicos
 	
-	global $IDProductos;
-	global $nombres;
 	global $consolas;
-	global $tipos;
-	global $precios;
-	global $generos;
 	global $descripcion;
 	
-	$IDProductos=$idProducto;
-	$nombres=$nombre;
 	$consolas=$consola;
-	$tipos=$tipo;
-	$precios=$precio;
-	$generos=$genero;
 	$descripcion=$descripciones;
 	
 	Include ("scripts/funciones.php");
@@ -92,8 +82,8 @@
 								<ul class="nav nav-pills nav-stacked">
 									<!--/Lista de productos físicos-->
 									<?php
-										for ($i = 0; $i < count($nombres); $i++) {
-											echo "<li><a href='#".$IDProductos[$i]."' data-toggle='tab' title='Ver los detalles de este producto'><h4 class='panel-title'><font size='1'>".$IDProductos[$i]." (".$nombres[$i].")</font></h4></a></li><p></p>";
+                                        foreach ($productos as $producto) {
+											echo "<li><a href='#".$producto['idProducto']."' data-toggle='tab' title='Ver los detalles de este producto'><h4 class='panel-title'><font size='1'>".$producto['idProducto']." (".$producto['nombreProducto'].")</font></h4></a></li><p></p>";
 										}
 									?>
 									
@@ -112,36 +102,36 @@
 						<!--Submenus de cada categoria-->
 						<div class="tab-content">	
 						    <?php //Mostrar nombre y código
-							for ($i = 0; $i < count($IDProductos); $i++) {
+                            $i = 0;
+                            foreach ($productos as $producto) {
 								if ($i === 0) {
-									echo "<div class='tab-pane fade active in' id='".$IDProductos[$i]."' >";
+									echo "<div class='tab-pane fade active in' id='".$producto['idProducto']."' >";
 								} else {
-									echo "<div class='tab-pane fade' id='".$IDProductos[$i]."' >";
+									echo "<div class='tab-pane fade' id='".$producto['idProducto']."' >";
 								}
-								echo "<h1>".$IDProductos[$i]." (".$nombres[$i].")</h1>";
-								
+								echo "<h1>".$producto['idProducto']." (".$producto['nombreProducto'].")</h1>";
 							?>
 								<br>
 								<div class='col-sm-12'>
 									<ul class='nav nav-tabs'>
 											<?php //Menu de navegacion
-											echo "<li class='active'><a href='#datosgenerales".$IDProductos[$i]."' data-toggle='tab'>Datos generales</a></li>";
-											echo "<li><a href='#capturas".$IDProductos[$i]."' data-toggle='tab'>Capturas</a></li>";
-											echo "<li><a href='#borrar".$IDProductos[$i]."' data-toggle='tab'>Borrar producto</a></li>";
+											echo "<li class='active'><a href='#datosgenerales".$producto['idProducto']."' data-toggle='tab'>Datos generales</a></li>";
+											echo "<li><a href='#capturas".$producto['idProducto']."' data-toggle='tab'>Capturas</a></li>";
+											echo "<li><a href='#borrar".$producto['idProducto']."' data-toggle='tab'>Borrar producto</a></li>";
 											?>
 									</ul>
 								</div>
 									
 								
 								<div class='tab-content'>
-									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$IDProductos[$i]."' >"; ?>
+									<?php echo "<div class='tab-pane fade active in' id='datosgenerales".$producto['idProducto']."' >"; ?>
 										<form id="guardarcambios" action="adminProductos" method="post">
 											<div class='col-sm-3'>
 												<h3>ID:</h3>
-												<?php echo "".$IDProductos[$i]; ?>
-												<input type="hidden" name="id" value="<?php echo $IDProductos[$i]; ?>">
+												<?php echo "".$producto['idProducto']; ?>
+												<input type="hidden" name="id" value="<?php echo $producto['idProducto']; ?>">
 												<br><h3>Nombre:</h3>
-												<?php echo "<input type='text' name='nombre' placeholder='Nombre' value='".$nombres[$i]."'>"; ?>
+												<?php echo "<input type='text' name='nombre' placeholder='Nombre' value='".$producto['nombreProducto']."'>"; ?>
 												<h3>Descripción:</h3>
 												<?php echo "<textarea rows='7' cols='100' name='descripcion'>".$descripcion[$i]."</textarea>"; ?>
 												<h3>Fabricante:</h3>
@@ -151,14 +141,14 @@
 											
 											<div class='col-sm-3'>
 												<h3>Precio:</h3>
-												<?php echo "<input type='text' name='precio' placeholder='Precio' value='".$precios[$i]."'>"; ?>
+												<?php echo "<input type='text' name='precio' placeholder='Precio' value='".$producto['precio']."'>"; ?>
 												<h3>Categoría:</h3>
 												<select name='Categoria'>
 													<?php
 													$categoriasLista = array('Juego digital','Juego físico','Plataforma');
-													$categoriasBase = array('1','2','3');
+													$categoriasBase = array(1,2,3);
 													for ($j = 0; $j < count($categoriasLista); $j++) {
-														if ($tipos[$i] === $categoriasBase[$j]) {
+														if ($producto['tipo'] === $categoriasBase[$j]) {
 															echo "<option selected='selected' value='".$j."''>".$categoriasLista[$j]."</option>";
 														} else {
 															echo "<option value='".($j+1)."''>".$categoriasLista[$j]."</option>";
@@ -166,17 +156,15 @@
 													}
 													?>
 												</select>
-												<?php if ($tipos[$i]!=3) { ?>
+												<?php if ($producto['tipo']!=3) { ?>
 													<h3>Género:</h3>
 													<select name='Genero'>
 														<?php
-														$generosLista = array('Aventura','RPG','Plataformas','Conducción','Deportes','Shooter','Lucha','Otros');
-														$generosBase = array('aventura','rpg','plataformas','conduccion','deportes','shooter','lucha','otros');
-														for ($j = 0; $j < count($generosLista); $j++) {
-															if ($generos[$i] === $generosBase[$j]) {
-																echo "<option selected='selected' value='".$j."'>".$generosLista[$j]."</option> ";
+														foreach ($generos as $genero) {
+															if ($producto['video_juego']['genero'] === $genero['genero']) {
+																echo "<option selected='selected' value='".$j."'>".$genero['genero']."</option> ";
 															} else {
-																echo "<option value='".$generosLista[$j]."'>".$generosLista[$j]."</option> ";
+																echo "<option value='".$genero['genero']."'>".$genero['genero']."</option> ";
 															}
 														}
 														?>
@@ -185,13 +173,11 @@
 													<h3>Plataforma:</h3>
 													<select name='Plataforma'>
 														<?php
-														$plataformasLista = array('Play Station 4','Play Station 3','Xbox One','Xbox 360','Wii','Wii U','PC','PS Vita','Nintendo 3DS','Nintendo DS');
-														$plataformasBase = array('ps4','ps3','one','360','wii','wiiu','pc','vita','3ds','ds');
-														for ($j = 0; $j < count($plataformasLista); $j++) {
-															if ($consolas[$i] === $plataformasBase[$j]) {
-																echo "<option selected='selected' value='".$j."''>".$plataformasLista[$j]."</option>";
+														foreach ($consolas as $consola) {
+															if ($producto['video_juego']['idConsola'] == $consola['idConsola']) {
+																echo "<option selected='selected' value='".$consola['idConsola']."'>".$consola['producto']['nombreProducto']."</option>";
 															} else {
-																echo "<option value='".$j."''>".$plataformasLista[$j]."</option>";
+																echo "<option value='".$consola['idConsola']."''>".$consola['producto']['nombreProducto']."</option>";
 															}
 														}
 														?>
@@ -205,7 +191,7 @@
 										
 										<div class='col-sm-3'>
 											<h3>Portada:</h3>
-											<?php echo "<img src='".obtenerPortada($IDProductos[$i])."' title = 'Portada actual de este producto' />"; ?>
+											<?php echo "<img src='".obtenerPortada($producto['idProducto'])."' title = 'Portada actual de este producto' />"; ?>
 											<br> <br>
 
 											<form target="_blank" action=""scripts/upload.php" method="post" enctype="multipart/form-data">
@@ -214,7 +200,7 @@
 												<br>
 												<?php
 													echo "La imagen se subirá en: ";
-													echo "<input type='text' name='val1' id='val1' value='images/productos/".$IDProductos[$i]."/Portada/'></input>";
+													echo "<input type='text' name='val1' id='val1' value='images/productos/".$producto['idProducto']."/Portada/'></input>";
 												?>
 												<button type='button' onClick="history.go(0)" class='btn btn-default get' title = 'Refrescar la página'>Refrescar página</button>
 												<br><br><br><br>
@@ -222,7 +208,7 @@
 										</div>
 									</div>
 									
-									<?php echo "<div class='tab-pane fade' id='capturas".$IDProductos[$i]."' >"; ?>
+									<?php echo "<div class='tab-pane fade' id='capturas".$producto['idProducto']."' >"; ?>
 										<h3>Subir una captura:</h3>
 										<form target="_blank" action=""scripts/upload.php" method="post" enctype="multipart/form-data">
 											<input type="file" name="fileToUpload" id="fileToUpload"><br>
@@ -230,7 +216,7 @@
 											<br>
 											<?php
 												echo "La imagen se subirá en: ";
-												echo "<input type='text' name='val1' id='val1' value='images/productos/".$IDProductos[$i]."/Capturas/'></input>";
+												echo "<input type='text' name='val1' id='val1' value='images/productos/".$producto['idProducto']."/Capturas/'></input>";
 											?>
 											<br><br>
 											<button type='button' onClick="history.go(0)" class='btn btn-default get' title = 'Refrescar la página'>Refrescar página</button>
@@ -239,7 +225,7 @@
 										
 										<div class='col-sm-5'>
 											<?php 
-											$directorioCapturas = "images/productos/".$IDProductos[$i]."/Capturas/";
+											$directorioCapturas = "images/productos/".$producto['idProducto']."/Capturas/";
 											if (!file_exists($directorioCapturas)) { //Si no existe la carpeta, la crea
 												mkdir($directorioCapturas, 0777, true);
 											}
@@ -256,14 +242,14 @@
 										</div>
 									</div>
 									
-									<?php echo "<div class='tab-pane fade' id='borrar".$IDProductos[$i]."' >"; ?>
+									<?php echo "<div class='tab-pane fade' id='borrar".$producto['idProducto']."' >"; ?>
 										<h3>Borrar este producto de la base de datos:</h3>
 										<input type="button" value="Borrar producto">
 									</div>
 									
 								</div>
 							</div>
-							<?php } ?>							
+							<?php $i++;} ?>							
 						</div>
 					</div>
 				</div>

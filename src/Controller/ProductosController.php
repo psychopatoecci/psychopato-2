@@ -388,12 +388,13 @@ class ProductosController extends AppController
 
      /** 
      funcion para mostrar la ventana de administracion de productos
-    * llama la vista  adminUsuarion
     * se busca en la base de datos la informacion de los productos (tablas preoductos, video_juegos, generos)
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
     public function AdminProductos() {
-        $generosTabla = TableRegistry::get ('generos');
+        $generosTabla  = TableRegistry::get ('generos');
+        $videoJuegosT  = TableRegistry::get ('video_juegos');
+        $consolasTabla = TableRegistry::get ('consolas');
         if ($this -> request -> is ('post')) {
             $datos = $this -> request -> data;
             $productos = $this -> Productos;
@@ -404,62 +405,47 @@ class ProductosController extends AppController
             $porInsertar ['precio'        ] = $datos ['precio'     ];
             $porInsertar ['descripcion'   ] = $datos ['descripcion'];
             $porInsertar ['fabricante'    ] = $datos ['fabricante' ];
-            $porInsertar ['idConsola'     ] = 'PROD38389';
-            if ($productos -> save ($porInsertar)) {
-                $porBorrar = $generosTabla
-                    -> find ('all')
-                    -> where ("idVideoJuego = '".$datos['id']."'");
-                foreach ($porBorrar as $tupla) {
-                    $generosTabla -> delete ($tupla);
-                }
-                $generoN = $generosTabla -> newEntity ();
-                $generoN ['idVideoJuego'] = $datos ['id'];
-                $generoN ['genero'      ] = $datos ['Genero'];
-                $generosTabla -> save ($generoN);
+            $exitoso = true;
+            if (!$productos -> save ($porInsertar))
+                $exitoso = false;
+            $porBorrar = $generosTabla
+                -> find ('all')
+                -> where ("idVideoJuego = '".$datos['id']."'");
+            foreach ($porBorrar as $tupla) {
+                $generosTabla -> delete ($tupla);
+            }
+            $porInsertar = $videoJuegosT -> get ($datos['id']);
+            $porInsertar ['idConsola'] = $datos ['Plataforma'];
+            $porInsertar ['genero']    = $datos ['Genero'];
+            if (!$videoJuegosT -> save ($porInsertar))
+                $exitoso = false;
+            //$generoN = $generosTabla -> newEntity ();
+            //$generoN ['idVideoJuego'] = $datos ['id'];
+            //$generoN ['genero'      ] = $datos ['Genero'];
+            //if(!$generosTabla -> save ($generoN))
+            //    $exitoso = false;
+            if ($exitoso) {
                 $this -> Flash -> success ('Cambios realizados con éxito');
             } else {
                 $this -> Flash -> error ('Hubo un problema, inténtelo nuevamente.');
             }
-
         }
-        //$query = $this->Productos->find('all')->contain('video_juegos');
         
-        $query = $this->Productos->find('all');
-        $generos = TableRegistry::get('video_juegos');
+        $query = $this->Productos->find('all') -> contain ('video_juegos');
         
-        $idProducto =[];
-        $nombre =[];
-        $consola =[];
-        $tipo =[];
-        $precio =[];
-        $genero =[];
         $descripciones =[];
         $fabricantes =[];
         foreach ($query as $con) {
-            array_push($nombre,$con['nombreProducto']);
-            array_push($idProducto,$con['idProducto']);
-            array_push($tipo,$con['tipo']);
-            array_push($precio,$con['precio']);
             array_push($descripciones,$con['descripcion']);
             array_push($fabricantes,$con['fabricante']);
-            if($con['tipo']==3){
-                array_push($consola, NULL);
-            }
-            $qu2 = $generos -> find('all')->where(['idVideoJuego' => $con['idProducto']]);
-            foreach ($qu2 as $con2) {
-                array_push($consola, $con2['idConsola']);
-                array_push($genero, $con2['genero']);
-            } 
         }
-        $this -> set ('idProducto', $idProducto);
-        $this -> set ('nombre', $nombre );
-        $this -> set ('consola', $consola );
-        $this -> set ('tipo', $tipo );
-        $this -> set ('precio', $precio );
-        $this -> set ('genero', $genero );
+        $this -> set ('productos', $query);
+        $this -> set ('generos', $generosTabla
+            -> find ('all'));
+        $this -> set ('consola', $consolasTabla 
+            -> find ('all') -> contain ('productos'));
         $this -> set ('descripciones', $descripciones );
         $this -> set ('fabricantes', $fabricantes );
-        $this -> set ('genero', $genero );
 
     }
 
