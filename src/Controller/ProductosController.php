@@ -433,20 +433,11 @@ class ProductosController extends AppController
         
         $query = $this->Productos->find('all') -> contain ('video_juegos');
         
-        $descripciones =[];
-        $fabricantes =[];
-        foreach ($query as $con) {
-            array_push($descripciones,$con['descripcion']);
-            array_push($fabricantes,$con['fabricante']);
-        }
         $this -> set ('productos', $query);
         $this -> set ('generos', $generosTabla
             -> find ('all'));
         $this -> set ('consola', $consolasTabla 
             -> find ('all') -> contain ('productos'));
-        $this -> set ('descripciones', $descripciones );
-        $this -> set ('fabricantes', $fabricantes );
-
     }
 
     

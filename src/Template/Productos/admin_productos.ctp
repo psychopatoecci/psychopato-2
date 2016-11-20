@@ -28,10 +28,8 @@
 	//Datos de prueba para juegos físicos
 	
 	global $consolas;
-	global $descripcion;
 	
 	$consolas=$consola;
-	$descripcion=$descripciones;
 	
 	Include ("scripts/funciones.php");
 	
@@ -133,9 +131,9 @@
 												<br><h3>Nombre:</h3>
 												<?php echo "<input type='text' name='nombre' placeholder='Nombre' value='".$producto['nombreProducto']."'>"; ?>
 												<h3>Descripción:</h3>
-												<?php echo "<textarea rows='7' cols='100' name='descripcion'>".$descripcion[$i]."</textarea>"; ?>
+												<?php echo "<textarea rows='7' cols='100' name='descripcion'>".$producto['descripcion']."</textarea>"; ?>
 												<h3>Fabricante:</h3>
-												<?php echo "<input type='text' name='fabricante' placeholder='Fabricante' value=''>"; ?>
+												<?php echo "<input type='text' name='fabricante' placeholder='Fabricante' value='".$producto['fabricante']."'>"; ?>
 												<br><br><br><br>
 											</div>
 											
