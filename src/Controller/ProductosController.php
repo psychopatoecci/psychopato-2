@@ -264,42 +264,38 @@ class ProductosController extends AppController
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
         
-        //Botón de añadir al carrito
+        //Botones de añadir al carrito y borrar producto de wishlist
         $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
-
-        if($this->request->is('post')) {
-            $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
-            
-            if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
-                $this->Flash->success('Producto añadido al carrito de compras.');
-                //Redirecciona al carrito del usuario:
-                return $this->redirect(['action' => '../carrito/'.$this->request->session()->read('Auth.User.username')]);
-                debug ($addcarrito);
-            }
-            else {
-                $this->Flash->error('El producto no se ha añadido debido a un error.');
-            }
-            
-        }
-        $this->set(compact('addcarrito'));
-        
-        //Botón de borrar producto de la wishlist
         $DatosBoton = TableRegistry::get('wish_list_productos')->newEntity();
-        
+
         if($this->request->is('post')) {
-            $DatosBoton = TableRegistry::get('wish_list_productos')->patchEntity($DatosBoton, $this->request->data);
-            $LlavePrimaria = array($DatosBoton['identificacionPersona'],$DatosBoton['idProducto'],$DatosBoton['idWishList']);
-            $TuplaBorrar = TableRegistry::get('wish_list_productos')-> get ($LlavePrimaria);
-
-            if(TableRegistry::get('wish_list_productos')->delete($TuplaBorrar)) {
-                $this->Flash->success('Producto borrado de la wishlist.');
-                return $this->redirect(['action' => '../wishlist/'.$codigo]);
+            if (isset($this->request->data['BotonCarrito'])) {
+                $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
+                
+                if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
+                    $this->Flash->success('Producto añadido al carrito de compras.');
+                    return $this->redirect(['action' => '../carrito/'.$this->request->session()->read('Auth.User.username')]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha añadido debido a un error.');
+                }
+            } else if (isset($this->request->data['BotonBorrar'])) {
+                $DatosBoton = TableRegistry::get('wish_list_productos')->patchEntity($DatosBoton, $this->request->data);
+                $LlavePrimaria = array($DatosBoton['identificacionPersona'],$DatosBoton['idProducto'],$DatosBoton['idWishList']);
+                $TuplaBorrar = TableRegistry::get('wish_list_productos')-> get ($LlavePrimaria);
+    
+                if(TableRegistry::get('wish_list_productos')->delete($TuplaBorrar)) {
+                    $this->Flash->success('Producto borrado de la wishlist.');
+                    return $this->redirect(['action' => '../wishlist/'.$codigo]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha borrado debido a un error.');
+                }
             }
-            else {
-                $this->Flash->error('El producto no se ha borrado debido a un error.');
-            }
+ 
         }
-
+        
+        $this->set(compact('addcarrito'));
         $this->set(compact('DatosBoton'));
         
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/wishlist/Emmett94
@@ -324,6 +320,45 @@ class ProductosController extends AppController
         $DatosProductos = TableRegistry::get('productos')->find('all');
         $this -> set ('DatosProductos', $DatosProductos);
         
+        //Botón de completar compra
+        $addfactura = TableRegistry::get('facturas')->newEntity();
+
+        if($this->request->is('post')) {
+            $addfactura = TableRegistry::get('facturas')->patchEntity($addfactura, $this->request->data);
+            
+            if(TableRegistry::get('facturas')->save($addfactura)) {
+                
+                //Agregar los productos a la tabla productos_facturas
+                $ProductosFactura = $this->request->data('idProducto');
+                $CantidadesFactura = $this->request->data('cantidad');
+                debug($CantidadesFactura);
+                
+                for ($i=0; $i<Count($ProductosFactura); $i++) {
+                    $data = [
+                        'idFactura'    => $this->request->data('idFactura'),
+                        'idProducto' => $ProductosFactura[$i],
+                        'cantidad' => $CantidadesFactura[$i]
+                    ];
+                    $inserciones = TableRegistry::get('productos_facturas')->newEntity();
+                    TableRegistry::get('productos_facturas')->patchEntity($inserciones, $data);
+                    TableRegistry::get('productos_facturas')->save($inserciones);
+                    
+                    //Borrar los productos del carrito
+                    $LlavePrimaria = array($codigo,$ProductosFactura[$i]);
+                    $TuplaBorrar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
+                    TableRegistry::get('carrito_compras')->delete($TuplaBorrar);
+                }
+
+                $this->Flash->success('Orden realizada con éxito');
+                return $this->redirect(['action' => '../ordenes']);
+            }
+            else {
+                $this->Flash->error('La órden no se ha completado debido a un error.');
+            }
+
+        }
+        
+        $this->set(compact('addfactura'));
     }
    
     //Controlador de ofertas y combos
