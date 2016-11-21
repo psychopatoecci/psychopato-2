@@ -16,20 +16,13 @@ class ProductosController extends AppController
      * controlador para la pagina principal
      */
      public function busqueda(){
-        $numPage = 1;
-        $nuevaPag = $this -> request -> query('nuevaPag');
         $url = $this->request->here();
         $busqueda =  Text::tokenize($url, '=', " ", " "); 
-        
-        $this ->set('algo2', $busqueda[1]);
-        $prod=$this->Productos->find('all');
-        if ($busqueda) {
+        $prod=$this->Productos->find('all',['contain' => ['ofertas']]);
+        if ($busqueda[1]) {
             $prod = $prod -> where ("nombreProducto LIKE '%".$busqueda[1]."%'");
-            // Le dice a la vista que está mostrando solo los buscados para que
-            // los botones de anterior y siguiente funcionen correctamente.
             $this -> set ('buscando', $busqueda[1]); 
         }
-        $this -> set ('numPage', $numPage);
         $this->set('prod', $prod);
         $this->render;
      }
@@ -371,18 +364,16 @@ class ProductosController extends AppController
         }
         
         $ofertas = $this -> Productos -> find ('all', 
-            ['contain' => ['ofertas']]);
-            
+            ['conditions'=>['ofertas.idProducto = Productos.idProducto'],
+            'contain' => ['ofertas','productosCombos']]);
         $ofertas = $ofertas -> limit(16) -> page ($numPage);
         $this -> set ('numPage', $numPage);
         $this->set('ofertas', $ofertas);
             
-        $combos = $this -> Productos -> find ('all', 
-            ['contain' => ['combos', 'productosCombos']]);
-        
-        $combos = $combos -> limit(16) -> page ($numPage);
-        $this -> set ('numPage', $numPage);
-        $this->set('combos', $combos);
+        $combos = TableRegistry::get('combos');
+        $query = $combos->query();    
+        $query = $query -> limit(16) -> page ($numPage);
+        $this->set('combos', $query);
         
     }
     
@@ -393,49 +384,59 @@ class ProductosController extends AppController
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
     public function AdminProductos() {
-        
-        //$query = $this->Productos->find('all')->contain('video_juegos');
-        
-        $query = $this->Productos->find('all');
-        $generos = TableRegistry::get('video_juegos');
-        
-        $idProducto =[];
-        $nombre =[];
-        $consola =[];
-        $tipo =[];
-        $precio =[];
-        $genero =[];
-        $descripciones =[];
-        $fabricantes =[];
-        foreach ($query as $con) {
-            array_push($nombre,$con['nombreProducto']);
-            array_push($idProducto,$con['idProducto']);
-            array_push($tipo,$con['tipo']);
-            array_push($precio,$con['precio']);
-            array_push($descripciones,$con['descripcion']);
-            array_push($fabricantes,$con['fabricante']);
-            if($con['tipo']==3){
-                array_push($consola, NULL);
+        $generosTabla  = TableRegistry::get ('generos');
+        $videoJuegosT  = TableRegistry::get ('video_juegos');
+        $consolasTabla = TableRegistry::get ('consolas');
+        $productos = $this -> Productos;
+        if ($this -> request -> is ('post')) {
+            $datos = $this -> request -> data;
+            if (isset ($datos['actualizar'])) {
+                $porInsertar = $productos -> newEntity ();
+                $porInsertar ['idProducto'    ] = $datos ['id'         ];
+                $porInsertar ['nombreProducto'] = $datos ['nombre'     ];
+                $porInsertar ['tipo'          ] = $datos ['Categoria'  ];
+                $porInsertar ['precio'        ] = $datos ['precio'     ];
+                $porInsertar ['descripcion'   ] = $datos ['descripcion'];
+                $porInsertar ['fabricante'    ] = $datos ['fabricante' ];
+                $exitoso = true;
+                if (!$productos -> save ($porInsertar))
+                    $exitoso = false;
+                $porBorrar = $generosTabla
+                    -> find ('all')
+                    -> where ("idVideoJuego = '".$datos['id']."'");
+                foreach ($porBorrar as $tupla) {
+                    $generosTabla -> delete ($tupla);
+                }
+                $porInsertar = $videoJuegosT -> get ($datos['id']);
+                $porInsertar ['idConsola'] = $datos ['Plataforma'];
+                $porInsertar ['genero']    = $datos ['Genero'];
+                if (!$videoJuegosT -> save ($porInsertar))
+                    $exitoso = false;
+                //$generoN = $generosTabla -> newEntity ();
+                //$generoN ['idVideoJuego'] = $datos ['id'];
+                //$generoN ['genero'      ] = $datos ['Genero'];
+                //if(!$generosTabla -> save ($generoN))
+                //    $exitoso = false;
+                if ($exitoso) {
+                    $this -> Flash -> success ('Cambios realizados con éxito');
+                } else {
+                    $this -> Flash -> error ('Hubo un problema, inténtelo nuevamente.');
+                }
+            } else if (isset ($datos ['borrar'])) {
+                $porBorrar = $productos -> get ($datos ['borrar']);
+                $productos -> delete ($porBorrar);
             }
-            $qu2 = $generos -> find('all')->where(['idVideoJuego' => $con['idProducto']]);
-            foreach ($qu2 as $con2) {
-                array_push($consola, $con2['idConsola']);
-                array_push($genero, $con2['genero']);
-            } 
         }
-        $this -> set ('spooks', $query);
-        $this -> set ('idProducto', $idProducto);
-        $this -> set ('nombre', $nombre );
-        $this -> set ('consola', $consola );
-        $this -> set ('tipo', $tipo );
-        $this -> set ('precio', $precio );
-        $this -> set ('genero', $genero );
-        $this -> set ('descripciones', $descripciones );
-        $this -> set ('fabricantes', $fabricantes );
-        $this -> set ('genero', $genero );
         
-       // $this->render();
+        $query = $productos -> find('all') -> contain ('video_juegos');
+        
+        $this -> set ('productos', $query);
+        $this -> set ('generos', $generosTabla
+            -> find ('all'));
+        $this -> set ('consola', $consolasTabla 
+            -> find ('all') -> contain ('productos'));
     }
+
     
     //Controlador del error 404
     public function error404() {
