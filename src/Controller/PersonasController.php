@@ -1,6 +1,5 @@
 <?php
 namespace App\Controller;
-
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Network\Http\Client;
@@ -11,7 +10,6 @@ use Cake\Network\Http\Client;
  */
 class PersonasController extends AppController
 {
-
     /**
      * Index method
      *
@@ -34,21 +32,17 @@ class PersonasController extends AppController
         $cantidadesProductos = [];//guarda la cantidad que se compró de cada producto
         $precioProductos = [];//guarda el precio de cada producto de la factura
         $nombreProductos = [];//guarda el nombre de los productos de la factura
-
         //saca de la base los productos pertenecientes a la factura
         $datosProductos = TableRegistry::get('productos_facturas')->find('all')->where("idFactura = '".$idFactura."'");
         $idFact = $idFactura;
-
         //trae de la base la informacion de la factura para saber precio total y fecha
         $factura = TableRegistry::get('facturas')->find('all')->where("idFactura = '".$idFactura."'");
         //guarda en el array el id del producto y su respectiva cantidad comprada
-
         foreach ($datosProductos as $dato) 
         {
             array_push($idProductos, $dato['idProducto']);
             array_push($cantidadesProductos, $dato['cantidad']);
         }
-
         //para cada producto trae su precio unitario
         for($i = 0; $i < count($idProductos); ++$i)
         {
@@ -67,8 +61,7 @@ class PersonasController extends AppController
         $this->set('factura', $factura);
         $this->render();
     }
-     
-     
+    
       public function borrar($id){
         
         $entity = $this->Personas->get($id);
@@ -79,7 +72,6 @@ class PersonasController extends AppController
          
      }
      
-
      
      
     /** Funcion para agregar un usuario
@@ -415,7 +407,6 @@ class PersonasController extends AppController
                 $this -> Personas -> delete ($porBorrar);
             }
         } // Fin de si el request es post.
-
         // Se buscan las personas y se paginan por $numPage.
         $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
@@ -442,11 +433,9 @@ class PersonasController extends AppController
     public function index()
     {
         $personas = $this->paginate($this->Personas);
-
         $this->set(compact('personas'));
         $this->set('_serialize', ['personas']);
     }
-
     /**
      * View method
      *
@@ -459,11 +448,9 @@ class PersonasController extends AppController
         $persona = $this->Personas->get($id, [
             'contain' => []
         ]);
-
         $this->set('persona', $persona);
         $this->set('_serialize', ['persona']);
     }
-
     /**
      * Add method
      *
@@ -476,7 +463,6 @@ class PersonasController extends AppController
             $persona = $this->Personas->patchEntity($persona, $this->request->data);
             if ($this->Personas->save($persona)) {
                 $this->Flash->success(__('The persona has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The persona could not be saved. Please, try again.'));
@@ -485,7 +471,6 @@ class PersonasController extends AppController
         $this->set(compact('persona'));
         $this->set('_serialize', ['persona']);
     }
-
     /**
      * Edit method
      *
@@ -502,7 +487,6 @@ class PersonasController extends AppController
             $persona = $this->Personas->patchEntity($persona, $this->request->data);
             if ($this->Personas->save($persona)) {
                 $this->Flash->success(__('The persona has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
             } else {
                 $this->Flash->error(__('The persona could not be saved. Please, try again.'));
@@ -511,7 +495,6 @@ class PersonasController extends AppController
         $this->set(compact('persona'));
         $this->set('_serialize', ['persona']);
     }
-
     /**
      * Delete method
      *
@@ -528,7 +511,6 @@ class PersonasController extends AppController
         } else {
             $this->Flash->error(__('The persona could not be deleted. Please, try again.'));
         }
-
         return $this->redirect(['action' => 'index']);
     }
     public function cuenta () {
@@ -697,11 +679,8 @@ class PersonasController extends AppController
         } // Fin de si el request es post.
         $this -> render ();
     }
-
     public function registro () {
-
         if ($this->request->is('post') && isset ($this->request->data['reg'])) {
-
             $datosIngresados = $this->request->data;
             $nuevoUsuario = $this->Personas->newEntity();
             $username = $datosIngresados ['username'];
@@ -727,7 +706,6 @@ class PersonasController extends AppController
         }
         $this->render();
     }
-
     public function ordenes()
     {
         //verifica el id del usuario que está registrado
@@ -754,8 +732,6 @@ class PersonasController extends AppController
         $this->set('precios', $precioTotal);
         $this->set('estados', $estadoCompra);
         $this->render();
-
     }
-
     
 }

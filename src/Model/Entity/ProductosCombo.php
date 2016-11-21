@@ -4,13 +4,12 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * CarritoCompra Entity
+ * ProductosCombo Entity
  *
- * @property string $idPersona
+ * @property string $idCombo
  * @property string $idProducto
- * @property int $cantidad
  */
-class CarritoCompra extends Entity
+class ProductosCombo extends Entity
 {
 
     /**
@@ -24,7 +23,7 @@ class CarritoCompra extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'idPersona' => false,
+        'idCombo' => false,
         'idProducto' => false
     ];
 }

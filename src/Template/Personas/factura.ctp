@@ -70,7 +70,7 @@
 	
 	<!--Header-->
 	<header id="header">
-		<?php include("includes/header.php");?>
+		<?php include(dirname(__FILE__)."/../includes/header.php");?>
 	</header>
 	
 	<!--Navegador lateral-->
@@ -78,7 +78,7 @@
 		
 		<div class="container">
 		<div align="left">
-			<button type='button' onClick="parent.location='ordenes'" class='btn btn-default get' title = 'Regresar a la lista de órdenes'><-Volver a la lista de órdenes</button>
+			<button type='button' onClick="parent.location='../ordenes'" class='btn btn-default get' title = 'Regresar a la lista de órdenes'><-Volver a la lista de órdenes</button>
 		</div>
 			
 		<?php echo "<h1>Factura de la orden ".$NumeroOrden[0]."</h1>";
@@ -141,7 +141,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<?php include("includes/footer.php");?>
+		<?php include(dirname(__FILE__)."/../includes/footer.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>

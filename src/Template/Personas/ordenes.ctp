@@ -85,12 +85,12 @@
 	Include ("scripts/funciones.php");
 	
 	$estadosLista = array('Procesando','En tránsito','Entregado');
-
+	
 ?>
 	
 	<!--Header-->
 	<header id="header">
-		<?php include("includes/header.php");?>
+		<?php include(dirname(__FILE__)."/../includes/header.php");?>
 	</header>
 	
 	<!--Navegador lateral-->
@@ -150,7 +150,7 @@
 								</td>
 								<td class="cart_price">
 									<?php
-										echo "<a href='factura/$idFacturas[$i]' title = 'Ver la factura de esta orden'
+										echo "<a href='/../factura/$idFacturas[$i]' title = 'Ver la factura de esta orden'
 										class='btn btn-default add-to-cart'> Ver factura</a>";
 									?>
 								</td>
@@ -167,7 +167,7 @@
 	
 	<!--/Footer-->
 	<footer id="footer">
-		<?php include("includes/footer.php");?>
+		<?php include(dirname(__FILE__)."/../includes/footer.php");?>
 	</footer>
 
     <script src="js/jquery.js"></script>

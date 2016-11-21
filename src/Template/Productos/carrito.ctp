@@ -43,16 +43,18 @@
 	
 	//Recuperar el nombre y precio de cada producto
 	$cuenta=0;
-	foreach($datos2 as $dato):
-		if ($IDProductosCarrito[$cuenta] == $dato->idProducto) {
-			array_push($nombres, $dato->nombreProducto);
-			array_push($precios, $dato->precio);
-			$cuenta++;
-		}
-		if (($cuenta+1) > Count($IDProductosCarrito)) {
-			break;
-		}
-	endforeach;
+	if (count($IDProductosCarrito)>0) {
+		foreach($datos2 as $dato):
+			if ($IDProductosCarrito[$cuenta] == $dato->idProducto) {
+				array_push($nombres, $dato->nombreProducto);
+				array_push($precios, $dato->precio);
+				$cuenta++;
+			}
+			if (($cuenta+1) > Count($IDProductosCarrito)) {
+				break;
+			}
+		endforeach;
+	}
 	
 	//Datos de prueba
 	/*
@@ -94,6 +96,11 @@
 
 		<div class="container">
 		<h1>Carrito de compras</h1><br>
+			<?php
+				if (count($IDProductosCarrito)<=0) {
+					echo "<h2>No ha añadido productos al carrito</h2><br>";
+				} else {
+			?>
 			<div class="table-responsive cart_info">
 			
 				<table class="table table-condensed">
@@ -114,13 +121,13 @@
 							<tr>
 								<td class="cart_product">
 									<?php
-									echo "<a href='detalles' title = 'Ver los detalles de este producto'>
+									echo "<a href='../detalles/".$IDProductosCarrito[$i]."' title = 'Ver los detalles de este producto'>
 									<img src='/../".obtenerPortada($IDProductosCarrito[$i])."' /></a>";
 									?>
 								</td>
 								<td class="cart_description">
 									<?php
-									echo "<h4><a href='detalles' title = 'Ver los detalles de este producto'><font size='5'>".$nombres[$i]."</font></a></h4>";
+									echo "<h4><a href='../detalles/".$IDProductosCarrito[$i]."' title = 'Ver los detalles de este producto'><font size='5'>".$nombres[$i]."</font></a></h4>";
 									echo "<p> ID: ".$IDProductosCarrito[$i]."</p>";
 									?>
 								</td>
@@ -139,9 +146,18 @@
 								<td class="cart_quantity">
 									<center>
 									<?php
-										echo "<br><br><a href='#' title = 'Eliminar producto de la wishlist' class='btn btn-default add-to-cart'>
-										<i class='fa fa-times'></i><font size='5'>Borrar</font></a>";
+										echo $this->Form->create($DatosBoton);
+										echo $this->Form->hidden('idPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
+										echo $this->Form->hidden('idProducto', ['value'=>$IDProductosCarrito[$i]]);
 									?>
+									<button type="submit" name="BotonBorrar" class="btn btn-default add-to-cart" title="Borrar este producto del carrito de compras">
+										<i class="fa fa-times"></i><font size='5'>Borrar</font>
+									</button>
+									<?php
+										echo $this->Form->end();
+									?>
+									
+									
 									</center>
 								</td>
 
@@ -157,6 +173,7 @@
 				</table>
 				
 			</div>
+			
 			<div align="right">
 				<font size='5'>
 				Total: 
@@ -169,9 +186,12 @@
 				?>
 				</font>
 				<br><br>
-				<a href='#' title = 'Realizar la compra de todos estos productos' class='btn btn-default add-to-cart'>
+				<a href='../confirmar' title = 'Realizar la compra de todos estos productos' class='btn btn-default add-to-cart'>
 				<i class='fa fa-shopping-cart'></i><font size='5'>Realizar compra</font></a>
 			</div>
+			<?php
+				}
+			?>
 		</div>
 	</section>
 	

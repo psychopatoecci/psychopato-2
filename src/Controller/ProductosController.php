@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Utility\Text;
 
 /**
  * productos Controller
@@ -14,6 +15,17 @@ class ProductosController extends AppController
     /**
      * controlador para la pagina principal
      */
+     public function busqueda(){
+        $url = $this->request->here();
+        $busqueda =  Text::tokenize($url, '=', " ", " "); 
+        $prod=$this->Productos->find('all',['contain' => ['ofertas']]);
+        if ($busqueda[1]) {
+            $prod = $prod -> where ("nombreProducto LIKE '%".$busqueda[1]."%'");
+            $this -> set ('buscando', $busqueda[1]); 
+        }
+        $this->set('prod', $prod);
+        $this->render;
+     }
     public function index()
     {
         $productos = $this->Productos->find('all');
@@ -123,7 +135,6 @@ class ProductosController extends AppController
             }
             
         }
-
         $this->set(compact('addcarrito'));
     }
 
@@ -200,49 +211,169 @@ class ProductosController extends AppController
     }
     
     //Controlador del carrito
-    public function carrito($codigo) {
-
+    public function carrito($codigo = null) {
+        if ($codigo==null) {
+            $codigo = $this->request->session()->read('Auth.User.username');
+        }
+        
         $datos = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
         
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
         
+        //Botón de borrar producto del carrito
+        $DatosBoton = TableRegistry::get('wish_list_productos')->newEntity();
+        
+        if($this->request->is('post')) {
+            $DatosBoton = TableRegistry::get('carrito_compras')->patchEntity($DatosBoton, $this->request->data);
+            $LlavePrimaria = array($DatosBoton['idPersona'],$DatosBoton['idProducto']);
+            $TuplaBorrar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
+
+            if(TableRegistry::get('carrito_compras')->delete($TuplaBorrar)) {
+                $this->Flash->success('Producto borrado del carrito de compras.');
+                return $this->redirect(['action' => '../carrito/'.$codigo]);
+            }
+            else {
+                $this->Flash->error('El producto no se ha borrado debido a un error.');
+            }
+        }
+
+        $this->set(compact('DatosBoton'));
+        
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/carrito/Heber74
 
     }
     
     //Controlador de la wishlist
-    public function wishlist($codigo) {
-
+    public function wishlist($codigo = null) {
+        if ($codigo==null) {
+            $codigo = $this->request->session()->read('Auth.User.username');
+        }
+        
         $datos = TableRegistry::get('wish_list_productos')->find('all')->where("identificacionPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
         
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
         
+        //Botones de añadir al carrito y borrar producto de wishlist
+        $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
+        $DatosBoton = TableRegistry::get('wish_list_productos')->newEntity();
+
+        if($this->request->is('post')) {
+            if (isset($this->request->data['BotonCarrito'])) {
+                $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
+                
+                if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
+                    $this->Flash->success('Producto añadido al carrito de compras.');
+                    return $this->redirect(['action' => '../carrito/'.$this->request->session()->read('Auth.User.username')]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha añadido debido a un error.');
+                }
+            } else if (isset($this->request->data['BotonBorrar'])) {
+                $DatosBoton = TableRegistry::get('wish_list_productos')->patchEntity($DatosBoton, $this->request->data);
+                $LlavePrimaria = array($DatosBoton['identificacionPersona'],$DatosBoton['idProducto'],$DatosBoton['idWishList']);
+                $TuplaBorrar = TableRegistry::get('wish_list_productos')-> get ($LlavePrimaria);
+    
+                if(TableRegistry::get('wish_list_productos')->delete($TuplaBorrar)) {
+                    $this->Flash->success('Producto borrado de la wishlist.');
+                    return $this->redirect(['action' => '../wishlist/'.$codigo]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha borrado debido a un error.');
+                }
+            }
+ 
+        }
+        
+        $this->set(compact('addcarrito'));
+        $this->set(compact('DatosBoton'));
+        
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/wishlist/Emmett94
+    }
+    
+        
+    //Controlador de confirmación de una compra
+    public function confirmar($codigo = null) {
+        if ($codigo==null) {
+            $codigo = $this->request->session()->read('Auth.User.username');
+        }
+        
+        $DatosTarjetas = TableRegistry::get('tarjetas')->find('all')->where("idPersona = '".$codigo."'");
+        $this -> set ('DatosTarjetas', $DatosTarjetas);
+        
+        $DatosDirecciones = TableRegistry::get('personas_direcciones')->find('all')->where("idPersona = '".$codigo."'");
+        $this -> set ('DatosDirecciones', $DatosDirecciones);
+        
+        $DatosCarrito = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
+        $this -> set ('DatosCarrito', $DatosCarrito);
+        
+        $DatosProductos = TableRegistry::get('productos')->find('all');
+        $this -> set ('DatosProductos', $DatosProductos);
+        
+        //Botón de completar compra
+        $addfactura = TableRegistry::get('facturas')->newEntity();
+
+        if($this->request->is('post')) {
+            $addfactura = TableRegistry::get('facturas')->patchEntity($addfactura, $this->request->data);
+            
+            if(TableRegistry::get('facturas')->save($addfactura)) {
+                
+                //Agregar los productos a la tabla productos_facturas
+                $ProductosFactura = $this->request->data('idProducto');
+                $CantidadesFactura = $this->request->data('cantidad');
+                debug($CantidadesFactura);
+                
+                for ($i=0; $i<Count($ProductosFactura); $i++) {
+                    $data = [
+                        'idFactura'    => $this->request->data('idFactura'),
+                        'idProducto' => $ProductosFactura[$i],
+                        'cantidad' => $CantidadesFactura[$i]
+                    ];
+                    $inserciones = TableRegistry::get('productos_facturas')->newEntity();
+                    TableRegistry::get('productos_facturas')->patchEntity($inserciones, $data);
+                    TableRegistry::get('productos_facturas')->save($inserciones);
+                    
+                    //Borrar los productos del carrito
+                    $LlavePrimaria = array($codigo,$ProductosFactura[$i]);
+                    $TuplaBorrar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
+                    TableRegistry::get('carrito_compras')->delete($TuplaBorrar);
+                }
+
+                $this->Flash->success('Orden realizada con éxito');
+                return $this->redirect(['action' => '../ordenes']);
+            }
+            else {
+                $this->Flash->error('La órden no se ha completado debido a un error.');
+            }
+
+        }
+        
+        $this->set(compact('addfactura'));
     }
    
     //Controlador de ofertas y combos
     public function ofertas() {
-       /* $numPage = 1;
+        $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         
         if ($nuevaPag && $nuevaPag > 0) {
             $numPage = $nuevaPag;
         }
-        */
+        
         $ofertas = $this -> Productos -> find ('all', 
-            ['contain' => ['ofertas']]);
-            
-       /* $ofertas = $ofertas -> limit(16) -> page ($numPage);
-        $this -> set ('numPage', $numPage);*/
+            ['conditions'=>['ofertas.idProducto = Productos.idProducto'],
+            'contain' => ['ofertas','productosCombos']]);
+        $ofertas = $ofertas -> limit(16) -> page ($numPage);
+        $this -> set ('numPage', $numPage);
         $this->set('ofertas', $ofertas);
             
-        $combos = $this -> Productos -> find ('all', 
-            ['contain' => ['combos', 'productosCombos']]);
-            $this->set('combos', $combos);
+        $combos = TableRegistry::get('combos');
+        $query = $combos->query();    
+        $query = $query -> limit(16) -> page ($numPage);
+        $this->set('combos', $query);
         
     }
     
@@ -253,60 +384,64 @@ class ProductosController extends AppController
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
     public function AdminProductos() {
-        
-        //$query = $this->Productos->find('all')->contain('video_juegos');
-        
-        $query = $this->Productos->find('all');
-        $generos = TableRegistry::get('video_juegos');
-        
-        $idProducto =[];
-        $nombre =[];
-        $consola =[];
-        $tipo =[];
-        $precio =[];
-        $genero =[];
-        $descripciones =[];
-        $fabricantes =[];
-        foreach ($query as $con) {
-            array_push($nombre,$con['nombreProducto']);
-            array_push($idProducto,$con['idProducto']);
-            array_push($tipo,$con['tipo']);
-            array_push($precio,$con['precio']);
-            array_push($descripciones,$con['descripcion']);
-            array_push($fabricantes,$con['fabricante']);
-            if($con['tipo']==3){
-                array_push($consola, NULL);
+        $generosTabla  = TableRegistry::get ('generos');
+        $videoJuegosT  = TableRegistry::get ('video_juegos');
+        $consolasTabla = TableRegistry::get ('consolas');
+        $productos = $this -> Productos;
+        if ($this -> request -> is ('post')) {
+            $datos = $this -> request -> data;
+            if (isset ($datos['actualizar'])) {
+                $porInsertar = $productos -> newEntity ();
+                $porInsertar ['idProducto'    ] = $datos ['id'         ];
+                $porInsertar ['nombreProducto'] = $datos ['nombre'     ];
+                $porInsertar ['tipo'          ] = $datos ['Categoria'  ];
+                $porInsertar ['precio'        ] = $datos ['precio'     ];
+                $porInsertar ['descripcion'   ] = $datos ['descripcion'];
+                $porInsertar ['fabricante'    ] = $datos ['fabricante' ];
+                $exitoso = true;
+                if (!$productos -> save ($porInsertar))
+                    $exitoso = false;
+                $porBorrar = $generosTabla
+                    -> find ('all')
+                    -> where ("idVideoJuego = '".$datos['id']."'");
+                foreach ($porBorrar as $tupla) {
+                    $generosTabla -> delete ($tupla);
+                }
+                $porInsertar = $videoJuegosT -> get ($datos['id']);
+                $porInsertar ['idConsola'] = $datos ['Plataforma'];
+                $porInsertar ['genero']    = $datos ['Genero'];
+                if (!$videoJuegosT -> save ($porInsertar))
+                    $exitoso = false;
+                //$generoN = $generosTabla -> newEntity ();
+                //$generoN ['idVideoJuego'] = $datos ['id'];
+                //$generoN ['genero'      ] = $datos ['Genero'];
+                //if(!$generosTabla -> save ($generoN))
+                //    $exitoso = false;
+                if ($exitoso) {
+                    $this -> Flash -> success ('Cambios realizados con éxito');
+                } else {
+                    $this -> Flash -> error ('Hubo un problema, inténtelo nuevamente.');
+                }
+            } else if (isset ($datos ['borrar'])) {
+                $porBorrar = $productos -> get ($datos ['borrar']);
+                $productos -> delete ($porBorrar);
             }
-            $qu2 = $generos -> find('all')->where(['idVideoJuego' => $con['idProducto']]);
-            foreach ($qu2 as $con2) {
-                array_push($consola, $con2['idConsola']);
-                array_push($genero, $con2['genero']);
-            } 
         }
-        $this -> set ('spooks', $query);
-        $this -> set ('idProducto', $idProducto);
-        $this -> set ('nombre', $nombre );
-        $this -> set ('consola', $consola );
-        $this -> set ('tipo', $tipo );
-        $this -> set ('precio', $precio );
-        $this -> set ('genero', $genero );
-        $this -> set ('descripciones', $descripciones );
-        $this -> set ('fabricantes', $fabricantes );
-        $this -> set ('genero', $genero );
         
-       // $this->render();
+        $query = $productos -> find('all') -> contain ('video_juegos');
+        
+        $this -> set ('productos', $query);
+        $this -> set ('generos', $generosTabla
+            -> find ('all'));
+        $this -> set ('consola', $consolasTabla 
+            -> find ('all') -> contain ('productos'));
     }
+
     
     //Controlador del error 404
     public function error404() {
         $this->render();
     }
-    
-    //Controlador de confirmación de una compra
-    public function confirmar() {
-        $this->render();
-    }
-    
     
     //Controlador del upload
     public function upload() {

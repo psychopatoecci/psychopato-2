@@ -31,30 +31,37 @@
 	global 	$nombres;
 	global 	$categorias;
 	global 	$precios;
+	global 	$idWishList;
 	
 	$IDProductosWishlist = array();
 	$nombres = array();
 	$categorias = array();
 	$precios = array();
+	$idWishList = array();
 	
 	//Recuperar el ID de los productos
 	foreach($datos as $dato):
 		array_push($IDProductosWishlist, $dato->idProducto);
+		array_push($idWishList, $dato->idWishList);
 	endforeach;
 	
 	//Recuperar el nombre, precio y categoria de cada producto
 	$cuenta=0;
-	foreach($datos2 as $dato):
-		if ($IDProductosWishlist[$cuenta] == $dato->idProducto) {
-			array_push($nombres, $dato->nombreProducto);
-			array_push($categorias, $dato->tipo);
-			array_push($precios, $dato->precio);
-			$cuenta++;
-		}
-		if (($cuenta+1) > Count($IDProductosWishlist)) {
-			break;
-		}
-	endforeach;
+	if (count($IDProductosWishlist)>0) {
+		foreach($datos2 as $dato):
+			if ($IDProductosWishlist[$cuenta] == $dato->idProducto) {
+				array_push($nombres, $dato->nombreProducto);
+				array_push($categorias, $dato->tipo);
+				array_push($precios, $dato->precio);
+				$cuenta++;
+			}
+			if (($cuenta+1) > Count($IDProductosWishlist)) {
+				break;
+			}
+		endforeach;
+	}
+	
+	
 	
 	/*
 	Datos de prueba
@@ -95,6 +102,11 @@
 	<section id="cart_items">
 		<div class="container">
 		<h1>Wishlist</h1><br>
+			<?php
+				if (count($IDProductosWishlist)<=0) {
+					echo "<h2>No ha añadido productos a la wishlist</h2><br>";
+				} else {
+			?>
 			<div class="table-responsive cart_info">
 			
 				<table class="table table-condensed">
@@ -115,13 +127,13 @@
 							<tr>
 								<td class="cart_product">
 									<?php
-									echo "<a href='detalles' title = 'Ver los detalles de este producto'>
+									echo "<a href='../detalles/".$IDProductosWishlist[$i]."' title = 'Ver los detalles de este producto'>
 									<img src='/../".obtenerPortada($IDProductosWishlist[$i])."' /></a>";
 									?>
 								</td>
 								<td class="cart_description">
 									<?php
-									echo "<h4><a href='detalles' title = 'Ver los detalles de este producto'><font size='5'>".$nombres[$i]."</font></a></h4>";
+									echo "<h4><a href='../detalles/".$IDProductosWishlist[$i]."' title = 'Ver los detalles de este producto'><font size='5'>".$nombres[$i]."</font></a></h4>";
 									echo "<p> ID: ".$IDProductosWishlist[$i]."</p>";
 									?>
 								</td>
@@ -137,21 +149,42 @@
 								</td>
 								<td class="cart_quantity">
 									<center>
-									<?php
-										echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'>
-										<i class='fa fa-shopping-cart'></i><font size='5'>Añadir al carrito</font></a>";
-										
-										echo "<br><br><a href='#' title = 'Eliminar producto de la wishlist' class='btn btn-default add-to-cart'>
-										<i class='fa fa-times'></i>Borrar</a>";
-
+									<?php //Botón de añadir al carrito
+										echo $this->Form->create($addcarrito);
+										echo $this->Form->hidden('cantidad', ['value'=>1]);
+										echo $this->Form->hidden('idPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
+										echo $this->Form->hidden('idProducto', ['value'=>$IDProductosWishlist[$i]]);
 									?>
+									<button type="submit" name="BotonCarrito" class="btn btn-default add-to-cart" title="Añadir este producto al carrito de compras">
+										<i class="fa fa-shopping-cart"></i><font size='5'>Añadir al carrito</font>
+									</button>
+
+									<?php
+										echo $this->Form->end();
+									?>
+									
+									<?php //Botón de borrar
+										echo $this->Form->create($DatosBoton);
+										echo $this->Form->hidden('identificacionPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
+										echo $this->Form->hidden('idProducto', ['value'=>$IDProductosWishlist[$i]]);
+										echo $this->Form->hidden('idWishList', ['value'=>$idWishList[$i]]);
+									?>
+									
+									<button type="submit" name="BotonBorrar" class="btn btn-default add-to-cart" title="Borrar este producto de la wishlist">
+										<i class="fa fa-times"></i>Borrar
+									</button>
+									
+									<?php
+										echo $this->Form->end();
+									?>
+									
 									</center>
 								</td>
 
 								
 							</tr>
 						<?php
-							}
+							}}
 						?>
 						
 					</tbody>
