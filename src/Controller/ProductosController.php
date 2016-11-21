@@ -370,25 +370,10 @@ class ProductosController extends AppController
         $this -> set ('numPage', $numPage);
         $this->set('ofertas', $ofertas);
             
-        /*$combos = $this -> Combos -> find ('all');
-        
-        
-    
-        si incluso creo que podria ser mas facil porque como ya tenemos el id solo hay que hacer join de productosCombos con productos
-        con where produtos comobos.id = lo que pasamos y un un get a combos para sacar el precio mae di si me parece 
-        no se si quiere q trabajemos amboa aca o en local?
-        mae como sea
-        creo q lo voy a intentar aca pero voy a comer primero
-        x cierto existe na vista de detalles de esto?
-        mae no no existe esa vista, yo pefiuero trabajar aqui
-        ok demole aca     
-        $combos = $combos -> limit(16) -> page ($numPage);
-        $this -> set ('numPage', $numPage);
-        $this->set('combos', $combos);
-        
-        foreach($combos as $combo){
-            echo $combo;
-        }*/
+        $combos = TableRegistry::get('combos');
+        $query = $combos->query();    
+        $query = $query -> limit(16) -> page ($numPage);
+        $this->set('combos', $query);
         
     }
     
@@ -457,12 +442,6 @@ class ProductosController extends AppController
     public function error404() {
         $this->render();
     }
-    
-    //Controlador de confirmación de una compra
-    public function confirmar() {
-        $this->render();
-    }
-    
     
     //Controlador del upload
     public function upload() {

@@ -79,11 +79,32 @@
 
 global $IDCombos;
 $IDCombos= [];
-	foreach($combos as $combos){
-		array_push($portadas, "'src='".obtenerPortada( $portada['idProducto']));	
+	foreach($combos as $combo){
+		array_push($IDCombos, $combo['idCombo']);	
 	}
 
 
+global $PrecioComb;
+$PrecioComb = [];
+	foreach($combos as $precio){
+		array_push($PrecioComb, $precio['precioCombo']);	
+	}
+	
+	
+global $fechaInic;
+$fechaInic = [];
+	foreach($combos as $fecha){
+		array_push($fechaInic, $fecha['fechaInicio']);	
+	}
+
+
+global $fechaFin;
+$fechaFin = [];
+	foreach($combos as $fecha){
+		array_push($fechaFin, $fecha['fechaFIn']);	
+	}
+	
+/// FIN VARIABLES COMBO 
 
 
 	global $ID1Combo;
@@ -98,11 +119,6 @@ $IDCombos= [];
 	'PROD102710',
 	'PROD10477');
 	
-	global $preciosCombo;
-	$preciosCombo = array( //Precio del combo (todo junto)
-	'349 000',
-	'299 500',
-	'68 500');
 	
 	global $nombres1Combo;
 	$nombres1Combo = array( //Primer producto del combo
@@ -172,32 +188,37 @@ $IDCombos= [];
 	
 	//Función que muestra un combo en pantalla
 	function mostrarCombo() {
-		global $ID1Combo;
-		global $ID2Combo;
-		global $nombres1Combo;
-		global $nombres2Combo;
-		global $preciosCombo;
-		global $portadas1Combo;
-		global $portadas2Combo;
-		global $tipos1Combo;
-		global $tipos2Combo;
+		global $IDCombos;
+		global $fechaInic;
+		global $fechaFin;
+		global $PrecioComb;
+		//global $ID2Combo;
+		//global $nombres1Combo;
+		//global $nombres2Combo;
+		//global $preciosCombo;
+		//global $portadas1Combo;
+		//global $portadas2Combo;
+		//global $tipos1Combo;
+		//global $tipos2Combo;
 		
-		for ($i = 0; $i < count($nombres1Combo); $i++) { 
+		for ($i = 0; $i < count($IDCombos); $i++) { 
 			echo "<div class='col-sm-3'>";
 			echo "<div class='product-image-wrapper'>";
 			echo "<div class='single-products'>";
 			echo "<div class='productinfo text-center'>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".obtenerPortada($ID1Combo[$i])."' alt='' /></a>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".obtenerPortada($ID2Combo[$i])."' alt='' /></a>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><p>".$nombres1Combo[$i]."</p></a>";
-			echo "<a href='detalles.php' title = 'Ver detalles del producto'><p> + <br>".$nombres2Combo[$i]."</p></a>";
-			echo "<h2>¢".$preciosCombo[$i]."</h2>";
+			echo "<br><h2>¡Combo numero: ".$IDCombos[$i]."!</h2>";
+			echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".obtenerPortada($IDCombos[$i])."' alt='' /></a>";
+			//echo "<a href='detalles.php' title = 'Ver detalles del producto'><img src='".obtenerPortada($IDCombos[$i])."' alt='' /></a>";
+			echo "<a href='detalles.php' title = 'Ver detalles del producto'><p>".$IDCombos[$i]."</p></a>";
+		//	echo "<a href='detalles.php' title = 'Ver detalles del producto'><p> <br>".$IDCombos[$i]."</p></a>";
+		//	echo "<h4><strike>¢".$PrecioComb[$i]."</strike></h4>";
+			echo "<h2>¢".$PrecioComb[$i]."</h2>";
 			echo "<a href='#' title = 'Añadir oferta a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 			echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir oferta al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
 			echo "</div>";
-			if ($tipos1Combo[$i][0]==="D") { //Digital
-				echo "<img src='images/home/digital.png' class='new' alt='' />";
-			}
+			//if ($tipos1Combo[$i][0]==="D") { //Digital
+			//	echo "<img src='images/home/digital.png' class='new' alt='' />";
+			//}
 			echo "</div> </div> </div>";
 		}
 	}
@@ -257,7 +278,7 @@ $IDCombos= [];
 									?>
 								</div>
 								
-				</div>
+				
                     <form id="pag" action="../ofertas" method="get">
                         <?php 
                             echo "<input type='hidden' name='nuevaPag' value='".strval($numPage - 1)."'>"; 
@@ -270,7 +291,7 @@ $IDCombos= [];
                         ?>
                         <button type='submit' class='btn btn-default'>Siguiente</button>
                     </form>
-				</div>
+			
 								
 						    </div>
 						    
