@@ -415,16 +415,19 @@ class ProductosController extends AppController
                 foreach ($porBorrar as $tupla) {
                     $generosTabla -> delete ($tupla);
                 }
-                $porInsertar = $videoJuegosT -> get ($datos['id']);
-                $porInsertar ['idConsola'] = $datos ['Plataforma'];
-                $porInsertar ['genero']    = $datos ['Genero'];
-                if (!$videoJuegosT -> save ($porInsertar))
-                    $exitoso = false;
-                //$generoN = $generosTabla -> newEntity ();
-                //$generoN ['idVideoJuego'] = $datos ['id'];
-                //$generoN ['genero'      ] = $datos ['Genero'];
-                //if(!$generosTabla -> save ($generoN))
-                //    $exitoso = false;
+                if ($datos ['Categoria'] == 'Juego digital'
+                    || $datos ['Categoria'] == 'Juego físico') {
+                    $porInsertar = $videoJuegosT -> get ($datos['id']);
+                    $porInsertar ['idConsola'] = $datos ['Plataforma'];
+                    $porInsertar ['genero']    = $datos ['Genero'];
+                    if (!$videoJuegosT -> save ($porInsertar))
+                        $exitoso = false;
+                    //$generoN = $generosTabla -> newEntity ();
+                    //$generoN ['idVideoJuego'] = $datos ['id'];
+                    //$generoN ['genero'      ] = $datos ['Genero'];
+                    //if(!$generosTabla -> save ($generoN))
+                    //    $exitoso = false;
+                }
                 if ($exitoso) {
                     $this -> Flash -> success ('Cambios realizados con éxito');
                 } else {
