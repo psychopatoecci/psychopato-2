@@ -34,10 +34,25 @@ class AAPersonasSeed extends AbstractSeed
                 'contraseña'     => $pw,
                 'fecha_nacimiento'  => $faker->date($format = 'Y-m-d', $max = '2010-01-01'),
         ];
+        $datosPersonas [] = [
+                'identificacion' => 'oveja',
+                'nombre'         => $faker->firstName($gender = null|'male'|'female'),
+                'apellido1'      => $faker->lastName,
+                'apellido2'      => $faker->lastName,
+                'correo'         => $faker->email,
+                'administrador'  => 0,
+                'contraseña'     => $pw,
+                'fecha_nacimiento'  => $faker->date($format = 'Y-m-d', $max = '2010-01-01'),
+        ];
         $datosUsuarios[] = [
                 'username' => 'admin',
                 'password' => $pw,
                 'role'     => 'admin'
+        ];
+        $datosUsuarios[] = [
+                'username' => 'oveja',
+                'password' => $pw,
+                'role'     => 'user'
         ];
       
         for ($i = 0; $i < 200; $i++)
