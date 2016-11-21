@@ -27,6 +27,9 @@
 	
 	//Nomenclatura de la base para las provincias
 	$provinciasBase = array('San José','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limón','');
+	
+	$usuario = $this->request->session()->read('Auth.User.username');
+
 ?>
 			
 	<!--Header-->
@@ -49,6 +52,7 @@
 								echo "<li class='active'><a href='#datosgenerales".$us['identificacion']."' data-toggle='tab'>Datos generales</a></li>";
 								echo "<li><a href='#direcciones".$us['identificacion']."' data-toggle='tab'>Direcciones</a></li>";
 								echo "<li><a href='#tarjetas".$us['identificacion']."' data-toggle='tab'>Tarjetas</a></li>";
+								echo "<li><a href='#ordenes".$us['identificacion']."' data-toggle='tab'>Órdenes</a></li>";
 								?>
 							</ul>
 						</div>
@@ -130,6 +134,12 @@
                                             </form>
 
                                         </div>
+                                    </div>
+                                    
+                                    <?php echo "<div class='tab-pane fade' id='ordenes".$us['identificacion']."'>";
+                                        echo "<a href='ordenes/".$usuario."' title = 'Ver las órdenes realizadas'
+										class='btn btn-default add-to-cart'> Ver órdenes</a>";
+										?>
                                     </div>
 
 									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
