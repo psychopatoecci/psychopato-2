@@ -37,13 +37,11 @@
 			</div>
 			<div class="col-sm-2">
 				<div class="single-widget">
-					
-					<h2>Adminisghtración</h2>
+					<h2>Administración</h2>
 					<ul class="nav nav-pills nav-stacked">
-						<li><a href="../adminProductos">Administración de productos</a></li>
-						<li><a href="../adminUsuarios">Administración de usuarios</a></li>
+						<li><a href="adminProductos">Administración de productos</a></li>
+						<li><a href="adminUsuarios">Administración de usuarios</a></li>
 					</ul>
-					
 				</div>
 			</div>
 		</div>

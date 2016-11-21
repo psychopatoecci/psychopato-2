@@ -38,7 +38,7 @@ class ProductosTable extends Table
         $this->hasOne('video_juegos',['foreignKey'=>'idVideoJuego']);
         $this->hasOne('consolas', ['foreignKey' => 'idConsola']);
         $this->hasOne('ofertas', ['foreignKey' => 'idProducto',
-            'joinType' => 'INNER']);
+            'joinType' => 'LEFT']);
             
         $this->hasOne('combos', ['foreignKey' => 'idProducto',
             'joinType' => 'INNER']);

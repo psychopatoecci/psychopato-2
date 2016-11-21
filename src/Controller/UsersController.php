@@ -11,6 +11,17 @@ use Cake\Event\Event;
  */
 class UsersController extends AppController
 {
+    
+   /* public function isAuthorized($user){
+        if(isset($user['role']) and $user['role'] === 'user'){
+            if(in_array($this->request->action, ['login', 'logout', 'index'])){
+                return true;
+            }
+        }
+        
+        return parent::isAuthorized($user);
+    }*/
+    
 
     public function beforeFilter (Event $event) {
         parent::beforeFilter ($event);
@@ -21,7 +32,7 @@ class UsersController extends AppController
             $user = $this -> Auth -> identify ();
             if ($user) {
                 $this -> Auth -> setUser ($user);
-                return $this -> redirect ('/');
+                return $this -> redirect ($this->Auth->redirectUrl());
             } else {
                 $this -> Flash -> error (__('Usuario o contraseña inválidos.'));
             }

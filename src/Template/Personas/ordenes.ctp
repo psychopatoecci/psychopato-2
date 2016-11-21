@@ -85,7 +85,7 @@
 	Include ("scripts/funciones.php");
 	
 	$estadosLista = array('Procesando','En tránsito','Entregado');
-
+	
 ?>
 	
 	<!--Header-->
