@@ -7,7 +7,7 @@
 		} else {
 			$archivoPortada = array_diff(scandir($urlCarpeta), array('.', '..'));
 			if (count($archivoPortada) < 1) { //No hay portada asignada
-				$urlCompleta = "images/sinportada.png";
+				$urlCompleta = "/../images/sinportada.png";
 			} else {
 				$urlCompleta = $urlCarpeta.$archivoPortada[2];
 			}
