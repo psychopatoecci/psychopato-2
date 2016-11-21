@@ -36,7 +36,6 @@
 	?>
 	
 	<?php
-	//function SubirImagen() {
 	if (isset($_POST['val1'])) {
 		$target_dir = $_POST['val1'];
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
