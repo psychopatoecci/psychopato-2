@@ -33,6 +33,7 @@ class ProductosTable extends Table
         $this->table('productos');
         $this->displayField('idProducto');
         $this->primaryKey('idProducto');
+        $this ->hasOne('generos', ['foreignKey' => 'idProducto']);
         /*pruebas*/
         $this->hasOne('video_juegos',['foreignKey'=>'idVideoJuego']);
         $this->hasOne('consolas', ['foreignKey' => 'idConsola']);

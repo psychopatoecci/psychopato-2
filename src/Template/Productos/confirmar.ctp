@@ -158,8 +158,36 @@
 		<div class="col-sm-4 padding-right">
 			<?php echo"<font size='5'>Total a pagar: ¢".$total."</font>"; ?>
 			<br><br><br>
-			<a href='#' title = 'Confirmar y realizar la compra' class='btn btn-default add-to-cart'>
-				<font size='5'>Completar compra</font></a>
+			
+			<?php //Botón de completar compra
+				echo $this->Form->create($addfactura);
+				use Cake\I18n\Time;
+				$now = Time::now();
+				$factura = 'FAC'.rand(10000, 999999);
+
+				//Datos para creación de la factura
+				echo $this->Form->hidden('idFactura', ['value'=>$factura]);
+				echo $this->Form->hidden('fechaFactura', ['value'=>$now->year."-".$now->month."-".$now->day]);
+				echo $this->Form->hidden('idUsuario', ['value'=>$usuario]);
+				echo $this->Form->hidden('precioTotal', ['value'=>$total]);
+				echo $this->Form->hidden('estadoCompra', ['value'=>1]);
+				
+				//Datos de los productos de la factura
+				for ($i=0; $i<count($IDProductos); $i++) {
+					echo $this->Form->hidden('idProducto.'.$i, array( 'label' => false, 'default'=>$IDProductos[$i]));
+					echo $this->Form->hidden('cantidad.'.$i, array( 'label' => false, 'default'=>$Cantidades[$i]));
+				}
+				
+			?>
+				
+			<button type="submit" name="BotonCompletarCompra" class="btn btn-default add-to-cart" title="Completar y realizar esta compra">
+				<font size='5'>Completar compra</font>
+			</button>
+			
+			<?php
+				echo $this->Form->end();
+			?>
+			
 		</div>
 	</div>
 	<br><br><br>
