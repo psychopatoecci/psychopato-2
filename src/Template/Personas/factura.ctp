@@ -89,8 +89,8 @@
 					<thead>
 						<tr class="cart_menu">
 							<td class="price"><font size="5">Productos</font></td>
-							<td class="price"><font size="5">Precio</font></td>
 							<td class="price"><font size="5">Cantidad</font></td>
+							<!--<td class="price"><font size="5">Precio</font></td>-->
 							<td class=""></td>
 							<td></td>
 						</tr>
@@ -108,14 +108,10 @@
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<p>¢".$precios[$i]."</p>";
+									echo "<p>¢".$cantidades[$i]."</p>";
 									?>
 								</td>
-								<td class="cart_price">
-									<?php
-									echo "<p>".$cantidades[$i]."</p>";
-									?>
-								</td>
+								
 			
 							</tr>
 						<?php
