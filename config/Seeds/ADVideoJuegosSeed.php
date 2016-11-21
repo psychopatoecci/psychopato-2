@@ -23,6 +23,8 @@ class ADVideoJuegosSeed extends AbstractSeed
         $rows = $this->fetchAll('SELECT idProducto FROM productos WHERE tipo <= 2');
         $cons = $this->fetchAll('SELECT idProducto FROM productos WHERE tipo = 3');
         $data = [];
+        
+        $generos = array('aventura', 'rpg', 'plataformas', 'conduccion', 'deportes', 'shooter', 'lucha', 'otros');
         foreach ($rows as $arr) {
             $id=strval($arr[0]);
             $data = [
@@ -31,7 +33,7 @@ class ADVideoJuegosSeed extends AbstractSeed
                 'ESRB' => $faker->numberBetween($min = 1, $max = 7),
                 'reqMin' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
                 'reqMax' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
-                'genero' => $faker->word()
+                'genero' => $faker->randomElement($generos)
             ];
             $table = $this -> table ('video_juegos');
             $table -> insert ($data) -> save ();

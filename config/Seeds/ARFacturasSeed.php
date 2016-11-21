@@ -29,6 +29,7 @@ class ARFacturasSeed extends AbstractSeed
                 'idUsuario' => $id,
                 'precioTotal' => $faker->numberBetween($min = 10000, $max = 956325415),
                 'estadoCompra' => $faker->numberBetween($min = 1, $max = 3),
+                
             ];
             //$populator->execute();
         $table = $this->table('facturas');

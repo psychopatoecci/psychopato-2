@@ -33,7 +33,7 @@ class ATProductosFacturasSeed extends AbstractSeed
             $contador++;
         }
   
-        for ($i = 0; $i < 50; $i++)
+        for ($i = 0; $i < count($rows); $i++)
         {
             $data = [
                 'idFactura' => $faker->randomElement($array = $idFact),
