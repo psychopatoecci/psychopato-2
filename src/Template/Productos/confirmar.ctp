@@ -143,9 +143,15 @@
                     }
                 ?>
                     
-                <button type="submit" name="BotonCompletarCompra" class="btn btn-default add-to-cart" title="Completar y realizar esta compra">
-                    <font size='5'>Completar compra</font>
-                </button>
+				<?php 
+                if (count($DatosDirecciones) > 0 && count ($DatosTarjetas) > 0) {
+                    echo "
+                    <button type='submit' name='BotonCompletarCompra' class='btn btn-default add-to-cart' title='Completar y realizar esta compra'>
+                        <font size='5'>Completar compra</font>
+                    </button>";
+                } else {
+                    echo "<font size='5'>Se necesitan tarjetas y direcciones de envío para comprar.</font>";
+                } ?>
 			</form>
 		</div>
 	</div>
