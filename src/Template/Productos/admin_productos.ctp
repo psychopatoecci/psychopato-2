@@ -249,7 +249,6 @@
 													echo "La imagen se subirá en: ";
 													echo "<input type='text' name='val1' id='val1' value='images/productos/".$producto['idProducto']."/Portada/'></input>";
 												?>
-												<button type='button' onClick="history.go(0)" class='btn btn-default get' title = 'Refrescar la página'>Refrescar página</button>
 												<br><br><br><br>
 											</form>
 										</div>

@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Text;
+use Cake\Network\Http\Client;
 
 /**
  * productos Controller
@@ -301,7 +302,7 @@ class ProductosController extends AppController
             $codigo = $this->request->session()->read('Auth.User.username');
         }
         
-        $DatosTarjetas = TableRegistry::get('tarjetas')->find('all')->where("idPersona = '".$codigo."'");
+        $DatosTarjetas = TableRegistry::get('tarjetas')->find('all')->where("idPersona = '".$codigo."'")->toArray();
         $this -> set ('DatosTarjetas', $DatosTarjetas);
         
         $DatosDirecciones = TableRegistry::get('personas_direcciones')->find('all')->where("idPersona = '".$codigo."'");
@@ -317,6 +318,17 @@ class ProductosController extends AppController
         $addfactura = TableRegistry::get('facturas')->newEntity();
 
         if($this->request->is('post')) {
+            $datos   = $this -> request -> data();
+            $tarjeta = $DatosTarjetas [$datos ['Tarjetas']];
+            $http    = new Client();
+            $response = $http->get('https://psycho-webservice.herokuapp.com',
+                [ 'numTarjeta' => $tarjeta ['idTarjeta']
+                , 'csv'        => $tarjeta ['csv']
+                , 'precio'     => $datos   ['precioTotal']])->body;
+            if ($response == 'Rechazado: Fondos insuficientes.') {
+				$this -> Flash -> Error ('Rechazado por fondos insuficientes');
+				return;
+			}
             $addfactura = TableRegistry::get('facturas')->patchEntity($addfactura, $this->request->data);
             
             if(TableRegistry::get('facturas')->save($addfactura)) {
@@ -324,13 +336,13 @@ class ProductosController extends AppController
                 //Agregar los productos a la tabla productos_facturas
                 $ProductosFactura = $this->request->data('idProducto');
                 $CantidadesFactura = $this->request->data('cantidad');
-                debug($CantidadesFactura);
+                debug($this->request->data);
                 
                 for ($i=0; $i<Count($ProductosFactura); $i++) {
                     $data = [
-                        'idFactura'    => $this->request->data('idFactura'),
+                        'idFactura'  => $this->request->data('idFactura'),
                         'idProducto' => $ProductosFactura[$i],
-                        'cantidad' => $CantidadesFactura[$i]
+                        'cantidad'   => $CantidadesFactura[$i]
                     ];
                     $inserciones = TableRegistry::get('productos_facturas')->newEntity();
                     TableRegistry::get('productos_facturas')->patchEntity($inserciones, $data);
@@ -346,7 +358,7 @@ class ProductosController extends AppController
                 return $this->redirect(['action' => '../ordenes']);
             }
             else {
-                $this->Flash->error('La órden no se ha completado debido a un error.');
+                $this->Flash->error('La orden no se ha completado debido a un error.');
             }
 
         }

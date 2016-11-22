@@ -656,12 +656,13 @@ class PersonasController extends AppController
             } else if ($datos ['tipoReq'] == 'AgregarTarjeta'){
 				$tarjetas = TableRegistry::get ('tarjetas');
                 $tarjeta = $tarjetas -> newEntity();
-                $tarjeta ['idTarjeta'] = $datos ['numTarjeta'];
+                $numT =  str_replace(' ', '', $datos ['numTarjeta']);
+                $tarjeta ['idTarjeta'] = $numT;
                 $tarjeta ['idPersona'] = $usId;
                 $tarjeta ['csv']       = $datos ['csv'];
                 $http = new Client();
                 $response = $http->get('https://psycho-webservice.herokuapp.com',
-                    ['numTarjeta' => $datos ['numTarjeta']
+                    ['numTarjeta' => $numT
 					, 'csv' => $datos ['csv']]);
                 //$this -> set ('respuesta', $response->body);
                 if ($response->body == 'Correcto' ) {
