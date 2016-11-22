@@ -201,7 +201,7 @@
                                                 <?php
                                                     $categoriasLista = array('Juego digital','Juego físico','Plataforma');
                                                     echo $categoriasLista[intval($producto['tipo'])-1];
-                                                    echo "<input type='hidden' name='Categoria' value=".$categoriasLista[intval($producto['tipo'])-1].">";
+                                                    echo "<input type='hidden' name='Categoria' value='".$producto['tipo']."'>";
                                                 ?>
 												<?php if ($producto['tipo']!=3) { ?>
 													<h3>Género:</h3>

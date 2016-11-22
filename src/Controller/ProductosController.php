@@ -401,24 +401,24 @@ class ProductosController extends AppController
                 $exitoso = true;
                 if (!$productos -> save ($porInsertar))
                     $exitoso = false;
-                $porBorrar = $generosTabla
-                    -> find ('all')
-                    -> where ("idVideoJuego = '".$datos['id']."'");
-                foreach ($porBorrar as $tupla) {
-                    $generosTabla -> delete ($tupla);
-                }
-                if ($datos ['Categoria'] == 'Juego digital'
-                    || $datos ['Categoria'] == 'Juego físico') {
+                //$porBorrar = $generosTabla
+                //    -> find ('all')
+                //    -> where ("idVideoJuego = '".$datos['id']."'");
+                //foreach ($porBorrar as $tupla)
+                    //$generosTabla -> delete ($tupla);
+                
+                if ($datos ['Categoria'] == 1
+                    || $datos ['Categoria'] == 2) { // Es videojuego.
                     $porInsertar = $videoJuegosT -> get ($datos['id']);
                     $porInsertar ['idConsola'] = $datos ['Plataforma'];
                     $porInsertar ['genero']    = $datos ['Genero'];
                     if (!$videoJuegosT -> save ($porInsertar))
                         $exitoso = false;
-                    //$generoN = $generosTabla -> newEntity ();
-                    //$generoN ['idVideoJuego'] = $datos ['id'];
-                    //$generoN ['genero'      ] = $datos ['Genero'];
-                    //if(!$generosTabla -> save ($generoN))
-                    //    $exitoso = false;
+                    /*$generoN = $generosTabla -> newEntity ();
+                    $generoN ['idVideoJuego'] = $datos ['id'];
+                    $generoN ['genero'      ] = $datos ['Genero'];
+                    if(!$generosTabla -> save ($generoN))
+                        $exitoso = false;*/
                 }
                 if ($exitoso) {
                     $this -> Flash -> success ('Cambios realizados con éxito');
