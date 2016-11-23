@@ -54,178 +54,6 @@
   $precios3          = $precioConsolas;
   $nombres3          = $nombreConsolas;
 
-  /*
-	//Datos de prueba para juegos físicos
-	global 	$IDJuegosFisicos;
-	$IDJuegosFisicos = array(
-	'PROD101406',
-	'PROD10192',
-	'PROD102710',
-	'PROD10477',
-	'PROD104915',
-	'PROD104990',
-	'PROD108791',
-	'PROD109509',
-	'PROD10961',
-	'PROD110101',
-	'PROD111910',
-	'PROD114519',
-	'PROD116048',
-	'PROD116327',
-	'PROD116873',
-	'PROD118637',
-	'PROD125163',
-	'PROD12595',
-	'PROD126427');
-	global 	$nombres;
-	$nombres = array(
-	'The Witcher 3',
-	'Persona 5',
-	'Zelda: Breath of the Wild',
-	'Zelda: Ocarina of Time 3D',
-	'No man\'s sky',
-	'Fire Emblem: Conquest',
-	'Pokemon Sun',
-	'Final Fantasy XV',
-	'Forza Horizon 3',
-	'FIFA 17',
-	'Super Smash Bros. WiiU',
-	'Imagina ser roca',
-	'Paper Mario: Color Splash',
-	'Battlefiel 1',
-	'Bioshock: The Collection',
-	'Half-Life 3',
-	'Halo 5: Guardians',
-	'Rock Simulator 2014',
-	'The Last Guardian');
-    */
-    /*
-	global 	$consolas;
-	$consolas = array(
-	'ps4',
-	'ps4',
-	'wiiu',
-	'3ds',
-	'ps4',
-	'3ds',
-	'3ds',
-	'ps4',
-	'one',
-	'ps4',
-	'wiiu',
-	'ds',
-	'wiiu',
-	'one',
-	'ps4',
-	'pc',
-	'one',
-	'pc',
-	'ps4');*/
-    /*
-	global 	$precios;
-	$precios= array(
-	'29 000',
-	'59 500',
-	'59 000',
-	'39 500',
-	'2 500',
-	'39 000',
-	'39 500',
-	'59 000',
-	'49 000',
-	'49 000',
-	'35 000',
-	'87 900',
-	'47 900',
-	'59 000',
-	'35 000',
-	'99 999',
-	'37 900',
-	'1 900',
-	'59 000');*/
-    /*
-	global 	$generos;
-	$generos = array(
-	'aventura',
-	'rpg',
-	'aventura',
-	'aventura',
-	'aventura',
-	'rpg',
-	'rpg',
-	'rpg',
-	'conduccion',
-	'deportes',
-	'lucha',
-	'otros',
-	'plataformas',
-	'shooter',
-	'shooter',
-	'shooter',
-	'shooter',
-	'otros',
-	'aventura');
-    */
-    /*
-	//Datos de prueba para juegos digitales
-	global 	$IDJuegosDigitales;
-	$IDJuegosDigitales = array(
-	'PROD101406',
-	'PROD10192',
-	'PROD126427');
-	
-	global 	$nombres2;
-	$nombres2 = array(
-	'The Witcher 3',
-	'Persona 5',
-	'The Last Guardian');
-
-	global 	$consolas2;
-	$consolas2 = array(
-	'ps4',
-	'ps4',
-	'ps4');
-
-	global 	$precios2;
-	$precios2= array(
-	'19 000',
-	'49 500',
-	'49 000');
-
-	global 	$generos2;
-	$generos2 = array(
-	'aventura',
-	'rpg',
-	'aventura');
-    *//*
-	//Datos de prueba para plataformas
-	global 	$IDPlataformas;
-	$IDPlataformas = array(
-	'PROD130043',
-	'PROD137584',
-	'PROD137630',
-	'PROD140849',
-	'PROD14379',
-	'PROD144727');
-	
-	global 	$nombres3;
-	$nombres3 = array(
-	'Play Station 4',
-	'Xbox One',
-	'Nintendo NX',
-	'WiiU - Mario Maker Pack',
-	'New 3DS XL - Pokemon Edition',
-	'PS Vita');
-
-	global 	$precios3;
-	$precios3= array(
-	'299 000',
-	'399 500',
-	'580 500',
-	'225 500',
-	'119 500',
-	'119 000');
-    */
 	Include ("scripts/funciones.php");
 	
 	global $NombreUsuario;
@@ -387,16 +215,9 @@
 								<h2>Filtrar por plataformas</h2>
 
 								<?php 
-									echo "<li><a href='#filtrops4' data-toggle='tab' title='Mostrar todos los juegos de Play Station 4'> <span class='pull-right'>(".calcularCantidad("ps4").")</span>Play Station 4</a></li>";
-									echo "<li><a href='#filtrops3' data-toggle='tab' title='Mostrar todos los juegos de Play Station 3'> <span class='pull-right'>(".calcularCantidad("ps3").")</span>Play Station 3</a></li>";
-									echo "<li><a href='#filtroone' data-toggle='tab' title='Mostrar todos los juegos de Xbox One'> <span class='pull-right'>(".calcularCantidad("one").")</span>Xbox One</a></li>";
-									echo "<li><a href='#filtro360' data-toggle='tab' title='Mostrar todos los juegos de Xbox 360'> <span class='pull-right'>(".calcularCantidad("360").")</span>Xbox 360</a></li>";
-									echo "<li><a href='#filtrowii' data-toggle='tab' title='Mostrar todos los juegos de Wii'> <span class='pull-right'>(".calcularCantidad("wii").")</span>Wii</a></li>";
-									echo "<li><a href='#filtrowiiu' data-toggle='tab' title='Mostrar todos los juegos de Wii U'> <span class='pull-right'>(".calcularCantidad("wiiu").")</span>Wii U</a></li>";
-									echo "<li><a href='#filtropc' data-toggle='tab' title='Mostrar todos los juegos de PC (computadora)'> <span class='pull-right'>(".calcularCantidad("pc").")</span>PC</a></li>";
-									echo "<li><a href='#filtrovita' data-toggle='tab' title='Mostrar todos los juegos de PS Vita'> <span class='pull-right'>(".calcularCantidad("vita").")</span>PlayStation Vita</a></li>";
-									echo "<li><a href='#filtro3ds' data-toggle='tab' title='Mostrar todos los juegos de Nintendo 3DS'> <span class='pull-right'>(".calcularCantidad("3ds").")</span>Nintendo 3DS</a></li>";
-									echo "<li><a href='#filtrods' data-toggle='tab' title='Mostrar todos los juegos de Nintendo DS'> <span class='pull-right'>(".calcularCantidad("ds").")</span>Nintendo DS</a></li>";
+                                    for($con = 0; $con < count ($IDPlataformas); $con ++) {
+                                        echo "<li><a href='#filtro".$IDPlataformas[$con]."' data-toggle='tab' title='Mostrar todos los juegos de ".$nombres3[$con]."'> <span class='pull-right'>(".calcularCantidad($IDPlataformas[$con]).")</span>".$nombres3[$con]."</a></li>";
+                                    }
 								?>
 								
 								</ul>
@@ -423,68 +244,20 @@
 								<h1>Juegos físicos</h1>
 								<div class="col-sm-12">
 									<ul class="nav nav-tabs">
-										<li class="active"><a href="#aventura1" data-toggle="tab">Aventura</a></li>
-										<li><a href="#rpg1" data-toggle="tab">RPG</a></li>
-										<li><a href="#plataformas1" data-toggle="tab">Plataformas</a></li>
-										<li><a href="#conduccion1" data-toggle="tab">Conducción</a></li>
-										<li><a href="#deportes1" data-toggle="tab">Deportes</a></li>
-										<li><a href="#shooter1" data-toggle="tab">Shooter</a></li>
-										<li><a href="#lucha1" data-toggle="tab">Lucha</a></li>
-										<li><a href="#otros1" data-toggle="tab">Otros</a></li>
-		
+                                        <?php foreach ($generosT as $genero)
+                                            echo "<li><a href='#".$genero['genero']."1' data-toggle='tab'>".$genero['genero']."</a></li>"
+                                        ?>
 									</ul>
 								</div>
 								
 								<div class="tab-content">
-									<div class="tab-pane fade active in" id="aventura1" >
-										<?php 
-                                        $isAdmin = $this->request->session()->read('Auth.User.role')
-                                            == 'admin';
-										mostrarProductoFisico("aventura", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="rpg1" >
-										<?php 
-										mostrarProductoFisico("rpg", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="plataformas1" >
-										<?php 
-										mostrarProductoFisico("plataformas", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="conduccion1" >
-										<?php 
-										mostrarProductoFisico("conduccion", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="deportes1" >
-										<?php 
-										mostrarProductoFisico("deportes", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="shooter1" >
-										<?php 
-										mostrarProductoFisico("shooter", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="lucha1" >
-										<?php 
-										mostrarProductoFisico("lucha", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="otros1" >
-										<?php 
-										mostrarProductoFisico("otros", "todas", $isAdmin);
-										?>
-									</div>
+                                <?php $isAdmin = $this->request->session()->read('Auth.User.role') == 'admin';
+                                foreach ($generosT as $genero) {
+									echo "<div class='tab-pane fade' id='".$genero['genero']."1' >";
+										mostrarProductoFisico($genero['genero'], "todas", $isAdmin);
+									echo "</div>";
+                                }
+								?>
 								</div>
 						    </div>
 						    
@@ -492,67 +265,21 @@
 								<h1>Juegos digitales</h1>
 								<div class="col-sm-12">
 									<ul class="nav nav-tabs">
-										<li class="active"><a href="#aventura2" data-toggle="tab">Aventura</a></li>
-										<li><a href="#rpg2" data-toggle="tab">RPG</a></li>
-										<li><a href="#plataformas2" data-toggle="tab">Plataformas</a></li>
-										<li><a href="#conduccion2" data-toggle="tab">Conducción</a></li>
-										<li><a href="#deportes2" data-toggle="tab">Deportes</a></li>
-										<li><a href="#shooter2" data-toggle="tab">Shooter</a></li>
-										<li><a href="#lucha2" data-toggle="tab">Lucha</a></li>
-										<li><a href="#otros2" data-toggle="tab">Otros</a></li>
-		
+                                        <?php foreach ($generosT as $genero)
+                                            echo "<li><a href='#".$genero['genero']."2' data-toggle='tab'>".$genero['genero']."</a></li>"
+                                        ?>
 									</ul>
 								</div>
 								
 								<div class="tab-content">
-									<div class="tab-pane fade active in" id="aventura2" >
-										<?php 
-										mostrarProductoDigital("aventura", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="rpg2" >
-										<?php 
-										mostrarProductoDigital("rpg", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="plataformas2, " >
-										<?php 
-										mostrarProductoDigital("plataformas", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="conduccion2" >
-										<?php 
-										mostrarProductoDigital("conduccion", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="deportes2" >
-										<?php 
-										mostrarProductoDigital("deportes", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="shooter2" >
-										<?php 
-										mostrarProductoDigital("shooter", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="lucha2" >
-										<?php
-										mostrarProductoDigital("lucha", "todas", $isAdmin);
-										?>
-									</div>
-									
-									<div class="tab-pane fade" id="otros2" >
-										<?php 
-										mostrarProductoDigital("otros", "todas", $isAdmin);
-										?>
-									</div>
-								</div>
+                                <?php 
+                                foreach ($generosT as $genero) {
+									echo "<div class='tab-pane fade' id='".$genero['genero']."2' >";
+										mostrarProductoDigital($genero['genero'], "todas", $isAdmin);
+									echo "</div>";
+                                }
+								?>
+                                </div>
 							</div>
 							
 							<div class="tab-pane fade" id="submenu3" >
@@ -562,6 +289,15 @@
 								?>
 							</div> 
 							
+                            <?php
+                                for ($f = 0; $f < count($IDPlataformas); $f ++) {
+                                    echo "<div class='tab-pane fade' id='filtro".$IDPlataformas[$f]."' >
+                                    <h1>Juegos para ".$nombres3[$f]."</h1><br>";
+								    mostrarProductoFisico("todos", $IDPlataformas[$f], $isAdmin);
+								    mostrarProductoDigital("todos", $IDPlataformas[$f], $isAdmin);
+                                    echo "</div>";
+                                }
+                            ?>
 							<div class="tab-pane fade" id="filtrops4" >
 								<h1>Juegos para Play Station 4</h1><br>
 								<?php 
@@ -569,70 +305,6 @@
 								mostrarProductoDigital("todos", "ps4", $isAdmin);
 								?>
 							</div>
-							<div class="tab-pane fade" id="filtrops3" >
-								<h1>Juegos para Play Station 3</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "ps3", $isAdmin);
-								mostrarProductoDigital("todos", "ps3", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtroone" >
-								<h1>Juegos para Xbox One</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "one", $isAdmin);
-								mostrarProductoDigital("todos", "one", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtro360" >
-								<h1>Juegos para Xbox 360</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "360", $isAdmin);
-								mostrarProductoDigital("todos", "360", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtrowii" >
-								<h1>Juegos para Wii</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "wii", $isAdmin);
-								mostrarProductoDigital("todos", "wii", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtrowiiu" >
-								<h1>Juegos para WiiU</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "wiiu", $isAdmin);
-								mostrarProductoDigital("todos", "wiiu", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtropc" >
-								<h1>Juegos para PC</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "pc", $isAdmin);
-								mostrarProductoDigital("todos", "pc", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtrovita" >
-								<h1>Juegos para PS Vita</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "vita", $isAdmin);
-								mostrarProductoDigital("todos", "vita", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtro3ds" >
-								<h1>Juegos para Nintendo 3DS</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "3ds", $isAdmin);
-								mostrarProductoDigital("todos", "3ds", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtrods" >
-								<h1>Juegos para Nintendo DS</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "ds", $isAdmin);
-								mostrarProductoDigital("todos", "ds", $isAdmin);
-								?>
-							</div>
-							
 						</div>
 						
         			

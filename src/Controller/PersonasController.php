@@ -267,6 +267,9 @@ class PersonasController extends AppController
     
     public function adminUsuarios()
     {
+        if ($this->request->session()->read('Auth.User.role')!='admin') {
+            $this->redirect('../../');
+        }
         if ($this->request->is('post')) {
             //$this -> set ('request', $this->request->data);
             $datos = $this -> request -> data;

@@ -67,7 +67,7 @@ class ProductosController extends AppController
         conditions'=>$condicion))->contain(['consolas']);*/
          
         //se crea la sentencia sql
-        $query = $this->Productos->find('all');
+        $query = $this->Productos->find('all')->contain('video_juegos');
         $idConsolas       = [];
         $idFisicos        = [];
         $idDigitales      = [];
@@ -85,25 +85,26 @@ class ProductosController extends AppController
         foreach ($query as $con) {
             $tipo = $con['tipo'];
             if ($tipo == 1) {
-                array_push($idFisicos, $con->idProducto);
-                array_push($precioFisicos, $con->precio);
-                array_push($nombreFisicos, $con->nombreProducto);
-                array_push($generoFisicos, 'aventura');
-                array_push($consolaFisicos, 'ps4');
+                array_push($idFisicos,      $con->idProducto);
+                array_push($precioFisicos,  $con->precio);
+                array_push($nombreFisicos,  $con->nombreProducto);
+                array_push($generoFisicos,  $con['video_juego']['genero']);
+                array_push($consolaFisicos, $con['video_juego']['idConsola']);
             } else if ($tipo == 2) {
-                array_push($idDigitales, $con->idProducto);
-                array_push($precioDigitales, $con->precio);
-                array_push($nombreDigitales, $con->nombreProducto);
-                array_push($generoDigitales, 'aventura');
-                array_push($consolaDigitales, 'ps4');
+                array_push($idDigitales,      $con->idProducto);
+                array_push($precioDigitales,  $con->precio);
+                array_push($nombreDigitales,  $con->nombreProducto);
+                array_push($generoDigitales,  $con['video_juego']['genero']);
+                array_push($consolaDigitales, $con['video_juego']['idConsola']);
             } else if ($tipo == 3) {
                 array_push($idConsolas, $con->idProducto);
                 array_push($precioConsolas, $con->precio);
                 array_push($nombreConsolas, $con->nombreProducto);
             }
         }
-        
+        $generosT = TableRegistry::get ('generos') -> find ('all');
         //se envian los datos obtenidos a la vista
+        $this -> set ('generosT', $generosT);
         $this -> set ('idConsolas', $idConsolas);
         $this -> set ('precioConsolas', $precioConsolas);
         $this -> set ('nombreConsolas', $nombreConsolas);
@@ -371,6 +372,9 @@ class ProductosController extends AppController
         $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         
+        $numPage2 = 1;
+        $nuevaPag2 = $this -> request -> query('nuevaPag2');
+        
         if ($nuevaPag && $nuevaPag > 0) {
             $numPage = $nuevaPag;
         }
@@ -384,7 +388,8 @@ class ProductosController extends AppController
             
         $combos = TableRegistry::get('combos');
         $query = $combos->query();    
-        $query = $query -> limit(16) -> page ($numPage);
+        $query = $query -> limit(16) -> page ($numPage2);
+        $this -> set ('numPage2', $numPage2);
         $this->set('combos', $query);
         
     }
@@ -396,6 +401,9 @@ class ProductosController extends AppController
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
     public function AdminProductos() {
+        if ($this->request->session()->read('Auth.User.role')!='admin') {
+            $this->redirect('../../');
+        }
         $generosTabla  = TableRegistry::get ('generos');
         $videoJuegosT  = TableRegistry::get ('video_juegos');
         $consolasTabla = TableRegistry::get ('consolas');
