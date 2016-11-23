@@ -111,7 +111,7 @@
                                                 $i = 0;
                                                 foreach ($us['tarjetas'] as $tarjeta) {
                                                     echo "<div class='col-sm-3'>
-                                                        <input type='text' name='tarjeta".$i."' value='".substr($tarjeta['idTarjeta'], 0, 4)."************' readonly>
+                                                        <input type='text' name='tarjeta".$i."' value='".$tarjeta['idTarjeta']."' readonly>
                                                     <input type='checkbox' name='borrar".$i."' value='on'> Borrar
                                                     </div>";
                                                     $i ++;
@@ -167,7 +167,7 @@
                                                     <input type='text' name='distrito".$i."' placeholder='Distrito' value='".$direccion['nombreDistrito']."'>
                                                     <h4>Dirección exacta:</h4>
                                                     <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value='".$direccion['detalles']."'>
-                                                    <br><br><input type='checkbox' name='borrar".$i."' value='on'> Borrar esta tarjeta
+                                                    <br><br><input type='checkbox' name='borrar".$i."' value='on'> Borrar esta dirección
 												    </div>";
 													$i ++;
                                             	}
@@ -177,7 +177,7 @@
                                                 
                                                 echo"
                                                 <div class='col-sm-3'>
-                                                <br><input type='checkbox' name='agregar' value='on'> Agregar nueva tarjeta:
+                                                <br><input type='checkbox' name='agregar' value='on'> Agregar nueva dirección:
                                                 <h4>Provincia:</h4>
                                                 <select name='provincia".$i."'>";
                                                 foreach ($provinciasBase as $prov) {
@@ -203,7 +203,6 @@
 										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
 										</form>
 									</div>
-									</form>
 								<div class="col-sm-4">
 						        </div>
 						</div>
