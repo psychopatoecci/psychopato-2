@@ -85,17 +85,17 @@ class ProductosController extends AppController
         foreach ($query as $con) {
             $tipo = $con['tipo'];
             if ($tipo == 1) {
-                array_push($idFisicos, $con->idProducto);
-                array_push($precioFisicos, $con->precio);
-                array_push($nombreFisicos, $con->nombreProducto);
-                array_push($generoFisicos, $con['video_juego']['genero']);
-                array_push($consolaFisicos, 'ps4');
+                array_push($idFisicos,      $con->idProducto);
+                array_push($precioFisicos,  $con->precio);
+                array_push($nombreFisicos,  $con->nombreProducto);
+                array_push($generoFisicos,  $con['video_juego']['genero']);
+                array_push($consolaFisicos, $con['video_juego']['idConsola']);
             } else if ($tipo == 2) {
-                array_push($idDigitales, $con->idProducto);
-                array_push($precioDigitales, $con->precio);
-                array_push($nombreDigitales, $con->nombreProducto);
-                array_push($generoDigitales, $con['video_juego']['genero']);
-                array_push($consolaDigitales, 'ps4');
+                array_push($idDigitales,      $con->idProducto);
+                array_push($precioDigitales,  $con->precio);
+                array_push($nombreDigitales,  $con->nombreProducto);
+                array_push($generoDigitales,  $con['video_juego']['genero']);
+                array_push($consolaDigitales, $con['video_juego']['idConsola']);
             } else if ($tipo == 3) {
                 array_push($idConsolas, $con->idProducto);
                 array_push($precioConsolas, $con->precio);

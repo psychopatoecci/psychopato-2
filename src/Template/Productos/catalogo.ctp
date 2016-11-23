@@ -215,16 +215,9 @@
 								<h2>Filtrar por plataformas</h2>
 
 								<?php 
-									echo "<li><a href='#filtrops4' data-toggle='tab' title='Mostrar todos los juegos de Play Station 4'> <span class='pull-right'>(".calcularCantidad("ps4").")</span>Play Station 4</a></li>";
-									echo "<li><a href='#filtrops3' data-toggle='tab' title='Mostrar todos los juegos de Play Station 3'> <span class='pull-right'>(".calcularCantidad("ps3").")</span>Play Station 3</a></li>";
-									echo "<li><a href='#filtroone' data-toggle='tab' title='Mostrar todos los juegos de Xbox One'> <span class='pull-right'>(".calcularCantidad("one").")</span>Xbox One</a></li>";
-									echo "<li><a href='#filtro360' data-toggle='tab' title='Mostrar todos los juegos de Xbox 360'> <span class='pull-right'>(".calcularCantidad("360").")</span>Xbox 360</a></li>";
-									echo "<li><a href='#filtrowii' data-toggle='tab' title='Mostrar todos los juegos de Wii'> <span class='pull-right'>(".calcularCantidad("wii").")</span>Wii</a></li>";
-									echo "<li><a href='#filtrowiiu' data-toggle='tab' title='Mostrar todos los juegos de Wii U'> <span class='pull-right'>(".calcularCantidad("wiiu").")</span>Wii U</a></li>";
-									echo "<li><a href='#filtropc' data-toggle='tab' title='Mostrar todos los juegos de PC (computadora)'> <span class='pull-right'>(".calcularCantidad("pc").")</span>PC</a></li>";
-									echo "<li><a href='#filtrovita' data-toggle='tab' title='Mostrar todos los juegos de PS Vita'> <span class='pull-right'>(".calcularCantidad("vita").")</span>PlayStation Vita</a></li>";
-									echo "<li><a href='#filtro3ds' data-toggle='tab' title='Mostrar todos los juegos de Nintendo 3DS'> <span class='pull-right'>(".calcularCantidad("3ds").")</span>Nintendo 3DS</a></li>";
-									echo "<li><a href='#filtrods' data-toggle='tab' title='Mostrar todos los juegos de Nintendo DS'> <span class='pull-right'>(".calcularCantidad("ds").")</span>Nintendo DS</a></li>";
+                                    for($con = 0; $con < count ($IDPlataformas); $con ++) {
+                                        echo "<li><a href='#filtro".$IDPlataformas[$con]."' data-toggle='tab' title='Mostrar todos los juegos de ".$nombres3[$con]."'> <span class='pull-right'>(".calcularCantidad($IDPlataformas[$con]).")</span>".$nombres3[$con]."</a></li>";
+                                    }
 								?>
 								
 								</ul>
@@ -296,6 +289,15 @@
 								?>
 							</div> 
 							
+                            <?php
+                                for ($f = 0; $f < count($IDPlataformas); $f ++) {
+                                    echo "<div class='tab-pane fade' id='filtro".$IDPlataformas[$f]."' >
+                                    <h1>Juegos para ".$nombres3[$f]."</h1><br>";
+								    mostrarProductoFisico("todos", $IDPlataformas[$f], $isAdmin);
+								    mostrarProductoDigital("todos", $IDPlataformas[$f], $isAdmin);
+                                    echo "</div>";
+                                }
+                            ?>
 							<div class="tab-pane fade" id="filtrops4" >
 								<h1>Juegos para Play Station 4</h1><br>
 								<?php 
@@ -303,70 +305,6 @@
 								mostrarProductoDigital("todos", "ps4", $isAdmin);
 								?>
 							</div>
-							<div class="tab-pane fade" id="filtrops3" >
-								<h1>Juegos para Play Station 3</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "ps3", $isAdmin);
-								mostrarProductoDigital("todos", "ps3", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtroone" >
-								<h1>Juegos para Xbox One</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "one", $isAdmin);
-								mostrarProductoDigital("todos", "one", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtro360" >
-								<h1>Juegos para Xbox 360</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "360", $isAdmin);
-								mostrarProductoDigital("todos", "360", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtrowii" >
-								<h1>Juegos para Wii</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "wii", $isAdmin);
-								mostrarProductoDigital("todos", "wii", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtrowiiu" >
-								<h1>Juegos para WiiU</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "wiiu", $isAdmin);
-								mostrarProductoDigital("todos", "wiiu", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtropc" >
-								<h1>Juegos para PC</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "pc", $isAdmin);
-								mostrarProductoDigital("todos", "pc", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtrovita" >
-								<h1>Juegos para PS Vita</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "vita", $isAdmin);
-								mostrarProductoDigital("todos", "vita", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtro3ds" >
-								<h1>Juegos para Nintendo 3DS</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "3ds", $isAdmin);
-								mostrarProductoDigital("todos", "3ds", $isAdmin);
-								?>
-							</div>
-							<div class="tab-pane fade" id="filtrods" >
-								<h1>Juegos para Nintendo DS</h1><br>
-								<?php 
-								mostrarProductoFisico("todos", "ds", $isAdmin);
-								mostrarProductoDigital("todos", "ds", $isAdmin);
-								?>
-							</div>
-							
 						</div>
 						
         			
