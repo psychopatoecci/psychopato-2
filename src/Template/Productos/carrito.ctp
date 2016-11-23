@@ -157,7 +157,7 @@
 											<i class="fa fa-times"></i><font size='5'>Borrar</font>
 										</button>
 										
-										<?php	echo $this->Form->end();	?>
+										<?php echo $this->Form->end(); ?>
 									</center>
 								</td>
 

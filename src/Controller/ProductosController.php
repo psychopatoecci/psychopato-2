@@ -224,7 +224,7 @@ class ProductosController extends AppController
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
         
-        //Botón de borrar producto del carrito
+        //Botones de borrar y actualizar producto del carrito
         $DatosBoton = TableRegistry::get('wish_list_productos')->newEntity();
         
         if($this->request->is('post')) {
