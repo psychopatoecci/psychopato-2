@@ -25,38 +25,17 @@
 <body>
 
 <?php 
-    global 	$Tarjetas;
-    global 	$Provincias;
-    global 	$Cantones;
-    global 	$Distritos;
     global 	$Detalles;
     global 	$Precios;
     global 	$Cantidades;
     
-    $Tarjetas = array();
     
-    $Provincias = array();
-    $Cantones = array();
-    $Distritos = array();
     $Detalles = array();
     
     $IDProductos = array();
 	$Precios = array();
     $Cantidades = array();
     
-	//Recupera las tarjetas
-	foreach($DatosTarjetas as $dato):
-		array_push($Tarjetas, $dato->idTarjeta);
-	endforeach;
-	
-	//Recupera las direcciones
-	foreach($DatosDirecciones as $dato):
-		array_push($Provincias, $dato->nombreProvincia);
-		array_push($Cantones, $dato->nombreCanton);
-		array_push($Distritos, $dato->nombreDistrito);
-		array_push($Detalles, $dato->detalles);
-	endforeach;
-	
 	//Recuperar los precios del carrito para obtener el total
 	foreach($DatosCarrito as $dato):
 		array_push($IDProductos, $dato->idProducto);
@@ -85,23 +64,8 @@
 	
 	$usuario = $this->request->session()->read('Auth.User.username');
 	
-	//Datos para las listas desplegables
-	for ($i=0; $i<count($Tarjetas); $i++) {
-		$Tarjetas[$i] = ultimosCuatroDigitos($Tarjetas[$i]);
-	}
-	
 	Include ("scripts/funciones.php");
 	
-	function ultimosCuatroDigitos($tarjeta) {
-		$nuevo = "**** ";
-		if ($tarjeta!="") {
-			$nuevo.= $tarjeta[strlen ($tarjeta)-4];
-			$nuevo.= $tarjeta[strlen ($tarjeta)-3];
-			$nuevo.= $tarjeta[strlen ($tarjeta)-2];
-			$nuevo.= $tarjeta[strlen ($tarjeta)-1];
-		}
-		return $nuevo;
-	}
 ?>
 	
 	<!--Header-->
@@ -115,40 +79,40 @@
 	
 		<h1>Confirmación de la compra</h1><br>
 
+		<form id="confirmarCompra" method="post">
 		<div class="col-sm-6 padding-right">
 			<h2>Seleccione un medio de pago:</h2><br>
 			<div class="col-sm-5 padding-right">
-				<select name='Tarjetas'>
-				<?php
-					for ($i=0; $i<count($Tarjetas); $i++) {
-						echo "<option value='Tarjeta".$i."'>".$Tarjetas[$i]."</option>";
-						$Tarjetas[$i] = ultimosCuatroDigitos($Tarjetas[$i]);
-					}
+            <?php
+                if (count ($DatosTarjetas) > 0) {
+                    echo "<select name='Tarjetas'>";
+                    for ($s =0; $s < count($DatosTarjetas); $s++)
+                        echo "<option value='".$s."'>".$DatosTarjetas[$s]['idTarjeta']."</option>";
+                }
 				?>
 				</select>
 				<br><br>
 
 				<?php
-				echo "<button type='button' class='btn btn-default'";
-					echo "title = 'Editar los medios de pago'><a href='../cuenta/".$usuario."'>Editar medios de pago</a>";
-				echo "</button>";
+				echo "<a href='../cuenta/".$usuario."'>Editar medios de pago</a>";
 				?>
 			</div>
 			<br><br><br><br>
 			<h2>Seleccione una dirección de envío:</h2><br>
 			<div class="col-sm-12 padding-right">
-				<select name='Direcciones'>
-				<?php
-					for ($i=0; $i<count($Provincias); $i++) {
-						echo "<option value='Direccion".$i."'>".$Provincias[$i].", ".$Cantones[$i].", ".$Distritos[$i].", ".$Detalles[$i]."</option>";
-					}
-				?>
-				</select>
-				<br><br>
-				<?php
-				echo "<button type='button' class='btn btn-default'";
-					echo "title = 'Editar las direcciones de envío'><a href='../cuenta/".$usuario."'>Editar direcciones</a>";
-				echo "</button>";
+				<?php if (count($DatosDirecciones) > 0) {
+                    echo "<select name='Direcciones'>";
+                    foreach ($DatosDirecciones as $direccion) {
+                        echo "<option value='".$direccion."'>"
+                            .$direccion['nombreProvincia'].", "
+                            .$direccion['nombreCanton'].", "
+                            .$direccion['nombreDistrito'].", "
+                            .$direccion['detalles']."</option>";
+                    }
+                    echo "</select>";
+                }
+				echo "<br><br>
+                <a href='../cuenta/".$usuario."'>Editar direcciones</a>";
 				?>
 			</div>
 			<br><br><br><br><br>
@@ -156,38 +120,39 @@
 		<div class="col-sm-1 padding-right">
 		</div>
 		<div class="col-sm-4 padding-right">
-			<?php echo"<font size='5'>Total a pagar: ¢".$total."</font>"; ?>
+			<?php echo"<font size='5'>Total por pagar: ¢".$total."</font>"; ?>
 			<br><br><br>
-			
-			<?php //Botón de completar compra
-				echo $this->Form->create($addfactura);
-				use Cake\I18n\Time;
-				$now = Time::now();
-				$factura = 'FAC'.rand(10000, 999999);
+                
+                <?php //Botón de completar compra
+                    /*echo $this->Form->create($addfactura);*/
+                    use Cake\I18n\Time;
+                    $now = Time::now();
+                    $factura = 'FAC'.rand(10000, 999999);
 
-				//Datos para creación de la factura
-				echo $this->Form->hidden('idFactura', ['value'=>$factura]);
-				echo $this->Form->hidden('fechaFactura', ['value'=>$now->year."-".$now->month."-".$now->day]);
-				echo $this->Form->hidden('idUsuario', ['value'=>$usuario]);
-				echo $this->Form->hidden('precioTotal', ['value'=>$total]);
-				echo $this->Form->hidden('estadoCompra', ['value'=>1]);
-				
-				//Datos de los productos de la factura
-				for ($i=0; $i<count($IDProductos); $i++) {
-					echo $this->Form->hidden('idProducto.'.$i, array( 'label' => false, 'default'=>$IDProductos[$i]));
-					echo $this->Form->hidden('cantidad.'.$i, array( 'label' => false, 'default'=>$Cantidades[$i]));
-				}
-				
-			?>
-				
-			<button type="submit" name="BotonCompletarCompra" class="btn btn-default add-to-cart" title="Completar y realizar esta compra">
-				<font size='5'>Completar compra</font>
-			</button>
-			
-			<?php
-				echo $this->Form->end();
-			?>
-			
+                    //Datos para creación de la factura
+                    echo $this->Form->hidden('idFactura', ['value'=>$factura]);
+                    echo $this->Form->hidden('fechaFactura', ['value'=>$now->year."-".$now->month."-".$now->day]);
+                    echo $this->Form->hidden('idUsuario', ['value'=>$usuario]);
+                    echo $this->Form->hidden('precioTotal', ['value'=>$total]);
+                    echo $this->Form->hidden('estadoCompra', ['value'=>1]);
+                    
+                    //Datos de los productos de la factura
+                    for ($i=0; $i<count($IDProductos); $i++) {
+                        echo $this->Form->hidden('idProducto.'.$i, array( 'label' => false, 'default'=>$IDProductos[$i]));
+                        echo $this->Form->hidden('cantidad.'.$i, array( 'label' => false, 'default'=>$Cantidades[$i]));
+                    }
+                ?>
+                    
+				<?php 
+                if (count($DatosDirecciones) > 0 && count ($DatosTarjetas) > 0) {
+                    echo "
+                    <button type='submit' name='BotonCompletarCompra' class='btn btn-default add-to-cart' title='Completar y realizar esta compra'>
+                        <font size='5'>Completar compra</font>
+                    </button>";
+                } else {
+                    echo "<font size='5'>Se necesitan tarjetas y direcciones de envío para comprar.</font>";
+                } ?>
+			</form>
 		</div>
 	</div>
 	<br><br><br>

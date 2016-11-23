@@ -43,6 +43,20 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
+            'authorize' => ['Controller'],
+            'authenticate' => [
+                'Form' => [
+                    'fields' => [
+                        'username' => 'username',
+                        'password' => 'password'
+                    ],
+                    //'finder' => 'auth'
+                ]
+            ],
+            'loginAction'  => [
+                'controller' => 'Users',
+                'action'     => 'login'
+            ],
             'loginRedirect'  => [
                 'controller' => 'Productos',
                 'action'     => 'index'
@@ -50,7 +64,8 @@ class AppController extends Controller
             'logoutRedirect' => [
                 'controller' => 'Productos',
                 'action'     => 'index'
-            ]
+            ],
+            'unauthorizedRedirect' => $this->referer()
         ]);
     }
     /**
@@ -70,15 +85,16 @@ class AppController extends Controller
     // Todos pueden ver, por eso se les permite index, view y display.
     public function beforeFilter(Event $event)
     {
+        $this->set('current_user', $this->Auth->user());
         $this->Auth->allow(['index', 'view', 'display', 'catalogo', 'registro', 'login']);
     }
-    /*
+   
     public function isAuthorized($user)
     {
         if(isset($user['role']) and $user['role'] === 'admin')
         {
             return true;
         }
-        return false;
-    }*/
+        return true;
+    }
 }

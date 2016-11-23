@@ -27,6 +27,9 @@
 	
 	//Nomenclatura de la base para las provincias
 	$provinciasBase = array('San José','Alajuela','Cartago','Heredia','Guanacaste','Puntarenas','Limón','');
+	
+	$usuario = $this->request->session()->read('Auth.User.username');
+
 ?>
 			
 	<!--Header-->
@@ -49,6 +52,7 @@
 								echo "<li class='active'><a href='#datosgenerales".$us['identificacion']."' data-toggle='tab'>Datos generales</a></li>";
 								echo "<li><a href='#direcciones".$us['identificacion']."' data-toggle='tab'>Direcciones</a></li>";
 								echo "<li><a href='#tarjetas".$us['identificacion']."' data-toggle='tab'>Tarjetas</a></li>";
+								echo "<li><a href='#ordenes".$us['identificacion']."' data-toggle='tab'>Órdenes</a></li>";
 								?>
 							</ul>
 						</div>
@@ -107,7 +111,7 @@
                                                 $i = 0;
                                                 foreach ($us['tarjetas'] as $tarjeta) {
                                                     echo "<div class='col-sm-3'>
-                                                        <input type='text' name='tarjeta".$i."' value='".substr($tarjeta['idTarjeta'], 0, 4)."************' readonly>
+                                                        <input type='text' name='tarjeta".$i."' value='".$tarjeta['idTarjeta']."' readonly>
                                                     <input type='checkbox' name='borrar".$i."' value='on'> Borrar
                                                     </div>";
                                                     $i ++;
@@ -130,6 +134,12 @@
                                             </form>
 
                                         </div>
+                                    </div>
+                                    
+                                    <?php echo "<div class='tab-pane fade' id='ordenes".$us['identificacion']."'>";
+                                        echo "<a href='ordenes/".$usuario."' title = 'Ver las órdenes realizadas'
+										class='btn btn-default add-to-cart'> Ver órdenes</a>";
+										?>
                                     </div>
 
 									<?php echo "<div class='tab-pane fade' id='direcciones".$us['identificacion']."' >"; ?>	
@@ -157,7 +167,7 @@
                                                     <input type='text' name='distrito".$i."' placeholder='Distrito' value='".$direccion['nombreDistrito']."'>
                                                     <h4>Dirección exacta:</h4>
                                                     <input type='text' name='detalles".$i."' placeholder='Dirección exacta' value='".$direccion['detalles']."'>
-                                                    <br><br><input type='checkbox' name='borrar".$i."' value='on'> Borrar esta tarjeta
+                                                    <br><br><input type='checkbox' name='borrar".$i."' value='on'> Borrar esta dirección
 												    </div>";
 													$i ++;
                                             	}
@@ -167,7 +177,7 @@
                                                 
                                                 echo"
                                                 <div class='col-sm-3'>
-                                                <br><input type='checkbox' name='agregar' value='on'> Agregar nueva tarjeta:
+                                                <br><input type='checkbox' name='agregar' value='on'> Agregar nueva dirección:
                                                 <h4>Provincia:</h4>
                                                 <select name='provincia".$i."'>";
                                                 foreach ($provinciasBase as $prov) {
@@ -193,7 +203,6 @@
 										    <button type='submit' class='btn btn-default'>Guardar cambios</button>
 										</form>
 									</div>
-									</form>
 								<div class="col-sm-4">
 						        </div>
 						</div>

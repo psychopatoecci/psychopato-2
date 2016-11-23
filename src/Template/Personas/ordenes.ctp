@@ -85,7 +85,7 @@
 	Include ("scripts/funciones.php");
 	
 	$estadosLista = array('Procesando','En tránsito','Entregado');
-
+	
 ?>
 	
 	<!--Header-->
@@ -150,7 +150,7 @@
 								</td>
 								<td class="cart_price">
 									<?php
-										echo "<a href='factura/$idFacturas[$i]' title = 'Ver la factura de esta orden'
+										echo "<a href='/../factura/$idFacturas[$i]' title = 'Ver la factura de esta orden'
 										class='btn btn-default add-to-cart'> Ver factura</a>";
 									?>
 								</td>

@@ -121,13 +121,13 @@
 							<tr>
 								<td class="cart_product">
 									<?php
-									echo "<a href='detalles' title = 'Ver los detalles de este producto'>
+									echo "<a href='../detalles/".$IDProductosCarrito[$i]."' title = 'Ver los detalles de este producto'>
 									<img src='/../".obtenerPortada($IDProductosCarrito[$i])."' /></a>";
 									?>
 								</td>
 								<td class="cart_description">
 									<?php
-									echo "<h4><a href='detalles' title = 'Ver los detalles de este producto'><font size='5'>".$nombres[$i]."</font></a></h4>";
+									echo "<h4><a href='../detalles/".$IDProductosCarrito[$i]."' title = 'Ver los detalles de este producto'><font size='5'>".$nombres[$i]."</font></a></h4>";
 									echo "<p> ID: ".$IDProductosCarrito[$i]."</p>";
 									?>
 								</td>

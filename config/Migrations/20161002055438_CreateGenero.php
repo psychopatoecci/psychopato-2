@@ -12,13 +12,7 @@ class CreateGenero extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('generos', ['id' => false, 'primary_key' => ['idVideoJuego']]);
-        $table->addColumn('idVideoJuego', 'string', [
-            'default' => null,
-            'limit' => 50,
-            'null' => false,
-        ]);
-        $table->addForeignKey('idVideoJuego', 'video_juegos', 'idVideoJuego', array('delete' => 'CASCADE', 'update' => 'CASCADE'));
+        $table = $this->table('generos', ['id' => false, 'primary_key' => ['genero']]);
         
         $table->addColumn('genero', 'string', [
             'default' => null,

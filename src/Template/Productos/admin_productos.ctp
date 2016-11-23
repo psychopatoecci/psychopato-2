@@ -34,6 +34,62 @@
 	Include ("scripts/funciones.php");
 	
 	?>
+	
+	<?php
+	if (isset($_POST['val1'])) {
+		$target_dir = $_POST['val1'];
+		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		$uploadOk = 1;
+		
+		if(isset($_POST["submit"])) {
+			//$target_dir = "images/productos/PROD101406/Portada/";
+			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+			if($check !== false) {
+			    $uploadOk = 1;
+			} else {
+			    echo "El archivo no es una imagen.\r\n";
+			    $uploadOk = 0;
+			}
+		}
+		
+		// Check if file already exists
+		if (file_exists($target_file)) {
+			echo "Este archivo ya existe. ";
+			$uploadOk = 0;
+		}
+		
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+			echo "Solo se permiten los formatos JPG, JPEG, PNG y GIF";
+			$uploadOk = 0;
+		}
+		
+		// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 0) {
+			echo "La imagen no se ha subido.";
+		// if everything is ok, try to upload file
+		} else {
+		
+			//Borrar todas las portadas, solo debe haber una
+			if (preg_match('/Portada/', $target_dir)) {
+				$files = glob($target_dir.'*'); // get all file names
+				foreach($files as $file){ // iterate files
+				  if(is_file($file)) {
+					  unlink($file); // delete file
+				  }
+				}
+			}
+		
+			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+			    echo "La imagen ". basename( $_FILES["fileToUpload"]["name"]). " ha subido subida como portada de este producto.";
+			} else {
+			    echo "Ha ocurrido un error con la subida de la imagen";
+			}
+		}
+	}
+	?>
 			
 	<!--Header-->
 	<header id="header">
@@ -142,19 +198,11 @@
 												<h3>Precio:</h3>
 												<?php echo "<input type='text' name='precio' placeholder='Precio' value='".$producto['precio']."'>"; ?>
 												<h3>Categoría:</h3>
-												<select name='Categoria'>
-													<?php
-													$categoriasLista = array('Juego digital','Juego físico','Plataforma');
-													$categoriasBase = array(1,2,3);
-													for ($j = 0; $j < count($categoriasLista); $j++) {
-														if ($producto['tipo'] === $categoriasBase[$j]) {
-															echo "<option selected='selected' value='".$j."''>".$categoriasLista[$j]."</option>";
-														} else {
-															echo "<option value='".($j+1)."''>".$categoriasLista[$j]."</option>";
-														}
-													}
-													?>
-												</select>
+                                                <?php
+                                                    $categoriasLista = array('Juego digital','Juego físico','Plataforma');
+                                                    echo $categoriasLista[intval($producto['tipo'])-1];
+                                                    echo "<input type='hidden' name='Categoria' value='".$producto['tipo']."'>";
+                                                ?>
 												<?php if ($producto['tipo']!=3) { ?>
 													<h3>Género:</h3>
 													<select name='Genero'>
@@ -163,7 +211,7 @@
 															if ($producto['video_juego']['genero'] === $genero['genero']) {
 																echo "<option selected='selected' value='".$j."'>".$genero['genero']."</option> ";
 															} else {
-																echo "<option value='".$genero['genero']."'>".$genero['genero']."</option> ";
+																echo "<option value='".$genero['genero']."'>".$genero['genero']."</option>";
 															}
 														}
 														?>
@@ -193,7 +241,7 @@
 											<?php echo "<img src='".obtenerPortada($producto['idProducto'])."' title = 'Portada actual de este producto' />"; ?>
 											<br> <br>
 
-											<form action="scripts/upload.php" method="post" enctype="multipart/form-data">
+											<form action="adminProductos" method="post" enctype="multipart/form-data">
 												<input type="file" name="fileToUpload" id="fileToUpload"><br>
 												<button type='submit' class='btn btn-default get' name="submit" title = 'Subir la imagen cargada'>Subir imagen</button>
 												<br>
@@ -201,7 +249,6 @@
 													echo "La imagen se subirá en: ";
 													echo "<input type='text' name='val1' id='val1' value='images/productos/".$producto['idProducto']."/Portada/'></input>";
 												?>
-												<button type='button' onClick="history.go(0)" class='btn btn-default get' title = 'Refrescar la página'>Refrescar página</button>
 												<br><br><br><br>
 											</form>
 										</div>
@@ -209,7 +256,7 @@
 									
 									<?php echo "<div class='tab-pane fade' id='capturas".$producto['idProducto']."' >"; ?>
 										<h3>Subir una captura:</h3>
-										<form action="scripts/upload.php" method="post" enctype="multipart/form-data">
+										<form action="adminProductos" method="post" enctype="multipart/form-data">
 											<input type="file" name="fileToUpload" id="fileToUpload"><br>
 											<button type='submit' class='btn btn-default get' name="submit" title = 'Subir la imagen cargada'>Subir imagen</button>
 											<br>
