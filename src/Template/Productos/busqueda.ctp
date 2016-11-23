@@ -208,16 +208,12 @@
 				echo "<div class='product-image-wrapper'>";
 				echo "<div class='single-products'>";
 				echo "<div class='productinfo text-center'>";
-				if($descuentos[$i]!=null){
-					echo "<br><h2>¡Descuento del ".$descuentos[$i]."%!</h2>";
-				}
 				echo "<a href='../detalles/".$IDJuegosFisicos[$i]."' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
-				echo "<a href='../detalles/".$IDJuegosFisicos[$i]."' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				if($descuentos[$i]!=null){
-					echo "<h4><strike>¢".$precios[$i]."</strike></h4>";
-					echo "<h2>¢".calcularDescuento($precios[$i], $descuentos[$i])."</h2>";
-					echo "<br><b>Duración de la oferta:</b><br>".$fechaInicio[$i]." - ".$fechaFinal[$i]."<br><br>";
+					echo "<a href='../detalles/".$IDJuegosFisicos[$i]."' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
+					echo '<h2><font color="brown">¢'.calcularDescuento($precios[$i], $descuentos[$i]). ' (-'. $descuentos[$i].'%)'.'</font></h2>';
 				}else{
+					echo "<a href='../detalles/".$IDJuegosFisicos[$i]."' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 					echo "<h2>¢".$precios[$i]."</h2>";
 				}
 				echo "<a href='#' title = 'Añadir oferta a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";

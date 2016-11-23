@@ -174,7 +174,7 @@ $fechaFin = [];
 			echo "<a href='detalles/".$IDOfertas[$i]."' title = 'Ver detalles del producto'><p>".$nombres[$i]."</p></a>";
 			echo "<h4><strike>¢".$precios[$i]."</strike></h4>";
 			echo "<h2>¢".calcularDescuento($precios[$i], $descuentos[$i])."</h2>";
-			echo "<br><b>Duración de la oferta:</b><br>".$fechaInicio[$i]." - ".$fechaFinal[$i]."<br><br>";
+			//echo "<br><b>Duracion de la oferta:</b><br>".$fechaInicio[$i]." - ".$fechaFinal[$i]."<br><br>";
 			echo "<a href='#' title = 'Añadir oferta a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
 			echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir oferta al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
 			echo "</div>";

@@ -55,6 +55,24 @@ class CreateFacturas extends AbstractMigration
             'limit' => 2,
             'null' => false,
         ]);
+<<<<<<< HEAD
+         $table->addColumn('direccionEnvio', 'string', [
+=======
+                 $table->addColumn('direccionEnvio', 'string', [
+>>>>>>> 2979c5e3eb31c8de1c7c3f2e9b40bdf927da5726
+            'default' => null,
+            'limit' => 200,
+            'null' => false,
+        ]);
+         $table->addColumn('formaPago', 'string', [
+            'default' => null,
+            'limit' => 16,
+            'null' => false,
+<<<<<<< HEAD
+        ]); 
+=======
+        ]);
+>>>>>>> 2979c5e3eb31c8de1c7c3f2e9b40bdf927da5726
         /*$table->addForeignKey('idUsuario', 'tarjetas', 'idPersona',
          array('delete' => 'NO_ACTION', 'update' => 'CASCADE')
         );*/

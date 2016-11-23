@@ -27,7 +27,7 @@ class Tarjetas extends AbstractMigration
      */
     public function change()
     {
-        $table = $this -> table ('tarjetas', ['id' => false, 'primaryKey' => [ 'numeroTarjeta', 'idPersona']]);
+        $table = $this -> table ('tarjetas', ['id' => false, 'primaryKey' => [ 'idTarjeta', 'idPersona']]);
         $table -> addColumn ( 'idTarjeta', 'string', ['limit' => 16]);
         $table -> addColumn ( 'idPersona', 'string', ['limit' => 50
             , 'null' => false]);
