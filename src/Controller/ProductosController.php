@@ -13,8 +13,13 @@ use Cake\Network\Http\Client;
  */
 class ProductosController extends AppController
 {
-    /**
-     * controlador para la pagina principal
+      /**
+     * funcion busqueda
+     * fucion para realizar Busquedas
+     * se busca segun el nombre del producto
+     * se extrae de la base de datos el idProducto, nombreProducto y el precio, de las entidades que se encuentren en la tabla consola
+     * se envia la informacion obtenida a la vista
+     * 
      */
      public function busqueda(){
         $url = $this->request->here();
@@ -27,6 +32,12 @@ class ProductosController extends AppController
         $this->set('prod', $prod);
         $this->render;
      }
+     
+     /**
+     * funcion index
+     * muestra la pagina principal
+     * 
+     */
     public function index()
     {
         $productos = $this->Productos->find('all');
@@ -46,7 +57,6 @@ class ProductosController extends AppController
         $this->set('idProd', $idProd);
         $this->set('user', $this->Auth->user('id'));
         
-       // $carrito_compras = $this->Carrito_compras->find('all');
     }
     /**
      * funcion catalogo
@@ -55,7 +65,7 @@ class ProductosController extends AppController
      * se extrae de la base de datos el idProducto, nombreProducto y el precio, de las entidades que se encuentren en la tabla consola
      * se envia la informacion obtenida a la vista
      * 
-     * falta terminar
+     *
      */
     public function catalogo() {
         //obtener plataformas
@@ -142,7 +152,7 @@ class ProductosController extends AppController
 
     /**
     * funcion detalles
-    * @param string $codigo producto codigo
+    * @param string $codigo producto.codigo
     * funcion para mostrar detalles de un producto
     * llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la información
     * se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
@@ -212,7 +222,12 @@ class ProductosController extends AppController
         $this->set(compact('addwishlist'));
     }
     
-    //Controlador del carrito
+    /**
+    * funcion carrito
+    * @param string $codigo producto.codigo
+    * funcion para agregar producto al carrito de compras y mostrarle el carrito al usuario
+    * si recibe un parametro (id del producto) lo agrega a la tabla carrito junto al id del usuario
+    */
     public function carrito($codigo = null) {
         if ($codigo==null) {
             $codigo = $this->request->session()->read('Auth.User.username');
@@ -246,8 +261,12 @@ class ProductosController extends AppController
         //Ejemplo: http://psychopatonan-jjjaguar.c9users.io/carrito/Heber74
 
     }
-    
-    //Controlador de la wishlist
+    /**
+    * funcion wishlist
+    * @param string $codigo producto.codigo
+    * funcion para agregar producto a la wishlist y mostrar la wishlist al usuario
+    * si recibe un parametro (id del producto) lo agrega a la tabla wishlist junto al id del usuario
+    */
     public function wishlist($codigo = null) {
         if ($codigo==null) {
             $codigo = $this->request->session()->read('Auth.User.username');
@@ -367,7 +386,15 @@ class ProductosController extends AppController
         $this->set(compact('addfactura'));
     }
    
-    //Controlador de ofertas y combos
+        /**
+     * funcion ofertas
+     * fucion para mostrar las ofertas
+     * se obtinen las ofertas de la base de datos
+     * se extrae de la base los datos de las tablas productos y ofertas
+     * se envia la informacion obtenida a la vista
+     * 
+     *
+     */
     public function ofertas() {
         $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
