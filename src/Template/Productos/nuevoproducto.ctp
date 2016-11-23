@@ -75,7 +75,7 @@
 								</div>
 								<div class='col-sm-3'>
 								<?php
-									$opcionesCategoria = [0 => 'Juego digital', 1 => 'Juego físico', 2=> 'Plataforma'];
+									$opcionesCategoria = [1 => 'Juego digital', 2 => 'Juego físico', 3=> 'Plataforma'];
 									echo $this -> Form -> input  ('tipo', ['type' => 'select', 'options' => $opcionesCategoria, 'label' => 'Categoría:']);
 									echo $this -> Form -> submit ('Agregar producto');
 									echo $this -> Form -> end ();
