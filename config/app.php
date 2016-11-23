@@ -217,21 +217,22 @@ return [
      * Drivers include Mysql Postgres Sqlite Sqlserver
      * See vendor\cakephp\cakephp\src\Database\Driver for complete list
      */
+    
     'Datasources' => [
         'default' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host' => 'localhost',
+            'host' => 'us-cdbr-iron-east-04.cleardb.net',
             /**
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => 'jjjaguar',
-            'password' => '',
-            'database' => 'psycho',
+            'username' => 'bfefa22b0d08b2',
+            'password' => '4bdf8bc4',
+            'database' => 'heroku_ccd567cc18754ae',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
