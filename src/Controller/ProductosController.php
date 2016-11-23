@@ -67,7 +67,7 @@ class ProductosController extends AppController
         conditions'=>$condicion))->contain(['consolas']);*/
          
         //se crea la sentencia sql
-        $query = $this->Productos->find('all');
+        $query = $this->Productos->find('all')->contain('video_juegos');
         $idConsolas       = [];
         $idFisicos        = [];
         $idDigitales      = [];
@@ -88,13 +88,13 @@ class ProductosController extends AppController
                 array_push($idFisicos, $con->idProducto);
                 array_push($precioFisicos, $con->precio);
                 array_push($nombreFisicos, $con->nombreProducto);
-                array_push($generoFisicos, 'aventura');
+                array_push($generoFisicos, $con['video_juego']['genero']);
                 array_push($consolaFisicos, 'ps4');
             } else if ($tipo == 2) {
                 array_push($idDigitales, $con->idProducto);
                 array_push($precioDigitales, $con->precio);
                 array_push($nombreDigitales, $con->nombreProducto);
-                array_push($generoDigitales, 'aventura');
+                array_push($generoDigitales, $con['video_juego']['genero']);
                 array_push($consolaDigitales, 'ps4');
             } else if ($tipo == 3) {
                 array_push($idConsolas, $con->idProducto);
@@ -102,8 +102,9 @@ class ProductosController extends AppController
                 array_push($nombreConsolas, $con->nombreProducto);
             }
         }
-        
+        $generosT = TableRegistry::get ('generos') -> find ('all');
         //se envian los datos obtenidos a la vista
+        $this -> set ('generosT', $generosT);
         $this -> set ('idConsolas', $idConsolas);
         $this -> set ('precioConsolas', $precioConsolas);
         $this -> set ('nombreConsolas', $nombreConsolas);
