@@ -224,21 +224,38 @@ class ProductosController extends AppController
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
         
-        //Botón de borrar producto del carrito
+        //Botones de borrar y actualizar producto del carrito
         $DatosBoton = TableRegistry::get('wish_list_productos')->newEntity();
         
         if($this->request->is('post')) {
             $DatosBoton = TableRegistry::get('carrito_compras')->patchEntity($DatosBoton, $this->request->data);
             $LlavePrimaria = array($DatosBoton['idPersona'],$DatosBoton['idProducto']);
-            $TuplaBorrar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
+            
+            if (isset($this->request->data['BotonActualizarCarrito'])) {
+                $TuplaActualizar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
+                $TuplaActualizar->set('cantidad', $DatosBoton['cantidad']);
+                
+                 if(TableRegistry::get('carrito_compras')->save($TuplaActualizar)) {
+                    $this->Flash->success('La cantidad del producto ha sido actualizada.');
+                    return $this->redirect(['action' => '../carrito/'.$codigo]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha actualizado debido a un error.');
+                }
+                
+            } else if (isset($this->request->data['BotonBorrar'])) {
+                $TuplaBorrar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
 
-            if(TableRegistry::get('carrito_compras')->delete($TuplaBorrar)) {
-                $this->Flash->success('Producto borrado del carrito de compras.');
-                return $this->redirect(['action' => '../carrito/'.$codigo]);
+                if(TableRegistry::get('carrito_compras')->delete($TuplaBorrar)) {
+                    $this->Flash->success('Producto borrado del carrito de compras.');
+                    return $this->redirect(['action' => '../carrito/'.$codigo]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha borrado debido a un error.');
+                }
+                
             }
-            else {
-                $this->Flash->error('El producto no se ha borrado debido a un error.');
-            }
+            
         }
 
         $this->set(compact('DatosBoton'));
@@ -381,7 +398,7 @@ class ProductosController extends AppController
         
         $ofertas = $this -> Productos -> find ('all', 
             ['conditions'=>['ofertas.idProducto = Productos.idProducto'],
-            'contain' => ['ofertas','productosCombos']]);
+            'contain' => ['ofertas']]);
         $ofertas = $ofertas -> limit(16) -> page ($numPage);
         $this -> set ('numPage', $numPage);
         $this->set('ofertas', $ofertas);
@@ -485,7 +502,7 @@ class ProductosController extends AppController
      * se extrae los datos ingresados en los contenedores de la vista
      * se guarda el producto en la base de datos
     */
-    public function NuevoProducto(){
+    public function nuevoproducto(){
         //se recuperan las consolas disponibles en la base de datos
         $nuevoProd = $this -> Productos -> newEntity ();
         $this -> set (compact ('nuevoProd'));
