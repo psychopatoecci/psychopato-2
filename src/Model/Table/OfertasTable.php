@@ -32,7 +32,7 @@ class OfertasTable extends Table
 
         $this->table('ofertas');
         $this->displayField('idProducto');
-        $this->primaryKey(['idProducto', 'fechaInicio', 'fechaFin']);
+        $this->primaryKey(['idProducto']);
         
       /*  $this->belongsTo('productos', [
             'foreignKey' => 'idProducto',
@@ -49,14 +49,6 @@ class OfertasTable extends Table
     {
         $validator
             ->allowEmpty('idProducto', 'create');
-
-        $validator
-            ->date('fechaInicio')
-            ->allowEmpty('fechaInicio', 'create');
-
-        $validator
-            ->date('fechaFin')
-            ->allowEmpty('fechaFin', 'create');
 
         $validator
             ->integer('descuento')

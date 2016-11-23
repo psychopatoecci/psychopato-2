@@ -440,6 +440,13 @@ class ProductosController extends AppController
                     if(!$generosTabla -> save ($generoN))
                         $exitoso = false;*/
                 }
+                if ($datos ['descuento'] != '0') {
+                    $ofertas = TableRegistry::get('ofertas');
+                    $porInsertar ['idProducto'] = $datos ['id'];
+                    $porInsertar ['descuento' ] = $datos ['descuento'];
+                    if (!$ofertas -> save ($porInsertar))
+                        $exitoso = false;
+                }
                 if ($exitoso) {
                     $this -> Flash -> success ('Cambios realizados con éxito');
                 } else {
@@ -451,7 +458,7 @@ class ProductosController extends AppController
             }
         }
         
-        $query = $productos -> find('all') -> contain ('video_juegos');
+        $query = $productos -> find('all') -> contain (['video_juegos', 'ofertas']);
         
         $this -> set ('productos', $query);
         $this -> set ('generos', $generosTabla
