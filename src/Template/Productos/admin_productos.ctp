@@ -171,7 +171,7 @@
 											<?php //Menu de navegacion
 											echo "<li class='active'><a href='#datosgenerales".$producto['idProducto']."' data-toggle='tab'>Datos generales</a></li>";
 											echo "<li><a href='#capturas".$producto['idProducto']."' data-toggle='tab'>Capturas</a></li>";
-											echo "<li><a href='#borrar".$producto['idProducto']."' data-toggle='tab'>Borrar producto</a></li>";
+											echo "<li><a id='BORRAR PRODUCTO' href='#borrar".$producto['idProducto']."' data-toggle='tab'>Borrar producto</a></li>";
 											?>
 									</ul>
 								</div>
