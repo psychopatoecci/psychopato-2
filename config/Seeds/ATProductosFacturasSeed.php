@@ -32,13 +32,14 @@ class ATProductosFacturasSeed extends AbstractSeed
             $idProd[$contador] = $var[0];
             $contador++;
         }
+       
   
         for ($i = 0; $i < 50; $i++)
         {
             $data = [
                 'idFactura' => $faker->randomElement($array = $idFact),
                 'idProducto' => $faker->randomElement($array = $idProd),
-                'cantidad' => $faker->numberBetween($min = 1, $max = 100),
+                'cantidad' => $faker->numberBetween($min = 1, $max = 100)
             ];
         
             $table = $this->table('productos_facturas');
