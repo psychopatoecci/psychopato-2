@@ -359,6 +359,9 @@ class ProductosController extends AppController
         $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         
+        $numPage2 = 1;
+        $nuevaPag2 = $this -> request -> query('nuevaPag2');
+        
         if ($nuevaPag && $nuevaPag > 0) {
             $numPage = $nuevaPag;
         }
@@ -372,7 +375,8 @@ class ProductosController extends AppController
             
         $combos = TableRegistry::get('combos');
         $query = $combos->query();    
-        $query = $query -> limit(16) -> page ($numPage);
+        $query = $query -> limit(16) -> page ($numPage2);
+        $this -> set ('numPage2', $numPage2);
         $this->set('combos', $query);
         
     }
