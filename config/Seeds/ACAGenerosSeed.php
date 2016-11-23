@@ -4,7 +4,7 @@ use Migrations\AbstractSeed;
 /**
  * Telefonos seed.
  */
-class AEGenerosSeed extends AbstractSeed
+class ACAGenerosSeed extends AbstractSeed
 {
     /**
      * Run Method.
@@ -18,15 +18,14 @@ class AEGenerosSeed extends AbstractSeed
      */
     public function run()
     {
+        $generos = ['accion', 'aventura', 'plataforma', 'rpg', 'shooter'];
         $faker = \Faker\Factory::create();
         $populator = new Faker\ORM\CakePHP\Populator($faker);
-        $rows = $this->fetchAll('SELECT idVideoJuego FROM video_juegos');
         $data = [];
-        foreach ($rows as $arr) {
-            $id=strval($arr[0]);
+        for ($i = 0; $i < count($generos); $i++) {
+            $id=strval($i);
             $data = [
-                'idVideoJuego' => $id,
-                'genero' => $faker->sentence($nbWords = 2, $variableNbWords = true)
+                'genero' => $generos[$i]
             ];
             $table = $this -> table ('generos');
             $table -> insert ($data) -> save ();

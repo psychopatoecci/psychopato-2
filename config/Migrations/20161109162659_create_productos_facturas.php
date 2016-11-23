@@ -35,7 +35,7 @@ class CreateProductosFacturas extends AbstractMigration
         ]);
         $table->addForeignKey('idFactura', 'facturas', 
             'idFactura',
-            array('delete' => 'NO ACTION', 'update' => 'CASCADE')
+            array('delete' => 'CASCADE', 'update' => 'CASCADE')
         );
         $table->addColumn('idProducto', 'string', [
             'default' => null,
@@ -44,7 +44,7 @@ class CreateProductosFacturas extends AbstractMigration
         ]);
         $table->addForeignKey('idProducto', 'productos', 
             'idProducto',
-            array('delete' => 'NO ACTION', 'update' => 'CASCADE')
+            array('delete' => 'CASCADE', 'update' => 'CASCADE')
         );
         $table->addColumn('cantidad', 'integer', [
             'default' => null,

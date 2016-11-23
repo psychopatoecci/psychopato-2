@@ -198,19 +198,11 @@
 												<h3>Precio:</h3>
 												<?php echo "<input type='text' name='precio' placeholder='Precio' value='".$producto['precio']."'>"; ?>
 												<h3>Categoría:</h3>
-												<select name='Categoria'>
-													<?php
-													$categoriasLista = array('Juego digital','Juego físico','Plataforma');
-													$categoriasBase = array(1,2,3);
-													for ($j = 0; $j < count($categoriasLista); $j++) {
-														if ($producto['tipo'] === $categoriasBase[$j]) {
-															echo "<option selected='selected' value='".$j."''>".$categoriasLista[$j]."</option>";
-														} else {
-															echo "<option value='".($j+1)."''>".$categoriasLista[$j]."</option>";
-														}
-													}
-													?>
-												</select>
+                                                <?php
+                                                    $categoriasLista = array('Juego digital','Juego físico','Plataforma');
+                                                    echo $categoriasLista[intval($producto['tipo'])-1];
+                                                    echo "<input type='hidden' name='Categoria' value='".$producto['tipo']."'>";
+                                                ?>
 												<?php if ($producto['tipo']!=3) { ?>
 													<h3>Género:</h3>
 													<select name='Genero'>
@@ -219,7 +211,7 @@
 															if ($producto['video_juego']['genero'] === $genero['genero']) {
 																echo "<option selected='selected' value='".$j."'>".$genero['genero']."</option> ";
 															} else {
-																echo "<option value='".$genero['genero']."'>".$genero['genero']."</option> ";
+																echo "<option value='".$genero['genero']."'>".$genero['genero']."</option>";
 															}
 														}
 														?>
@@ -257,7 +249,6 @@
 													echo "La imagen se subirá en: ";
 													echo "<input type='text' name='val1' id='val1' value='images/productos/".$producto['idProducto']."/Portada/'></input>";
 												?>
-												<button type='button' onClick="history.go(0)" class='btn btn-default get' title = 'Refrescar la página'>Refrescar página</button>
 												<br><br><br><br>
 											</form>
 										</div>

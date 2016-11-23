@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Text;
+use Cake\Network\Http\Client;
 
 /**
  * productos Controller
@@ -66,7 +67,7 @@ class ProductosController extends AppController
         conditions'=>$condicion))->contain(['consolas']);*/
          
         //se crea la sentencia sql
-        $query = $this->Productos->find('all');
+        $query = $this->Productos->find('all')->contain('video_juegos');
         $idConsolas       = [];
         $idFisicos        = [];
         $idDigitales      = [];
@@ -84,25 +85,26 @@ class ProductosController extends AppController
         foreach ($query as $con) {
             $tipo = $con['tipo'];
             if ($tipo == 1) {
-                array_push($idFisicos, $con->idProducto);
-                array_push($precioFisicos, $con->precio);
-                array_push($nombreFisicos, $con->nombreProducto);
-                array_push($generoFisicos, 'aventura');
-                array_push($consolaFisicos, 'ps4');
+                array_push($idFisicos,      $con->idProducto);
+                array_push($precioFisicos,  $con->precio);
+                array_push($nombreFisicos,  $con->nombreProducto);
+                array_push($generoFisicos,  $con['video_juego']['genero']);
+                array_push($consolaFisicos, $con['video_juego']['idConsola']);
             } else if ($tipo == 2) {
-                array_push($idDigitales, $con->idProducto);
-                array_push($precioDigitales, $con->precio);
-                array_push($nombreDigitales, $con->nombreProducto);
-                array_push($generoDigitales, 'aventura');
-                array_push($consolaDigitales, 'ps4');
+                array_push($idDigitales,      $con->idProducto);
+                array_push($precioDigitales,  $con->precio);
+                array_push($nombreDigitales,  $con->nombreProducto);
+                array_push($generoDigitales,  $con['video_juego']['genero']);
+                array_push($consolaDigitales, $con['video_juego']['idConsola']);
             } else if ($tipo == 3) {
                 array_push($idConsolas, $con->idProducto);
                 array_push($precioConsolas, $con->precio);
                 array_push($nombreConsolas, $con->nombreProducto);
             }
         }
-        
+        $generosT = TableRegistry::get ('generos') -> find ('all');
         //se envian los datos obtenidos a la vista
+        $this -> set ('generosT', $generosT);
         $this -> set ('idConsolas', $idConsolas);
         $this -> set ('precioConsolas', $precioConsolas);
         $this -> set ('nombreConsolas', $nombreConsolas);
@@ -301,7 +303,7 @@ class ProductosController extends AppController
             $codigo = $this->request->session()->read('Auth.User.username');
         }
         
-        $DatosTarjetas = TableRegistry::get('tarjetas')->find('all')->where("idPersona = '".$codigo."'");
+        $DatosTarjetas = TableRegistry::get('tarjetas')->find('all')->where("idPersona = '".$codigo."'")->toArray();
         $this -> set ('DatosTarjetas', $DatosTarjetas);
         
         $DatosDirecciones = TableRegistry::get('personas_direcciones')->find('all')->where("idPersona = '".$codigo."'");
@@ -317,6 +319,17 @@ class ProductosController extends AppController
         $addfactura = TableRegistry::get('facturas')->newEntity();
 
         if($this->request->is('post')) {
+            $datos   = $this -> request -> data();
+            $tarjeta = $DatosTarjetas [$datos ['Tarjetas']];
+            $http    = new Client();
+            $response = $http->get('https://psycho-webservice.herokuapp.com',
+                [ 'numTarjeta' => $tarjeta ['idTarjeta']
+                , 'csv'        => $tarjeta ['csv']
+                , 'precio'     => $datos   ['precioTotal']])->body;
+            if ($response == 'Rechazado: Fondos insuficientes.') {
+				$this -> Flash -> Error ('Rechazado por fondos insuficientes');
+				return;
+			}
             $addfactura = TableRegistry::get('facturas')->patchEntity($addfactura, $this->request->data);
             
             if(TableRegistry::get('facturas')->save($addfactura)) {
@@ -324,13 +337,13 @@ class ProductosController extends AppController
                 //Agregar los productos a la tabla productos_facturas
                 $ProductosFactura = $this->request->data('idProducto');
                 $CantidadesFactura = $this->request->data('cantidad');
-                debug($CantidadesFactura);
+                debug($this->request->data);
                 
                 for ($i=0; $i<Count($ProductosFactura); $i++) {
                     $data = [
-                        'idFactura'    => $this->request->data('idFactura'),
+                        'idFactura'  => $this->request->data('idFactura'),
                         'idProducto' => $ProductosFactura[$i],
-                        'cantidad' => $CantidadesFactura[$i]
+                        'cantidad'   => $CantidadesFactura[$i]
                     ];
                     $inserciones = TableRegistry::get('productos_facturas')->newEntity();
                     TableRegistry::get('productos_facturas')->patchEntity($inserciones, $data);
@@ -346,7 +359,7 @@ class ProductosController extends AppController
                 return $this->redirect(['action' => '../ordenes']);
             }
             else {
-                $this->Flash->error('La órden no se ha completado debido a un error.');
+                $this->Flash->error('La orden no se ha completado debido a un error.');
             }
 
         }
@@ -384,6 +397,9 @@ class ProductosController extends AppController
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
     public function AdminProductos() {
+        if ($this->request->session()->read('Auth.User.role')!='admin') {
+            $this->redirect('../../');
+        }
         $generosTabla  = TableRegistry::get ('generos');
         $videoJuegosT  = TableRegistry::get ('video_juegos');
         $consolasTabla = TableRegistry::get ('consolas');
@@ -401,22 +417,25 @@ class ProductosController extends AppController
                 $exitoso = true;
                 if (!$productos -> save ($porInsertar))
                     $exitoso = false;
-                $porBorrar = $generosTabla
-                    -> find ('all')
-                    -> where ("idVideoJuego = '".$datos['id']."'");
-                foreach ($porBorrar as $tupla) {
-                    $generosTabla -> delete ($tupla);
+                //$porBorrar = $generosTabla
+                //    -> find ('all')
+                //    -> where ("idVideoJuego = '".$datos['id']."'");
+                //foreach ($porBorrar as $tupla)
+                    //$generosTabla -> delete ($tupla);
+                
+                if ($datos ['Categoria'] == 1
+                    || $datos ['Categoria'] == 2) { // Es videojuego.
+                    $porInsertar = $videoJuegosT -> get ($datos['id']);
+                    $porInsertar ['idConsola'] = $datos ['Plataforma'];
+                    $porInsertar ['genero']    = $datos ['Genero'];
+                    if (!$videoJuegosT -> save ($porInsertar))
+                        $exitoso = false;
+                    /*$generoN = $generosTabla -> newEntity ();
+                    $generoN ['idVideoJuego'] = $datos ['id'];
+                    $generoN ['genero'      ] = $datos ['Genero'];
+                    if(!$generosTabla -> save ($generoN))
+                        $exitoso = false;*/
                 }
-                $porInsertar = $videoJuegosT -> get ($datos['id']);
-                $porInsertar ['idConsola'] = $datos ['Plataforma'];
-                $porInsertar ['genero']    = $datos ['Genero'];
-                if (!$videoJuegosT -> save ($porInsertar))
-                    $exitoso = false;
-                //$generoN = $generosTabla -> newEntity ();
-                //$generoN ['idVideoJuego'] = $datos ['id'];
-                //$generoN ['genero'      ] = $datos ['Genero'];
-                //if(!$generosTabla -> save ($generoN))
-                //    $exitoso = false;
                 if ($exitoso) {
                     $this -> Flash -> success ('Cambios realizados con éxito');
                 } else {
