@@ -13,7 +13,6 @@ class CreateVideoJuegos extends AbstractMigration
     public function change()
     {
         $table = $this->table('video_juegos', ['id' => false, 'primary_key' => ['idVideoJuego']]);
-        $generos = $this->fetchAll('SELECT idVideoJuego FROM video_juegos');
         $table->addColumn('idVideoJuego', 'string', [
             /*'identity' => true, 
             'signed' => false,*/
