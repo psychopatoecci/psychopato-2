@@ -381,7 +381,7 @@ class ProductosController extends AppController
         
         $ofertas = $this -> Productos -> find ('all', 
             ['conditions'=>['ofertas.idProducto = Productos.idProducto'],
-            'contain' => ['ofertas','productosCombos']]);
+            'contain' => ['ofertas']]);
         $ofertas = $ofertas -> limit(16) -> page ($numPage);
         $this -> set ('numPage', $numPage);
         $this->set('ofertas', $ofertas);
@@ -478,7 +478,7 @@ class ProductosController extends AppController
      * se extrae los datos ingresados en los contenedores de la vista
      * se guarda el producto en la base de datos
     */
-    public function NuevoProducto(){
+    public function nuevoproducto(){
         //se recuperan las consolas disponibles en la base de datos
         $nuevoProd = $this -> Productos -> newEntity ();
         $this -> set (compact ('nuevoProd'));
