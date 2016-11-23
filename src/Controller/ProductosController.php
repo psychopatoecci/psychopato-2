@@ -397,6 +397,9 @@ class ProductosController extends AppController
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
     public function AdminProductos() {
+        if ($this->request->session()->read('Auth.User.role')!='admin') {
+            $this->redirect('../../');
+        }
         $generosTabla  = TableRegistry::get ('generos');
         $videoJuegosT  = TableRegistry::get ('video_juegos');
         $consolasTabla = TableRegistry::get ('consolas');
