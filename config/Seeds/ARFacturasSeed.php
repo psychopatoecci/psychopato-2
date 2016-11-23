@@ -20,6 +20,12 @@ class ARFacturasSeed extends AbstractSeed
     {
         $faker = Faker\Factory::create();
         $rows = $this->fetchAll('SELECT identificacion FROM personas');
+        $rows2 = $this->fetchAll('SELECT idTarjeta FROM tarjetas');
+        $contador = 0;
+         foreach($rows2 as $var){
+            $idTar[$contador] = $var[0];
+            $contador++;
+        }
         $data = [];
         foreach ($rows as $arr) {
             $id=strval($arr[0]);
@@ -29,6 +35,8 @@ class ARFacturasSeed extends AbstractSeed
                 'idUsuario' => $id,
                 'precioTotal' => $faker->numberBetween($min = 10000, $max = 956325415),
                 'estadoCompra' => $faker->numberBetween($min = 1, $max = 3),
+                'direccionEnvio' => $faker->address,
+                'formaPago' => $faker->randomElement($array = $idTar),
             ];
             //$populator->execute();
         $table = $this->table('facturas');

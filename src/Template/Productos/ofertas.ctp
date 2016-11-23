@@ -302,7 +302,19 @@ $fechaFin = [];
 										mostrarCombo();
 									?>
 								</div>
-							</div>
+							<form id="pag" action="../ofertas" method="get">
+                        		<?php 
+                            		echo "<input type='hidden' name='nuevaPag' value='".strval($numPage2 - 1)."'>"; 
+                        		?>
+                        		<button type='submit' class='btn btn-default'>Anterior</button>
+                    		</form>
+                    		<form id="pag" action="../ofertas" method="get">
+                        	<?php 
+                        		 echo "<input type='hidden' name='nuevaPag' value='".strval($numPage2 + 1)."'>"; 
+                        	?>
+                        <button type='submit' class='btn btn-default'>Siguiente</button>
+                    	</form>
+						</div>
 
 							
 						</div>
