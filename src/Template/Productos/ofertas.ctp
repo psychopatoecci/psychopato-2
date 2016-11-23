@@ -57,7 +57,7 @@
 		array_push($descuentos, $descuento['oferta']['descuento']);
 	}
 	
-	global $fechaInicio;
+	/*global $fechaInicio;
 	$fechaInicio = [];
 	foreach($ofertas as $fechaI){
 		array_push($fechaInicio, $fechaI['ofertas']['fechaInicio']);	
@@ -67,7 +67,7 @@
 	$fechaFinal = [];
 	foreach($ofertas as $fechaF){
 		array_push($fechaFinal, $fechaF['ofertas']['fechaInicio']);	
-	}
+	}*/
 	
 	global $portadas;
 	$portadas = [];
