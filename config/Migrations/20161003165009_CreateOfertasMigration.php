@@ -12,21 +12,13 @@ class CreateOfertasMigration extends AbstractMigration
      */
     public function change()
     {
-        $table = $this->table('ofertas',  ['id' => false, 'primary_key' => ['idProducto','fechaInicio','fechaFin']]);
+        $table = $this->table('ofertas',  ['id' => false, 'primary_key' => ['idProducto']]);
         $table->addColumn('idProducto', 'string', [
             'default' => null,
             'limit' => 50,
             'null' => false,
         ]);
-         $table->addForeignKey('idProducto', 'productos', 'idProducto', array('delete' => 'CASCADE', 'update' => 'CASCADE'));
-        $table->addColumn('fechaInicio', 'datetime', [
-            'default' => null,
-            'null' => false,
-        ]);
-         $table->addColumn('fechaFin', 'datetime', [
-            'default' => null,
-            'null' => false,
-        ]);
+        $table->addForeignKey('idProducto', 'productos', 'idProducto', array('delete' => 'CASCADE', 'update' => 'CASCADE'));
         $table->addColumn('descuento', 'integer', [
             'default' => null,
             'null' => false,

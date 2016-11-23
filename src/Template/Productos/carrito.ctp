@@ -109,7 +109,7 @@
 							<td class="price"><font size="5">Productos</font></td>
 							<td class="description"></td>
 							<td class="price"><font size="5">Precio</font></td>
-							<td class="price"><font size="5">Cantidad</font></td>
+							<td class="quantity"><font size="5">Cantidad</font></td>
 							<td class=""></td>
 							<td></td>
 						</tr>
@@ -138,26 +138,26 @@
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<input class='cart_quantity_input' type='text'
-										name='Cantidad".$i."' value='".$cantidades[$i]."' autocomplete='off' size='2'>";
-
-									?>
-								</td>
-								<td class="cart_quantity">
-									<center>
-									<?php
 										echo $this->Form->create($DatosBoton);
 										echo $this->Form->hidden('idPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
 										echo $this->Form->hidden('idProducto', ['value'=>$IDProductosCarrito[$i]]);
+										
+										echo "<input class='cart_quantity_input' type='text'name='cantidad' value='".$cantidades[$i]."' autocomplete='off' size='2'>";
+
 									?>
-									<button type="submit" name="BotonBorrar" class="btn btn-default add-to-cart" title="Borrar este producto del carrito de compras">
-										<i class="fa fa-times"></i><font size='5'>Borrar</font>
+									<br><br>
+									<button type="submit" name="BotonActualizarCarrito" class="btn btn-default add-to-cart" title="Actualizar la cantidad de este producto">
+										<i class="fa fa-refresh"></i>
 									</button>
-									<?php
-										echo $this->Form->end();
-									?>
-									
-									
+
+								</td>
+								<td class="cart_quantity">
+									<center>
+										<button type="submit" name="BotonBorrar" class="btn btn-default add-to-cart" title="Borrar este producto del carrito de compras">
+											<i class="fa fa-times"></i><font size='5'>Borrar</font>
+										</button>
+										
+										<?php echo $this->Form->end(); ?>
 									</center>
 								</td>
 
@@ -171,12 +171,10 @@
 					</tbody>
 
 				</table>
-				
 			</div>
 			
 			<div align="right">
-				<font size='5'>
-				Total: 
+				<font size='5'>Total: 
 				<?php
 					$total=0;
 					for ($i = 0; $i < count($precios); $i++) {

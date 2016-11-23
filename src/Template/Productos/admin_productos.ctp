@@ -197,6 +197,11 @@
 											<div class='col-sm-3'>
 												<h3>Precio:</h3>
 												<?php echo "<input type='text' name='precio' placeholder='Precio' value='".$producto['precio']."'>"; ?>
+												<h3>Descuento:</h3>
+                                                <?php
+                                                $descuento = isset ($producto['oferta'])? $producto['oferta']['descuento'] : 0;
+                                                    echo "<input type='number' name='descuento' min='0' max='99' placeholder='Descuento' value='".$descuento."'>"
+                                                ?>
 												<h3>Categoría:</h3>
                                                 <?php
                                                     $categoriasLista = array('Juego digital','Juego físico','Plataforma');
