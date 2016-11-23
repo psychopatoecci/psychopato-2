@@ -29,9 +29,11 @@
 	//Datos de prueba
 	$NumeroOrden = array();
 	$fechaFact = array();
+	$precios = array();
 	foreach($factura as $fact):
 		array_push($NumeroOrden, $fact['idFactura']);
 		array_push($fechaFact, $fact['fechaFactura']);
+		array_push($precios, $fact['precioTotal']);
 	endforeach;
 	
 	global 	$IDProductos;
@@ -131,7 +133,7 @@
 					for ($i = 0; $i < count($precios); $i++) {
 						$total = $total+intval($precios[$i]);
 					}
-					echo "¢".$total;
+					echo "¢".$precios[0];
 				?>
 				</font>
 				<br><br>

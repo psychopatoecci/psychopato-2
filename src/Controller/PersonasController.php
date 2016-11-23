@@ -30,7 +30,7 @@ class PersonasController extends AppController
         $idFact;
         $idProductos = [];//guarda el id de los productos de la factura
         $cantidadesProductos = [];//guarda la cantidad que se compró de cada producto
-        $precioProductos = [];//guarda el precio de cada producto de la factura
+        $precioProductos = [];//guarda el precio total
         $nombreProductos = [];//guarda el nombre de los productos de la factura
         //saca de la base los productos pertenecientes a la factura
         $datosProductos = TableRegistry::get('productos_facturas')->find('all')->where("idFactura = '".$idFactura."'");
@@ -43,13 +43,18 @@ class PersonasController extends AppController
             array_push($idProductos, $dato['idProducto']);
             array_push($cantidadesProductos, $dato['cantidad']);
         }
+        foreach ($factura as $fact)
+        {
+            array_push($precioProductos, $fact['precioTotal']);
+        }
+        
         //para cada producto trae su precio unitario
         for($i = 0; $i < count($idProductos); ++$i)
         {
             $precios = TableRegistry::get('productos')->find('all')->where("idProducto = '".$idProductos[$i]."'");
             foreach ($precios as $precio) 
             {
-                array_push($precioProductos, $precio['precio']);
+                //array_push($precioProductos, $factura['precioTotal']);
                 array_push($nombreProductos, $precio['nombreProducto']);
             }
         }
