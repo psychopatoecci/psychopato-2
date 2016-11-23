@@ -1,6 +1,5 @@
 <?php
 use Migrations\AbstractSeed;
-
 /**
  * Telefonos seed.
  */

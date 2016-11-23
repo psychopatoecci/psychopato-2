@@ -29,9 +29,11 @@
 	//Datos de prueba
 	$NumeroOrden = array();
 	$fechaFact = array();
+	$precios = array();
 	foreach($factura as $fact):
 		array_push($NumeroOrden, $fact['idFactura']);
 		array_push($fechaFact, $fact['fechaFactura']);
+		array_push($precios, $fact['precioTotal']);
 	endforeach;
 	
 	global 	$IDProductos;
@@ -89,8 +91,8 @@
 					<thead>
 						<tr class="cart_menu">
 							<td class="price"><font size="5">Productos</font></td>
-							<td class="price"><font size="5">Precio</font></td>
 							<td class="price"><font size="5">Cantidad</font></td>
+							<!--<td class="price"><font size="5">Precio</font></td>-->
 							<td class=""></td>
 							<td></td>
 						</tr>
@@ -108,14 +110,10 @@
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<p>¢".$precios[$i]."</p>";
+									echo "<p>¢".$cantidades[$i]."</p>";
 									?>
 								</td>
-								<td class="cart_price">
-									<?php
-									echo "<p>".$cantidades[$i]."</p>";
-									?>
-								</td>
+								
 			
 							</tr>
 						<?php
@@ -135,7 +133,7 @@
 					for ($i = 0; $i < count($precios); $i++) {
 						$total = $total+intval($precios[$i]);
 					}
-					echo "¢".$total;
+					echo "¢".$precios[0];
 				?>
 				</font>
 				<br><br>
