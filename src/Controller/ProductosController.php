@@ -239,21 +239,38 @@ class ProductosController extends AppController
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
         
-        //Botón de borrar producto del carrito
+        //Botones de borrar y actualizar producto del carrito
         $DatosBoton = TableRegistry::get('wish_list_productos')->newEntity();
         
         if($this->request->is('post')) {
             $DatosBoton = TableRegistry::get('carrito_compras')->patchEntity($DatosBoton, $this->request->data);
             $LlavePrimaria = array($DatosBoton['idPersona'],$DatosBoton['idProducto']);
-            $TuplaBorrar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
+            
+            if (isset($this->request->data['BotonActualizarCarrito'])) {
+                $TuplaActualizar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
+                $TuplaActualizar->set('cantidad', $DatosBoton['cantidad']);
+                
+                 if(TableRegistry::get('carrito_compras')->save($TuplaActualizar)) {
+                    $this->Flash->success('La cantidad del producto ha sido actualizada.');
+                    return $this->redirect(['action' => '../carrito/'.$codigo]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha actualizado debido a un error.');
+                }
+                
+            } else if (isset($this->request->data['BotonBorrar'])) {
+                $TuplaBorrar = TableRegistry::get('carrito_compras')-> get ($LlavePrimaria);
 
-            if(TableRegistry::get('carrito_compras')->delete($TuplaBorrar)) {
-                $this->Flash->success('Producto borrado del carrito de compras.');
-                return $this->redirect(['action' => '../carrito/'.$codigo]);
+                if(TableRegistry::get('carrito_compras')->delete($TuplaBorrar)) {
+                    $this->Flash->success('Producto borrado del carrito de compras.');
+                    return $this->redirect(['action' => '../carrito/'.$codigo]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha borrado debido a un error.');
+                }
+                
             }
-            else {
-                $this->Flash->error('El producto no se ha borrado debido a un error.');
-            }
+            
         }
 
         $this->set(compact('DatosBoton'));
@@ -467,6 +484,13 @@ class ProductosController extends AppController
                     if(!$generosTabla -> save ($generoN))
                         $exitoso = false;*/
                 }
+                if ($datos ['descuento'] != '0') {
+                    $ofertas = TableRegistry::get('ofertas');
+                    $porInsertar ['idProducto'] = $datos ['id'];
+                    $porInsertar ['descuento' ] = $datos ['descuento'];
+                    if (!$ofertas -> save ($porInsertar))
+                        $exitoso = false;
+                }
                 if ($exitoso) {
                     $this -> Flash -> success ('Cambios realizados con éxito');
                 } else {
@@ -478,7 +502,7 @@ class ProductosController extends AppController
             }
         }
         
-        $query = $productos -> find('all') -> contain ('video_juegos');
+        $query = $productos -> find('all') -> contain (['video_juegos', 'ofertas']);
         
         $this -> set ('productos', $query);
         $this -> set ('generos', $generosTabla
@@ -509,6 +533,7 @@ class ProductosController extends AppController
         //se recuperan las consolas disponibles en la base de datos
         $nuevoProd = $this -> Productos -> newEntity ();
         $this -> set (compact ('nuevoProd'));
+        
         $condicion = array('Productos.idProducto = consolas.idConsola');
         $consolas = $this -> Productos -> find ('all', array(
             'fields' => array('Productos.nombreProducto'),
@@ -521,30 +546,53 @@ class ProductosController extends AppController
         }
         $this -> set ('opcionesConsola', $consolaArray);
         //se espera a que se oprima el boton de guardar
+        
+        
         if ($this-> request->is('post')) {
+            
+       
+            
+            //echo $productos->idProducto;
             //se extrae los datos ingresados en los contenedores de la vista
-            $datos = $this -> request -> data;
+           $datos = $this -> request -> data;
+           
+           $nombre=$consolaArray[$datos ['consola']];
+           
+           $productos=$this->Productos->find('all')
+            ->where(['nombreProducto =' => $nombre])
+            ->where(['tipo =' => 3])
+            ->first();
+           
+           echo $productos->idProducto;
+           
             $nuevoProd -> idProducto     = $datos ['identificador'];
             $nuevoProd -> nombreProducto = $datos ['nombreProducto'];
             $nuevoProd -> descripcion    = $datos ['descripcion'];
             $nuevoProd -> precio         = $datos ['precio'];
             $nuevoProd -> fabricante     = $datos ['fabricante'];
             $nuevoProd -> tipo           = $datos ['tipo'];
-            $nuevoProd -> idConsola      = $datos ['consola'];
+    
             $vid = $datos ['tipo'] > 0;
             //se guarda el producto en la base de datos
             if (TableRegistry::get('Productos') -> save ($nuevoProd)) {
-                if ($vid) {
+                if ($datos ['tipo']==1||$datos ['tipo']==2) {
                     // Hay que insertar los datos en videojuego.
                     $videoJ = TableRegistry::get ('video_juegos') -> newEntity ();
                     $videoJ -> idVideoJuego = $datos ['identificador'];
+                    $videoJ -> IdConsola = $productos->idProducto ;
                     $videoJ -> ESRB = 4;
                     $videoJ -> reqMin = 'OpenGL 1';
                     $videoJ -> reqMax = 'Ninguno';
-                    $videoJ -> IdConsola = $datos ['consola'];
                     $videoJ -> genero = $datos ['genero'];
                     TableRegistry::get ('video_juegos') -> save ($videoJ);
-                } else {
+                } else if($datos ['tipo']==3) {
+                    
+                    $plat = TableRegistry::get ('consolas') -> newEntity ();
+                    $plat -> idConsola = $datos ['identificador'];
+                    $plat -> existencia = 200;
+                    $plat -> especificaciones = $datos ['descripcion'];
+                    TableRegistry::get ('consolas') -> save ($plat);
+                    
                     
                 }
                 //se imprime un mensaje informando que se realizo el insert de forma exitosa
@@ -552,8 +600,8 @@ class ProductosController extends AppController
             } else {
                 //si falla el insert se imprime un mensaje de error
                 $this -> Flash -> error ('Error insertando.');
-            }
-        }
+            } 
+        } 
         //$this -> render();
     }
     /**
