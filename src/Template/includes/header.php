@@ -85,7 +85,7 @@
                         		</li> 
 						<li><a href="/../ofertas" title="Ver las ofertas disponibles">Ofertas</a></li>
 						<li><a href="/../ofertas" title="Ver los combos disponibles">Combos</a></li>
-						<li><a href="404" title="Ver la información de contacto de la empresa">Contacto</a></li>
+						
 					</ul>
 				</div>
 				
