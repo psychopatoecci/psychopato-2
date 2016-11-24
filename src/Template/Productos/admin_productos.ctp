@@ -214,7 +214,7 @@
 														<?php
 														foreach ($generos as $genero) {
 															if ($producto['video_juego']['genero'] === $genero['genero']) {
-																echo "<option selected='selected' value='".$j."'>".$genero['genero']."</option> ";
+																echo "<option selected='selected' value='".$genero['genero']."'>".$genero['genero']."</option> ";
 															} else {
 																echo "<option value='".$genero['genero']."'>".$genero['genero']."</option>";
 															}
