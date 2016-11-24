@@ -96,6 +96,8 @@ try {
 if (!Configure::read('debug')) {
     Configure::write('Cache._cake_model_.duration', '+1 years');
     Configure::write('Cache._cake_core_.duration', '+1 years');
+} else {
+    Plugin::load('DebugKit', ['bootstrap' => true]);
 }
 
 /*
@@ -218,9 +220,7 @@ Type::build('datetime')
  * Only try to load DebugKit in development mode
  * Debug Kit should not be installed on a production system
  */
-if (Configure::read('debug')) {
-    Plugin::load('DebugKit', ['bootstrap' => true]);
-}
+
 Plugin::load('Migrations');
 
 Plugin::load('BootstrapUI');

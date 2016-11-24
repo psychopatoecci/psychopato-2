@@ -34,16 +34,12 @@ class ATProductosFacturasSeed extends AbstractSeed
         }
        
   
-<<<<<<< HEAD
-        foreach ($idFact as $idFac)
-=======
-        for ($i = 0; $i < count($rows); $i++)
->>>>>>> f559f0e511023b55c6d37bb422958d0e0b6698af
+        for ($i = 0; $i <count($rows); $i++)
         {
             $num = rand (1, 4);
             for ($e = 1; $e <= $num; $e++ ) {
             $data = [
-                'idFactura' => $idFac,
+                'idFactura'  => $faker->randomElement($array = $idFact),
                 'idProducto' => $faker->randomElement($array = $idProd),
                 'cantidad' => $faker->numberBetween($min = 1, $max = 20)
             ];

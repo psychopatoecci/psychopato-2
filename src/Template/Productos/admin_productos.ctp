@@ -171,7 +171,7 @@
 											<?php //Menu de navegacion
 											echo "<li class='active'><a href='#datosgenerales".$producto['idProducto']."' data-toggle='tab'>Datos generales</a></li>";
 											echo "<li><a href='#capturas".$producto['idProducto']."' data-toggle='tab'>Capturas</a></li>";
-											echo "<li><a href='#borrar".$producto['idProducto']."' data-toggle='tab'>Borrar producto</a></li>";
+											echo "<li><a id='BORRAR PRODUCTO' href='#borrar".$producto['idProducto']."' data-toggle='tab'>Borrar producto</a></li>";
 											?>
 									</ul>
 								</div>
@@ -214,7 +214,7 @@
 														<?php
 														foreach ($generos as $genero) {
 															if ($producto['video_juego']['genero'] === $genero['genero']) {
-																echo "<option selected='selected' value='".$j."'>".$genero['genero']."</option> ";
+																echo "<option selected='selected' value='".$genero['genero']."'>".$genero['genero']."</option> ";
 															} else {
 																echo "<option value='".$genero['genero']."'>".$genero['genero']."</option>";
 															}

@@ -216,22 +216,25 @@ return [
      * See https://github.com/cakephp/cakephp/issues/6471 for details.
      * Drivers include Mysql Postgres Sqlite Sqlserver
      * See vendor\cakephp\cakephp\src\Database\Driver for complete list
+     
+    
      */
-    'Datasources' => [
+    
+     'Datasources' => [
         'default' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host' => 'localhost',
+            'host' => 'us-cdbr-iron-east-04.cleardb.net',
             /**
              * CakePHP will use the default DB port based on the driver selected
              * MySQL on MAMP uses port 8889, MAMP users will want to uncomment
              * the following line and set the port accordingly
              */
             //'port' => 'non_standard_port_number',
-            'username' => 'jjjaguar',
-            'password' => '',
-            'database' => 'psycho',
+            'username' => 'b3e39ed15de5c1',
+            'password' => 'c6e34cf7',
+            'database' => 'heroku_33d4797f19851e4',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'flags' => [],
@@ -246,7 +249,7 @@ return [
              * decreases performance because each query needs to be traversed and
              * manipulated before being executed.
              */
-            'quoteIdentifiers' => false,
+            'quoteIdentifiers' => true,
 
             /**
              * During development, if using MySQL < 5.6, uncommenting the

@@ -169,15 +169,9 @@ class ProductosController extends AppController
         $this -> set ('portada', $producto ['imagen']);
         $this -> set ('categoria', StrVal ($producto ['tipo']));
         $this -> set ('descripcion', $producto ['descripcion']);
-        //$query = $this -> Productos -> find('all')->contain(['video_juegos']);
+        $query = $this -> Productos -> find('all')->contain(['video_juegos']);
         
-        //se crea una sentencia sql que realiza join de las tablas producto, consola y videoJuego para obtener los generos y las plataformas
-        $condicion =array('video_juegos.idVideoJuego =' => $codigo);
-        $query = $this -> Productos -> find('all',array(
-            'fields' => array('video_juegos.genero', 'productos.nombreProducto'),
-            'conditions'=> $condicion ))
-            ->contain(['video_juegos', 'video_juegos.consolas.productos']);
-        //$descripcion;
+
         foreach ($query as $qu) {
             $this-> set ('genero', $qu['video_juegos']['genero']);
             $this-> set ('plataforma', $qu['productos']['nombreProducto']);

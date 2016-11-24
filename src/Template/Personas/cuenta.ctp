@@ -105,7 +105,7 @@
                                             <?php
                                             $i = 0;
                                             foreach ($us['tarjetas'] as $tarjeta) {
-                                                echo "<div class='col-sm-3'>
+                                                echo "<div style= 'width:51%;' class='col-sm-3'>
                                                 <input type='text' name='tarjeta".$i."' value='".$tarjeta['idTarjeta']."' readonly>
                                                 <input type='checkbox' name='borrar".$i."' value='on'> Borrar
                                                 </div>";
