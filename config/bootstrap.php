@@ -96,6 +96,8 @@ try {
 if (!Configure::read('debug')) {
     Configure::write('Cache._cake_model_.duration', '+1 years');
     Configure::write('Cache._cake_core_.duration', '+1 years');
+} else {
+    Plugin::load('DebugKit', ['bootstrap' => true]);
 }
 
 /*
