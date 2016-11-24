@@ -25,17 +25,7 @@
 <div class="footer-widget">
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-2">
-				<div class="single-widget">
-					<h2>Servicio</h2>
-					<ul class="nav nav-pills nav-stacked">
-						<li><a href="">Contáctenos</a></li>
-						<li><a href="">Preguntas frecuentes</a></li>
-						<li><a href="">Sobre nosotros</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-sm-2">
+			<div class="col-sm-4">
 				<div class="single-widget">
 					<?php if($this->request->session()->read('Auth.User.username') == "admin"){?>
 					<h2>Administración</h2>
@@ -54,7 +44,7 @@
 	<div class="container">
 		<div class="row">
 			<p class="pull-left">Corporación PsychoPato S.A. Todos los derechos reservados</p>
-			<p class="pull-right">UCR - 2016</p>
+			<p style= 'margin-right: 50px;' class="pull-right">UCR - 2016</p>
 		</div>
 	</div>
 </div>
