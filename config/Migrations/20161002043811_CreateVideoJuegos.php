@@ -50,6 +50,7 @@ class CreateVideoJuegos extends AbstractMigration
             'default' => null,
             'limit'   => 50
         ]);
+	$table->addForeignKey('genero', 'generos', 'genero' );
         $table->create();
     }
 }
