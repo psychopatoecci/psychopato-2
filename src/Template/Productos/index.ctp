@@ -267,7 +267,7 @@
 						
 						<!--/Banner de publicidad lateral-->
 						<div class="bannerpublicidad text-center">
-							<a href="#" title = "Ver detalles de esta oferta"><img href="#" src="images/home/Banner1.png" alt="" /></a>
+							<a href="/ofertas" title = "Ver detalles de esta oferta"><img href="#" src="images/home/Banner1.png" alt="" /></a>
 						</div>
 					
 					</div>
