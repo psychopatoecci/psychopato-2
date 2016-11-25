@@ -445,7 +445,10 @@ class ProductosController extends AppController
         $generosTabla  = TableRegistry::get ('generos');
         $videoJuegosT  = TableRegistry::get ('video_juegos');
         $consolasTabla = TableRegistry::get ('consolas');
-        $productos = $this -> Productos;
+        $combosTabla   = TableRegistry::get ('combos');
+        $ofertasTabla  = TableRegistry::get ('ofertas');
+        $productos     = $this -> Productos;
+        $combos = $combosTabla -> find ('all');
         if ($this -> request -> is ('post')) {
             $datos = $this -> request -> data;
             if (isset ($datos['actualizar'])) {
@@ -479,12 +482,21 @@ class ProductosController extends AppController
                         $exitoso = false;*/
                 }
                 if ($datos ['descuento'] != '0') {
-                    $ofertas = TableRegistry::get('ofertas');
+                    $porInsertar = $ofertasTabla -> newEntity ();
                     $porInsertar ['idProducto'] = $datos ['id'];
                     $porInsertar ['descuento' ] = $datos ['descuento'];
-                    if (!$ofertas -> save ($porInsertar))
+                    if (!$ofertasTabla -> save ($porInsertar))
                         $exitoso = false;
                 }
+                /*
+                if ($datos ['combo'] == 'nuevo') {
+                    $porInsertar = $combosTabla -> newEntity ();
+                    $porInsertar ['idCombo']     = count ($combos);
+                    $porInsertar ['precioCombo'] = $datos ['precioCombo'];
+                    if (!$combosTabla -> save($porInsertar))
+                        $exitoso = false;
+                }*/
+
                 if ($exitoso) {
                     $this -> Flash -> success ('Cambios realizados con éxito');
                 } else {
@@ -499,6 +511,7 @@ class ProductosController extends AppController
         $query = $productos -> find('all') -> contain (['video_juegos', 'ofertas']);
         
         $this -> set ('productos', $query);
+        $this -> set ('combos', $combos);
         $this -> set ('generos', $generosTabla
             -> find ('all'));
         $this -> set ('consola', $consolasTabla 
