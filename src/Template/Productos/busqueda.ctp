@@ -244,7 +244,7 @@
 				<div class="col-sm-3">
 					<div class="left-sidebar">
 						<div align="left">
-							<button type='button' onClick="parent.location='catalogo.php'" class='btn btn-default get' title = 'Ver el navegador del catálogo de productos'><-Catálogo de productos</button>
+							<button type='button' onClick="parent.location='/../catalogo'" class='btn btn-default get' title = 'Ver el navegador del catálogo de productos'><-Catálogo de productos</button>
 						</div>
 					
 					</div>

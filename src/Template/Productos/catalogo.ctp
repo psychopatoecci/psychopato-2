@@ -83,14 +83,6 @@
 				echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
 				echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 				echo "<h2>¢".$precios[$i]."</h2>";
-                echo "<form method='post' accept-charset='utf-8' role='form' action='/productos/agregar-a-wish-list'>";
-				echo "<div style='display:none;'>";
-                echo "<input name='_method' value='POST' type='hidden'>";
-                echo "</div><input name='idProducto' value='".$IDJuegosFisicos[$i]."' type='hidden'>";
-                //echo "<button type='submit' class='btn btn-default'>Agregar a wishlist</button>";
-				//echo "<a href='#' title = 'Añadir este producto al carrito de compras' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
-				
-				echo "</form>";
 
 				//Botones de añadir al carrito y wishlist
 				echo "<form method='post' accept-charset='utf-8' role='form' action='catalogo'>";
@@ -215,8 +207,10 @@
 								<h2>Filtrar por plataformas</h2>
 
 								<?php 
-                                    for($con = 0; $con < count ($IDPlataformas); $con ++) {
-                                        echo "<li><a href='#filtro".$IDPlataformas[$con]."' data-toggle='tab' title='Mostrar todos los juegos de ".$nombres3[$con]."'> <span class='pull-right'>(".calcularCantidad($IDPlataformas[$con]).")</span>".$nombres3[$con]."</a></li>";
+                                    for($i = 0; $i < count ($IDPlataformas); $i++) {
+                                        echo "<li><a href='#filtro".$IDPlataformas[$i]."' data-toggle='tab'
+                                        title='Mostrar todos los juegos de ".$nombres3[$i]."'>
+                                        <span class='pull-right'>(".calcularCantidad($IDPlataformas[$i]).")</span>".$nombres3[$i]."</a></li>";
                                     }
 								?>
 								
