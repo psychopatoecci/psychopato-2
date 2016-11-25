@@ -11,8 +11,7 @@ use Cake\Network\Http\Client;
  *
  * @property \App\Model\Table\ProductosTable $Productos
  */
-class ProductosController extends AppController
-{
+class ProductosController extends AppController {
       /**
      * funcion busqueda
      * fucion para realizar Busquedas
@@ -38,26 +37,44 @@ class ProductosController extends AppController
      * muestra la pagina principal
      * 
      */
-    public function index()
-    {
-        $productos = $this->Productos->find('all');
-        $nombresProd = [];
-        $preciosProd = [];
-        $descrProd   = [];
-        $idProd      = [];
-        foreach ($productos as $producto) {
-            $nombresProd[] = $producto['nombreProducto'];
-            $preciosProd[] = $producto['precio'];
-            $descrProd  [] = $producto['descripcion'];
-            $idProd     [] = $producto['idProducto'];
+    public function index() {
+        $datos = $this->Productos->find('all');
+        $this -> set ('datos', $datos);
+        
+        //Botones de añadir al carrito y wishlist
+        $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
+        $addwishlist = TableRegistry::get('wish_list_productos')->newEntity();
+ 
+        if($this->request->is('post')) {
+            if (isset($this->request->data['BotonCarrito'])) {
+               $addcarrito = TableRegistry::get('carrito_compras')->patchEntity($addcarrito, $this->request->data);
+
+                if(TableRegistry::get('carrito_compras')->save($addcarrito)) {
+                    $this->Flash->success('Producto añadido al carrito de compras.');
+                    return $this->redirect(['action' => '../carrito/'.$this->request->session()->read('Auth.User.username')]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha añadido debido a un error.');
+                }
+                
+            } else if (isset($this->request->data['BotonWishlist'])) {
+                $addwishlist = TableRegistry::get('wish_list_productos')->patchEntity($addwishlist, $this->request->data);
+    
+                if(TableRegistry::get('wish_list_productos')->save($addwishlist)) {
+                    $this->Flash->success('Producto añadido a la wishlist.');
+                    return $this->redirect(['action' => '../wishlist/'.$this->request->session()->read('Auth.User.username')]);
+                }
+                else {
+                    $this->Flash->error('El producto no se ha añadido debido a un error.');
+                }
+            }
         }
-        $this->set('nombresProductos',$nombresProd);
-        $this->set('preciosProductos',$preciosProd);
-        $this->set('subtitulos1',$descrProd);
-        $this->set('idProd', $idProd);
-        $this->set('user', $this->Auth->user('id'));
+        
+        $this->set(compact('addcarrito'));
+        $this->set(compact('addwishlist'));
         
     }
+    
     /**
      * funcion catalogo
      * fucion para mostrar el catalogo
