@@ -47,6 +47,7 @@
 	'images/ofertas/RockSimulatorhome.jpg');
 	
 	//Productos destacados
+	/*
 	$IDProductosDetacados = array(
 	'PROD130043',
 	'PROD137584',
@@ -70,7 +71,8 @@
 	'49 000',
 	'39 000',
 	'999 000');
-	
+	*/
+
 	//Productos - Novedades
 	$IDProductosNovedades = array(
 	'PROD116873',
@@ -129,6 +131,25 @@
 	'39 000');
 	
 	Include ("scripts/funciones.php");
+	global $NombreUsuario;
+	$NombreUsuario = $this->request->session()->read('Auth.User.username');
+	
+	$IDProductosDetacados = array();
+	$nombresDetacados = array();
+	$preciosDetacados = array();
+	
+	//Recuperar el ID de los productos
+	$contador = 6;
+	foreach($datos as $dato):
+		if ($contador>0) {
+			array_push($IDProductosDetacados, $dato->idProducto);
+			array_push($nombresDetacados, $dato->nombre);
+			array_push($preciosDetacados, $dato->precio);
+			$contador = $contador -1;
+		} else{
+			break;
+		}
+	endforeach;
 
   ?>
 
@@ -215,8 +236,12 @@
 	<section>
 		<div class="container">
 			<div class="row">
+				
+				
 				<div class="col-sm-3">
 					<div class="left-sidebar">
+				<?php
+				/*
 						<h2>Categorías</h2>
 						<div class="panel-group category-products" id="accordian">
 							<div class="panel panel-default">
@@ -267,7 +292,8 @@
 								</div>
 							</div>
 						</div>
-						
+				*/
+				?>
 						<!--/Banner de publicidad lateral-->
 						<div class="bannerpublicidad text-center">
 							<a href="/ofertas" title = "Ver detalles de esta oferta"><img href="#" src="images/home/Banner1.png" alt="" /></a>
@@ -276,33 +302,56 @@
 					</div>
 				</div>
 				
+				
 				<!--Productos destacados-->
 				<div class="col-sm-9 padding-right">
 					<div class="features_items">
-						<h2 class="title text-center">Productos destacados</h2>
+						<h2 class="title text-center">Algunos de nuestros productos</h2>
 						<?php
-
 						for ($i = 0; $i < count($IDProductosDetacados); $i++) {
-							echo "<div class='col-sm-4'>";
-							echo "<div class='product-image-wrapper'>";
-							echo "<div class='single-products'>";
-							echo "<div class='productinfo text-center'>";
-							echo "<a href='detalles'><img src='".obtenerPortada($IDProductosDetacados[$i])."' title='ver detalles del producto' /></a>";
-							echo "<h2>¢".$preciosDetacados[$i]."</h2>";
-							echo "<p>".$nombresDetacados[$i]."</p>";
-							echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir este producto al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
-							echo "</div></div>";
-							echo "<div class='choose'>";
-							echo "<ul class='nav nav-pills nav-justified'>";
-							echo "<li><a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-plus-square'></i>Añadir a la wishlist</a></li>";
-							echo "<li><a href='detalles' title = 'Ver más productos dentro de esta categoría'><i class='fa fa-plus-square'></i>Ver más</a></li>";
-							echo "</ul></div></div></div>";
-						}
 						?>
+							<div class='col-sm-4'>
+								<div class='product-image-wrapper'>
+									<div class='single-products'>
+										<div class='productinfo text-center'>
+											<?php
+											echo "<a href='detalles/".$IDProductosDetacados[$i]."'><img src='".obtenerPortada($IDProductosDetacados[$i])."' title='ver detalles del producto' /></a>";
+											echo "<h2>¢".$preciosDetacados[$i]."</h2>";
+											echo "<p>".$nombresDetacados[$i]."</p>";
+											
+											//Botones de añadir al carrito y wishlist
+											echo "<form method='post' accept-charset='utf-8' role='form' action=''>";
+											echo "<input type='hidden' name='idPersona' value=$NombreUsuario>";
+											echo "<input type='hidden' name='identificacionPersona' value=$NombreUsuario>";
+											echo "<input type='hidden' name='idProducto' value=$IDProductosDetacados[$i]>";
+											echo "<input type='hidden' name='cantidad' value=".(int)'1'." >";
+											echo "<input type='hidden' name='idWishList' value=".(int)'1'.">";
+											?>
+											<button type='submit' name='BotonCarrito' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
+												<i class='fa fa-shopping-cart'></i>Añadir al carrito</button>
+											<button type='submit' name='BotonWishlist' class='btn btn-default add-to-cart' title='Añadir este producto a la wishlist'>
+												<i class='fa fa-plus-square'></i>Añadir a wishlist</button>
+										</div>
+									</div>
+									<div class='choose'>
+										<ul class='nav nav-pills nav-justified'>
+											<?php
+												echo "</form>";
+												echo "<li><a href='detalles/".$IDProductosDetacados[$i]."' title = 'Ver más productos dentro de esta categoría'>
+													<i class='fa fa-plus-square'></i>Ver más</a></li>";
+											?>
+										</ul>
+									</div>
+								</div>
+							</div>
+							
+							<?php	}	?>
 						
 					</div>
 					
 					<!--Vistazo a categorias-->
+					<?php
+					/*
 					<div class="category-tab">
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
@@ -365,7 +414,8 @@
 							
 						</div>
 					</div>
-					
+					*/
+					?>
 					
 				</div>
 			</div>
