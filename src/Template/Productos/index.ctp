@@ -327,10 +327,14 @@
 											echo "<input type='hidden' name='cantidad' value=".(int)'1'." >";
 											echo "<input type='hidden' name='idWishList' value=".(int)'1'.">";
 											?>
-											<button type='submit' name='BotonCarrito' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
-												<i class='fa fa-shopping-cart'></i>Añadir al carrito</button>
-											<button type='submit' name='BotonWishlist' class='btn btn-default add-to-cart' title='Añadir este producto a la wishlist'>
-												<i class='fa fa-plus-square'></i>Añadir a wishlist</button>
+                                            <?php
+                                                        if ($this->request->session()->read('Auth.User.id')) {
+                                                            echo "<button type='submit' name='BotonCarrito' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
+                                                            <i class='fa fa-shopping-cart'></i>Añadir al carrito</button>
+											                <button type='submit' name='BotonWishlist' class='btn btn-default add-to-cart' title='Añadir este producto a la wishlist'>
+												            <i class='fa fa-plus-square'></i>Añadir a wishlist</button>";
+                                                        }
+                                            ?>
 										</div>
 									</div>
 									<div class='choose'>
