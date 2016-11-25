@@ -244,17 +244,35 @@
 								<h1>Juegos físicos</h1>
 								<div class="col-sm-12">
 									<ul class="nav nav-tabs">
-                                        <?php foreach ($generosT as $genero)
-                                            echo "<li><a href='#".$genero['genero']."1' data-toggle='tab'>".$genero['genero']."</a></li>"
+										
+                                        <?php
+                                        $primero = true;
+                                        foreach ($generosT as $genero) {
+                                        	if ($primero == true) {
+                                        		$primero = false;
+                                        		echo "<li class='active'><a href='#".$genero['genero']."1' data-toggle='tab'>".$genero['genero']."</a></li>";
+                                        	} else {
+                                        		echo "<li><a href='#".$genero['genero']."1' data-toggle='tab'>".$genero['genero']."</a></li>";
+                                        	}
+                                        }
+                                            
                                         ?>
 									</ul>
 								</div>
 								
 								<div class="tab-content">
-                                <?php $isAdmin = $this->request->session()->read('Auth.User.role') == 'admin';
+                                <?php
+                                $primero = true;
+                                $isAdmin = $this->request->session()->read('Auth.User.role') == 'admin';
                                 foreach ($generosT as $genero) {
-									echo "<div class='tab-pane fade' id='".$genero['genero']."1' >";
+                                	if ($primero == true) {
+                                        $primero = false;
+                                        echo "<div class='tab-pane fade active in' id='".$genero['genero']."1' >";
 										mostrarProductoFisico($genero['genero'], "todas", $isAdmin);
+                                	} else {
+										echo "<div class='tab-pane fade' id='".$genero['genero']."1' >";
+										mostrarProductoFisico($genero['genero'], "todas", $isAdmin);
+                                	}
 									echo "</div>";
                                 }
 								?>
