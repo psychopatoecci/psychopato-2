@@ -104,7 +104,7 @@
 					<div class="left-sidebar">
 					
 						<div align="right">
-							<button type='button' onClick="parent.location='nuevoproducto.php'" class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'>Añadir producto</button>
+							<button type='button' onClick="parent.location='nuevoproducto'" class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'>Añadir producto</button>
 						</div>
 						<br>
 						<!--Barra de busqueda-->

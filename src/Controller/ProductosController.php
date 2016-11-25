@@ -462,7 +462,10 @@ class ProductosController extends AppController {
         $generosTabla  = TableRegistry::get ('generos');
         $videoJuegosT  = TableRegistry::get ('video_juegos');
         $consolasTabla = TableRegistry::get ('consolas');
-        $productos = $this -> Productos;
+        $combosTabla   = TableRegistry::get ('combos');
+        $ofertasTabla  = TableRegistry::get ('ofertas');
+        $productos     = $this -> Productos;
+        $combos = $combosTabla -> find ('all');
         if ($this -> request -> is ('post')) {
             $datos = $this -> request -> data;
             if (isset ($datos['actualizar'])) {
@@ -496,12 +499,21 @@ class ProductosController extends AppController {
                         $exitoso = false;*/
                 }
                 if ($datos ['descuento'] != '0') {
-                    $ofertas = TableRegistry::get('ofertas');
+                    $porInsertar = $ofertasTabla -> newEntity ();
                     $porInsertar ['idProducto'] = $datos ['id'];
                     $porInsertar ['descuento' ] = $datos ['descuento'];
-                    if (!$ofertas -> save ($porInsertar))
+                    if (!$ofertasTabla -> save ($porInsertar))
                         $exitoso = false;
                 }
+                /*
+                if ($datos ['combo'] == 'nuevo') {
+                    $porInsertar = $combosTabla -> newEntity ();
+                    $porInsertar ['idCombo']     = count ($combos);
+                    $porInsertar ['precioCombo'] = $datos ['precioCombo'];
+                    if (!$combosTabla -> save($porInsertar))
+                        $exitoso = false;
+                }*/
+
                 if ($exitoso) {
                     $this -> Flash -> success ('Cambios realizados con éxito');
                 } else {
@@ -516,6 +528,7 @@ class ProductosController extends AppController {
         $query = $productos -> find('all') -> contain (['video_juegos', 'ofertas']);
         
         $this -> set ('productos', $query);
+        $this -> set ('combos', $combos);
         $this -> set ('generos', $generosTabla
             -> find ('all'));
         $this -> set ('consola', $consolasTabla 
@@ -542,8 +555,9 @@ class ProductosController extends AppController {
     */
     public function nuevoproducto(){
         //se recuperan las consolas disponibles en la base de datos
-        $nuevoProd = $this -> Productos -> newEntity ();
+        $nuevoProd = $this -> Productos-> newEntity ();
         $this -> set (compact ('nuevoProd'));
+        
         $condicion = array('Productos.idProducto = consolas.idConsola');
         $consolas = $this -> Productos -> find ('all', array(
             'fields' => array('Productos.nombreProducto'),
@@ -556,30 +570,68 @@ class ProductosController extends AppController {
         }
         $this -> set ('opcionesConsola', $consolaArray);
         //se espera a que se oprima el boton de guardar
+        
+        
+        
+        $generos=TableRegistry::get('generos');
+        $generos2=$generos->find('all', array(
+            'fields' => array('generos.genero')));
+         
+        $generoArray = [];    
+        foreach ($generos2 as $con) {
+          array_push($generoArray, $con['genero']);
+        }
+        
+        $this -> set ('opcionesGenero', $generoArray);
+         
+        
+        
         if ($this-> request->is('post')) {
-            //se extrae los datos ingresados en los contenedores de la vista
-            $datos = $this -> request -> data;
+            
+            
+           $datos = $this -> request -> data;
+           
+           $nombre=$consolaArray[$datos ['consola']];
+           
+           
+           $nombre2=$generoArray[$datos ['genero']];
+          
+           $generos3=$generos->find('all')
+            ->where(['genero =' => $nombre2])
+            ->first();
+           $productos=$this->Productos->find('all')
+            ->where(['nombreProducto =' => $nombre])
+            ->where(['tipo =' => 3])
+            ->first();
+        
             $nuevoProd -> idProducto     = $datos ['identificador'];
             $nuevoProd -> nombreProducto = $datos ['nombreProducto'];
             $nuevoProd -> descripcion    = $datos ['descripcion'];
             $nuevoProd -> precio         = $datos ['precio'];
             $nuevoProd -> fabricante     = $datos ['fabricante'];
             $nuevoProd -> tipo           = $datos ['tipo'];
-            $nuevoProd -> idConsola      = $datos ['consola'];
+    
             $vid = $datos ['tipo'] > 0;
             //se guarda el producto en la base de datos
             if (TableRegistry::get('Productos') -> save ($nuevoProd)) {
-                if ($vid) {
+                if ($datos ['tipo']==1||$datos ['tipo']==2) {
                     // Hay que insertar los datos en videojuego.
                     $videoJ = TableRegistry::get ('video_juegos') -> newEntity ();
                     $videoJ -> idVideoJuego = $datos ['identificador'];
+                    $videoJ -> idConsola = $productos->idProducto ;
                     $videoJ -> ESRB = 4;
                     $videoJ -> reqMin = 'OpenGL 1';
                     $videoJ -> reqMax = 'Ninguno';
-                    $videoJ -> IdConsola = $datos ['consola'];
-                    $videoJ -> genero = $datos ['genero'];
+                    $videoJ -> genero = $generos3->genero;
                     TableRegistry::get ('video_juegos') -> save ($videoJ);
-                } else {
+                } else if($datos ['tipo']==3) {
+                    
+                    $plat = TableRegistry::get ('consolas') -> newEntity ();
+                    $plat -> idConsola = $datos ['identificador'];
+                    $plat -> existencia = 200;
+                    $plat -> especificaciones = $datos ['descripcion'];
+                    TableRegistry::get ('consolas') -> save ($plat);
+                    
                     
                 }
                 //se imprime un mensaje informando que se realizo el insert de forma exitosa
@@ -587,10 +639,12 @@ class ProductosController extends AppController {
             } else {
                 //si falla el insert se imprime un mensaje de error
                 $this -> Flash -> error ('Error insertando.');
-            }
+            } 
         }
-        //$this -> render();
     }
+        
+        //$this -> render();
+    
     /**
     *funcion para mostrar la ventana de actualizar productos
     */
