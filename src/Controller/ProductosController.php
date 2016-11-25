@@ -11,8 +11,7 @@ use Cake\Network\Http\Client;
  *
  * @property \App\Model\Table\ProductosTable $Productos
  */
-class ProductosController extends AppController
-{
+class ProductosController extends AppController {
       /**
      * funcion busqueda
      * fucion para realizar Busquedas
@@ -38,13 +37,13 @@ class ProductosController extends AppController
      * muestra la pagina principal
      * 
      */
-    public function index()
-    {
+    public function index() {
         $productos = $this->Productos->find('all');
         $nombresProd = [];
         $preciosProd = [];
         $descrProd   = [];
         $idProd      = [];
+        /*
         foreach ($productos as $producto) {
             $nombresProd[] = $producto['nombreProducto'];
             $preciosProd[] = $producto['precio'];
@@ -56,8 +55,10 @@ class ProductosController extends AppController
         $this->set('subtitulos1',$descrProd);
         $this->set('idProd', $idProd);
         $this->set('user', $this->Auth->user('id'));
+        */
         
     }
+    
     /**
      * funcion catalogo
      * fucion para mostrar el catalogo

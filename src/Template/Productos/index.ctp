@@ -26,15 +26,15 @@
   <?php
 
 	//Titulos y descripciones de la portada
-	//$titulos = array(
-	//'Nueva* PS4 Pro',
-	//'Half-Life *3',
-	//'Rock Simulator* 2014');
+	$titulos = array(
+	'Nueva* PS4 Pro',
+	'Half-Life *3',
+	'Rock Simulator* 2014');
 	
-	//$subtitulos1 = array(
-	//'Diseñada para los más "pros"',
-	//'El mejor juego que jamás jugarás',
-	//'La experiencia de simulación definitiva');
+	$subtitulos1 = array(
+	'Diseñada para los más "pros"',
+	'El mejor juego que jamás jugarás',
+	'La experiencia de simulación definitiva');
 	
 	$subtitulos2 = array(
 	'Resérvala ahora y llévate una calcomania de Kratos',
@@ -63,13 +63,13 @@
 	'Final Fantasy XV',
 	'Fire Emblem Fates - Conquest');
 	
-	//$preciosDetacados = array(
-	//'169 000',
-	//'209 000',
-	//'49 000',
-	//'49 000',
-	//'39 000',
-	//'999 000');
+	$preciosDetacados = array(
+	'169 000',
+	'209 000',
+	'49 000',
+	'49 000',
+	'39 000',
+	'999 000');
 	
 	//Productos - Novedades
 	$IDProductosNovedades = array(
@@ -152,14 +152,14 @@
 						<div class="carousel-inner">
 							<?php
 								
-								for ($i = 0; $i < count($nombresProductos); $i++) {
+								for ($i = 0; $i < count($titulos); $i++) {
 									
 									//Detectar el asterisco para cambiar el color de las palabras
 									$substring1=""; $substring2="";
-									$palabra = $nombresProductos[$i];
+									$palabra = $titulos[$i];
 									$cambio=false;
 									for ($j = 0; $j < strlen($palabra); $j++) {
-										$letra = $nombresProductos[$i]{$j};
+										$letra = $titulos[$i]{$j};
 										
 										if ($cambio === true) {
 											$substring2.=$letra;
@@ -181,8 +181,11 @@
 									echo "<div class='col-sm-6'>";
 									echo "<h1><span>".$substring1."</span>".$substring2."</h1>";
 									echo "<h2>".$subtitulos1[$i]."</h2>";
-									//echo "<p>".$subtitulos2[$i]."</p>";
-									echo "<button type='button' class='btn btn-default get' title = 'Comprar este productos'>¡Comprar!</button>";
+									echo "<p>".$subtitulos2[$i]."</p>";
+									echo "<form action='catalogo'>";
+									echo "<button type='submit' class='btn btn-default get' title = 'Comprar este productos'>¡Comprar!</button>";
+									echo "</form>";
+									
 									
 									echo "</div>";
 									echo "<div class='col-sm-6'>";
@@ -284,15 +287,15 @@
 							echo "<div class='product-image-wrapper'>";
 							echo "<div class='single-products'>";
 							echo "<div class='productinfo text-center'>";
-							echo "<a class='detalle' href='detalles/$idProd[$i]'><img src='".obtenerPortada($IDProductosDetacados[$i])."' title='ver detalles del producto' /></a>";
-							echo "<h2>¢".$preciosProductos[$i]."</h2>";
-							echo "<p>".$nombresProductos[$i]."</p>";
+							echo "<a href='detalles'><img src='".obtenerPortada($IDProductosDetacados[$i])."' title='ver detalles del producto' /></a>";
+							echo "<h2>¢".$preciosDetacados[$i]."</h2>";
+							echo "<p>".$nombresDetacados[$i]."</p>";
 							echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir este producto al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
 							echo "</div></div>";
 							echo "<div class='choose'>";
 							echo "<ul class='nav nav-pills nav-justified'>";
 							echo "<li><a href='#' title = 'Añadir este producto a la wishlist'><i class='fa fa-plus-square'></i>Añadir a la wishlist</a></li>";
-							echo "<li><a href='detalles/$idProd[$i]' title = 'Ver más productos dentro de esta categoría'><i class='fa fa-plus-square'></i>Ver más</a></li>";
+							echo "<li><a href='detalles' title = 'Ver más productos dentro de esta categoría'><i class='fa fa-plus-square'></i>Ver más</a></li>";
 							echo "</ul></div></div></div>";
 						}
 						?>
