@@ -12,14 +12,6 @@ class CreateCombosMigration extends AbstractMigration
             'limit' => 50,
             'null' => false,
         ]);
-        $table->addColumn('fechaInicio', 'datetime', [
-            'default' => null,
-            'null' => false,
-        ]);
-         $table->addColumn('fechaFin', 'datetime', [
-            'default' => null,
-            'null' => false,
-        ]);
         $table->addColumn('precioCombo', 'integer', [
             'default' => null,
             'null' => false,
