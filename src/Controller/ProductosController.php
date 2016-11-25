@@ -554,6 +554,9 @@ class ProductosController extends AppController {
      * se guarda el producto en la base de datos
     */
     public function nuevoproducto(){
+        if ($this->request->session()->read('Auth.User.role')!='admin') {
+            $this->redirect('../../');
+        }
         //se recuperan las consolas disponibles en la base de datos
         $nuevoProd = $this -> Productos-> newEntity ();
         $this -> set (compact ('nuevoProd'));
