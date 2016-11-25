@@ -525,7 +525,7 @@ class ProductosController extends AppController
     */
     public function nuevoproducto(){
         //se recuperan las consolas disponibles en la base de datos
-        $nuevoProd = $this -> Productos -> newEntity ();
+        $nuevoProd = $this -> Productos-> newEntity ();
         $this -> set (compact ('nuevoProd'));
         
         $condicion = array('Productos.idProducto = consolas.idConsola');
@@ -542,23 +542,38 @@ class ProductosController extends AppController
         //se espera a que se oprima el boton de guardar
         
         
+        
+        $generos=TableRegistry::get('generos');
+        $generos2=$generos->find('all', array(
+            'fields' => array('generos.genero')));
+         
+        $generoArray = [];    
+        foreach ($generos2 as $con) {
+          array_push($generoArray, $con['genero']);
+        }
+        
+        $this -> set ('opcionesGenero', $generoArray);
+         
+        
+        
         if ($this-> request->is('post')) {
             
-       
             
-            //echo $productos->idProducto;
-            //se extrae los datos ingresados en los contenedores de la vista
            $datos = $this -> request -> data;
            
            $nombre=$consolaArray[$datos ['consola']];
            
+           
+           $nombre2=$generoArray[$datos ['genero']];
+          
+           $generos3=$generos->find('all')
+            ->where(['genero =' => $nombre2])
+            ->first();
            $productos=$this->Productos->find('all')
             ->where(['nombreProducto =' => $nombre])
             ->where(['tipo =' => 3])
             ->first();
-           
-           echo $productos->idProducto;
-           
+        
             $nuevoProd -> idProducto     = $datos ['identificador'];
             $nuevoProd -> nombreProducto = $datos ['nombreProducto'];
             $nuevoProd -> descripcion    = $datos ['descripcion'];
@@ -573,11 +588,11 @@ class ProductosController extends AppController
                     // Hay que insertar los datos en videojuego.
                     $videoJ = TableRegistry::get ('video_juegos') -> newEntity ();
                     $videoJ -> idVideoJuego = $datos ['identificador'];
-                    $videoJ -> IdConsola = $productos->idProducto ;
+                    $videoJ -> idConsola = $productos->idProducto ;
                     $videoJ -> ESRB = 4;
                     $videoJ -> reqMin = 'OpenGL 1';
                     $videoJ -> reqMax = 'Ninguno';
-                    $videoJ -> genero = $datos ['genero'];
+                    $videoJ -> genero = $generos3->genero;
                     TableRegistry::get ('video_juegos') -> save ($videoJ);
                 } else if($datos ['tipo']==3) {
                     
@@ -595,9 +610,11 @@ class ProductosController extends AppController
                 //si falla el insert se imprime un mensaje de error
                 $this -> Flash -> error ('Error insertando.');
             } 
-        } 
-        //$this -> render();
+        }
     }
+        
+        //$this -> render();
+    
     /**
     *funcion para mostrar la ventana de actualizar productos
     */

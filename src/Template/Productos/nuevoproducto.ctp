@@ -67,7 +67,10 @@
 								<?php
 									echo $this -> Form -> input  ('fabricante', ['label' => 'Fabricante:']);
 									echo $this -> Form -> input  ('precio', ['label' => 'Precio:', 'type' => 'text']);
-									echo $this -> Form -> input  ('genero', ['label' => 'Género:']);
+									
+									echo $this -> Form -> input  ('genero', ['type' => 'select', 'options' => $opcionesGenero, 'label' => 'Genero:']);
+									
+									//echo $this -> Form -> input  ('genero', ['label' => 'Género:']);
 									echo $this -> Form -> input  ('consola', 
 										['type' => 'select', 'options' => $opcionesConsola, 'label' => 'Plataforma:']);
 								?>
