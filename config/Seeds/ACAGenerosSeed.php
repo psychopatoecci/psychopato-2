@@ -18,7 +18,7 @@ class ACAGenerosSeed extends AbstractSeed
      */
     public function run()
     {
-        $generos = ['accion', 'aventura', 'plataforma', 'rpg', 'shooter'];
+        $generos = ['aventura', 'rpg', 'plataformas', 'conduccion', 'deportes', 'shooter', 'lucha', 'otros'];
         $faker = \Faker\Factory::create();
         $populator = new Faker\ORM\CakePHP\Populator($faker);
         $data = [];
