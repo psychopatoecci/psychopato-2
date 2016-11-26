@@ -732,28 +732,6 @@
 							</div>
 							
 						</div>
-						
-        			
-        			
-        			<!----CODIGO DE PRUEBA NO BORRAR--------->
-        		
-        			<?php
-        				/*
-        			foreach($query as $producto){
-						 
-						 if(isset($producto->video_juego)){
-						
-						echo $producto->video_juego->descripcion;
-						echo "<br>";
-						
-						
-						 }}
-						 */
-						 ?>
-						 
-					<!----CODIGO DE PRUEBA NO BORRAR--------->	
-
-					
 					</div>
 				</div>
 			</div>
