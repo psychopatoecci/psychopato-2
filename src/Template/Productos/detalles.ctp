@@ -36,8 +36,6 @@
     */
     Include ("scripts/funciones.php");
     
-    echo "lol:+$genero";
-    
    ?>
 				
 	<!--Header-->

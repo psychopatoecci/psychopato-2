@@ -84,7 +84,7 @@
                             		</ul>
                         		</li> 
 						<li><a href="/../ofertas" title="Ver las ofertas disponibles">Ofertas</a></li>
-						<li><a href="/../ofertas" title="Ver los combos disponibles">Combos</a></li>
+						<li><a href="/../ofertas/combos" title="Ver los combos disponibles">Combos</a></li>
 						
 					</ul>
 				</div>

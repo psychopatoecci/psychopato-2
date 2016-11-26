@@ -170,8 +170,8 @@ $fechaFin = [];
 			echo "<div class='single-products'>";
 			echo "<div class='productinfo text-center'>";
 			echo "<br><h2>¡Descuento del ".$descuentos[$i]."%!</h2>";
-			echo "<a href='detalles/".$IDOfertas[$i]."' title = 'Ver detalles del producto'><img src='".obtenerPortada($IDOfertas[$i])."' alt='' /></a>";
-			echo "<a href='detalles/".$IDOfertas[$i]."' title = 'Ver detalles del producto'><p>".$nombres[$i]."</p></a>";
+			echo "<a href='/../detalles/".$IDOfertas[$i]."' title = 'Ver detalles del producto'><img src='".obtenerPortada($IDOfertas[$i])."' alt='' /></a>";
+			echo "<a href='/../detalles/".$IDOfertas[$i]."' title = 'Ver detalles del producto'><p>".$nombres[$i]."</p></a>";
 			echo "<h4><strike>¢".$precios[$i]."</strike></h4>";
 			echo "<h2>¢".calcularDescuento($precios[$i], $descuentos[$i])."</h2>";
 			//echo "<br><b>Duracion de la oferta:</b><br>".$fechaInicio[$i]." - ".$fechaFinal[$i]."<br><br>";
@@ -222,6 +222,8 @@ $fechaFin = [];
 			echo "</div> </div> </div>";
 		}
 	}
+	
+	$TipoVista;
 
   ?>
   
@@ -255,7 +257,7 @@ $fechaFin = [];
 						
 						<!--/Banner de publicidad lateral-->
 						<div class="bannerpublicidad text-center">
-							<img href="#" title="Ver oferta especial" src="images/home/Banner2.png" alt="" />
+							<img title="Ver oferta especial" src="/../images/home/Banner2.png" />
 						</div> <br>
 					
 					</div>
@@ -269,7 +271,11 @@ $fechaFin = [];
 						
 						<!--Submenus de cada categoria-->
 						<div class="tab-content">
-							<div class="tab-pane fade active in" id="submenu1" >
+							<?php if ($TipoVista != "combos") { ?>
+								<div class="tab-pane fade active in" id="submenu1" >
+							<?php } else { ?>
+								<div class="tab-pane fade" id="submenu1" >
+							<?php } ?>
 								<h1>Ofertas especiales</h1><br>
 								
 								<div class="tab-content">
@@ -295,7 +301,12 @@ $fechaFin = [];
 								
 						    </div>
 						    
-							<div class="tab-pane fade" id="submenu2" >
+						    <?php if ($TipoVista == "combos") { ?>
+								<div class="tab-pane fade active in" id="submenu2" >
+							<?php } else { ?>
+								<div class="tab-pane fade" id="submenu2" >
+							<?php } ?>
+							
 								<h1>Combos de productos</h1><br>
 								<div class="tab-content">
 									<?php 

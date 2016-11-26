@@ -375,7 +375,14 @@ class ProductosController extends AppController {
      * 
      *
      */
-    public function ofertas() {
+    public function ofertas($codigo = null) {
+        if ($codigo==null) {
+            $codigo = "ofertas";
+        }
+        
+        $this -> set ('TipoVista', $codigo);
+        $this->set(compact('TipoVista'));
+        
         $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         

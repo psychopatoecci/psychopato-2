@@ -305,11 +305,11 @@
 						<div class='single-products'>
 							<div class='productinfo text-center'>
 								<?php 
-				                $ref = 'detalles/'.$IDJuegosFisicos[$i]."'";
+				                $ref = '/../detalles/'.$IDJuegosFisicos[$i]."'";
 				                if ($NombreUsuario == "admin") {
 				                    //$ref = 'productos/adminProductos/'.$IDJuegosFisicos[$i]."'";
 				                }
-								echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
+								echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='/../".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
 								echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 								echo "<h2>¢".$precios[$i]."</h2>";
 				
@@ -358,11 +358,11 @@
 						<div class='single-products'>
 							<div class='productinfo text-center'>
 								<?php 
-				                $ref = 'detalles/'.$IDJuegosDigitales[$i]."'";
+				                $ref = '/../detalles/'.$IDJuegosDigitales[$i]."'";
 				                if ($NombreUsuario == "admin") {
 				                    //$ref = 'productos/adminProductos/'.$IDJuegosDigitales[$i]."'";
 				                }
-								echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDJuegosDigitales[$i])."' alt='' /></a>";
+								echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='/../".obtenerPortada($IDJuegosDigitales[$i])."' alt='' /></a>";
 								echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres2[$i]."</p></a>";
 								echo "<h2>¢".$precios2[$i]."</h2>";
 				
@@ -384,7 +384,7 @@
 								?>
 								
 							</div>
-							<img src='images/home/digital.png' class='new' alt='' />
+							<img src='/../images/home/digital.png' class='new' alt='' />
 						</div>
 					</div>
 				</div>
@@ -407,11 +407,11 @@
 					<div class='single-products'>
 						<div class='productinfo text-center'>
 							<?php
-							$ref = 'detalles/'.$IDPlataformas[$i]."'";
+							$ref = '/../detalles/'.$IDPlataformas[$i]."'";
 			                if ($NombreUsuario == "admin") {
 			                    //$ref = 'productos/adminProductos/'.$IDPlataformas[$i]."'";
 			                }
-							echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='".obtenerPortada($IDPlataformas[$i])."' alt='' /></a>";
+							echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='/../".obtenerPortada($IDPlataformas[$i])."' alt='' /></a>";
 							echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres3[$i]."</p></a>";
 							echo "<h2>¢".$precios3[$i]."</h2>";
 							
@@ -506,7 +506,7 @@
 						
 						<!--/Banner de publicidad lateral-->
 						<div class="bannerpublicidad text-center">
-							<a href="/../ofertas"><img title="Ver oferta especial" src="images/home/Banner1.png" /></a>
+							<a href="/../ofertas"><img title="Ver oferta especial" src="/../images/home/Banner1.png" /></a>
 						</div> <br>
 					
 					</div>
@@ -520,7 +520,7 @@
 						
 						<!--Submenus de cada categoria-->
 						<div class="tab-content">
-							<?php if ($TipoVista == "fisicos") { ?>
+							<?php if ($TipoVista != "digitales" && $TipoVista != "plataformas") { ?>
 								<div class="tab-pane fade active in" id="submenu1" >
 							<?php } else { ?>
 								<div class="tab-pane fade" id="submenu1" >
