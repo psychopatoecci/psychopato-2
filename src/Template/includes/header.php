@@ -79,8 +79,8 @@
 						<li class="dropdown"><a href="#">Productos<i class="fa fa-angle-down"></i></a>
                             			<ul role="menu" class="sub-menu">
                                			<li><a href="/../catalogo" title="Ver el catálogo de juegos físicos">Juegos físicos</a></li>
-						<li><a href="/../catalogo" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
-						<li><a href="/../catalogo" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
+						<li><a href="/../catalogo/digitales" title="Ver el catálogo de juegos digitales">Juegos digitales</a></li> 
+						<li><a href="/../catalogo/plataformas" title="Ver el catálogo de plataformas de juegos">Plataformas</a></li> 
                             		</ul>
                         		</li> 
 						<li><a href="/../ofertas" title="Ver las ofertas disponibles">Ofertas</a></li>

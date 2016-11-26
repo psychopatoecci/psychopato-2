@@ -84,7 +84,14 @@ class ProductosController extends AppController {
      * 
      *
      */
-    public function catalogo() {
+    public function catalogo($codigo = null) {
+        
+        if ($codigo==null) {
+            $codigo = "fisicos";
+        }
+        
+        $this -> set ('TipoVista', $codigo);
+        $this->set(compact('TipoVista'));
         
         $datos = $this->Productos->find('all');
         $this -> set ('datos', $datos);

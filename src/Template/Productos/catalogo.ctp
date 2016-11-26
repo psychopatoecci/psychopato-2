@@ -122,6 +122,8 @@
 		endforeach;
 	}
 	
+	$TipoVista;
+
 	//Datos de prueba para juegos físicos
 	/*
 	$IDJuegosFisicos = array(
@@ -478,7 +480,7 @@
 								<ul class="nav nav-pills nav-stacked">
 								
 								<!--/Categorias principales-->
-								<li><a href='#submenu1' data-toggle='tab' title="Ver el catálogo de juegos físicos"><h4 class="panel-title">Juegos físicos</h4></a></li><p></p>
+								<li class='active'><a href='#submenu1' data-toggle='tab' title="Ver el catálogo de juegos físicos"><h4 class="panel-title">Juegos físicos</h4></a></li><p></p>
 								<li><a href='#submenu2' data-toggle='tab' title="Ver el catálogo de juegos digitales"><h4 class="panel-title">Juegos digitales</h4></a></li><p></p>
 								<li><a href='#submenu3' data-toggle='tab' title="Ver todas las plataformas de juego disponibles"><h4 class="panel-title">Plataformas</h4></a></li><br><br>
 								
@@ -518,7 +520,12 @@
 						
 						<!--Submenus de cada categoria-->
 						<div class="tab-content">
-							<div class="tab-pane fade active in" id="submenu1" >
+							<?php if ($TipoVista == "fisicos") { ?>
+								<div class="tab-pane fade active in" id="submenu1" >
+							<?php } else { ?>
+								<div class="tab-pane fade" id="submenu1" >
+							<?php } ?>
+							
 								<h1>Juegos físicos</h1>
 								<div class="col-sm-12">
 									<ul class="nav nav-tabs">
@@ -586,7 +593,11 @@
 								</div>
 						    </div>
 						    
-							<div class="tab-pane fade" id="submenu2" >
+						    <?php if ($TipoVista == "digitales") { ?>
+								<div class="tab-pane fade active in" id="submenu2" >
+							<?php } else { ?>
+								<div class="tab-pane fade" id="submenu2" >
+							<?php } ?>
 								<h1>Juegos digitales</h1>
 								<div class="col-sm-12">
 									<ul class="nav nav-tabs">
@@ -653,7 +664,11 @@
 								</div>
 							</div>
 							
-							<div class="tab-pane fade" id="submenu3" >
+							<?php if ($TipoVista == "plataformas") { ?>
+								<div class="tab-pane fade active in" id="submenu3" >
+							<?php } else { ?>
+								<div class="tab-pane fade" id="submenu3" >
+							<?php } ?>
 								<h1>Plataformas de juegos</h1><br>
 								<?php 
 								mostrarPlataforma()

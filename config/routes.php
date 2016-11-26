@@ -50,7 +50,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Productos', 'action' => 'index']);
-    $routes->connect('/catalogo', ['controller' => 'Productos', 'action' => 'catalogo']);
+    $routes->connect('/catalogo/*', ['controller' => 'Productos', 'action' => 'catalogo']);
     $routes->connect('/detalles/*', ['controller' => 'Productos', 'action' => 'detalles']);
     $routes->connect('/carrito/*', ['controller' => 'Productos', 'action' => 'carrito']);
     $routes->connect('/wishlist/*', ['controller' => 'Productos', 'action' => 'wishlist']);
