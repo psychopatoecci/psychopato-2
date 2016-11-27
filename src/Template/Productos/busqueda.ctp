@@ -179,11 +179,6 @@
 	Include ("scripts/funciones.php");
 	
 	//Función busca un producto por nombre, descripcion o ID
-	function calcularDescuento($precios, $descuentos) {
-		$precioSinEspacios = str_replace(' ', '', $precios);
-		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
-		return $resultado;
-	}
 	
 	function mostrarProducto($cadena) {
 

@@ -21,11 +21,9 @@
     <link rel="shortcut icon" href="images/home/favicon.ico">
 
 </head>
-$usuario = $this->Auth;
 <body>
   <?php 
   	Include ("scripts/funciones.php");
-  	
 	//Datos de prueba para productos en oferta
 	global $IDOfertas;
 	$IDOfertas = [];
@@ -143,16 +141,8 @@ $fechaFin = [];
 	'2',
 	'2',
 	'2');
-
-
 	
 	//Función que devuelve el precio con un descuento
-	function calcularDescuento($precios, $descuentos) {
-		$precioSinEspacios = str_replace(' ', '', $precios);
-		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
-		return $resultado;
-	}
-
 	//Función que muestra una oferta en pantalla
 	function mostrarOferta() {
 		global $IDOfertas;

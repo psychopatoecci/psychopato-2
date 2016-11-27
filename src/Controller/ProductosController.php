@@ -363,6 +363,7 @@ class ProductosController extends AppController {
                 array_push($descuentos,0);
             }
         }
+        $this -> set ('descuentos', $descuentos);
         
         $DatosProductos = TableRegistry::get('productos')->find('all');
         $this -> set ('DatosProductos', $DatosProductos);

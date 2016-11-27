@@ -25,11 +25,7 @@
 <body>
 
 <?php 
-	function calcularDescuento($precios, $descuentos) {
-		$precioSinEspacios = str_replace(' ', '', $precios);
-		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
-		return $resultado;
-	}
+	Include ("scripts/funciones.php");
     global 	$Detalles;
     global 	$Precios;
     global 	$Cantidades;
@@ -73,7 +69,7 @@
 	
 	$usuario = $this->request->session()->read('Auth.User.username');
 	
-	Include ("scripts/funciones.php");
+	
 	
 ?>
 	
