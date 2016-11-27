@@ -23,35 +23,136 @@
 </head>
 
 <body>
+	<?php
+		global $ListaProductos; //Todos los productos de la base
+		global $ListaNombres; //El nombre de todos los productos
+		global $Productos1;	//Los productos elegidos en cada combo
+		global $Productos2;
+		global $Precios; //El precio de cada combo creado
+
+		$ListaProductos = array();
+		$ListaNombres = array();
+		$Productos1 = array();
+		$Productos2 = array();
+		$Precios = array();
+		
+		global $ListaSelect; //Para que se muestre tanto nombre como id en la lista
+		$ListaSelect = array();
+		for ($i=0; $i<Count($ListaProductos); $i++) {
+			array_push($ListaSelect, $ListaNombres[$i]." (".$ListaProductos[$i].")");
+		}
+		
+		//Datos de prueba
+		$ListaProductos = array(
+		'PROD101406',
+		'PROD10192',
+		'PROD102710',
+		'PROD10477',
+		'PROD126427');
+		
+		$ListaNombres = array(
+		'The Witcher 3',
+		'Persona 5',
+		'Zelda: Breath of the Wild',
+		'Zelda: Ocarina of Time 3D',
+		'The Last Guardian');
+		
+		$Productos1 = array(
+		'PROD10192',
+		'PROD10477',
+		'PROD126427');
+		
+		$Productos2 = array(
+		'PROD126427',
+		'PROD101406',
+		'PROD10192');
+		
+		$Precios = array(
+		'125000',
+		'52000',
+		'100000');
+	?>
 	
 	<!--Header-->
 	<header id="header">
 		<?php include(dirname(__FILE__)."/../includes/header.php");?>
 	</header>
 	
-	<!--Navegador lateral-->
 	<section>
 		<div class="container">
 			<div align="left">
-							<button type='button' onClick="parent.location='adminProductos'" class='btn btn-default get' title = 'Volver a la administración de productos'><-Volver a la lista de productos</button>
-						</div>
+				<button type='button' onClick="parent.location='adminProductos'" class='btn btn-default get' title = 'Volver a la administración de productos'><-Volver a la lista de productos</button>
+			</div>
 			<div class="row">
-				
-				<!--Zona de contenido-->
 				<div class="col-sm-9 padding-right">
-					
-					<!--Vistazo a categorias-->
 					<div class="category-tab">
-						
-						<!--Submenus de cada categoria-->
 						<div class="tab-content">
-							<h1>Creación de combos</h1>
-							<br>	
-								
-							
-								
+							<h2>Nuevo combo:</h2> <br>	
+							<div class='tab-content'>
+								<div class='col-sm-4'>
+									<?php
+									echo $this -> Form -> input  ('producto1', ['type' => 'select', 'options' => $ListaSelect, 'label' => 'Primer producto:']);
+									?>
+								</div>
+								<div class='col-sm-4'>
+									<?php
+									echo $this -> Form -> input  ('producto2', ['type' => 'select', 'options' => $ListaSelect, 'label' => 'Segundo producto:']);
+									?>
+								</div>
+								<div class='col-sm-3'>
+									<?php
+									echo $this -> Form -> input  ('precioCombo', ['label' => 'Precio del combo:']);
+									?>
+								</div>
+							</div>
 						</div>
 					</div>
+					
+					<button type='submit' class='btn btn-default add-to-cart' title='Crear un nuevo combo'>
+                        Crear combo
+                    </button>
+                    
+                    <h2>Lista de combos:</h2> <br>
+                    <?php
+                    for ($i=0; $i<Count($Productos1); $i++) { //Recorre todos los combos ya creados
+                    ?>
+						<div class='col-sm-4'>
+							<?php
+							$IndiceProducto=0;
+							for ($j=0; $j<Count($ListaProductos); $j++) {
+								if ($ListaProductos[$j] == $Productos1[$i]) {
+									$IndiceProducto = $j;
+								}
+							}
+							echo $this -> Form -> input('producto1', array('type'=>'select', 'label'=>'Primer producto:', 'options'=>$ListaSelect, 'default'=>$IndiceProducto));
+							?>
+						</div>
+						<div class='col-sm-4'>
+							<?php
+							$IndiceProducto=0;
+							for ($j=0; $j<Count($ListaProductos); $j++) {
+								if ($ListaProductos[$j] == $Productos2[$i]) {
+									$IndiceProducto = $j;
+								}
+							}
+							echo $this -> Form -> input('producto2', array('type'=>'select', 'label'=>'Segundo producto:', 'options'=>$ListaSelect, 'default'=>$IndiceProducto));
+							?>
+						</div>
+						<div class='col-sm-2'>
+							<?php
+							echo $this -> Form -> input  ('precioCombo', ['label' => 'Precio del combo:', 'default'=>$Precios[$i]]);
+							?>
+						</div>
+						<div class='col-sm-2'>
+							<br>
+							<button type="submit" name="BotonActualizar" class="btn btn-default add-to-cart" title="Actualizar los datos de este combo">
+								<i class="fa fa-refresh"></i>
+							</button>
+							<button type="submit" name="BotonBorrar" class="btn btn-default add-to-cart" title="Borrar este combo">
+								<i class="fa fa-times"></i>
+							</button>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
