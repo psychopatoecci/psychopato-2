@@ -36,6 +36,12 @@
     */
     Include ("scripts/funciones.php");
     
+    function calcularDescuento($precios, $descuentos) {
+		$precioSinEspacios = str_replace(' ', '', $precios);
+		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
+		return $resultado;
+	}
+    
    ?>
 				
 	<!--Header-->
@@ -100,11 +106,18 @@
 							<div class="product-information">
 								<?php
 									echo "<h2>".$nombre."</h2>";
+									if($descuento!=null){
+										echo '<h2><font color="orange">¡Descuento del '.$descuento[0].'%!</font></h2>';
+									}
 									echo "<p> Web ID: ".$IDProd."</p>";
 								?>
 								<span>
 									<?php
-										echo "<span> ¢".$precio."</span>";
+										if($descuento!= null){
+											echo "<span> ¢".calcularDescuento($precio, $descuento[0])."</span>";
+										} else{
+											echo "<span> ¢".$precio."</span>";
+										}
 									?>
 									<label>Cantidad:</label>
 									<?php
