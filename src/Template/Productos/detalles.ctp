@@ -89,12 +89,15 @@
 								echo $this->Form->hidden('identificacionPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
 								echo $this->Form->hidden('idProducto', ['value'=>$IDProd]);
 								echo $this->Form->hidden('idWishList', ['value'=>'1']);
-							?>
-							<div align="right">
-							<button type='submit' name="BotonWishlist" class='btn btn-default'>
-								<i class="fa fa-star"></i>Agregar a wishlist</button></div>
-							<?php
-								echo $this->Form->end();
+							
+							echo "<div align='right'>";
+
+                            if ($this->request->session()->read('Auth.User.username')) {
+                                echo "<button type='submit' name='BotonWishlist' class='btn btn-default'>
+                                    <i class='fa fa-star'></i>Agregar a wishlist</button>";
+                            }
+							echo $this->Form->end();
+                            echo "</div>"
 							?>
 							
 							<div class="product-information">
@@ -132,14 +135,12 @@
 											echo "<p><b>Plataforma:</b> ".ucfirst($plataforma)."</p>";
 										}
 										echo "<br>";
-									?>
-									
-									<button type="submit" name="BotonCarrito" class="btn btn-fefault cart" title="Añadir este producto al carrito de compras">
-										<i class="fa fa-shopping-cart"></i> Añadir al carrito
-									</button>
-
-									<?php
-										echo $this->Form->end();
+                                    if ($this->request->session()->read('Auth.User.username')) {
+									echo "<button type='submit' name='BotonCarrito' class='btn btn-default cart' title='Añadir este producto al carrito de compras'>
+                                            <i class='fa fa-shopping-cart'></i> Añadir al carrito
+                                        </button>";
+                                    }
+                                    echo $this->Form->end();
 									?>
 								
 								</span>
