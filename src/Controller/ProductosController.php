@@ -438,12 +438,6 @@ class ProductosController extends AppController {
                 $exitoso = true;
                 if (!$productos -> save ($porInsertar))
                     $exitoso = false;
-                //$porBorrar = $generosTabla
-                //    -> find ('all')
-                //    -> where ("idVideoJuego = '".$datos['id']."'");
-                //foreach ($porBorrar as $tupla)
-                    //$generosTabla -> delete ($tupla);
-                
                 if ($datos ['Categoria'] == 1
                     || $datos ['Categoria'] == 2) { // Es videojuego.
                     $porInsertar = $videoJuegosT -> get ($datos['id']);
@@ -451,11 +445,6 @@ class ProductosController extends AppController {
                     $porInsertar ['genero']    = $datos ['Genero'];
                     if (!$videoJuegosT -> save ($porInsertar))
                         $exitoso = false;
-                    /*$generoN = $generosTabla -> newEntity ();
-                    $generoN ['idVideoJuego'] = $datos ['id'];
-                    $generoN ['genero'      ] = $datos ['Genero'];
-                    if(!$generosTabla -> save ($generoN))
-                        $exitoso = false;*/
                 }
                 if ($datos ['descuento'] != '0') {
                     $porInsertar = $ofertasTabla -> newEntity ();
@@ -463,6 +452,15 @@ class ProductosController extends AppController {
                     $porInsertar ['descuento' ] = $datos ['descuento'];
                     if (!$ofertasTabla -> save ($porInsertar))
                         $exitoso = false;
+                } else {
+                    // Hay que borrar el descuento si ya existe uno.
+                    $porBorrar = $ofertasTabla
+                        -> find  ('all') 
+                        -> where ("idProducto ='".$datos['id']."'")
+                        -> first ();
+                    if ($porBorrar) {
+                        $ofertasTabla -> delete ($porBorrar);
+                    }
                 }
                 /*
                 if ($datos ['combo'] == 'nuevo') {
@@ -484,14 +482,15 @@ class ProductosController extends AppController {
             }
         }
         
-        $query = $productos -> find('all') -> contain (['video_juegos', 'ofertas']);
+        $query = $productos
+            -> find('all')
+            -> contain (['video_juegos', 'ofertas']);
         
         $this -> set ('productos', $query);
         $this -> set ('combos', $combos);
-        $this -> set ('generos', $generosTabla
-            -> find ('all'));
-        $this -> set ('consola', $consolasTabla 
-            -> find ('all') -> contain ('productos'));
+        $this -> set ('generos', $generosTabla -> find ('all'));
+        $this -> set ('consola', $consolasTabla -> find ('all')
+            -> contain ('productos'));
     }
 
     
@@ -528,8 +527,6 @@ class ProductosController extends AppController {
         }
         $this -> set ('opcionesConsola', $consolaArray);
         //se espera a que se oprima el boton de guardar
-        
-        
         
         $generos=TableRegistry::get('generos');
         $generos2=$generos->find('all', array(
