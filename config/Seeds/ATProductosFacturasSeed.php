@@ -20,33 +20,39 @@ class ATProductosFacturasSeed extends AbstractSeed
     {
         $data = [];
         $faker = Faker\Factory::create();
-        $rows = $this->fetchAll('SELECT idFactura FROM facturas');
-        $rows2 = $this->fetchAll('SELECT idProducto FROM productos');
+        $facturas = $this->fetchAll('SELECT idFactura FROM facturas');
+        $productos = $this->fetchAll('SELECT idProducto FROM productos');
         $contador = 0;
-        foreach($rows as $var){
-            $idFact[$contador] = $var[0];
+        foreach($facturas as $factura){
+            $idFact[$contador] = $factura[0];
             $contador++;
         }
         $contador = 0;
-        foreach($rows2 as $var){
-            $idProd[$contador] = $var[0];
+        foreach($productos as $producto){
+            $idProd[$contador] = $producto[0];
             $contador++;
         }
        
   
-        for ($i = 0; $i <count($rows); $i++)
+        for ($i = 0; $i <count($facturas); $i++)
         {
+            // Se evitan duplicados.
+            $idFactura = $idFact [$i];
+            $idProductos = [];
             $num = rand (1, 4);
-            for ($e = 1; $e <= $num; $e++ ) {
-            $data = [
-                'idFactura'  => $faker->randomElement($array = $idFact),
-                'idProducto' => $faker->randomElement($array = $idProd),
-                'cantidad' => $faker->numberBetween($min = 1, $max = 20)
-            ];
+            for ($e = 1; $e <= $num; $e++) {
+                array_push ($idProductos, $faker -> randomElement ($idProd));
             }
-        
-            $table = $this->table('productos_facturas');
-            $table->insert($data)->save();
+            $idProductos = array_unique ($idProductos);
+            foreach ($idProductos as $idProducto) {
+                $data [] = [
+                    'idFactura'  => $idFactura,
+                    'idProducto' => $idProducto,
+                    'cantidad'   => $faker->numberBetween($min = 1, $max = 10)
+                ];
+            }
         }
+        $table = $this->table('productos_facturas');
+        $table->insert($data)->save();
     }
 }

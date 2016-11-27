@@ -28,15 +28,13 @@ class ADVideoJuegosSeed extends AbstractSeed
             $data = [
                 'idVideoJuego' => $id,
                 'idConsola'    => $faker->randomElement ($cons) [0],
-                'ESRB' => $faker->numberBetween($min = 1, $max = 7),
-                'reqMin' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
-                'reqMax' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
-                'genero' => $faker->randomElement($generos)[0]
+                'ESRB'         => $faker->numberBetween($min = 1, $max = 7),
+                'reqMin'       => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                'reqMax'       => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
+                'genero'       => $faker->randomElement($generos)[0]
             ];
             $table = $this -> table ('video_juegos');
             $table -> insert ($data) -> save ();
-            //$populator->execute();
         }
-        
     }
 }
