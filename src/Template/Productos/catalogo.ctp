@@ -123,169 +123,10 @@
 	}
 	
 	$TipoVista;
-
-	//Datos de prueba para juegos físicos
-	/*
-	$IDJuegosFisicos = array(
-	'PROD101406',
-	'PROD10192',
-	'PROD102710',
-	'PROD10477',
-	'PROD104915',
-	'PROD104990',
-	'PROD108791',
-	'PROD109509',
-	'PROD10961',
-	'PROD110101',
-	'PROD111910',
-	'PROD114519',
-	'PROD116048',
-	'PROD116327',
-	'PROD116873',
-	'PROD118637',
-	'PROD125163',
-	'PROD12595',
-	'PROD126427');
-	
-	$nombres = array(
-	'The Witcher 3',
-	'Persona 5',
-	'Zelda: Breath of the Wild',
-	'Zelda: Ocarina of Time 3D',
-	'No man\'s sky',
-	'Fire Emblem: Conquest',
-	'Pokemon Sun',
-	'Final Fantasy XV',
-	'Forza Horizon 3',
-	'FIFA 17',
-	'Super Smash Bros. WiiU',
-	'Imagina ser roca',
-	'Paper Mario: Color Splash',
-	'Battlefiel 1',
-	'Bioshock: The Collection',
-	'Half-Life 3',
-	'Halo 5: Guardians',
-	'Rock Simulator 2014',
-	'The Last Guardian');
-	
-	$consolas = array(
-	'ps4',
-	'ps4',
-	'wiiu',
-	'3ds',
-	'ps4',
-	'3ds',
-	'3ds',
-	'ps4',
-	'one',
-	'ps4',
-	'wiiu',
-	'ds',
-	'wiiu',
-	'one',
-	'ps4',
-	'pc',
-	'one',
-	'pc',
-	'ps4');
-
-	$precios= array(
-	'29 000',
-	'59 500',
-	'59 000',
-	'39 500',
-	'2 500',
-	'39 000',
-	'39 500',
-	'59 000',
-	'49 000',
-	'49 000',
-	'35 000',
-	'87 900',
-	'47 900',
-	'59 000',
-	'35 000',
-	'99 999',
-	'37 900',
-	'1 900',
-	'59 000');
-
-	$generos = array(
-	'aventura',
-	'rpg',
-	'aventura',
-	'aventura',
-	'aventura',
-	'rpg',
-	'rpg',
-	'rpg',
-	'conduccion',
-	'deportes',
-	'lucha',
-	'otros',
-	'plataformas',
-	'shooter',
-	'shooter',
-	'shooter',
-	'shooter',
-	'otros',
-	'aventura');
-
-	$IDJuegosDigitales = array(
-	'PROD101406',
-	'PROD10192',
-	'PROD126427');
-	
-	$nombres2 = array(
-	'The Witcher 3',
-	'Persona 5',
-	'The Last Guardian');
-
-	$consolas2 = array(
-	'ps4',
-	'ps4',
-	'ps4');
-
-	$precios2= array(
-	'19 000',
-	'49 500',
-	'49 000');
-
-	$generos2 = array(
-	'aventura',
-	'rpg',
-	'aventura');
-
-	$IDPlataformas = array(
-	'PROD130043',
-	'PROD137584',
-	'PROD137630',
-	'PROD140849',
-	'PROD14379',
-	'PROD144727');
-
-	$nombres3 = array(
-	'Play Station 4',
-	'Xbox One',
-	'Nintendo NX',
-	'WiiU - Mario Maker Pack',
-	'New 3DS XL - Pokemon Edition',
-	'PS Vita');
-
-	$precios3= array(
-	'299 000',
-	'399 500',
-	'580 500',
-	'225 500',
-	'119 500',
-	'119 000');
-	*/
-
 	Include ("scripts/funciones.php");
 	
 	global $NombreUsuario;
 	$NombreUsuario = $this->request->session()->read('Auth.User.username');
-	
 	//Función que muestra un juego físico en pantalla
 	function mostrarProductoFisico($genero, $plataforma) {
 		
@@ -321,13 +162,12 @@
 								echo "<input type='hidden' name='cantidad' value=".(int)'1'." >";
 								
 								//echo "<button type='submit' title='Añadir este producto a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</button>";
-								?>
+                                if ($NombreUsuario) {
+                                    echo "<button type='submit' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
+                                        <i class='fa fa-shopping-cart'></i>Añadir al carrito
+                                    </button>";
+                                }
 								
-								<button type='submit' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
-									<i class='fa fa-shopping-cart'></i>Añadir al carrito
-								</button>
-								
-								<?php
 								echo "</form>";
 								?>
 								
@@ -373,13 +213,11 @@
 								echo "<input type='hidden' name='idProducto' value=$IDJuegosDigitales[$i]>";
 								echo "<input type='hidden' name='cantidad' value=".(int)'1'." >";
 								
-								?>
-								
-								<button type='submit' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
-									<i class='fa fa-shopping-cart'></i>Añadir al carrito
-								</button>
-								
-								<?php
+                                if ($NombreUsuario) {
+                                    echo "<button type='submit' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
+                                        <i class='fa fa-shopping-cart'></i>Añadir al carrito
+                                    </button>";
+                                }
 								echo "</form>";
 								?>
 								
@@ -422,13 +260,11 @@
 							echo "<input type='hidden' name='idProducto' value=$IDPlataformas[$i]>";
 							echo "<input type='hidden' name='cantidad' value=".(int)'1'." >";
 							
-							?>
-								
-							<button type='submit' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
-								<i class='fa fa-shopping-cart'></i>Añadir al carrito
-							</button>
-							
-							<?php
+							if ($NombreUsuario) {
+                                echo "<button type='submit' class='btn btn-default add-to-cart' title='Añadir este producto al carrito de compras'>
+                                    <i class='fa fa-shopping-cart'></i>Añadir al carrito
+                                </button>";
+                            }
 							echo "</form>";
 							?>
 						
