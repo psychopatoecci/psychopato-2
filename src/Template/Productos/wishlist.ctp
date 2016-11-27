@@ -25,7 +25,11 @@
 <body>
 
 <?php 
-    
+    function calcularDescuento($precios, $descuentos) {
+		$precioSinEspacios = str_replace(' ', '', $precios);
+		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
+		return $resultado;
+	}
 	//Datos de prueba para juegos físicos
 	global 	$IDProductosWishlist;
 	global 	$nombres;
@@ -139,7 +143,12 @@
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<p>¢".$precios[$i]."</p>";
+									if($descuentos[$i]!=0){
+										echo "<p>¢".calcularDescuento($precios[$i], $descuentos[$i])."</p>";
+									}
+									else{
+										echo "<p>¢".$precios[$i]."</p>";
+									}
 									?>
 								</td>
 								<td class="cart_price">

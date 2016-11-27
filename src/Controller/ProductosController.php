@@ -205,7 +205,22 @@ class ProductosController extends AppController {
         
         $datos = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
+        $oferta = TableRegistry::get('ofertas');
         
+        $descuentos=[];
+        $numProductos=0;
+        foreach ($datos as $dat) {
+            $numProductos++;
+            $detallesOferta = $oferta->find('all')->where("idProducto = '".$dat['idProducto']."'");
+            foreach ($detallesOferta as $detOfertas) {
+                array_push($descuentos,$detOfertas['descuento']);
+            }
+            if(sizeof($descuentos)<$numProductos){
+                array_push($descuentos,0);
+            }
+        }
+        $this -> set ('descuentos', $descuentos);
+         
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);
         
@@ -261,6 +276,22 @@ class ProductosController extends AppController {
         
         $datos = TableRegistry::get('wish_list_productos')->find('all')->where("identificacionPersona = '".$codigo."'");
         $this -> set ('datos', $datos);
+        
+        $oferta = TableRegistry::get('ofertas');
+        
+        $descuentos=[];
+        $numProductos=0;
+        foreach ($datos as $dat) {
+            $numProductos++;
+            $detallesOferta = $oferta->find('all')->where("idProducto = '".$dat['idProducto']."'");
+            foreach ($detallesOferta as $detOfertas) {
+                array_push($descuentos,$detOfertas['descuento']);
+            }
+            if(sizeof($descuentos)<$numProductos){
+                array_push($descuentos,0);
+            }
+        }
+        $this -> set ('descuentos', $descuentos);
         
         $datos2 = TableRegistry::get('productos')->find('all');
         $this -> set ('datos2', $datos2);

@@ -25,6 +25,12 @@
 <body>
 
 <?php 
+
+    function calcularDescuento($precios, $descuentos) {
+		$precioSinEspacios = str_replace(' ', '', $precios);
+		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
+		return $resultado;
+	}
     global 	$IDProductosCarrito;
     global 	$nombres;
     global 	$precios;
@@ -133,7 +139,12 @@
 								</td>
 								<td class="cart_price">
 									<?php
-									echo "<p>¢".$precios[$i]."</p>";
+									if($descuentos[$i]!=0){
+										echo "<p>¢".calcularDescuento($precios[$i], $descuentos[$i])."</p>";
+									}
+									else{
+										echo "<p>¢".$precios[$i]."</p>";
+									}
 									?>
 								</td>
 								<td class="cart_price">
@@ -178,7 +189,11 @@
 				<?php
 					$total=0;
 					for ($i = 0; $i < count($precios); $i++) {
-						$total = $total+(intval($precios[$i])*$cantidades[$i]);
+						if($descuentos[$i]!=0){
+							$total = $total+(intval(calcularDescuento($precios[$i], $descuentos[$i])*$cantidades[$i]));
+						}else{
+							$total = $total+(intval($precios[$i])*$cantidades[$i]);
+						}
 					}
 					echo "¢".$total;
 				?>
