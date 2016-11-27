@@ -408,6 +408,11 @@ class ProductosController extends AppController {
         
     }
     
+    public function nuevocombo() {
+        $this->render();
+        
+    }
+    
      /** 
      funcion para mostrar la ventana de administracion de productos
     * llama la vista  adminUsuarion

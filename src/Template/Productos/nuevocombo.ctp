@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Tienda de videojuegos ficticia">
     <meta name="author" content="PsychoPato">
-    <title>PsychoPatoShop - Administración de productos</title>
+    <title>PsychoPatoShop - Administración de combos</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet"> <!--Galerias-->
@@ -45,43 +45,11 @@
 						
 						<!--Submenus de cada categoria-->
 						<div class="tab-content">
-							<h1>Creación de producto</h1>
+							<h1>Creación de combos</h1>
 							<br>	
 								
-							<div class='tab-content'>
-								<div class='col-sm-3'>
-								<?php
-									echo $this -> Form -> create ($nuevoProd);
-									echo $this -> Form -> input ('identificador', ['label' => 'ID:']);
-									echo $this -> Form -> input  ('nombreProducto', ['label' => 'Nombre:']);
-									echo $this -> Form -> input  ('descripcion', ['label' => 'Descripción:']);
-								?>
-								</div>
+							
 								
-								<div class='col-sm-3'>
-								<?php
-									echo $this -> Form -> input  ('fabricante', ['label' => 'Fabricante:']);
-									echo $this -> Form -> input  ('precio', ['label' => 'Precio:', 'type' => 'text']);
-									
-									echo $this -> Form -> input  ('genero', ['type' => 'select', 'options' => $opcionesGenero, 'label' => 'Genero:']);
-									
-									//echo $this -> Form -> input  ('genero', ['label' => 'Género:']);
-									echo $this -> Form -> input  ('consola', 
-										['type' => 'select', 'options' => $opcionesConsola, 'label' => 'Plataforma:']);
-								?>
-								<br><br>
-								</div>
-								<div class='col-sm-3'>
-								<?php
-									$opcionesCategoria = [1 => 'Juego digital', 2 => 'Juego físico', 3=> 'Plataforma'];
-									echo $this -> Form -> input  ('tipo', ['type' => 'select', 'options' => $opcionesCategoria, 'label' => 'Categoría:']);
-									echo $this -> Form -> submit ('Agregar producto');
-									echo $this -> Form -> end ();
-								?>
-								<br><br>*La portada y sus capturas deben agregarse después de crear el producto* 
-								</div>
-								
-							</div>
 						</div>
 					</div>
 				</div>

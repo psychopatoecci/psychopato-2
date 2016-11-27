@@ -151,7 +151,7 @@
 					<div class="left-sidebar">
 					
 						<div align="right">
-							<button type='button' class='btn btn-default get' title = 'Añadir un nuevo usuario a la base de datos'>Añadir usuario</button>
+							<button type='button' onClick="parent.location='nuevousuario'" class='btn btn-default get' title = 'Añadir un nuevo usuario a la base de datos'>Añadir usuario</button>
 						</div>
 						<br>
 						<!--Barra de busqueda-->
