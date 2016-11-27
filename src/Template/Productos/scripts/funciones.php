@@ -26,4 +26,10 @@
           array_push($plataformas, $con);
         }
 	}
+	
+	function calcularDescuento($precios, $descuentos) {
+		$precioSinEspacios = str_replace(' ', '', $precios);
+		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
+		return $resultado;
+	}
 ?>
