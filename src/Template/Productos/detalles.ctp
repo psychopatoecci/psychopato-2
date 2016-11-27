@@ -57,8 +57,8 @@
 								<ul class="nav nav-pills nav-stacked">
 								
 								<!--/Categorias principales-->
-								<li><a href='catalogo.php' title="Ver el catálogo de productos"><h4 class="panel-title">Catálogo</h4></a></li><p></p>
-								<li><a href='ofertas.php' title="Ver la sección de combos y ofertas"><h4 class="panel-title">Combos y ofertas</h4></a></li><p></p>
+								<li><a href='/catalogo' title="Ver el catálogo de productos"><h4 class="panel-title">Catálogo</h4></a></li><p></p>
+								<li><a href='/ofertas' title="Ver la sección de combos y ofertas"><h4 class="panel-title">Combos y ofertas</h4></a></li><p></p>
 								
 								</ul>
 							</div>
@@ -129,15 +129,6 @@
 											echo "<p><b>Género:</b> ".ucfirst($genero)."</p>";
 											$categoriasLista = array('Juego digital','Juego físico','Plataforma');
 											
-											/*
-											$plataformasLista = array('Play Station 4','Play Station 3','Xbox One','Xbox 360','Wii','Wii U','PC','PS Vita','Nintendo 3DS','Nintendo DS');
-											$plataformasBase = array('ps4','ps3','one','360','wii','wiiu','pc','vita','3ds','ds');
-											for ($j = 0; $j < count($plataformasLista); $j++) {
-												if ($plataforma === $plataformasBase[$j]) {
-													echo "<p><b>Plataforma:</b> ".ucfirst($plataformasLista[$j])."</p>";
-												}
-											}
-											*/
 											echo "<p><b>Plataforma:</b> ".ucfirst($plataforma)."</p>";
 										}
 										echo "<br>";
