@@ -21,7 +21,7 @@
     <link rel="shortcut icon" href="images/home/favicon.ico">
 
 </head>
-
+$usuario = $this->Auth;
 <body>
   <?php 
   	Include ("scripts/funciones.php");
@@ -175,8 +175,8 @@ $fechaFin = [];
 			echo "<h4><strike>¢".$precios[$i]."</strike></h4>";
 			echo "<h2>¢".calcularDescuento($precios[$i], $descuentos[$i])."</h2>";
 			//echo "<br><b>Duracion de la oferta:</b><br>".$fechaInicio[$i]." - ".$fechaFinal[$i]."<br><br>";
-			echo "<a href='#' title = 'Añadir oferta a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
-			echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir oferta al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
+			//	echo "<a href='#' title = 'Añadir oferta a la wishlist'><i class='fa fa-star'></i>Añadir a wishlist</a><p></p>";
+			//	echo "<a href='#' class='btn btn-default add-to-cart' title = 'Añadir oferta al carrito de compras'><i class='fa fa-shopping-cart'></i>Añadir al carrito</a>";
 			echo "</div>";
 			if ($tipos[$i]==="1") { //Digital
 				echo "<img src='images/home/digital.png' class='new' alt='' />";
