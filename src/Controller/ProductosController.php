@@ -131,6 +131,12 @@ class ProductosController extends AppController {
         //llama la vista  detalles, recibe como parametro el id del producto y lo usa para obtener el resto de la informacion
         
         //se busca en la base de datos la informacion del producto con idProducto igual al dato que se recibe como parametro
+        $oferta = TableRegistry::get('ofertas');
+        $detallesOferta = $oferta->find('all')->where("idProducto = '".$codigo."'");
+        $descuento=[];
+        foreach ($detallesOferta as $detallesO) {
+          array_push($descuento, $detallesO['descuento']);
+        }
         $producto = $this -> Productos -> get ($codigo);
         $this -> set ('nombre', $producto ['nombreProducto']);
         $this -> set ('IDProd', $codigo);
@@ -138,6 +144,7 @@ class ProductosController extends AppController {
         $this -> set ('portada', $producto ['imagen']);
         $this -> set ('categoria', StrVal ($producto ['tipo']));
         $this -> set ('descripcion', $producto ['descripcion']);
+        $this -> set ('descuento', $descuento);
         $query = $this -> Productos -> find('all')->contain(['video_juegos']);
         
 
