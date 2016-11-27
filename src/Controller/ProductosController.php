@@ -349,6 +349,22 @@ class ProductosController extends AppController {
         $DatosCarrito = TableRegistry::get('carrito_compras')->find('all')->where("idPersona = '".$codigo."'");
         $this -> set ('DatosCarrito', $DatosCarrito);
         
+        $oferta = TableRegistry::get('ofertas');
+        
+        $descuentos=[];
+        $numProductos=0;
+        foreach ($DatosCarrito as $dat) {
+            $numProductos++;
+            $detallesOferta = $oferta->find('all')->where("idProducto = '".$dat['idProducto']."'");
+            foreach ($detallesOferta as $detOfertas) {
+                array_push($descuentos,$detOfertas['descuento']);
+            }
+            if(sizeof($descuentos)<$numProductos){
+                array_push($descuentos,0);
+            }
+        }
+        $this -> set ('descuentos', $descuentos);
+        
         $DatosProductos = TableRegistry::get('productos')->find('all');
         $this -> set ('DatosProductos', $DatosProductos);
         

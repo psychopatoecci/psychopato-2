@@ -25,6 +25,11 @@
 <body>
 
 <?php 
+	function calcularDescuento($precios, $descuentos) {
+		$precioSinEspacios = str_replace(' ', '', $precios);
+		$resultado = $precioSinEspacios-(($precioSinEspacios/100)*$descuentos);
+		return $resultado;
+	}
     global 	$Detalles;
     global 	$Precios;
     global 	$Cantidades;
@@ -56,10 +61,14 @@
 	}
 	
 	$total = '0';
-	
-	for ($i=0; $i<count($Precios); $i++) {
-		$total = $total + ($Precios[$i]*$Cantidades[$i]);
+	for ($i = 0; $i < count($Precios); $i++) {
+		if($descuentos[$i]!=0){
+			$total = $total+(intval(calcularDescuento($Precios[$i], $descuentos[$i])*$Cantidades[$i]));
+		}else{
+			$total = $total+(intval($Precios[$i])*$Cantidades[$i]);
+		}
 	}
+	echo "¢".$total;
 	
 	
 	$usuario = $this->request->session()->read('Auth.User.username');
