@@ -50,17 +50,20 @@ Router::scope('/', function (RouteBuilder $routes) {
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
     $routes->connect('/', ['controller' => 'Productos', 'action' => 'index']);
-    $routes->connect('/catalogo', ['controller' => 'Productos', 'action' => 'catalogo']);
+    $routes->connect('/catalogo/*', ['controller' => 'Productos', 'action' => 'catalogo']);
     $routes->connect('/detalles/*', ['controller' => 'Productos', 'action' => 'detalles']);
     $routes->connect('/carrito/*', ['controller' => 'Productos', 'action' => 'carrito']);
     $routes->connect('/wishlist/*', ['controller' => 'Productos', 'action' => 'wishlist']);
     $routes->connect('/confirmar/*', ['controller' => 'Productos', 'action' => 'confirmar']);
-    $routes->connect('/ofertas', ['controller' => 'Productos', 'action' => 'ofertas']);
+    $routes->connect('/ofertas/*', ['controller' => 'Productos', 'action' => 'ofertas']);
     $routes->connect('/adminProductos', ['controller' => 'Productos', 'action' => 'adminProductos']);
+    $routes->connect('/nuevoproducto', ['controller' => 'Productos', 'action' => 'nuevoproducto']);
+    $routes->connect('/nuevocombo', ['controller' => 'Productos', 'action' => 'nuevocombo']);
     $routes->connect('/404', ['controller' => 'Productos', 'action' => 'error404']);
     $routes->connect('/funciones', ['controller' => 'Productos', 'action' => 'funciones']);
     $routes->connect('/upload', ['controller' => 'Productos', 'action' => 'upload']);
     $routes->connect('/adminUsuarios', ['controller' => 'Personas', 'action' => 'adminUsuarios']);
+    $routes->connect('/nuevousuario', ['controller' => 'Personas', 'action' => 'nuevousuario']);
     $routes->connect('/cuenta/*', ['controller' => 'Personas', 'action' => 'cuenta']);
     $routes->connect('/factura/*', ['controller' => 'Personas', 'action' => 'factura']);
     $routes->connect('/ordenes/*', ['controller' => 'Personas', 'action' => 'ordenes']);

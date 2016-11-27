@@ -131,7 +131,7 @@
                                 </div>
                                     
                                 <?php echo "<div class='tab-pane fade' id='ordenes".$us['identificacion']."'>";
-                                    echo "<a href='ordenes/".$usuario."' title = 'Ver las órdenes realizadas'
+                                    echo "<a href='/../ordenes/".$usuario."' title = 'Ver las órdenes realizadas'
                                     class='btn btn-default add-to-cart'> Ver órdenes</a>";
                                     ?>
                                 </div>

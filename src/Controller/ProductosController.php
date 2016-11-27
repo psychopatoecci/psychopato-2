@@ -84,69 +84,21 @@ class ProductosController extends AppController {
      * 
      *
      */
-    public function catalogo() {
-        //obtener plataformas
-        // se extrae de la base de datos el idProducto, nombreProducto y el precio, de las entidades que se encuentren en la tabla consola
+    public function catalogo($codigo = null) {
         
-        /*$condicion =array('Productos.idProducto = consolas.idConsola');
-        $query = $this -> Productos -> find ('all', array(
-        'fields' => array('Productos.idProducto','Productos.precio','Productos.nombreProducto'),'
-        conditions'=>$condicion))->contain(['consolas']);*/
-         
-        //se crea la sentencia sql
-        $query = $this->Productos->find('all')->contain('video_juegos');
-        $idConsolas       = [];
-        $idFisicos        = [];
-        $idDigitales      = [];
-        $precioConsolas   = [];
-        $precioFisicos    = [];
-        $precioDigitales  = [];
-        $nombreConsolas   = [];
-        $nombreFisicos    = [];
-        $nombreDigitales  = [];
-        $generoFisicos    = [];
-        $generoDigitales  = [];
-        $consolaFisicos   = [];
-        $consolaDigitales = [];
-        //se agregan los id, nombre y precios a distintos arreglos
-        foreach ($query as $con) {
-            $tipo = $con['tipo'];
-            if ($tipo == 1) {
-                array_push($idFisicos,      $con->idProducto);
-                array_push($precioFisicos,  $con->precio);
-                array_push($nombreFisicos,  $con->nombreProducto);
-                array_push($generoFisicos,  $con['video_juego']['genero']);
-                array_push($consolaFisicos, $con['video_juego']['idConsola']);
-            } else if ($tipo == 2) {
-                array_push($idDigitales,      $con->idProducto);
-                array_push($precioDigitales,  $con->precio);
-                array_push($nombreDigitales,  $con->nombreProducto);
-                array_push($generoDigitales,  $con['video_juego']['genero']);
-                array_push($consolaDigitales, $con['video_juego']['idConsola']);
-            } else if ($tipo == 3) {
-                array_push($idConsolas, $con->idProducto);
-                array_push($precioConsolas, $con->precio);
-                array_push($nombreConsolas, $con->nombreProducto);
-            }
+        if ($codigo==null) {
+            $codigo = "fisicos";
         }
-        $generosT = TableRegistry::get ('generos') -> find ('all');
-        //se envian los datos obtenidos a la vista
-        $this -> set ('generosT', $generosT);
-        $this -> set ('idConsolas', $idConsolas);
-        $this -> set ('precioConsolas', $precioConsolas);
-        $this -> set ('nombreConsolas', $nombreConsolas);
-        $this -> set ('idFisicos', $idFisicos);
-        $this -> set ('precioFisicos', $precioFisicos);
-        $this -> set ('nombreFisicos', $nombreFisicos);
-        $this -> set ('generoFisicos', $generoFisicos);
-        $this -> set ('consolaFisicos',$consolaFisicos);
-        $this -> set ('idDigitales', $idDigitales);
-        $this -> set ('precioDigitales', $precioDigitales);
-        $this -> set ('nombreDigitales', $nombreDigitales);
-        $this -> set ('generoDigitales', $generoDigitales);
-        $this -> set ('consolaDigitales',$consolaDigitales);
-        //se llama a la vista
         
+        $this -> set ('TipoVista', $codigo);
+        $this->set(compact('TipoVista'));
+        
+        $datos = $this->Productos->find('all');
+        $this -> set ('datos', $datos);
+        
+        $datos2 = TableRegistry::get('video_juegos')->find('all');
+        $this -> set ('datos2', $datos2);
+
         //Botón de añadir al carrito
         $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
 
@@ -430,7 +382,14 @@ class ProductosController extends AppController {
      * 
      *
      */
-    public function ofertas() {
+    public function ofertas($codigo = null) {
+        if ($codigo==null) {
+            $codigo = "ofertas";
+        }
+        
+        $this -> set ('TipoVista', $codigo);
+        $this->set(compact('TipoVista'));
+        
         $numPage = 1;
         $nuevaPag = $this -> request -> query('nuevaPag');
         
@@ -456,6 +415,11 @@ class ProductosController extends AppController {
         
     }
     
+    public function nuevocombo() {
+        $this->render();
+        
+    }
+    
      /** 
      funcion para mostrar la ventana de administracion de productos
     * llama la vista  adminUsuarion
@@ -469,7 +433,10 @@ class ProductosController extends AppController {
         $generosTabla  = TableRegistry::get ('generos');
         $videoJuegosT  = TableRegistry::get ('video_juegos');
         $consolasTabla = TableRegistry::get ('consolas');
-        $productos = $this -> Productos;
+        $combosTabla   = TableRegistry::get ('combos');
+        $ofertasTabla  = TableRegistry::get ('ofertas');
+        $productos     = $this -> Productos;
+        $combos = $combosTabla -> find ('all');
         if ($this -> request -> is ('post')) {
             $datos = $this -> request -> data;
             if (isset ($datos['actualizar'])) {
@@ -483,12 +450,6 @@ class ProductosController extends AppController {
                 $exitoso = true;
                 if (!$productos -> save ($porInsertar))
                     $exitoso = false;
-                //$porBorrar = $generosTabla
-                //    -> find ('all')
-                //    -> where ("idVideoJuego = '".$datos['id']."'");
-                //foreach ($porBorrar as $tupla)
-                    //$generosTabla -> delete ($tupla);
-                
                 if ($datos ['Categoria'] == 1
                     || $datos ['Categoria'] == 2) { // Es videojuego.
                     $porInsertar = $videoJuegosT -> get ($datos['id']);
@@ -496,19 +457,32 @@ class ProductosController extends AppController {
                     $porInsertar ['genero']    = $datos ['Genero'];
                     if (!$videoJuegosT -> save ($porInsertar))
                         $exitoso = false;
-                    /*$generoN = $generosTabla -> newEntity ();
-                    $generoN ['idVideoJuego'] = $datos ['id'];
-                    $generoN ['genero'      ] = $datos ['Genero'];
-                    if(!$generosTabla -> save ($generoN))
-                        $exitoso = false;*/
                 }
                 if ($datos ['descuento'] != '0') {
-                    $ofertas = TableRegistry::get('ofertas');
+                    $porInsertar = $ofertasTabla -> newEntity ();
                     $porInsertar ['idProducto'] = $datos ['id'];
                     $porInsertar ['descuento' ] = $datos ['descuento'];
-                    if (!$ofertas -> save ($porInsertar))
+                    if (!$ofertasTabla -> save ($porInsertar))
                         $exitoso = false;
+                } else {
+                    // Hay que borrar el descuento si ya existe uno.
+                    $porBorrar = $ofertasTabla
+                        -> find  ('all') 
+                        -> where ("idProducto ='".$datos['id']."'")
+                        -> first ();
+                    if ($porBorrar) {
+                        $ofertasTabla -> delete ($porBorrar);
+                    }
                 }
+                /*
+                if ($datos ['combo'] == 'nuevo') {
+                    $porInsertar = $combosTabla -> newEntity ();
+                    $porInsertar ['idCombo']     = count ($combos);
+                    $porInsertar ['precioCombo'] = $datos ['precioCombo'];
+                    if (!$combosTabla -> save($porInsertar))
+                        $exitoso = false;
+                }*/
+
                 if ($exitoso) {
                     $this -> Flash -> success ('Cambios realizados con éxito');
                 } else {
@@ -520,13 +494,15 @@ class ProductosController extends AppController {
             }
         }
         
-        $query = $productos -> find('all') -> contain (['video_juegos', 'ofertas']);
+        $query = $productos
+            -> find('all')
+            -> contain (['video_juegos', 'ofertas']);
         
         $this -> set ('productos', $query);
-        $this -> set ('generos', $generosTabla
-            -> find ('all'));
-        $this -> set ('consola', $consolasTabla 
-            -> find ('all') -> contain ('productos'));
+        $this -> set ('combos', $combos);
+        $this -> set ('generos', $generosTabla -> find ('all'));
+        $this -> set ('consola', $consolasTabla -> find ('all')
+            -> contain ('productos'));
     }
 
     
@@ -534,11 +510,7 @@ class ProductosController extends AppController {
     public function error404() {
         $this->render();
     }
-    
-    //Controlador del upload
-    public function upload() {
-        $this->render();
-    }  
+
     /**
      * funcion nuevoProducto
      * funcion para mostrar la ventana de insertar productos
@@ -548,6 +520,9 @@ class ProductosController extends AppController {
      * se guarda el producto en la base de datos
     */
     public function nuevoproducto(){
+        if ($this->request->session()->read('Auth.User.role')!='admin') {
+            $this->redirect('../../');
+        }
         //se recuperan las consolas disponibles en la base de datos
         $nuevoProd = $this -> Productos-> newEntity ();
         $this -> set (compact ('nuevoProd'));
@@ -564,8 +539,6 @@ class ProductosController extends AppController {
         }
         $this -> set ('opcionesConsola', $consolaArray);
         //se espera a que se oprima el boton de guardar
-        
-        
         
         $generos=TableRegistry::get('generos');
         $generos2=$generos->find('all', array(

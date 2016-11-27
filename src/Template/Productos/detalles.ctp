@@ -63,8 +63,8 @@
 								<ul class="nav nav-pills nav-stacked">
 								
 								<!--/Categorias principales-->
-								<li><a href='catalogo.php' title="Ver el catálogo de productos"><h4 class="panel-title">Catálogo</h4></a></li><p></p>
-								<li><a href='ofertas.php' title="Ver la sección de combos y ofertas"><h4 class="panel-title">Combos y ofertas</h4></a></li><p></p>
+								<li><a href='/catalogo' title="Ver el catálogo de productos"><h4 class="panel-title">Catálogo</h4></a></li><p></p>
+								<li><a href='/ofertas' title="Ver la sección de combos y ofertas"><h4 class="panel-title">Combos y ofertas</h4></a></li><p></p>
 								
 								</ul>
 							</div>
@@ -95,12 +95,15 @@
 								echo $this->Form->hidden('identificacionPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
 								echo $this->Form->hidden('idProducto', ['value'=>$IDProd]);
 								echo $this->Form->hidden('idWishList', ['value'=>'1']);
-							?>
-							<div align="right">
-							<button type='submit' name="BotonWishlist" class='btn btn-default'>
-								<i class="fa fa-star"></i>Agregar a wishlist</button></div>
-							<?php
-								echo $this->Form->end();
+							
+							echo "<div align='right'>";
+
+                            if ($this->request->session()->read('Auth.User.username')) {
+                                echo "<button type='submit' name='BotonWishlist' class='btn btn-default'>
+                                    <i class='fa fa-star'></i>Agregar a wishlist</button>";
+                            }
+							echo $this->Form->end();
+                            echo "</div>"
 							?>
 							
 							<div class="product-information">
@@ -142,26 +145,15 @@
 											echo "<p><b>Género:</b> ".ucfirst($genero)."</p>";
 											$categoriasLista = array('Juego digital','Juego físico','Plataforma');
 											
-											/*
-											$plataformasLista = array('Play Station 4','Play Station 3','Xbox One','Xbox 360','Wii','Wii U','PC','PS Vita','Nintendo 3DS','Nintendo DS');
-											$plataformasBase = array('ps4','ps3','one','360','wii','wiiu','pc','vita','3ds','ds');
-											for ($j = 0; $j < count($plataformasLista); $j++) {
-												if ($plataforma === $plataformasBase[$j]) {
-													echo "<p><b>Plataforma:</b> ".ucfirst($plataformasLista[$j])."</p>";
-												}
-											}
-											*/
 											echo "<p><b>Plataforma:</b> ".ucfirst($plataforma)."</p>";
 										}
 										echo "<br>";
-									?>
-									
-									<button type="submit" name="BotonCarrito" class="btn btn-fefault cart" title="Añadir este producto al carrito de compras">
-										<i class="fa fa-shopping-cart"></i> Añadir al carrito
-									</button>
-
-									<?php
-										echo $this->Form->end();
+                                    if ($this->request->session()->read('Auth.User.username')) {
+									echo "<button type='submit' name='BotonCarrito' class='btn btn-default cart' title='Añadir este producto al carrito de compras'>
+                                            <i class='fa fa-shopping-cart'></i> Añadir al carrito
+                                        </button>";
+                                    }
+                                    echo $this->Form->end();
 									?>
 								
 								</span>

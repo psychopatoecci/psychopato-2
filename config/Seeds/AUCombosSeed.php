@@ -24,9 +24,7 @@ class AUCombosSeed extends AbstractSeed
         for ($i = 0; $i < 50; $i++)
         {
             $data[] = [
-                'idCombo' => $faker->unique->numberBetween($min = 1, $max = 100),
-                'fechaInicio'  => $faker->date($format = 'Y-m-d', $max = '2014-01-01'),
-                'fechaFin'  => $faker->date($format = 'Y-m-d', $max = '2017-01-01'),
+                'idCombo' => $i,
                 'precioCombo' => $faker->numberBetween($min = 1000, $max = 999999)
             ];
         }

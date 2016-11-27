@@ -32,15 +32,10 @@
 	<!--Navegador lateral-->
 	<section>
 		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-					
-						<div align="left">
-							<button type='button' onClick="parent.location='adminProductos'" class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'><-Volver a la lista de productos</button>
+			<div align="left">
+							<button type='button' onClick="parent.location='adminProductos'" class='btn btn-default get' title = 'Volver a la administración de productos'><-Volver a la lista de productos</button>
 						</div>
-					</div>
-				</div>
+			<div class="row">
 				
 				<!--Zona de contenido-->
 				<div class="col-sm-9 padding-right">

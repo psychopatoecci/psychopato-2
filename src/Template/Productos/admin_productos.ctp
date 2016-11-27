@@ -105,6 +105,7 @@
 					
 						<div align="right">
 							<button type='button' onClick="parent.location='nuevoproducto'" class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'>Añadir producto</button>
+							<button type='button' onClick="parent.location='nuevocombo'" class='btn btn-default get' title = 'Añadir un nuevo combo de productos a la base de datos'>Añadir combo</button>
 						</div>
 						<br>
 						<!--Barra de busqueda-->
@@ -112,19 +113,19 @@
 							<input type="text" placeholder="Búsqueda"/>
 						</div>
 						
+						<?php /*
 						<div class='col-sm-12'>
 							<ul class='nav nav-tabs'>
 								<li class='active'><a href='#filtrofisicos' data-toggle='tab'><font size="1">Físicos</font></a></li>
 								<li><a href="#filtrodigitales" data-toggle="tab"><font size="1">Digitales</font></a></li>
 								<li><a href="#filtroplataformas" data-toggle="tab"><font size="1">Plataformas</font></a></li>
 							</ul>
-						</div>
-							
-						
+						</div>¨
+						*/ ?>
 						
 						<div class="brands_products">
 							<div class="brands-name">
-								</br></br></br>	</br>
+								</br></br>
 								<style>
 									div.scroll {
 										width: 270px;
