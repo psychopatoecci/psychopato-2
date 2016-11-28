@@ -32,17 +32,34 @@
 
 		$ListaProductos = array();
 		$ListaNombres = array();
+		
 		$Productos1 = array();
 		$Productos2 = array();
 		$Precios = array();
 		
-		global $ListaSelect; //Para que se muestre tanto nombre como id en la lista
-		$ListaSelect = array();
-		for ($i=0; $i<Count($ListaProductos); $i++) {
-			array_push($ListaSelect, $ListaNombres[$i]." (".$ListaProductos[$i].")");
-		}
+		//Recuperar el nombre y ID de todos los productos
+		foreach($datos as $dato):
+			array_push($ListaProductos, $dato->idProducto);
+			array_push($ListaNombres, $dato->nombreProducto);
+		endforeach;
 		
+		//Recuperar la información de los combos ya creados
+		foreach($datosCombos as $dato):
+			array_push($Productos1, $dato->idProducto);
+			$idCombo = $dato->idCombo;
+			foreach($datosCombos as $dato2):
+				if ($idCombo == $dato2->idCombo & $dato2->idProducto != $dato->idProducto) {
+					array_push($Productos2, $dato2->idProducto);
+				}
+			endforeach;
+		endforeach;
+		
+		foreach($datosCombos2 as $dato):
+			array_push($Precios, $dato->precioCombo);
+		endforeach;
+
 		//Datos de prueba
+		/*
 		$ListaProductos = array(
 		'PROD101406',
 		'PROD10192',
@@ -71,6 +88,14 @@
 		'125000',
 		'52000',
 		'100000');
+		*/
+		
+		global $ListaSelect; //Para que se muestre tanto nombre como id en la lista
+		$ListaSelect = array();
+		for ($i=0; $i<Count($ListaProductos); $i++) {
+			array_push($ListaSelect, $ListaNombres[$i]." (".$ListaProductos[$i].")");
+		}
+		
 	?>
 	
 	<!--Header-->

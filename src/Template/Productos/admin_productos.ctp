@@ -36,6 +36,7 @@
 	?>
 	
 	<?php
+	//Subida de imágenes:
 	if (isset($_POST['val1'])) {
 		$target_dir = $_POST['val1'];
 		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
@@ -105,7 +106,7 @@
 					
 						<div align="right">
 							<button type='button' onClick="parent.location='nuevoproducto'" class='btn btn-default get' title = 'Añadir un nuevo producto a la base de datos'>Añadir producto</button>
-							<button type='button' onClick="parent.location='nuevocombo'" class='btn btn-default get' title = 'Añadir un nuevo combo de productos a la base de datos'>Añadir combo</button>
+							<button type='button' onClick="parent.location='nuevocombo'" class='btn btn-default get' title = 'Añadir o editar un combo de productos'>Añadir combo</button>
 						</div>
 						<br>
 						<!--Barra de busqueda-->
