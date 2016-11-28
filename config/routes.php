@@ -56,7 +56,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/wishlist/*', ['controller' => 'Productos', 'action' => 'wishlist']);
     $routes->connect('/confirmar/*', ['controller' => 'Productos', 'action' => 'confirmar']);
     $routes->connect('/ofertas/*', ['controller' => 'Productos', 'action' => 'ofertas']);
-    $routes->connect('/adminProductos', ['controller' => 'Productos', 'action' => 'adminProductos']);
+    $routes->connect('/adminProductos/*', ['controller' => 'Productos', 'action' => 'adminProductos']);
     $routes->connect('/nuevoproducto', ['controller' => 'Productos', 'action' => 'nuevoproducto']);
     $routes->connect('/nuevocombo', ['controller' => 'Productos', 'action' => 'nuevocombo']);
     $routes->connect('/404', ['controller' => 'Productos', 'action' => 'error404']);
