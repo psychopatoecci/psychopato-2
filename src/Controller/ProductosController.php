@@ -145,12 +145,12 @@ class ProductosController extends AppController {
         $this -> set ('categoria', StrVal ($producto ['tipo']));
         $this -> set ('descripcion', $producto ['descripcion']);
         $this -> set ('descuento', $descuento);
-        $query = $this -> Productos -> find('all')->contain(['video_juegos']);
-        
-
-        foreach ($query as $qu) {
-            $this-> set ('genero', $qu['video_juegos']['genero']);
-            $this-> set ('plataforma', $qu['productos']['nombreProducto']);
+        if ($producto['tipo'] < 3) {
+            $video_j = TableRegistry::get('video_juegos')
+                -> get ($codigo);
+            $plataforma = $this -> Productos -> get ($video_j['idConsola']);
+            $this-> set ('genero', $video_j['genero']);
+            $this-> set ('plataforma', $plataforma['nombreProducto']);
         }
         //echo $descripcion;
         

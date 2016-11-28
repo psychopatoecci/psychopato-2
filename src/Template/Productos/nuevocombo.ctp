@@ -139,7 +139,7 @@
                     
                     <h2>Lista de combos:</h2> <br>
                     <?php
-                    for ($i=0; $i<Count($Productos1); $i++) { //Recorre todos los combos ya creados
+                    for ($i=0; $i<Count($Precios); $i++) { //Recorre todos los combos ya creados
                     ?>
 						<div class='col-sm-4'>
 							<?php

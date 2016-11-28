@@ -136,10 +136,10 @@
 										}
 
 										if ($categoria === "1" | $categoria === "2") {
-											echo "<p><b>Género:</b> ".ucfirst($genero)."</p>";
+											echo "<p><b>Género:</b> ".$genero."</p>";
 											$categoriasLista = array('Juego digital','Juego físico','Plataforma');
 											
-											echo "<p><b>Plataforma:</b> ".ucfirst($plataforma)."</p>";
+											echo "<p><b>Plataforma:</b> ".$plataforma."</p>";
 										}
 										echo "<br>";
                                     if ($this->request->session()->read('Auth.User.username')) {

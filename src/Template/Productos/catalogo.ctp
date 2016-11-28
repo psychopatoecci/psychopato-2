@@ -170,10 +170,10 @@
 								
 								echo "</form>";
 								?>
-								<?phpif ($NombreUsuario == "admin") {?>
+								<?php if ($NombreUsuario == "admin") { ?>
 								<button type='button' onClick="parent.location='/../adminProductos/<?php echo"$IDJuegosFisicos[$i]";?>'" class='btn btn-default add-to-cart'
 									title = 'Editar la información de este producto (Admin)'><i class="fa fa-pencil-square-o"></i></button>
-								<?php}?>
+								<?php } ?>
 							</div>
 						</div>
 					</div>
