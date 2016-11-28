@@ -159,7 +159,7 @@
 						    <?php //Mostrar nombre y código
                             $i = 0;
                             foreach ($productos as $producto) {
-								if ($i === 0) {
+								if (($TipoVista=="" & $i == 0) || $TipoVista==$producto['idProducto']) {
 									echo "<div class='tab-pane fade active in' id='".$producto['idProducto']."' >";
 								} else {
 									echo "<div class='tab-pane fade' id='".$producto['idProducto']."' >";
