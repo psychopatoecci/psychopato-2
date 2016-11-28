@@ -676,7 +676,7 @@ class PersonasController extends AppController
                 if ($response->body == 'Correcto' ) {
                     if ($tarjetas -> save ($tarjeta) ) {
                         $this->Flash->success ('Datos actualizados correctamente.');
-                        return $this->redirect ('/personas/cuenta');
+                        return $this->redirect ('/../cuenta');
                     } else {
                         $this->Flash->error ('Error insertando datos.');
                     }

@@ -36,6 +36,17 @@
     */
     Include ("scripts/funciones.php");
     
+    global $NombreUsuario;
+	$NombreUsuario = $this->request->session()->read('Auth.User.username');
+	
+    $IDWishlist = '1';
+    
+    foreach($datosID as $dato):
+    	if ($dato->identificacionPersona == $NombreUsuario) {
+    		$IDWishlist = $dato->id;
+    	}
+	endforeach;
+    
    ?>
 				
 	<!--Header-->
@@ -88,8 +99,9 @@
 								echo $this->Form->create($addwishlist);
 								echo $this->Form->hidden('identificacionPersona', ['value'=>$this->request->session()->read('Auth.User.username')]);
 								echo $this->Form->hidden('idProducto', ['value'=>$IDProd]);
-								echo $this->Form->hidden('idWishList', ['value'=>'1']);
-							
+								echo $this->Form->hidden('idWishList', ['value'=>$IDWishlist]);
+								echo $this->Form->hidden('id', ['value'=>$IDWishlist]);
+								
 							echo "<div align='right'>";
 
                             if ($this->request->session()->read('Auth.User.username')) {

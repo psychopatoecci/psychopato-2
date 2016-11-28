@@ -157,6 +157,9 @@ class ProductosController extends AppController {
         //Botones de añadir al carrito y wishlist
         $addcarrito = TableRegistry::get('wish_list_productos')->newEntity();
         $addwishlist = TableRegistry::get('wish_list_productos')->newEntity();
+        
+        $datosID = TableRegistry::get('wish_lists')->find('all');
+        $this -> set ('datosID', $datosID);
  
         if($this->request->is('post')) {
             //debug ($this->request->data);
@@ -176,8 +179,8 @@ class ProductosController extends AppController {
                 
             } else if (isset($this->request->data['BotonWishlist'])) {
                 $addwishlist = TableRegistry::get('wish_list_productos')->patchEntity($addwishlist, $this->request->data);
-    
-                if(TableRegistry::get('wish_list_productos')->save($addwishlist)) {
+                
+                if(TableRegistry::get('wish_list_productos')->save($addwishlist) &&  TableRegistry::get('wish_lists')->save($addwishlist)) {
                     $this->Flash->success('Producto añadido a la wishlist.');
                     //Redirecciona a la wishlist del usuario:
                     return $this->redirect(['action' => '../wishlist/'.$this->request->session()->read('Auth.User.username')]);
@@ -465,11 +468,13 @@ class ProductosController extends AppController {
         $datos = $this->Productos->find('all');
         $this -> set ('datos', $datos);
         
+        /*
         $datosCombos = TableRegistry::get('productosCombos')->find('all');
         $this -> set ('datosCombos', $datosCombos);
         
         $datosCombos2 = TableRegistry::get('combos')->find('all');
         $this -> set ('datosCombos2', $datosCombos2);
+        */
     }
     
      /** 

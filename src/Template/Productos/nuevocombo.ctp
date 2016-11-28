@@ -44,6 +44,7 @@
 		endforeach;
 		
 		//Recuperar la información de los combos ya creados
+		/*
 		foreach($datosCombos as $dato):
 			array_push($Productos1, $dato->idProducto);
 			$idCombo = $dato->idCombo;
@@ -57,6 +58,7 @@
 		foreach($datosCombos2 as $dato):
 			array_push($Precios, $dato->precioCombo);
 		endforeach;
+		*/
 
 		//Datos de prueba
 		/*
@@ -73,7 +75,7 @@
 		'Zelda: Breath of the Wild',
 		'Zelda: Ocarina of Time 3D',
 		'The Last Guardian');
-		
+		*/
 		$Productos1 = array(
 		'PROD10192',
 		'PROD10477',
@@ -88,7 +90,7 @@
 		'125000',
 		'52000',
 		'100000');
-		*/
+		
 		
 		global $ListaSelect; //Para que se muestre tanto nombre como id en la lista
 		$ListaSelect = array();
