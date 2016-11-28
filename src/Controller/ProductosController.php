@@ -373,7 +373,7 @@ class ProductosController extends AppController {
 
         if($this->request->is('post')) {
             $datos   = $this -> request -> data();
-            $tarjeta = $DatosTarjetas [$datos ['Tarjetas']];
+            $tarjeta = $DatosTarjetas [$datos ['formaPago']];
             $http    = new Client();
             $response = $http->get('https://psycho-webservice.herokuapp.com',
                 [ 'numTarjeta' => $tarjeta ['idTarjeta']
@@ -414,9 +414,7 @@ class ProductosController extends AppController {
             else {
                 $this->Flash->error('La orden no se ha completado debido a un error.');
             }
-
         }
-        
         $this->set(compact('addfactura'));
     }
    

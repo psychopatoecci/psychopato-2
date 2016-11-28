@@ -90,7 +90,7 @@
 			<div class="col-sm-5 padding-right">
             <?php
                 if (count ($DatosTarjetas) > 0) {
-                    echo "<select name='Tarjetas'>";
+                    echo "<select name='formaPago'>";
                     for ($s =0; $s < count($DatosTarjetas); $s++)
                         echo "<option value='".$s."'>".$DatosTarjetas[$s]['idTarjeta']."</option>";
                 }
@@ -106,13 +106,13 @@
 			<h2>Seleccione una dirección de envío:</h2><br>
 			<div class="col-sm-12 padding-right">
 				<?php if (count($DatosDirecciones) > 0) {
-                    echo "<select name='Direcciones'>";
+                    echo "<select name='direccionEnvio'>";
                     foreach ($DatosDirecciones as $direccion) {
-                        echo "<option value='".$direccion."'>"
-                            .$direccion['nombreProvincia'].", "
-                            .$direccion['nombreCanton'].", "
-                            .$direccion['nombreDistrito'].", "
-                            .$direccion['detalles']."</option>";
+                        $dir = $direccion['nombreProvincia'].", "
+                              .$direccion['nombreCanton'   ].", "
+                              .$direccion['nombreDistrito' ].", "
+                              .$direccion['detalles'       ];
+                        echo "<option value='".$dir."'>".$dir."</option>";
                     }
                     echo "</select>";
                 }
@@ -135,10 +135,10 @@
                     $factura = 'FAC'.rand(10000, 999999);
 
                     //Datos para creación de la factura
-                    echo $this->Form->hidden('idFactura', ['value'=>$factura]);
+                    echo $this->Form->hidden('idFactura',    ['value'=>$factura]);
                     echo $this->Form->hidden('fechaFactura', ['value'=>$now->year."-".$now->month."-".$now->day]);
-                    echo $this->Form->hidden('idUsuario', ['value'=>$usuario]);
-                    echo $this->Form->hidden('precioTotal', ['value'=>$total]);
+                    echo $this->Form->hidden('idUsuario',    ['value'=>$usuario]);
+                    echo $this->Form->hidden('precioTotal',  ['value'=>$total]);
                     echo $this->Form->hidden('estadoCompra', ['value'=>1]);
                     
                     //Datos de los productos de la factura
