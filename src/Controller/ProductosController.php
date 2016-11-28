@@ -461,9 +461,15 @@ class ProductosController extends AppController {
     }
     
     public function nuevocombo() {
-        $productos = $this -> Productos -> find ('all');
-        $this -> set ('productos', $productos);
-        $this->render();
+        
+        $datos = $this->Productos->find('all');
+        $this -> set ('datos', $datos);
+        
+        $datosCombos = TableRegistry::get('productosCombos')->find('all');
+        $this -> set ('datosCombos', $datosCombos);
+        
+        $datosCombos2 = TableRegistry::get('combos')->find('all');
+        $this -> set ('datosCombos2', $datosCombos2);
     }
     
      /** 
