@@ -170,7 +170,10 @@
 								
 								echo "</form>";
 								?>
-								
+								<?phpif ($NombreUsuario == "admin") {?>
+								<button type='button' onClick="parent.location='/../adminProductos/<?php echo"$IDJuegosFisicos[$i]";?>'" class='btn btn-default add-to-cart'
+									title = 'Editar la información de este producto (Admin)'><i class="fa fa-pencil-square-o"></i></button>
+								<?php}?>
 							</div>
 						</div>
 					</div>
@@ -219,7 +222,13 @@
                                     </button>";
                                 }
 								echo "</form>";
+								
 								?>
+							<?phpif ($NombreUsuario == "admin") {?>
+							<button type='button' onClick="parent.location='/../adminProductos/<?php echo"$IDJuegosDigitales[$i]";?>'" class='btn btn-default add-to-cart'
+								title = 'Editar la información de este producto (Admin)'><i class="fa fa-pencil-square-o"></i></button>
+							<?php}?>
+
 								
 							</div>
 							<img src='/../images/home/digital.png' class='new' alt='' />
@@ -267,7 +276,10 @@
                             }
 							echo "</form>";
 							?>
-						
+							<?phpif ($NombreUsuario == "admin") {?>
+							<button type='button' onClick="parent.location='/../adminProductos/<?php echo"$IDPlataformas[$i]";?>'" class='btn btn-default add-to-cart'
+								title = 'Editar la información de este producto (Admin)'><i class="fa fa-pencil-square-o"></i></button>
+							<?php}?>
 						</div>
 					</div>
 				</div>

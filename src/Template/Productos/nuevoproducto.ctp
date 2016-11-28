@@ -33,8 +33,8 @@
 	<section>
 		<div class="container">
 			<div align="left">
-							<button type='button' onClick="parent.location='adminProductos'" class='btn btn-default get' title = 'Volver a la administración de productos'><-Volver a la lista de productos</button>
-						</div>
+				<button type='button' onClick="parent.location='adminProductos'" class='btn btn-default get' title = 'Volver a la administración de productos'><-Volver a la lista de productos</button>
+			</div>
 			<div class="row">
 				
 				<!--Zona de contenido-->

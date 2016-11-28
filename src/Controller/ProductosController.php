@@ -473,7 +473,14 @@ class ProductosController extends AppController {
     * se busca en la base de datos la informacion de los productos (tablas preoductos, video_juegos, generos)
     * se envia como parametros los datos de cada usuario (nombre, identificacion, etc)
     */
-    public function AdminProductos() {
+    public function AdminProductos($codigo = null) {
+        if ($codigo==null) {
+            $codigo = "";
+        }
+        
+        $this -> set ('TipoVista', $codigo);
+        $this->set(compact('TipoVista'));
+        
         if ($this->request->session()->read('Auth.User.role')!='admin') {
             $this->redirect('../../');
         }
