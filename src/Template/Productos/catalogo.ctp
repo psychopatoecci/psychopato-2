@@ -147,9 +147,6 @@
 							<div class='productinfo text-center'>
 								<?php 
 				                $ref = '/../detalles/'.$IDJuegosFisicos[$i]."'";
-				                if ($NombreUsuario == "admin") {
-				                    //$ref = 'productos/adminProductos/'.$IDJuegosFisicos[$i]."'";
-				                }
 								echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='/../".obtenerPortada($IDJuegosFisicos[$i])."' alt='' /></a>";
 								echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres[$i]."</p></a>";
 								echo "<h2>¢".$precios[$i]."</h2>";
@@ -170,7 +167,9 @@
 								
 								echo "</form>";
 								?>
-								<?php if ($NombreUsuario == "admin") { ?>
+								<?php
+									if ($NombreUsuario === "admin") {
+								?>
 								<button type='button' onClick="parent.location='/../adminProductos/<?php echo"$IDJuegosFisicos[$i]";?>'" class='btn btn-default add-to-cart'
 									title = 'Editar la información de este producto (Admin)'><i class="fa fa-pencil-square-o"></i></button>
 								<?php } ?>
@@ -202,9 +201,6 @@
 							<div class='productinfo text-center'>
 								<?php 
 				                $ref = '/../detalles/'.$IDJuegosDigitales[$i]."'";
-				                if ($NombreUsuario == "admin") {
-				                    //$ref = 'productos/adminProductos/'.$IDJuegosDigitales[$i]."'";
-				                }
 								echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='/../".obtenerPortada($IDJuegosDigitales[$i])."' alt='' /></a>";
 								echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres2[$i]."</p></a>";
 								echo "<h2>¢".$precios2[$i]."</h2>";
@@ -224,7 +220,7 @@
 								echo "</form>";
 								
 								?>
-							<?phpif ($NombreUsuario == "admin") {?>
+							<?phpif ($NombreUsuario === "admin") {?>
 							<button type='button' onClick="parent.location='/../adminProductos/<?php echo"$IDJuegosDigitales[$i]";?>'" class='btn btn-default add-to-cart'
 								title = 'Editar la información de este producto (Admin)'><i class="fa fa-pencil-square-o"></i></button>
 							<?php}?>
@@ -255,9 +251,6 @@
 						<div class='productinfo text-center'>
 							<?php
 							$ref = '/../detalles/'.$IDPlataformas[$i]."'";
-			                if ($NombreUsuario == "admin") {
-			                    //$ref = 'productos/adminProductos/'.$IDPlataformas[$i]."'";
-			                }
 							echo "<a href='$ref' title = 'Ver los detalles de este producto'><img src='/../".obtenerPortada($IDPlataformas[$i])."' alt='' /></a>";
 							echo "<a href='$ref' title = 'Ver los detalles de este producto'><p>".$nombres3[$i]."</p></a>";
 							echo "<h2>¢".$precios3[$i]."</h2>";
@@ -276,7 +269,7 @@
                             }
 							echo "</form>";
 							?>
-							<?phpif ($NombreUsuario == "admin") {?>
+							<?phpif ($NombreUsuario === "admin") {?>
 							<button type='button' onClick="parent.location='/../adminProductos/<?php echo"$IDPlataformas[$i]";?>'" class='btn btn-default add-to-cart'
 								title = 'Editar la información de este producto (Admin)'><i class="fa fa-pencil-square-o"></i></button>
 							<?php}?>
